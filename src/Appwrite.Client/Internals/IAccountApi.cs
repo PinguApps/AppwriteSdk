@@ -3,9 +3,8 @@ using Refit;
 
 namespace Appwrite.Client.Internals;
 
-[Headers("X-Appwrite-Response-Format: 1.5.0")]
-public interface IAccountApi
+public interface IAccountApi : IBaseApi
 {
     [Get("/account")]
-    Task<IApiResponse<string>> GetAccountAsync([Header("X-Appwrite-JWT")] string? session);
+    Task<IApiResponse<string>> GetAccountAsync([Header("X-Appwrite-Session")] string? session);
 }
