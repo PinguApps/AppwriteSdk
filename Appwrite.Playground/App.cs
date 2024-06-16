@@ -18,5 +18,11 @@ internal class App
         _client.SetSession(_session);
 
         var account = await _client.GetAccount();
+
+        account.Result.Switch(
+            account => Console.WriteLine(account.Email),
+            appwriteError => Console.WriteLine(appwriteError.Message),
+            internalError => Console.WriteLine(internalError.Message)
+        );
     }
 }
