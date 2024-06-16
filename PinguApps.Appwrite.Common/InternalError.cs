@@ -1,4 +1,4 @@
-﻿namespace PinguApps.Appwrite.Client.Models;
+﻿namespace PinguApps.Appwrite.Shared;
 public record InternalError(
     string Message
 );

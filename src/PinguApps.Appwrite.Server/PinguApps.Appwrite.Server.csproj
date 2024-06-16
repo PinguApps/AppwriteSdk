@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PinguApps.Appwrite.Common\PinguApps.Appwrite.Shared.csproj" />
+    <Folder Include="Internals\" />
   </ItemGroup>
 
 </Project>

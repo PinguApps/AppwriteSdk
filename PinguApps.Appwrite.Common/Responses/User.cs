@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace PinguApps.Appwrite.Client.Models;
-
+namespace PinguApps.Appwrite.Shared.Responses;
 public record User(
     [property: JsonPropertyName("$id")] string Id,
     [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,

@@ -1,6 +1,6 @@
 ﻿using OneOf;
 
-namespace PinguApps.Appwrite.Client.Models;
+namespace PinguApps.Appwrite.Shared;
 public class AppwriteResult<TResult>
 {
     public AppwriteResult(OneOf<TResult, AppwriteError, InternalError> result)

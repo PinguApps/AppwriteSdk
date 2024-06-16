@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using PinguApps.Appwrite.Client.Models;
+using PinguApps.Appwrite.Shared.Responses;
 using Refit;
 
 namespace PinguApps.Appwrite.Client.Internals;
