@@ -17,6 +17,7 @@ public static class ServiceCollectionExtensions
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
             .AddHttpMessageHandler<HeaderHandler>();
 
+        services.AddSingleton<AccountClient>();
         services.AddSingleton<AppwriteClient>();
 
         return services;
