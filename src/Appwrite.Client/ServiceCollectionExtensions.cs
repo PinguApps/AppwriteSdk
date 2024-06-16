@@ -14,7 +14,10 @@ public static class ServiceCollectionExtensions
         services.AddTransient(sp => new HeaderHandler(projectId));
 
         services.AddRefitClient<IAccountApi>()
-            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint));
+            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
+            .AddHttpMessageHandler<HeaderHandler>();
+
+        services.AddSingleton<AppwriteClient>();
 
         return services;
     }

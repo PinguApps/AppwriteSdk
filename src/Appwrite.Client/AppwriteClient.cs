@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Appwrite.Client.Internals;
+using Refit;
 
 namespace Appwrite.Client;
 public class AppwriteClient
@@ -15,8 +16,10 @@ public class AppwriteClient
 
     public void SetSession(string? session) => Session = session;
 
-    public async Task GetAccount()
+    public async Task<IApiResponse<string>> GetAccount()
     {
         var result = await _accountApi.GetAccountAsync(Session);
+
+        return result;
     }
 }
