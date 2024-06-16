@@ -7,8 +7,6 @@ using Refit;
 namespace PinguApps.Appwrite.Client;
 public static class ServiceCollectionExtensions
 {
-    // Delegating handler to set project ID, endpoint.
-
     public static IServiceCollection AddAppwriteClient(this IServiceCollection services, string projectId, string endpoint = "https://cloud.appwrite.io/v1")
     {
         services.AddTransient(sp => new HeaderHandler(projectId));

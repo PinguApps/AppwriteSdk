@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="OneOf" Version="3.0.271" />
+    <PackageReference Include="Refit" Version="7.0.0" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.3" />
   </ItemGroup>
 
