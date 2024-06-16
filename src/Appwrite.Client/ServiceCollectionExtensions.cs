@@ -9,7 +9,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddAppwriteClient(this IServiceCollection services, string projectId, string endpoint = "https://cloud.appwrite.io/v1")
     {
-        services.AddTransient(sp => new HeaderHandler(projectId));
+        services.AddSingleton(sp => new HeaderHandler(projectId));
 
         services.AddRefitClient<IAccountApi>()
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
@@ -17,6 +17,20 @@ public static class ServiceCollectionExtensions
 
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddAppwriteClientForServer(this IServiceCollection services, string projectId, string endpoint = "https://cloud.appwrite.io/v1")
+    {
+        services.AddSingleton(sp => new HeaderHandler(projectId));
+
+        services.AddRefitClient<IAccountApi>()
+            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
+            .AddHttpMessageHandler<HeaderHandler>();
+
+        services.AddTransient<IAccountClient, AccountClient>();
+        services.AddTransient<IAppwriteClient, AppwriteClient>();
 
         return services;
     }
