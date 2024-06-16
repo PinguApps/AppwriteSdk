@@ -4,10 +4,10 @@ using PinguApps.Appwrite.Client;
 namespace PinguApps.Appwrite.Playground;
 internal class App
 {
-    private readonly AppwriteClient _client;
+    private readonly IAppwriteClient _client;
     private readonly string? _session;
 
-    public App(AppwriteClient client, IConfiguration config)
+    public App(IAppwriteClient client, IConfiguration config)
     {
         _client = client;
         _session = config.GetValue<string>("Session");
@@ -15,7 +15,7 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        _client.SetSession("_session");
+        _client.SetSession(_session);
 
         var result = await _client.Account.Get();
 

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Text.Json;
 using System.Threading.Tasks;
+using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Client.Models;
 
 namespace PinguApps.Appwrite.Client;
-public class AccountClient
+public class AccountClient : IAccountClient, ISessionAware
 {
     private readonly IAccountApi _accountApi;
 
@@ -14,8 +15,19 @@ public class AccountClient
         _accountApi = accountApi;
     }
 
-    public string? Session { get; private set; }
-    public void SetSession(string? session) => Session = session;
+    string? ISessionAware.Session { get; set; }
+
+    ISessionAware? _sessionAware;
+    public string? Session => GetSession();
+    private string? GetSession()
+    {
+        if (_sessionAware is null)
+        {
+            _sessionAware = this;
+        }
+
+        return _sessionAware.Session;
+    }
 
     public async Task<AppwriteResult<User>> Get()
     {
