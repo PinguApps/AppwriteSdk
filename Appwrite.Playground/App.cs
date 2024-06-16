@@ -28,12 +28,12 @@ internal class App
         //    internalError => Console.WriteLine(internalError.Message)
         //);
 
-        var result = await _server.Account.Get(null);
+        //var result = await _server.Account.Get(null);
 
-        result.Result.Switch(
-            account => Console.WriteLine(account.Email),
-            appwriteError => Console.WriteLine(appwriteError.Message),
-            internalError => Console.WriteLine(internalError.Message)
-        );
+        //result.Result.Switch(
+        //    account => Console.WriteLine(account.Email),
+        //    appwriteError => Console.WriteLine(appwriteError.Message),
+        //    internalError => Console.WriteLine(internalError.Message)
+        //);
     }
 }
