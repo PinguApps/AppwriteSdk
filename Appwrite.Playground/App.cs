@@ -15,7 +15,7 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        _client.SetSession(_session);
+        _client.SetSession("_session");
 
         var result = await _client.Account.Get();
 

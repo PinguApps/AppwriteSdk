@@ -1,7 +1,9 @@
-﻿namespace PinguApps.Appwrite.Client.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace PinguApps.Appwrite.Client.Models;
 public record AppwriteError(
-    string Message,
-    int Code,
-    string Type,
-    string Version
+    [property: JsonPropertyName("message")] string Message,
+    [property: JsonPropertyName("code")] int Code,
+    [property: JsonPropertyName("type")] string Type,
+    [property: JsonPropertyName("version")] string Version
 );
