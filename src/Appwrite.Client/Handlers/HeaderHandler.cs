@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Appwrite.Client.Handlers;
+namespace PinguApps.Appwrite.Client.Handlers;
 internal class HeaderHandler : DelegatingHandler
 {
     private readonly string _projectId;

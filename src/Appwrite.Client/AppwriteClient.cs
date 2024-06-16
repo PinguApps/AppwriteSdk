@@ -1,5 +1,5 @@
-﻿namespace Appwrite.Client;
-public partial class AppwriteClient
+﻿namespace PinguApps.Appwrite.Client;
+public class AppwriteClient
 {
     public AccountClient Account { get; }
 

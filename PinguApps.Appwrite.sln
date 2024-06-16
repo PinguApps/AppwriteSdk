@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6F37E87C-BAB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{407B2EC0-0E85-4E39-9782-AB920A765B51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appwrite.Client", "src\Appwrite.Client\Appwrite.Client.csproj", "{0B05C1CC-1D37-4BAB-B133-E8638F6C6439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Client", "src\Appwrite.Client\PinguApps.Appwrite.Client.csproj", "{0B05C1CC-1D37-4BAB-B133-E8638F6C6439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appwrite.Playground", "Appwrite.Playground\Appwrite.Playground.csproj", "{EEB648E0-2054-4204-A0C1-CDC29FC63F4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Playground", "Appwrite.Playground\PinguApps.Appwrite.Playground.csproj", "{EEB648E0-2054-4204-A0C1-CDC29FC63F4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

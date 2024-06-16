@@ -1,7 +1,7 @@
-﻿using Appwrite.Client;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using PinguApps.Appwrite.Client;
 
-namespace Appwrite.Playground;
+namespace PinguApps.Appwrite.Playground;
 internal class App
 {
     private readonly AppwriteClient _client;

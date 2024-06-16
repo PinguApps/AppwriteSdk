@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Appwrite.Client.Models;
+namespace PinguApps.Appwrite.Client.Models;
 
 public record User(
     [property: JsonPropertyName("$id")] string Id,

@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Appwrite.Client.Models;
+using PinguApps.Appwrite.Client.Models;
 using Refit;
 
-namespace Appwrite.Client.Internals;
+namespace PinguApps.Appwrite.Client.Internals;
 
 public interface IAccountApi : IBaseApi
 {

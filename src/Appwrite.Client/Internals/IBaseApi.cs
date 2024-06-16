@@ -1,6 +1,6 @@
 ﻿using Refit;
 
-namespace Appwrite.Client.Internals;
+namespace PinguApps.Appwrite.Client.Internals;
 
 
 [Headers("content-type: application/json",

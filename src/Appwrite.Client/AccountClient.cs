@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Appwrite.Client.Internals;
-using Appwrite.Client.Models;
+using PinguApps.Appwrite.Client.Internals;
+using PinguApps.Appwrite.Client.Models;
 
-namespace Appwrite.Client;
+namespace PinguApps.Appwrite.Client;
 public class AccountClient
 {
     private readonly IAccountApi _accountApi;

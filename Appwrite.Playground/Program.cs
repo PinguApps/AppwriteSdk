@@ -1,8 +1,8 @@
-﻿using Appwrite.Client;
-using Appwrite.Playground;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PinguApps.Appwrite.Client;
+using PinguApps.Appwrite.Playground;
 
 var builder = Host.CreateApplicationBuilder(args);
 

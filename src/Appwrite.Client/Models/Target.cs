@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-using Appwrite.Client.Enums;
+using PinguApps.Appwrite.Client.Enums;
 
-namespace Appwrite.Client.Models;
+namespace PinguApps.Appwrite.Client.Models;
 public record Target(
         [property: JsonPropertyName("$id")] string Id,
         [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,

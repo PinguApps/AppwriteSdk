@@ -1,10 +1,10 @@
 ﻿using System;
-using Appwrite.Client.Handlers;
-using Appwrite.Client.Internals;
 using Microsoft.Extensions.DependencyInjection;
+using PinguApps.Appwrite.Client.Handlers;
+using PinguApps.Appwrite.Client.Internals;
 using Refit;
 
-namespace Appwrite.Client;
+namespace PinguApps.Appwrite.Client;
 public static class ServiceCollectionExtensions
 {
     // Delegating handler to set project ID, endpoint.

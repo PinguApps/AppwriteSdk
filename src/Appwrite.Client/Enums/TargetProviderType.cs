@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Appwrite.Client.Enums;
+namespace PinguApps.Appwrite.Client.Enums;
 public enum TargetProviderType
 {
     [EnumMember(Value = "email")]
