@@ -8,5 +8,5 @@ namespace PinguApps.Appwrite.Client.Internals;
 public interface IAccountApi : IBaseApi, IAccountApiBase
 {
     [Get("/account")]
-    Task<IApiResponse<User>> GetAccountAsync([Header("X-Appwrite-Session")] string? session);
+    Task<IApiResponse<User>> GetAccount([Header("X-Appwrite-Session")] string? session);
 }

@@ -34,7 +34,7 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
-            var result = await _accountApi.GetAccountAsync(Session);
+            var result = await _accountApi.GetAccount(Session);
 
             if (result.IsSuccessStatusCode)
             {

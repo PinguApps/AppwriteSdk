@@ -18,15 +18,15 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        //_client.SetSession(_session);
+        _client.SetSession(_session);
 
-        //var result = await _client.Account.Get();
+        var result = await _client.Account.Get();
 
-        //result.Result.Switch(
-        //    account => Console.WriteLine(account.Email),
-        //    appwriteError => Console.WriteLine(appwriteError.Message),
-        //    internalError => Console.WriteLine(internalError.Message)
-        //);
+        result.Result.Switch(
+            account => Console.WriteLine(account.Email),
+            appwriteError => Console.WriteLine(appwriteError.Message),
+            internalError => Console.WriteLine(internalError.Message)
+        );
 
         //var result = await _server.Account.Get(null);
 
