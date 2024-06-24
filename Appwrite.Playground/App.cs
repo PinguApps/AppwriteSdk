@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Client;
 using PinguApps.Appwrite.Server.Servers;
-using PinguApps.Appwrite.Shared.Requests;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -19,23 +18,23 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        //_client.SetSession(_session);
+        _client.SetSession(_session);
 
-        //var result = await _client.Account.Get();
+        var result = await _client.Account.Get();
 
-        //result.Result.Switch(
-        //    account => Console.WriteLine(account.Email),
-        //    appwriteError => Console.WriteLine(appwriteError.Message),
-        //    internalError => Console.WriteLine(internalError.Message)
-        //);
+        result.Result.Switch(
+            account => Console.WriteLine(account.Email),
+            appwriteError => Console.WriteLine(appwriteError.Message),
+            internalError => Console.WriteLine(internalError.Message)
+        );
 
-        var request = new CreateAccountRequest
-        {
-            Email = "test2@example.com",
-            Password = "ThisIsMyPassword",
-            Name = "Two Names"
-        };
+        //var request = new CreateAccountRequest
+        //{
+        //    Email = "test2@example.com",
+        //    Password = "ThisIsMyPassword",
+        //    Name = "Two Names"
+        //};
 
-        var result = await _server.Account.Create(request);
+        //var result = await _server.Account.Create(request);
     }
 }

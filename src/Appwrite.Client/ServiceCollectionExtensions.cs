@@ -13,7 +13,8 @@ public static class ServiceCollectionExtensions
 
         services.AddRefitClient<IAccountApi>()
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
-            .AddHttpMessageHandler<HeaderHandler>();
+            .AddHttpMessageHandler<HeaderHandler>()
+            .AddStandardResilienceHandler();
 
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
@@ -27,7 +28,8 @@ public static class ServiceCollectionExtensions
 
         services.AddRefitClient<IAccountApi>()
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
-            .AddHttpMessageHandler<HeaderHandler>();
+            .AddHttpMessageHandler<HeaderHandler>()
+            .AddStandardResilienceHandler();
 
         services.AddTransient<IAccountClient, AccountClient>();
         services.AddTransient<IAppwriteClient, AppwriteClient>();
