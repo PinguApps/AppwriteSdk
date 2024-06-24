@@ -59,3 +59,50 @@
 | [Create Email Verification (Confirmation)](https://appwrite.io/docs/references/cloud/client-rest/account#updateVerification) |  |  |
 | [Create Phone Verification](https://appwrite.io/docs/references/cloud/client-rest/account#createPhoneVerification) |  |  |
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/cloud/client-rest/account#updatePhoneVerification) |  |  |
+
+## Users
+![0%](https://progress-bar.dev/0)
+
+| Endpoint | Client | Server |
+|:-:|:-:|:-:|
+| [List Users](https://appwrite.io/docs/references/cloud/server-rest/users#list) | ❌ | ⬛ |
+| [Create User](https://appwrite.io/docs/references/cloud/server-rest/users#create) | ❌ | ⬛ |
+| [Create User with Argon2 Password](https://appwrite.io/docs/references/cloud/server-rest/users#createArgon2User) | ❌ | ⬛ |
+| [Create User with Bcrypt Password](https://appwrite.io/docs/references/cloud/server-rest/users#createBcryptUser) | ❌ | ⬛ |
+| [List Identities](https://appwrite.io/docs/references/cloud/server-rest/users#listIdentities) | ❌ | ⬛ |
+| [Delete Identity](https://appwrite.io/docs/references/cloud/server-rest/users#deleteIdentity) | ❌ | ⬛ |
+| [Create User with MD5 Password](https://appwrite.io/docs/references/cloud/server-rest/users#createMD5User) | ❌ | ⬛ |
+| [Create User with PHPass Password](https://appwrite.io/docs/references/cloud/server-rest/users#createPHPassUser) | ❌ | ⬛ |
+| [Create User with Scrypt Password](https://appwrite.io/docs/references/cloud/server-rest/users#createScryptUser) | ❌ | ⬛ |
+| [Create User with Scrypt Modified Password](https://appwrite.io/docs/references/cloud/server-rest/users#createScryptModifiedUser) | ❌ | ⬛ |
+| [Create User with SHA Password](https://appwrite.io/docs/references/cloud/server-rest/users#createSHAUser) | ❌ | ⬛ |
+| [Get User](https://appwrite.io/docs/references/cloud/server-rest/users#get) | ❌ | ⬛ |
+| [Delete User](https://appwrite.io/docs/references/cloud/server-rest/users#delete) | ❌ | ⬛ |
+| [Update Email](https://appwrite.io/docs/references/cloud/server-rest/users#updateEmail) | ❌ | ⬛ |
+| [Update User Labels](https://appwrite.io/docs/references/cloud/server-rest/users#updateLabels) | ❌ | ⬛ |
+| [List User Logs](https://appwrite.io/docs/references/cloud/server-rest/users#listLogs) | ❌ | ⬛ |
+| [List User Memberships](https://appwrite.io/docs/references/cloud/server-rest/users#listMemberships) | ❌ | ⬛ |
+| [Update MFA](https://appwrite.io/docs/references/cloud/server-rest/users#updateMfa) | ❌ | ⬛ |
+| [Delete Authenticator](https://appwrite.io/docs/references/cloud/server-rest/users#deleteMfaAuthenticator) | ❌ | ⬛ |
+| [List Factors](https://appwrite.io/docs/references/cloud/server-rest/users#listMfaFactors) | ❌ | ⬛ |
+| [Get MFA Recovery Codes](https://appwrite.io/docs/references/cloud/server-rest/users#getMfaRecoveryCodes) | ❌ | ⬛ |
+| [Regenerator MFA Recovery Codes](https://appwrite.io/docs/references/cloud/server-rest/users#updateMfaRecoveryCodes) | ❌ | ⬛ |
+| [Create MFA Recovery Codes](https://appwrite.io/docs/references/cloud/server-rest/users#createMfaRecoveryCodes) | ❌ | ⬛ |
+| [Update Name](https://appwrite.io/docs/references/cloud/server-rest/users#updateName) | ❌ | ⬛ |
+| [Update Password](https://appwrite.io/docs/references/cloud/server-rest/users#updatePassword) | ❌ | ⬛ |
+| [Update Phone](https://appwrite.io/docs/references/cloud/server-rest/users#updatePhone) | ❌ | ⬛ |
+| [Get User Preferences](https://appwrite.io/docs/references/cloud/server-rest/users#getPrefs) | ❌ | ⬛ |
+| [Update User Preferences](https://appwrite.io/docs/references/cloud/server-rest/users#updatePrefs) | ❌ | ⬛ |
+| [List User Sessions](https://appwrite.io/docs/references/cloud/server-rest/users#listSessions) | ❌ | ⬛ |
+| [Create Session](https://appwrite.io/docs/references/cloud/server-rest/users#createSession) | ❌ | ⬛ |
+| [Delete User Sessions](https://appwrite.io/docs/references/cloud/server-rest/users#deleteSessions) | ❌ | ⬛ |
+| [Delete User Session](https://appwrite.io/docs/references/cloud/server-rest/users#deleteSession) | ❌ | ⬛ |
+| [Update User Status](https://appwrite.io/docs/references/cloud/server-rest/users#updateStatus) | ❌ | ⬛ |
+| [List User Targets](https://appwrite.io/docs/references/cloud/server-rest/users#listTargets) | ❌ | ⬛ |
+| [Create User Target](https://appwrite.io/docs/references/cloud/server-rest/users#createTarget) | ❌ | ⬛ |
+| [Get User Target](https://appwrite.io/docs/references/cloud/server-rest/users#getTarget) | ❌ | ⬛ |
+| [Update User Target](https://appwrite.io/docs/references/cloud/server-rest/users#updateTarget) | ❌ | ⬛ |
+| [Delete User Target](https://appwrite.io/docs/references/cloud/server-rest/users#deleteTarget) | ❌ | ⬛ |
+| [Create Token](https://appwrite.io/docs/references/cloud/server-rest/users#createToken) | ❌ | ⬛ |
+| [Update Email Verification](https://appwrite.io/docs/references/cloud/server-rest/users#updateEmailVerification) | ❌ | ⬛ |
+| [Update Phone Verification](https://appwrite.io/docs/references/cloud/server-rest/users#updatePhoneVerification) | ❌ | ⬛ |
