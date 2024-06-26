@@ -125,3 +125,52 @@
 | [Update Team Membership Status](https://appwrite.io/docs/references/cloud/client-rest/teams#updateMembershipStatus) |  |  |
 | [Get Team Memberships](https://appwrite.io/docs/references/cloud/client-rest/teams#getPrefs) |  |  |
 | [Update Preferences](https://appwrite.io/docs/references/cloud/client-rest/teams#updatePrefs) |  |  |
+
+## Databases
+![0%](https://progress-bar.dev/0)
+
+| Endpoint | Client | Server |
+|:-:|:-:|:-:|
+| [List Databases](https://appwrite.io/docs/references/cloud/server-rest/databases#list) | ❌ | ⬛ |
+| [Create Databases](https://appwrite.io/docs/references/cloud/server-rest/databases#create) | ❌ | ⬛ |
+| [Get Database](https://appwrite.io/docs/references/cloud/server-rest/databases#get) | ❌ | ⬛ |
+| [Update Database](https://appwrite.io/docs/references/cloud/server-rest/databases#update) | ❌ | ⬛ |
+| [Delete Database](https://appwrite.io/docs/references/cloud/server-rest/databases#delete) | ❌ | ⬛ |
+| [List Collections](https://appwrite.io/docs/references/cloud/server-rest/databases#listCollections) | ❌ | ⬛ |
+| [Create Collection](https://appwrite.io/docs/references/cloud/server-rest/databases#createCollection) | ❌ | ⬛ |
+| [Get Collections](https://appwrite.io/docs/references/cloud/server-rest/databases#getCollection) | ❌ | ⬛ |
+| [Update Collection](https://appwrite.io/docs/references/cloud/server-rest/databases#updateCollection) | ❌ | ⬛ |
+| [Delete Collection](https://appwrite.io/docs/references/cloud/server-rest/databases#deleteCollection) | ❌ | ⬛ |
+| [List Attributes](https://appwrite.io/docs/references/cloud/server-rest/databases#listAttributes) | ❌ | ⬛ |
+| [Create Boolean Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createBooleanAttribute) | ❌ | ⬛ |
+| [Update Boolean Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateBooleanAttribute) | ❌ | ⬛ |
+| [Create Datatime Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createDatetimeAttribute) | ❌ | ⬛ |
+| [Update Datetime Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateDatetimeAttribute) | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
+| []() | ❌ | ⬛ |
