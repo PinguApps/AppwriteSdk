@@ -106,3 +106,22 @@
 | [Create Token](https://appwrite.io/docs/references/cloud/server-rest/users#createToken) | ❌ | ⬛ |
 | [Update Email Verification](https://appwrite.io/docs/references/cloud/server-rest/users#updateEmailVerification) | ❌ | ⬛ |
 | [Update Phone Verification](https://appwrite.io/docs/references/cloud/server-rest/users#updatePhoneVerification) | ❌ | ⬛ |
+
+## Teams
+![0%](https://progress-bar.dev/0)
+
+| Endpoint | Client | Server |
+|:-:|:-:|:-:|
+| [List Teams](https://appwrite.io/docs/references/cloud/client-rest/teams#list) |  |  |
+| [Create Team](https://appwrite.io/docs/references/cloud/client-rest/teams#create) |  |  |
+| [Get Team](https://appwrite.io/docs/references/cloud/client-rest/teams#get) |  |  |
+| [Updatet Name](https://appwrite.io/docs/references/cloud/client-rest/teams#updateName) |  |  |
+| [Delete Team](https://appwrite.io/docs/references/cloud/client-rest/teams#delete) |  |  |
+| [List Team Memberships](https://appwrite.io/docs/references/cloud/client-rest/teams#listMemberships) |  |  |
+| [Create Team Membership](https://appwrite.io/docs/references/cloud/client-rest/teams#createMembership) |  |  |
+| [Get Team Membership](https://appwrite.io/docs/references/cloud/client-rest/teams#getMembership) |  |  |
+| [Update Membership](https://appwrite.io/docs/references/cloud/client-rest/teams#updateMembership) |  |  |
+| [Delete Team Membership](https://appwrite.io/docs/references/cloud/client-rest/teams#deleteMembership) |  |  |
+| [Update Team Membership Status](https://appwrite.io/docs/references/cloud/client-rest/teams#updateMembershipStatus) |  |  |
+| [Get Team Memberships](https://appwrite.io/docs/references/cloud/client-rest/teams#getPrefs) |  |  |
+| [Update Preferences](https://appwrite.io/docs/references/cloud/client-rest/teams#updatePrefs) |  |  |
