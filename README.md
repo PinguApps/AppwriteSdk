@@ -175,8 +175,20 @@
 | [Delete Index](https://appwrite.io/docs/references/cloud/server-rest/databases#deleteIndex) | ❌ | ⬛ |
 
 ## Storage
-![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
+![0 / 21](https://progress-bar.dev/0/?scale=21&suffix=%20/%2021&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
-| [List Databases](https://appwrite.io/docs/references/cloud/server-rest/databases#list) | ❌ | ⬛ |
+| [List Buckets](https://appwrite.io/docs/references/cloud/server-rest/storage#listBuckets) | ❌ | ⬛ |
+| [Create Bucket](https://appwrite.io/docs/references/cloud/server-rest/storage#createBucket) | ❌ | ⬛ |
+| [Get Bucket](https://appwrite.io/docs/references/cloud/server-rest/storage#getBucket) | ❌ | ⬛ |
+| [Update Bucket](https://appwrite.io/docs/references/cloud/server-rest/storage#updateBucket) | ❌ | ⬛ |
+| [Delete Bucket](https://appwrite.io/docs/references/cloud/server-rest/storage#deleteBucket) | ❌ | ⬛ |
+| [List Files](https://appwrite.io/docs/references/cloud/client-rest/storage#listFiles) | ⬛ | ⬛ |
+| [Create File](https://appwrite.io/docs/references/cloud/client-rest/storage#createFile) | ⬛ | ⬛ |
+| [Get File](https://appwrite.io/docs/references/cloud/client-rest/storage#getFile) | ⬛ | ⬛ |
+| [Update File](https://appwrite.io/docs/references/cloud/client-rest/storage#updateFile) | ⬛ | ⬛ |
+| [Delete File](https://appwrite.io/docs/references/cloud/client-rest/storage#deleteFile) | ⬛ | ⬛ |
+| [Get File For Download](https://appwrite.io/docs/references/cloud/client-rest/storage#getFileDownload) | ⬛ | ⬛ |
+| [Get File Preview](https://appwrite.io/docs/references/cloud/client-rest/storage#getFilePreview) | ⬛ | ⬛ |
+| [Get File For View](https://appwrite.io/docs/references/cloud/client-rest/storage#getFileView) | ⬛ | ⬛ |
