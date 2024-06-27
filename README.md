@@ -8,7 +8,7 @@
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ## Account
-![0%](https://progress-bar.dev/0)
+![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -61,7 +61,7 @@
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/cloud/client-rest/account#updatePhoneVerification) |  |  |
 
 ## Users
-![0%](https://progress-bar.dev/0)
+![0 / 41](https://progress-bar.dev/0/?scale=41&suffix=%20/%2041&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -108,7 +108,7 @@
 | [Update Phone Verification](https://appwrite.io/docs/references/cloud/server-rest/users#updatePhoneVerification) | ❌ | ⬛ |
 
 ## Teams
-![0%](https://progress-bar.dev/0)
+![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -127,7 +127,7 @@
 | [Update Preferences](https://appwrite.io/docs/references/cloud/client-rest/teams#updatePrefs) |  |  |
 
 ## Databases
-![0%](https://progress-bar.dev/0)
+![0 / 47](https://progress-bar.dev/0/?scale=47&suffix=%20/%2047&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -173,3 +173,10 @@
 | [Create Index](https://appwrite.io/docs/references/cloud/server-rest/databases#createIndex) | ❌ | ⬛ |
 | [Get Index](https://appwrite.io/docs/references/cloud/server-rest/databases#getIndex) | ❌ | ⬛ |
 | [Delete Index](https://appwrite.io/docs/references/cloud/server-rest/databases#deleteIndex) | ❌ | ⬛ |
+
+## Storage
+![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
+
+| Endpoint | Client | Server |
+|:-:|:-:|:-:|
+| [List Databases](https://appwrite.io/docs/references/cloud/server-rest/databases#list) | ❌ | ⬛ |
