@@ -146,31 +146,30 @@
 | [Update Boolean Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateBooleanAttribute) | ❌ | ⬛ |
 | [Create Datatime Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createDatetimeAttribute) | ❌ | ⬛ |
 | [Update Datetime Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateDatetimeAttribute) | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
-| []() | ❌ | ⬛ |
+| [Create Email Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createEmailAttribute) | ❌ | ⬛ |
+| [Update Email Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateEmailAttribute) | ❌ | ⬛ |
+| [Create Enum Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createEnumAttribute) | ❌ | ⬛ |
+| [Update Enum Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateEnumAttribute) | ❌ | ⬛ |
+| [Create Float Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createFloatAttribute) | ❌ | ⬛ |
+| [Update Float Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateFloatAttribute) | ❌ | ⬛ |
+| [Create Integer Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createIntegerAttribute) | ❌ | ⬛ |
+| [Update Integer attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateIntegerAttribute) | ❌ | ⬛ |
+| [Create IP Address Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createIpAttribute) | ❌ | ⬛ |
+| [Update IP Address Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateIpAttribute) | ❌ | ⬛ |
+| [Create Relationship Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createRelationshipAttribute) | ❌ | ⬛ |
+| [Create String Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createStringAttribute) | ❌ | ⬛ |
+| [Update String Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateStringAttribute) | ❌ | ⬛ |
+| [Create URL Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#createUrlAttribute) | ❌ | ⬛ |
+| [Update URL Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateUrlAttribute) | ❌ | ⬛ |
+| [Get Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#getAttribute) | ❌ | ⬛ |
+| [Delete Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#deleteAttribute) | ❌ | ⬛ |
+| [Update Relationship Attribute](https://appwrite.io/docs/references/cloud/server-rest/databases#updateRelationshipAttribute) | ❌ | ⬛ |
+| [List Documents](https://appwrite.io/docs/references/cloud/client-rest/databases#listDocuments) | ⬛ | ⬛ |
+| [Create Document](https://appwrite.io/docs/references/cloud/client-rest/databases#createDocument) | ⬛ | ⬛ |
+| [Get Document](https://appwrite.io/docs/references/cloud/client-rest/databases#getDocument) | ⬛ | ⬛ |
+| [Update Document](https://appwrite.io/docs/references/cloud/client-rest/databases#updateDocument) | ⬛ | ⬛ |
+| [Delete Document](https://appwrite.io/docs/references/cloud/client-rest/databases#deleteDocument) | ⬛ | ⬛ |
+| [List Indexes](https://appwrite.io/docs/references/cloud/server-rest/databases#listIndexes) | ❌ | ⬛ |
+| [Create Index](https://appwrite.io/docs/references/cloud/server-rest/databases#createIndex) | ❌ | ⬛ |
+| [Get Index](https://appwrite.io/docs/references/cloud/server-rest/databases#getIndex) | ❌ | ⬛ |
+| [Delete Index](https://appwrite.io/docs/references/cloud/server-rest/databases#deleteIndex) | ❌ | ⬛ |
