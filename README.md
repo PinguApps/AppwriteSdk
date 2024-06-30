@@ -273,18 +273,18 @@
 | [Delete Subscriber](https://appwrite.io/docs/references/1.5.x/client-rest/messaging#deleteSubscriber) | ⬛ | ⬛ |
 
 ## Locale
-![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
+![0 / 25](https://progress-bar.dev/0/?scale=25&suffix=%20/%2025&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
-| [Get User Locale](https://appwrite.io/docs/references/1.5.x/client-rest/locale#get) |  |  |
-| [List Locale Codes](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCodes) |  |  |
-| [List Continents](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listContinents) |  |  |
-| [List Countries](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCountries) |  |  |
-| [List EU Countries](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCountriesEU) |  |  |
-| [List Countries Phone Codes](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCountriesPhones) |  |  |
-| [List Currencies](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCurrencies) |  |  |
-| [List Languages](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listLanguages) |  |  |
+| [Get User Locale](https://appwrite.io/docs/references/1.5.x/client-rest/locale#get) | ⬛ | ❌ |
+| [List Locale Codes](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCodes) | ⬛ | ⬛ |
+| [List Continents](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listContinents) | ⬛ | ⬛ |
+| [List Countries](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCountries) | ⬛ | ⬛ |
+| [List EU Countries](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCountriesEU) | ⬛ | ⬛ |
+| [List Countries Phone Codes](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCountriesPhones) | ⬛ | ⬛ |
+| [List Currencies](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCurrencies) | ⬛ | ⬛ |
+| [List Languages](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listLanguages) | ⬛ | ⬛ |
 
 ## Avatars
 ![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
