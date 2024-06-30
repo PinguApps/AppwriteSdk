@@ -192,3 +192,30 @@
 | [Get File For Download](https://appwrite.io/docs/references/cloud/client-rest/storage#getFileDownload) | ⬛ | ⬛ |
 | [Get File Preview](https://appwrite.io/docs/references/cloud/client-rest/storage#getFilePreview) | ⬛ | ⬛ |
 | [Get File For View](https://appwrite.io/docs/references/cloud/client-rest/storage#getFileView) | ⬛ | ⬛ |
+
+## Functions
+![0 / 24](https://progress-bar.dev/0/?scale=24&suffix=%20/%2024&width=120)
+
+| Endpoint | Client | Server |
+|:-:|:-:|:-:|
+| [List Functions](https://appwrite.io/docs/references/cloud/server-rest/functions#list) | ❌ | ⬛ |
+| [Create Function](https://appwrite.io/docs/references/cloud/server-rest/functions#create) | ❌ | ⬛ |
+| [List Runtimes](https://appwrite.io/docs/references/cloud/server-rest/functions#listRuntimes) | ❌ | ⬛ |
+| [Get Function](https://appwrite.io/docs/references/cloud/server-rest/functions#get) | ❌ | ⬛ |
+| [Update Function](https://appwrite.io/docs/references/cloud/server-rest/functions#update) | ❌ | ⬛ |
+| [Delete Function](https://appwrite.io/docs/references/cloud/server-rest/functions#delete) | ❌ | ⬛ |
+| [List Deployments](https://appwrite.io/docs/references/cloud/server-rest/functions#listDeployments) | ❌ | ⬛ |
+| [Create Deployment](https://appwrite.io/docs/references/cloud/server-rest/functions#createDeployment) | ❌ | ⬛ |
+| [Get Deployment](https://appwrite.io/docs/references/cloud/server-rest/functions#getDeployment) | ❌ | ⬛ |
+| [Update Function Deployment](https://appwrite.io/docs/references/cloud/server-rest/functions#updateDeployment) | ❌ | ⬛ |
+| [Delete Deployment](https://appwrite.io/docs/references/cloud/server-rest/functions#deleteDeployment) | ❌ | ⬛ |
+| [Create Build](https://appwrite.io/docs/references/cloud/server-rest/functions#createBuild) | ❌ | ⬛ |
+| [Download Deployment](https://appwrite.io/docs/references/cloud/server-rest/functions#downloadDeployment) | ❌ | ⬛ |
+| [List Executions](https://appwrite.io/docs/references/cloud/client-rest/functions#listExecutions) | ⬛ | ⬛ |
+| [Create Execution](https://appwrite.io/docs/references/cloud/client-rest/functions#createExecution) | ⬛ | ⬛ |
+| [Get Execution](https://appwrite.io/docs/references/cloud/client-rest/functions#getExecution) | ⬛ | ⬛ |
+| [List Variables](https://appwrite.io/docs/references/cloud/server-rest/functions#listVariables) | ❌ | ⬛ |
+| [Create Variable](https://appwrite.io/docs/references/cloud/server-rest/functions#createVariable) | ❌ | ⬛ |
+| [Get Variable](https://appwrite.io/docs/references/cloud/server-rest/functions#getVariable) | ❌ | ⬛ |
+| [Update Variable](https://appwrite.io/docs/references/cloud/server-rest/functions#updateVariable) | ❌ | ⬛ |
+| [Delete Variable](https://appwrite.io/docs/references/cloud/server-rest/functions#deleteVariable) | ❌ | ⬛ |
