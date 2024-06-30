@@ -8,57 +8,57 @@
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ## Account
-![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
+![0 / 52](https://progress-bar.dev/0/?scale=52&suffix=%20/%2052&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
 | [Get Account](https://appwrite.io/docs/references/1.5.x/client-rest/account#get) | ⬛ | ❌ |
-| [Create Account](https://appwrite.io/docs/references/1.5.x/client-rest/account#create) |  |  |
-| [Update Email](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateEmail) |  |  |
-| [List Identities](https://appwrite.io/docs/references/1.5.x/client-rest/account#listIdentities) |  |  |
-| [Delete Identity](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteIdentity) |  |  |
-| [Create JWT](https://appwrite.io/docs/references/1.5.x/client-rest/account#createJWT) |  |  |
-| [List Logs](https://appwrite.io/docs/references/1.5.x/client-rest/account#listLogs) |  |  |
-| [Update MFA](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMFA) |  |  |
-| [Add Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator) |  |  |
-| [Verify Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaAuthenticator) |  |  |
-| [Delete Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteMfaAuthenticator) |  |  |
-| [Create 2FA Challenge](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaChallenge) |  |  |
-| [Create MFA Challenge (confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaChallenge) |  |  |
-| [List Factors](https://appwrite.io/docs/references/1.5.x/client-rest/account#listMfaFactors) |  |  |
-| [Get MFA Recovery Codes](https://appwrite.io/docs/references/1.5.x/client-rest/account#getMfaRecoveryCodes) |  |  |
-| [Create MFA Recovery Codes](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaRecoveryCodes) |  |  |
-| [Regenerate MFA Recovery Codes](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaRecoveryCodes) |  |  |
-| [Update Name](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateName) |  |  |
-| [Update Password](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePassword) |  |  |
-| [Update Phone](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhone) |  |  |
-| [Get Account Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/account#getPrefs) |  |  |
-| [Update Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePrefs) |  |  |
-| [Create Password Recovery](https://appwrite.io/docs/references/1.5.x/client-rest/account#createRecovery) |  |  |
-| [Create Password Recovery (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateRecovery) |  |  |
-| [List Sessions](https://appwrite.io/docs/references/1.5.x/client-rest/account#listSessions) |  |  |
-| [Delete Sessions](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteSessions) |  |  |
-| [Create Anonymous Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createAnonymousSession) |  |  |
-| [Create Email Password Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createEmailPasswordSession) |  |  |
-| [Update Magic URL Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMagicURLSession) |  |  |
-| [Create OAuth2 Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createOAuth2Session) |  | ❌ |
-| [Update Phone Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhoneSession) |  |  |
-| [Create Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createSession) |  |  |
-| [Get Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#getSession) |  |  |
-| [Update Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateSession) |  |  |
-| [Delete Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteSession) |  |  |
-| [Update Status](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateStatus) |  |  |
-| [Create Push Target](https://appwrite.io/docs/references/1.5.x/client-rest/account#createPushTarget) |  | ❌ |
-| [Update Push Target](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePushTarget) |  | ❌ |
-| [Delete Push Target](https://appwrite.io/docs/references/1.5.x/client-rest/account#deletePushTarget) |  | ❌ |
-| [Create Email Token (OTP)](https://appwrite.io/docs/references/1.5.x/client-rest/account#createEmailToken) |  |  |
-| [Create Magic URL Token](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMagicURLToken) |  |  |
-| [Create OAuth2 Token](https://appwrite.io/docs/references/1.5.x/client-rest/account#createOAuth2Token) |  |  |
-| [Create Phone Token](https://appwrite.io/docs/references/1.5.x/client-rest/account#createPhoneToken) |  |  |
-| [Create Email Verification](https://appwrite.io/docs/references/1.5.x/client-rest/account#createVerification) |  |  |
-| [Create Email Verification (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateVerification) |  |  |
-| [Create Phone Verification](https://appwrite.io/docs/references/1.5.x/client-rest/account#createPhoneVerification) |  |  |
-| [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhoneVerification) |  |  |
+| [Create Account](https://appwrite.io/docs/references/1.5.x/client-rest/account#create) | ⬛ | ⬛ |
+| [Update Email](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateEmail) | ⬛ | ❌ |
+| [List Identities](https://appwrite.io/docs/references/1.5.x/client-rest/account#listIdentities) | ⬛ | ❌ |
+| [Delete Identity](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteIdentity) | ⬛ | ❌ |
+| [Create JWT](https://appwrite.io/docs/references/1.5.x/client-rest/account#createJWT) | ⬛ | ❌ |
+| [List Logs](https://appwrite.io/docs/references/1.5.x/client-rest/account#listLogs) | ⬛ | ❌ |
+| [Update MFA](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMFA) | ⬛ | ❌ |
+| [Add Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator) | ⬛ | ❌ |
+| [Verify Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaAuthenticator) | ⬛ | ❌ |
+| [Delete Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteMfaAuthenticator) | ⬛ | ❌ |
+| [Create 2FA Challenge](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaChallenge) | ⬛ | ❌ |
+| [Create MFA Challenge (confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaChallenge) | ⬛ | ❌ |
+| [List Factors](https://appwrite.io/docs/references/1.5.x/client-rest/account#listMfaFactors) | ⬛ | ❌ |
+| [Get MFA Recovery Codes](https://appwrite.io/docs/references/1.5.x/client-rest/account#getMfaRecoveryCodes) | ⬛ | ❌ |
+| [Create MFA Recovery Codes](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaRecoveryCodes) | ⬛ | ❌ |
+| [Regenerate MFA Recovery Codes](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaRecoveryCodes) | ⬛ | ❌ |
+| [Update Name](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateName) | ⬛ | ❌ |
+| [Update Password](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePassword) | ⬛ | ❌ |
+| [Update Phone](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhone) | ⬛ | ❌ |
+| [Get Account Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/account#getPrefs) | ⬛ | ❌ |
+| [Update Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePrefs) | ⬛ | ❌ |
+| [Create Password Recovery](https://appwrite.io/docs/references/1.5.x/client-rest/account#createRecovery) | ⬛ | ❌ |
+| [Create Password Recovery (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateRecovery) | ⬛ | ❌ |
+| [List Sessions](https://appwrite.io/docs/references/1.5.x/client-rest/account#listSessions) | ⬛ | ❌ |
+| [Delete Sessions](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteSessions) | ⬛ | ❌ |
+| [Create Anonymous Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createAnonymousSession) | ⬛ | ❌ |
+| [Create Email Password Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createEmailPasswordSession) | ⬛ | ❌ |
+| [Update Magic URL Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMagicURLSession) | ⬛ | ❌ |
+| [Create OAuth2 Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createOAuth2Session) | ⬛ | ❌ |
+| [Update Phone Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhoneSession) | ⬛ | ❌ |
+| [Create Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createSession) | ⬛ | ❌ |
+| [Get Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#getSession) | ⬛ | ❌ |
+| [Update Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateSession) | ⬛ | ❌ |
+| [Delete Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteSession) | ⬛ | ❌ |
+| [Update Status](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateStatus) | ⬛ | ❌ |
+| [Create Push Target](https://appwrite.io/docs/references/1.5.x/client-rest/account#createPushTarget) | ⬛ | ❌ |
+| [Update Push Target](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePushTarget) | ⬛ | ❌ |
+| [Delete Push Target](https://appwrite.io/docs/references/1.5.x/client-rest/account#deletePushTarget) | ⬛ | ❌ |
+| [Create Email Token (OTP)](https://appwrite.io/docs/references/1.5.x/client-rest/account#createEmailToken) | ⬛ | ⬛ |
+| [Create Magic URL Token](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMagicURLToken) | ⬛ | ⬛ |
+| [Create OAuth2 Token](https://appwrite.io/docs/references/1.5.x/client-rest/account#createOAuth2Token) | ⬛ | ⬛ |
+| [Create Phone Token](https://appwrite.io/docs/references/1.5.x/client-rest/account#createPhoneToken) | ⬛ | ⬛ |
+| [Create Email Verification](https://appwrite.io/docs/references/1.5.x/client-rest/account#createVerification) | ⬛ | ❌ |
+| [Create Email Verification (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateVerification) | ⬛ | ❌ |
+| [Create Phone Verification](https://appwrite.io/docs/references/1.5.x/client-rest/account#createPhoneVerification) | ⬛ | ❌ |
+| [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhoneVerification) | ⬛ | ❌ |
 
 ## Users
 ![0 / 41](https://progress-bar.dev/0/?scale=41&suffix=%20/%2041&width=120)
@@ -268,33 +268,33 @@
 | [Delete Topic](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#deleteTopic) | ❌ | ⬛ |
 | [List Topic Logs](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listTopicLogs) | ❌ | ⬛ |
 | [List Subscribers](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listSubscribers) | ❌ | ⬛ |
-| [Create Subscriber](https://appwrite.io/docs/references/cloud/client-rest/messaging#createSubscriber) | ⬛ | ⬛ |
+| [Create Subscriber](https://appwrite.io/docs/references/1.5.x/client-rest/messaging#createSubscriber) | ⬛ | ⬛ |
 | [Get Subscriber](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#getSubscriber) | ❌ | ⬛ |
-| [Delete Subscriber](https://appwrite.io/docs/references/cloud/client-rest/messaging#deleteSubscriber) | ⬛ | ⬛ |
+| [Delete Subscriber](https://appwrite.io/docs/references/1.5.x/client-rest/messaging#deleteSubscriber) | ⬛ | ⬛ |
 
 ## Locale
 ![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
-| [Get User Locale](https://appwrite.io/docs/references/cloud/client-rest/locale#get) |  |  |
-| [List Locale Codes](https://appwrite.io/docs/references/cloud/client-rest/locale#listCodes) |  |  |
-| [List Continents](https://appwrite.io/docs/references/cloud/client-rest/locale#listContinents) |  |  |
-| [List Countries](https://appwrite.io/docs/references/cloud/client-rest/locale#listCountries) |  |  |
-| [List EU Countries](https://appwrite.io/docs/references/cloud/client-rest/locale#listCountriesEU) |  |  |
-| [List Countries Phone Codes](https://appwrite.io/docs/references/cloud/client-rest/locale#listCountriesPhones) |  |  |
-| [List Currencies](https://appwrite.io/docs/references/cloud/client-rest/locale#listCurrencies) |  |  |
-| [List Languages](https://appwrite.io/docs/references/cloud/client-rest/locale#listLanguages) |  |  |
+| [Get User Locale](https://appwrite.io/docs/references/1.5.x/client-rest/locale#get) |  |  |
+| [List Locale Codes](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCodes) |  |  |
+| [List Continents](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listContinents) |  |  |
+| [List Countries](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCountries) |  |  |
+| [List EU Countries](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCountriesEU) |  |  |
+| [List Countries Phone Codes](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCountriesPhones) |  |  |
+| [List Currencies](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCurrencies) |  |  |
+| [List Languages](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listLanguages) |  |  |
 
 ## Avatars
 ![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
-| [Get Browser Icon](https://appwrite.io/docs/references/cloud/client-rest/avatars#getBrowser) |  |  |
-| [Get Credit Card Icon](https://appwrite.io/docs/references/cloud/client-rest/avatars#getCreditCard) |  |  |
-| [Get Favicon](https://appwrite.io/docs/references/cloud/client-rest/avatars#getFavicon) |  |  |
-| [Get Country Flag](https://appwrite.io/docs/references/cloud/client-rest/avatars#getFlag) |  |  |
-| [Get Image From Url](https://appwrite.io/docs/references/cloud/client-rest/avatars#getImage) |  |  |
-| [Get Initials](https://appwrite.io/docs/references/cloud/client-rest/avatars#getInitials) |  |  |
-| [Get QR Code](https://appwrite.io/docs/references/cloud/client-rest/avatars#getQR) |  |  |
+| [Get Browser Icon](https://appwrite.io/docs/references/1.5.x/client-rest/avatars#getBrowser) |  |  |
+| [Get Credit Card Icon](https://appwrite.io/docs/references/1.5.x/client-rest/avatars#getCreditCard) |  |  |
+| [Get Favicon](https://appwrite.io/docs/references/1.5.x/client-rest/avatars#getFavicon) |  |  |
+| [Get Country Flag](https://appwrite.io/docs/references/1.5.x/client-rest/avatars#getFlag) |  |  |
+| [Get Image From Url](https://appwrite.io/docs/references/1.5.x/client-rest/avatars#getImage) |  |  |
+| [Get Initials](https://appwrite.io/docs/references/1.5.x/client-rest/avatars#getInitials) |  |  |
+| [Get QR Code](https://appwrite.io/docs/references/1.5.x/client-rest/avatars#getQR) |  |  |
