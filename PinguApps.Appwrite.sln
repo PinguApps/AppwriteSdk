@@ -5,9 +5,9 @@ VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6F37E87C-BABE-4727-ADF5-157E65C583ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Client", "src\Appwrite.Client\PinguApps.Appwrite.Client.csproj", "{0B05C1CC-1D37-4BAB-B133-E8638F6C6439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Client", "src\PinguApps.Appwrite.Client\PinguApps.Appwrite.Client.csproj", "{0B05C1CC-1D37-4BAB-B133-E8638F6C6439}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Playground", "src\Appwrite.Playground\PinguApps.Appwrite.Playground.csproj", "{EEB648E0-2054-4204-A0C1-CDC29FC63F4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Playground", "src\PinguApps.Appwrite.Playground\PinguApps.Appwrite.Playground.csproj", "{EEB648E0-2054-4204-A0C1-CDC29FC63F4B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Server", "src\PinguApps.Appwrite.Server\PinguApps.Appwrite.Server.csproj", "{1E8A9E01-1E1A-4FA6-93AB-E1FA31500DF6}"
 EndProject
