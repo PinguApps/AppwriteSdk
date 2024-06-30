@@ -1,5 +1,16 @@
 # AppwriteClient
 
+## Work in Progress
+This is a work in progress. There are 2 SDK's - one for client and another for server. You might desire client functionality on the server, particulary is making use of server side rendering, so on the server it might make most sense to use both client and server SDKs. Each have different functionality available.
+
+## Progress
+### Server & Client
+![0 / 298](https://progress-bar.dev/0/?scale=298&suffix=%20/%20298&width=500)
+### Server Only
+![0 / 195](https://progress-bar.dev/0/?scale=195&suffix=%20/%20195&width=300)
+### Client Only
+![0 / 93](https://progress-bar.dev/0/?scale=93&suffix=%20/%2093&width=300)
+
 ## Key
 | Icon | Definition |
 |:-:|:-:|
@@ -273,7 +284,7 @@
 | [Delete Subscriber](https://appwrite.io/docs/references/1.5.x/client-rest/messaging#deleteSubscriber) | ⬛ | ⬛ |
 
 ## Locale
-![0 / 25](https://progress-bar.dev/0/?scale=25&suffix=%20/%2025&width=120)
+![0 / 15](https://progress-bar.dev/0/?scale=15&suffix=%20/%2015&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
