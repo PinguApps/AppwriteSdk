@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Appwrite.Client\PinguApps.Appwrite.Client.csproj" />
-    <ProjectReference Include="..\src\PinguApps.Appwrite.Server\PinguApps.Appwrite.Server.csproj" />
+    <ProjectReference Include="..\Appwrite.Client\PinguApps.Appwrite.Client.csproj" />
+    <ProjectReference Include="..\PinguApps.Appwrite.Server\PinguApps.Appwrite.Server.csproj" />
   </ItemGroup>
 
 </Project>

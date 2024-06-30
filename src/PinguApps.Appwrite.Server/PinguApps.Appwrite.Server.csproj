@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PinguApps.Appwrite.Common\PinguApps.Appwrite.Shared.csproj" />
+    <ProjectReference Include="..\PinguApps.Appwrite.Common\PinguApps.Appwrite.Shared.csproj" />
   </ItemGroup>
 
 </Project>
