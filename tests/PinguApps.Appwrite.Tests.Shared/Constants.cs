@@ -1,11 +1,26 @@
-﻿namespace PinguApps.Appwrite.Server.Tests;
-internal static class Constants
+﻿namespace PinguApps.Appwrite.Tests.Shared;
+
+public static class Constants
 {
-    internal const string Endpoint = "https://localhost:12345/v1";
+    public const string Endpoint = "https://localhost:12345/v1";
 
-    internal const string AppJson = "application/json";
+    public const string AppJson = "application/json";
 
-    internal const string AppwriteError = """
+    public const string ProjectId = "PROJECT_ID";
+
+    public const string ApiKey = "API_KEY";
+
+    public const string Session = "SESSION";
+
+    public const string SdkName = ".NET";
+
+    public const string SdkLanguage = "dotnet";
+
+    public const string SdkVersion = "0.0.1";
+
+    public const string AppwriteResponseFormat = "1.5.0";
+
+    public const string AppwriteError = """
         {
             "message": "Generic appwrite failure.",
             "code": 400,
@@ -14,7 +29,7 @@ internal static class Constants
         }
         """;
 
-    internal const string UserResponse = """
+    public const string UserResponse = """
         {
             "$id": "5e5ea5c16897e",
             "$createdAt": "2020-10-15T06:38:00.000+00:00",

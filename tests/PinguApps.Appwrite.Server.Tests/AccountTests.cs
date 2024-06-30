@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Servers;
 using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Tests.Shared;
 using Refit;
 using RichardSzalay.MockHttp;
 
@@ -16,7 +17,7 @@ public class AccountTests
         _mockHttp = new MockHttpMessageHandler();
         var services = new ServiceCollection();
 
-        services.AddAppwriteServer("PROJECT_ID", "API_KEY", Constants.Endpoint, refitSettings: new RefitSettings
+        services.AddAppwriteServer(Constants.ProjectId, Constants.ApiKey, Constants.Endpoint, new RefitSettings
         {
             HttpMessageHandlerFactory = () => _mockHttp
         });
@@ -74,18 +75,17 @@ public class AccountTests
     }
 }
 
-public static class AccountServerTestsExtensions
+public static class AccountTestsExtensions
 {
     public static MockedRequest ExpectedHeaders(this MockedRequest request)
     {
         return request
-            .WithHeaders("x-appwrite-project", "PROJECT_ID")
-            .WithHeaders("x-appwrite-key", "API_KEY")
-            .WithHeaders("content-type", "application/json")
-            .WithHeaders("x-sdk-name", ".NET")
+            .WithHeaders("x-appwrite-project", Constants.ProjectId)
+            .WithHeaders("x-appwrite-key", Constants.ApiKey)
+            .WithHeaders("x-sdk-name", Constants.SdkName)
             .WithHeaders("x-sdk-platform", "server")
-            .WithHeaders("x-sdk-language", "dotnet")
-            .WithHeaders("x-sdk-version", "0.0.1")
-            .WithHeaders("X-Appwrite-Response-Format", "1.5.0");
+            .WithHeaders("x-sdk-language", Constants.SdkLanguage)
+            .WithHeaders("x-sdk-version", Constants.SdkVersion)
+            .WithHeaders("x-appwrite-response-format", Constants.AppwriteResponseFormat);
     }
 }
