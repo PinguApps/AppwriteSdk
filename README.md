@@ -108,23 +108,23 @@
 | [Update Phone Verification](https://appwrite.io/docs/references/1.5.x/server-rest/users#updatePhoneVerification) | ❌ | ⬛ |
 
 ## Teams
-![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
+![0 / 26](https://progress-bar.dev/0/?scale=26&suffix=%20/%2026&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
-| [List Teams](https://appwrite.io/docs/references/1.5.x/client-rest/teams#list) |  |  |
-| [Create Team](https://appwrite.io/docs/references/1.5.x/client-rest/teams#create) |  |  |
-| [Get Team](https://appwrite.io/docs/references/1.5.x/client-rest/teams#get) |  |  |
-| [Updatet Name](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updateName) |  |  |
-| [Delete Team](https://appwrite.io/docs/references/1.5.x/client-rest/teams#delete) |  |  |
-| [List Team Memberships](https://appwrite.io/docs/references/1.5.x/client-rest/teams#listMemberships) |  |  |
-| [Create Team Membership](https://appwrite.io/docs/references/1.5.x/client-rest/teams#createMembership) |  |  |
-| [Get Team Membership](https://appwrite.io/docs/references/1.5.x/client-rest/teams#getMembership) |  |  |
-| [Update Membership](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updateMembership) |  |  |
-| [Delete Team Membership](https://appwrite.io/docs/references/1.5.x/client-rest/teams#deleteMembership) |  |  |
-| [Update Team Membership Status](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updateMembershipStatus) |  |  |
-| [Get Team Memberships](https://appwrite.io/docs/references/1.5.x/client-rest/teams#getPrefs) |  |  |
-| [Update Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updatePrefs) |  |  |
+| [List Teams](https://appwrite.io/docs/references/1.5.x/client-rest/teams#list) | ⬛ | ⬛ |
+| [Create Team](https://appwrite.io/docs/references/1.5.x/client-rest/teams#create) | ⬛ | ⬛ |
+| [Get Team](https://appwrite.io/docs/references/1.5.x/client-rest/teams#get) | ⬛ | ⬛ |
+| [Updatet Name](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updateName) | ⬛ | ⬛ |
+| [Delete Team](https://appwrite.io/docs/references/1.5.x/client-rest/teams#delete) | ⬛ | ⬛ |
+| [List Team Memberships](https://appwrite.io/docs/references/1.5.x/client-rest/teams#listMemberships) | ⬛ | ⬛ |
+| [Create Team Membership](https://appwrite.io/docs/references/1.5.x/client-rest/teams#createMembership) | ⬛ | ⬛ |
+| [Get Team Membership](https://appwrite.io/docs/references/1.5.x/client-rest/teams#getMembership) | ⬛ | ⬛ |
+| [Update Membership](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updateMembership) | ⬛ | ⬛ |
+| [Delete Team Membership](https://appwrite.io/docs/references/1.5.x/client-rest/teams#deleteMembership) | ⬛ | ⬛ |
+| [Update Team Membership Status](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updateMembershipStatus) | ⬛ | ⬛ |
+| [Get Team Memberships](https://appwrite.io/docs/references/1.5.x/client-rest/teams#getPrefs) | ⬛ | ⬛ |
+| [Update Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updatePrefs) | ⬛ | ⬛ |
 
 ## Databases
 ![0 / 47](https://progress-bar.dev/0/?scale=47&suffix=%20/%2047&width=120)
