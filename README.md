@@ -219,3 +219,55 @@
 | [Get Variable](https://appwrite.io/docs/references/1.5.x/server-rest/functions#getVariable) | ❌ | ⬛ |
 | [Update Variable](https://appwrite.io/docs/references/1.5.x/server-rest/functions#updateVariable) | ❌ | ⬛ |
 | [Delete Variable](https://appwrite.io/docs/references/1.5.x/server-rest/functions#deleteVariable) | ❌ | ⬛ |
+
+## Messaging
+![0 / 24](https://progress-bar.dev/0/?scale=24&suffix=%20/%2024&width=120)
+
+| Endpoint | Client | Server |
+|:-:|:-:|:-:|
+| [List Messages](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listMessages) | ❌ | ⬛ |
+| [Create Email](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createEmail) | ❌ | ⬛ |
+| [Update Email](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateEmail) | ❌ | ⬛ |
+| [Create Push Notification](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createPush) | ❌ | ⬛ |
+| [Update Push Notification](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updatePush) | ❌ | ⬛ |
+| [Create SMS](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createSms) | ❌ | ⬛ |
+| [Update SMS](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateSms) | ❌ | ⬛ |
+| [Get Message](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#getMessage) | ❌ | ⬛ |
+| [Delete Message](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#delete) | ❌ | ⬛ |
+| [List Message Logs](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listMessageLogs) | ❌ | ⬛ |
+| [List Message Targets](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listTargets) | ❌ | ⬛ |
+| [List Providers](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listProviders) | ❌ | ⬛ |
+| [Create APNS Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createApnsProvider) | ❌ | ⬛ |
+| [Update APNS Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateApnsProvider) | ❌ | ⬛ |
+| [Create FCM Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createFcmProvider) | ❌ | ⬛ |
+| [Update FCM Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateFcmProvider) | ❌ | ⬛ |
+| [Create Mailgun Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createMailgunProvider) | ❌ | ⬛ |
+| [Update Mailgun Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateMailgunProvider) | ❌ | ⬛ |
+| [Create Msg91 Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createMsg91Provider) | ❌ | ⬛ |
+| [Update Msg91 Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateMsg91Provider) | ❌ | ⬛ |
+| [Create Sendgrid Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createSendgridProvider) | ❌ | ⬛ |
+| [Update Sendgrid Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateSendgridProvider) | ❌ | ⬛ |
+| [Create SMTP Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createSmtpProvider) | ❌ | ⬛ |
+| [Update SMTP Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateSmtpProvider) | ❌ | ⬛ |
+| [Create Telesign Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createTelesignProvider) | ❌ | ⬛ |
+| [Update Telesign Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateTelesignProvider) | ❌ | ⬛ |
+| [Create Textmagic Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createTextmagicProvider) | ❌ | ⬛ |
+| [Update Textmagic Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateTextmagicProvider) | ❌ | ⬛ |
+| [Create Twilio Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createTwilioProvider) | ❌ | ⬛ |
+| [Update Twilio Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateTwilioProvider) | ❌ | ⬛ |
+| [Create Vonage Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createVonageProvider) | ❌ | ⬛ |
+| [Update Vonage Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateVonageProvider) | ❌ | ⬛ |
+| [Get Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#getProvider) | ❌ | ⬛ |
+| [Delete Provider](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#deleteProvider) | ❌ | ⬛ |
+| [List Provider Logs](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listProviderLogs) | ❌ | ⬛ |
+| [List Subscriber Logs](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listSubscriberLogs) | ❌ | ⬛ |
+| [List Topics](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listTopics) | ❌ | ⬛ |
+| [Create Topic](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#createTopic) | ❌ | ⬛ |
+| [Get Topic](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#getTopic) | ❌ | ⬛ |
+| [Update Topic](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#updateTopic) | ❌ | ⬛ |
+| [Delete Topic](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#deleteTopic) | ❌ | ⬛ |
+| [List Topic Logs](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listTopicLogs) | ❌ | ⬛ |
+| [List Subscribers](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#listSubscribers) | ❌ | ⬛ |
+| [Create Subscriber](https://appwrite.io/docs/references/cloud/client-rest/messaging#createSubscriber) | ⬛ | ⬛ |
+| [Get Subscriber](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#getSubscriber) | ❌ | ⬛ |
+| [Delete Subscriber](https://appwrite.io/docs/references/cloud/client-rest/messaging#deleteSubscriber) | ⬛ | ⬛ |
