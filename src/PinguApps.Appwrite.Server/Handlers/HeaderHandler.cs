@@ -16,8 +16,8 @@ internal class HeaderHandler : DelegatingHandler
 
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        request.Headers.Add("X-Appwrite-Project", _projectId);
-        request.Headers.Add("X-Appwrite-Key", _apiKey);
+        request.Headers.Add("x-appwrite-project", _projectId);
+        request.Headers.Add("x-appwrite-key", _apiKey);
 
         return base.SendAsync(request, cancellationToken);
     }

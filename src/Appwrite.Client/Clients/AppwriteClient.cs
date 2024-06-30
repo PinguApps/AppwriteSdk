@@ -27,6 +27,6 @@ public class AppwriteClient : IAppwriteClient
     public void SetSession(string? session)
     {
         (this as ISessionAware).UpdateSession(session);
-        (Account as ISessionAware).UpdateSession(session);
+        (Account as ISessionAware)!.UpdateSession(session);
     }
 }

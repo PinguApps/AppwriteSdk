@@ -8,11 +8,11 @@ using Refit;
 namespace PinguApps.Appwrite.Server;
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddAppwriteServer(this IServiceCollection services, string projectId, string apiKey, string endpoint = "https://cloud.appwrite.io/v1")
+    public static IServiceCollection AddAppwriteServer(this IServiceCollection services, string projectId, string apiKey, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
         services.AddSingleton(sp => new HeaderHandler(projectId, apiKey));
 
-        services.AddRefitClient<IAccountApi>()
+        services.AddRefitClient<IAccountApi>(refitSettings)
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
             .AddHttpMessageHandler<HeaderHandler>();
 
