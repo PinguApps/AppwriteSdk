@@ -285,3 +285,16 @@
 | [List Countries Phone Codes](https://appwrite.io/docs/references/cloud/client-rest/locale#listCountriesPhones) |  |  |
 | [List Currencies](https://appwrite.io/docs/references/cloud/client-rest/locale#listCurrencies) |  |  |
 | [List Languages](https://appwrite.io/docs/references/cloud/client-rest/locale#listLanguages) |  |  |
+
+## Avatars
+![0 / ?](https://progress-bar.dev/0/?scale=?&suffix=%20/%20?&width=120)
+
+| Endpoint | Client | Server |
+|:-:|:-:|:-:|
+| [Get Browser Icon](https://appwrite.io/docs/references/cloud/client-rest/avatars#getBrowser) |  |  |
+| [Get Credit Card Icon](https://appwrite.io/docs/references/cloud/client-rest/avatars#getCreditCard) |  |  |
+| [Get Favicon](https://appwrite.io/docs/references/cloud/client-rest/avatars#getFavicon) |  |  |
+| [Get Country Flag](https://appwrite.io/docs/references/cloud/client-rest/avatars#getFlag) |  |  |
+| [Get Image From Url](https://appwrite.io/docs/references/cloud/client-rest/avatars#getImage) |  |  |
+| [Get Initials](https://appwrite.io/docs/references/cloud/client-rest/avatars#getInitials) |  |  |
+| [Get QR Code](https://appwrite.io/docs/references/cloud/client-rest/avatars#getQR) |  |  |
