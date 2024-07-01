@@ -6,7 +6,7 @@
     <LangVersion>latest</LangVersion>
 
     <PackageId>PinguApps.Appwrite.Client</PackageId>
-    <PackageTags>Appwrite;Pingu;PinguApps;Pingu Apps;CSharp;Sdk;Client;Server</PackageTags>
+    <PackageTags>Appwrite;Pingu;PinguApps;Pingu Apps;CSharp;Sdk;Client;</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeSymbols>true</IncludeSymbols>
