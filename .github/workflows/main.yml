@@ -64,7 +64,7 @@ jobs:
           dotnet pack -c Release --verbosity normal --include-symbols --include-source -p:PackageVersion=$VERSION -o nupkg src/$SERVER_PROJECT_NAME/$SERVER_PROJECT_NAME.csproj
 
       - name: Push to NuGet Feed
-        run: dotnet nuget push ./nupkg/*.nupkg --source $NUGET_FEED --api-key $NUGET_KEY --skip-duplicate
+        run: dotnet nuget push ./nupkg/*.{nupkg,snupkg} --source $NUGET_FEED --api-key $NUGET_KEY --skip-duplicate
 
   sync:
     name: Sync back to dev
