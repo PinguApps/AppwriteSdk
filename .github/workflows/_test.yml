@@ -60,6 +60,26 @@ jobs:
         path: ${{ github.workspace }}/Cobertura.xml
         retention-days: 5
 
+    - name: Publish Code Coverage Report
+      uses: irongut/CodeCoverageSummary@51cc3a756ddcd398d447c044c02cb6aa83fdae95 # v1.3.0
+      with:
+        filename: "Cobertura.xml"
+        badge: true
+        fail_below_min: false
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: false
+        indicators: true
+        output: both
+        thresholds: "10 30"
+
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@331f8f5b4215f0445d3c07b4967662a32a2d3e31 # v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
+
     - name: Upload Test Result Files
       uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4
       with:
