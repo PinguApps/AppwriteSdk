@@ -1,10 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(CIBuild)' != 'true'">
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(CIBuild)' == 'true'">
+    <BuildProjectReferences>false</BuildProjectReferences>
   </PropertyGroup>
 
   <ItemGroup>
