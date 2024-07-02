@@ -7,18 +7,21 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(CIBuild)' == 'true'">
-    <IsPackable>false</IsPackable>
-    <IsPublishable>false</IsPublishable>
-    <ExcludeFromBuild>true</ExcludeFromBuild>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(ExcludeFromBuild)' != 'true'">
+  <ItemGroup>
     <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PinguApps.Appwrite.Client\PinguApps.Appwrite.Client.csproj" />
     <ProjectReference Include="..\PinguApps.Appwrite.Server\PinguApps.Appwrite.Server.csproj" />
   </ItemGroup>

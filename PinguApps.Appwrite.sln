@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Shared",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{187EBB4D-6799-492C-AAA7-518B2811D800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinguApps.Appwrite.Server.Tests", "tests\PinguApps.Appwrite.Server.Tests\PinguApps.Appwrite.Server.Tests.csproj", "{11D16276-FCD0-404D-BA8A-5CBEAF494CB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Server.Tests", "tests\PinguApps.Appwrite.Server.Tests\PinguApps.Appwrite.Server.Tests.csproj", "{11D16276-FCD0-404D-BA8A-5CBEAF494CB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinguApps.Appwrite.Client.Tests", "tests\PinguApps.Appwrite.Client.Tests\PinguApps.Appwrite.Client.Tests.csproj", "{71C1431E-8098-4B9B-9CFA-A49F77242C79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Client.Tests", "tests\PinguApps.Appwrite.Client.Tests\PinguApps.Appwrite.Client.Tests.csproj", "{71C1431E-8098-4B9B-9CFA-A49F77242C79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinguApps.Appwrite.Tests.Shared", "tests\PinguApps.Appwrite.Tests.Shared\PinguApps.Appwrite.Tests.Shared.csproj", "{5AED345C-1E3E-4397-807C-8EFC22B786FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Tests.Shared", "tests\PinguApps.Appwrite.Tests.Shared\PinguApps.Appwrite.Tests.Shared.csproj", "{5AED345C-1E3E-4397-807C-8EFC22B786FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,7 +34,6 @@ Global
 		{EEB648E0-2054-4204-A0C1-CDC29FC63F4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EEB648E0-2054-4204-A0C1-CDC29FC63F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB648E0-2054-4204-A0C1-CDC29FC63F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEB648E0-2054-4204-A0C1-CDC29FC63F4B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E8A9E01-1E1A-4FA6-93AB-E1FA31500DF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E8A9E01-1E1A-4FA6-93AB-E1FA31500DF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E8A9E01-1E1A-4FA6-93AB-E1FA31500DF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
