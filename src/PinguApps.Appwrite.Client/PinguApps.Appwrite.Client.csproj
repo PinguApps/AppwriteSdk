@@ -5,8 +5,8 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
 
-    <PackageId>PinguApps.Appwrite.Server</PackageId>
-    <PackageTags>Appwrite;Pingu;PinguApps;Pingu Apps;CSharp;Sdk;Server;</PackageTags>
+    <PackageId>PinguApps.Appwrite.Client</PackageId>
+    <PackageTags>Appwrite;Pingu;PinguApps;Pingu Apps;CSharp;Sdk;Client;</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeSymbols>true</IncludeSymbols>
@@ -18,7 +18,7 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <Authors>Pingu</Authors>
     <Company>PinguApps</Company>
-    <Description>A .NET implementation of the Appwrite SDK for server-side consumption. Ideal for developers looking to leverage Appwrite's powerful backend capabilities in their .NET applications.</Description>
+    <Description>A .NET implementation of the Appwrite SDK for client-side consumption. Ideal for developers looking to leverage Appwrite's powerful backend capabilities in their .NET applications.</Description>
     <Copyright>Copyright 2024 (c) Pingu. All rights reserved.</Copyright>
   </PropertyGroup>
 
@@ -29,6 +29,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PinguApps.Appwrite.Common\PinguApps.Appwrite.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

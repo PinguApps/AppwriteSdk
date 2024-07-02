@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Appwrite.Client\PinguApps.Appwrite.Client.csproj" />
+    <ProjectReference Include="..\PinguApps.Appwrite.Client\PinguApps.Appwrite.Client.csproj" />
     <ProjectReference Include="..\PinguApps.Appwrite.Server\PinguApps.Appwrite.Server.csproj" />
   </ItemGroup>
 

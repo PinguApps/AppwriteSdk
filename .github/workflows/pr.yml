@@ -1,0 +1,17 @@
+name: PR
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  build:
+    name: Build & Test
+    uses: ./.github/workflows/_test.yml
+    secrets: inherit
+    permissions:
+      pull-requests: write
+      contents: read
+      issues: read
+      checks: write

@@ -1,0 +1,98 @@
+name: Main
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  CLIENT_PROJECT_NAME: PinguApps.Appwrite.Client
+  SERVER_PROJECT_NAME: PinguApps.Appwrite.Server
+  DOTNET_VERSION: '8.0'
+  NUGET_FEED: https://api.nuget.org/v3/index.json
+  NUGET_KEY: ${{ secrets.NUGET_KEY }}
+
+jobs:
+  build:
+    name: Build & Test
+    uses: ./.github/workflows/_test.yml
+    secrets: inherit
+    permissions:
+      pull-requests: write
+      contents: read
+      issues: read
+      checks: write
+
+  push-nugets:
+    needs: build
+    name: Push Nuget's
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@4d6c8fcf3c8f7a60068d26b594648e99df24cee3 # v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Get PR title
+        id: pr-title
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+        run: |
+          PR_NUMBER=$(gh pr list --base main --state merged --limit 1 --json number --jq '.[0].number')
+          echo "PR Number: ${PR_NUMBER}"
+          PR_TITLE=$(gh pr view $PR_NUMBER --json title --jq '.title')
+          echo "PR Title: ${PR_TITLE}"
+          echo "PR_TITLE=${PR_TITLE}" >> $GITHUB_ENV
+
+      - name: Extract version from PR title
+        id: extract-version
+        run: |
+          VERSION=$(echo "${PR_TITLE}" | grep -oP 'v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?')
+          echo "Version: ${VERSION}"
+          VERSION_WITHOUT_V=${VERSION#v}
+          echo "Version -v: ${VERSION_WITHOUT_V}"
+          echo "VERSION=${VERSION_WITHOUT_V}" >> $GITHUB_ENV
+
+      - name: Create Nuget Packages
+        run: |
+          dotnet pack -c Release --verbosity normal --include-symbols --include-source -p:PackageVersion=$VERSION -o nupkg src/$CLIENT_PROJECT_NAME/$CLIENT_PROJECT_NAME.csproj
+          dotnet pack -c Release --verbosity normal --include-symbols --include-source -p:PackageVersion=$VERSION -o nupkg src/$SERVER_PROJECT_NAME/$SERVER_PROJECT_NAME.csproj
+
+      - name: Push to NuGet Feed
+        run: dotnet nuget push ./nupkg/*.{nupkg,snupkg} --source $NUGET_FEED --api-key $NUGET_KEY --skip-duplicate
+
+  sync:
+    name: Sync back to dev
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push'
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+    - name: Checkout
+      uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
+      with:
+        ref: main
+
+    - name: Create Pull Request
+      id: cpr
+      env:
+        GH_TOKEN: ${{ secrets.PAT }}
+      run: |
+        git fetch origin dev
+        pr_number=$(gh pr create --base dev --head main --assignee pingu2k4 --fill --label automated --label sync | grep -o 'https://github.com/[^/]\+/[^/]\+/pull/\([0-9]\+\)' | awk -F '/' '{print $NF}')
+        echo PR Number: $pr_number
+        echo "prNumber=$pr_number" >> ${GITHUB_OUTPUT}
+
+    - name: Merge Pull Request
+      if: ${{ steps.cpr.outputs.prNumber }}
+      env:
+        GH_TOKEN: ${{ secrets.PAT }}
+      run: |
+        gh pr merge ${{ steps.cpr.outputs.prNumber }} --auto --merge
