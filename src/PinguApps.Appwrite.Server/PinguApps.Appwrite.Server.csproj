@@ -31,4 +31,9 @@
     <ProjectReference Include="..\PinguApps.Appwrite.Common\PinguApps.Appwrite.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
 </Project>
