@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup Condition="'$(CIBuild)' != 'true'">
+  <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -8,24 +8,17 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(CIBuild)' == 'true'">
-    <BuildProjectReferences>false</BuildProjectReferences>
+    <IsPackable>false</IsPackable>
+    <IsPublishable>false</IsPublishable>
+    <ExcludeFromBuild>true</ExcludeFromBuild>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(ExcludeFromBuild)' != 'true'">
     <None Remove="appsettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PinguApps.Appwrite.Client\PinguApps.Appwrite.Client.csproj" />
     <ProjectReference Include="..\PinguApps.Appwrite.Server\PinguApps.Appwrite.Server.csproj" />
   </ItemGroup>
