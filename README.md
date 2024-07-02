@@ -1,4 +1,4 @@
-# AppwriteClient
+# Appwrite SDK
 
 ## Work in Progress
 This is a work in progress. There are 2 SDK's - one for client and another for server. You might desire client functionality on the server, particulary is making use of server side rendering, so on the server it might make most sense to use both client and server SDKs. Each have different functionality available.
