@@ -5,11 +5,11 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 
 ## Progress
 ### Server & Client
-![0 / 298](https://progress-bar.dev/0/?scale=298&suffix=%20/%20298&width=500)
+![2 / 298](https://progress-bar.dev/2/?scale=298&suffix=%20/%20298&width=500)
 ### Server Only
-![0 / 195](https://progress-bar.dev/0/?scale=195&suffix=%20/%20195&width=300)
+![1 / 195](https://progress-bar.dev/1/?scale=195&suffix=%20/%20195&width=300)
 ### Client Only
-![0 / 93](https://progress-bar.dev/0/?scale=93&suffix=%20/%2093&width=300)
+![1 / 93](https://progress-bar.dev/1/?scale=93&suffix=%20/%2093&width=300)
 
 ## Key
 | Icon | Definition |
@@ -19,12 +19,12 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ## Account
-![0 / 52](https://progress-bar.dev/0/?scale=52&suffix=%20/%2052&width=120)
+![2 / 52](https://progress-bar.dev/2/?scale=52&suffix=%20/%2052&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
-| [Get Account](https://appwrite.io/docs/references/1.5.x/client-rest/account#get) | ⬛ | ❌ |
-| [Create Account](https://appwrite.io/docs/references/1.5.x/client-rest/account#create) | ⬛ | ⬛ |
+| [Get Account](https://appwrite.io/docs/references/1.5.x/client-rest/account#get) | ✅ | ❌ |
+| [Create Account](https://appwrite.io/docs/references/1.5.x/client-rest/account#create) | ⬛ | ✅ |
 | [Update Email](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateEmail) | ⬛ | ❌ |
 | [List Identities](https://appwrite.io/docs/references/1.5.x/client-rest/account#listIdentities) | ⬛ | ❌ |
 | [Delete Identity](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteIdentity) | ⬛ | ❌ |
