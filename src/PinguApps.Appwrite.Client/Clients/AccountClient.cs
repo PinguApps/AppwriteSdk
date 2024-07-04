@@ -4,6 +4,7 @@ using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Client.Utils;
 using PinguApps.Appwrite.Shared;
+using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Client;
@@ -38,6 +39,20 @@ public class AccountClient : IAccountClient, ISessionAware
 
             return result.GetApiResponse();
 
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
+
+    public async Task<AppwriteResult<User>> Create(CreateAccountRequest request)
+    {
+        try
+        {
+            var result = await _accountApi.CreateAccount(request);
+
+            return result.GetApiResponse();
         }
         catch (Exception e)
         {
