@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Microsoft.Extensions.DependencyInjection;
+using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Tests.Shared;
 using Refit;
 using RichardSzalay.MockHttp;
@@ -54,6 +55,53 @@ public class AccountTests
 
         // Act
         var result = await _appwriteClient.Account.Get();
+
+        // Assert
+        Assert.True(result.IsError);
+        Assert.True(result.IsAppwriteError);
+    }
+
+    [Fact]
+    public async Task Create_ShouldReturnSuccess_WhenApiCallSucceeds()
+    {
+        // Arrange
+        var request = new CreateAccountRequest()
+        {
+            Email = "email@example.com",
+            Password = "password",
+            Name = "name"
+        };
+
+        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account")
+            .ExpectedHeaders()
+            .WithJsonContent(request)
+            .Respond(Constants.AppJson, Constants.UserResponse);
+
+        // Act
+        var result = await _appwriteClient.Account.Create(request);
+
+        // Assert
+        Assert.True(result.Success);
+    }
+
+    [Fact]
+    public async Task Create_ShouldHandleException_WhenApiCallFails()
+    {
+        // Arrange
+        var request = new CreateAccountRequest()
+        {
+            Email = "email@example.com",
+            Password = "password",
+            Name = "name"
+        };
+
+        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account")
+            .ExpectedHeaders()
+            .WithJsonContent(request)
+            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+
+        // Act
+        var result = await _appwriteClient.Account.Create(request);
 
         // Assert
         Assert.True(result.IsError);
