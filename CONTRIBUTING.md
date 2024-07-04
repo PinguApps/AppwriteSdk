@@ -67,6 +67,12 @@ Depending on how large the project is, you may want to outsource the questioning
 > ### Legal Notice <!-- omit in toc -->
 > When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content and that the content you contribute may be provided under the project license.
 
+### Contributing Code
+- If you are providing the implementation for any new endpoints, then each pull request must cover just a single endpoint.
+- If you are creating or modifying anything relating to an endpoint, then you must equally cover both server and client projects, unless either project should not have the given endpoint implementation based on it having a ❌ symbol in the [README](https://github.com/PinguApps/AppwriteSdk/blob/dev/README.md)
+- If applicable, you should provide tests for your code. Existing endpoints have tests, and the same style and tests should be used.
+- You must give your submission a full sanity check before creating a pull request.
+
 ### Reporting Bugs
 
 <!-- omit in toc -->
