@@ -1,0 +1,40 @@
+﻿using OneOf;
+
+namespace PinguApps.Appwrite.Shared.Tests;
+
+public class AppwriteResultTests
+{
+    [Fact]
+    public void Constructor_WithTResult_SuccessIsTrue()
+    {
+        var result = new AppwriteResult<string>(OneOf<string, AppwriteError, InternalError>.FromT0("Success"));
+
+        Assert.True(result.Success);
+        Assert.False(result.IsError);
+        Assert.False(result.IsAppwriteError);
+        Assert.False(result.IsInternalError);
+        Assert.True(result.Result.AsT0 == "Success");
+    }
+
+    [Fact]
+    public void Constructor_WithAppwriteError_IsAppwriteErrorIsTrue()
+    {
+        var result = new AppwriteResult<string>(OneOf<string, AppwriteError, InternalError>.FromT1(new AppwriteError("Message", 500, "Type", "Version")));
+
+        Assert.False(result.Success);
+        Assert.True(result.IsError);
+        Assert.True(result.IsAppwriteError);
+        Assert.False(result.IsInternalError);
+    }
+
+    [Fact]
+    public void Constructor_WithInternalError_IsInternalErrorIsTrue()
+    {
+        var result = new AppwriteResult<string>(OneOf<string, AppwriteError, InternalError>.FromT2(new InternalError("Message")));
+
+        Assert.False(result.Success);
+        Assert.True(result.IsError);
+        Assert.False(result.IsAppwriteError);
+        Assert.True(result.IsInternalError);
+    }
+}
