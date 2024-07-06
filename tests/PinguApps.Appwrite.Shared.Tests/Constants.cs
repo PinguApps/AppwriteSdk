@@ -1,4 +1,4 @@
-﻿namespace PinguApps.Appwrite.Tests.Shared;
+﻿namespace PinguApps.Appwrite.Shared.Tests;
 
 public static class Constants
 {

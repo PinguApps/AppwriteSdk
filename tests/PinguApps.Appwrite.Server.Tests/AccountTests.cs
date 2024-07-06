@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Servers;
 using PinguApps.Appwrite.Shared.Requests;
-using PinguApps.Appwrite.Tests.Shared;
+using PinguApps.Appwrite.Shared.Tests;
 using Refit;
 using RichardSzalay.MockHttp;
 
