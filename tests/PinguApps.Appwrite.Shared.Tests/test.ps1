@@ -1,3 +1,5 @@
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+
 # Check if the dotnet-reportgenerator-globaltool is installed
 $toolInstalled = dotnet tool list -g | Select-String -Pattern "dotnet-reportgenerator-globaltool"
 
