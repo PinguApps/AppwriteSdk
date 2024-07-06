@@ -4,7 +4,7 @@ using PinguApps.Appwrite.Server.Utils;
 using PinguApps.Appwrite.Shared.Tests;
 using Refit;
 
-namespace PinguApps.Appwrite.Server.Tests;
+namespace PinguApps.Appwrite.Server.Tests.Utils;
 public class ResponseUtilsTests
 {
     [Fact]

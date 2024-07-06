@@ -3,7 +3,7 @@ using Moq.Protected;
 using PinguApps.Appwrite.Server.Handlers;
 using PinguApps.Appwrite.Shared.Tests;
 
-namespace PinguApps.Appwrite.Server.Tests;
+namespace PinguApps.Appwrite.Server.Tests.Handlers;
 public class HeaderHandlerTests
 {
     [Fact]

@@ -1,7 +1,7 @@
 ﻿using Moq;
 using PinguApps.Appwrite.Server.Servers;
 
-namespace PinguApps.Appwrite.Server.Tests;
+namespace PinguApps.Appwrite.Server.Tests.Servers;
 public class AppwriteServerTests
 {
     [Fact]
