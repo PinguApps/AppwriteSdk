@@ -40,7 +40,6 @@ public class AccountClient : IAccountClient, ISessionAware
             var result = await _accountApi.GetAccount(Session);
 
             return result.GetApiResponse();
-
         }
         catch (Exception e)
         {
