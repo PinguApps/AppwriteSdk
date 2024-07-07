@@ -21,22 +21,13 @@ internal class App
     {
         _client.SetSession(_session);
 
-        //var result = await _client.Account.Get();
-
-        //result.Result.Switch(
-        //    account => Console.WriteLine(account.Email),
-        //    appwriteError => Console.WriteLine(appwriteError.Message),
-        //    internalError => Console.WriteLine(internalError.Message)
-        //);
-
-        var request = new CreateAccountRequest
+        var request = new UpdateEmailRequest
         {
-            Email = "test2@example.com",
-            Password = "ThisIsMyPassword",
-            Name = "Two Names"
+            Email = "123@example.com",
+            Password = "ThisIsMyPassword"
         };
 
-        var result = await _client.Account.Create(request);
+        var result = await _client.Account.UpdateEmail(request);
 
         result.Result.Switch(
             account => Console.WriteLine(account.Email),
