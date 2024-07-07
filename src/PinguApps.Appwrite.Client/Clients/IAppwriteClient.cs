@@ -1,8 +1,6 @@
-﻿using PinguApps.Appwrite.Client.Clients;
+﻿namespace PinguApps.Appwrite.Client;
 
-namespace PinguApps.Appwrite.Client;
-
-public interface IAppwriteClient : ISessionAware
+public interface IAppwriteClient
 {
     IAccountClient Account { get; }
 

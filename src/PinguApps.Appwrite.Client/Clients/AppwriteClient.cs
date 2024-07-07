@@ -1,7 +1,7 @@
 ﻿using PinguApps.Appwrite.Client.Clients;
 
 namespace PinguApps.Appwrite.Client;
-public class AppwriteClient : IAppwriteClient
+public class AppwriteClient : IAppwriteClient, ISessionAware
 {
     public IAccountClient Account { get; }
 
