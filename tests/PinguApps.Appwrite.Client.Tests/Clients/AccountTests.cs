@@ -5,7 +5,7 @@ using PinguApps.Appwrite.Shared.Tests;
 using Refit;
 using RichardSzalay.MockHttp;
 
-namespace PinguApps.Appwrite.Client.Tests;
+namespace PinguApps.Appwrite.Client.Tests.Clients;
 public class AccountTests
 {
     private readonly MockHttpMessageHandler _mockHttp;
