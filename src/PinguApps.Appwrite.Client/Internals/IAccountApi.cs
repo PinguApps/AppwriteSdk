@@ -12,4 +12,7 @@ public interface IAccountApi : IBaseApi
 
     [Post("/account")]
     Task<IApiResponse<User>> CreateAccount(CreateAccountRequest request);
+
+    [Patch("/account/email")]
+    Task<IApiResponse<User>> UpdateEmail([Header("x-appwrite-session")] string? session, UpdateEmailRequest request);
 }
