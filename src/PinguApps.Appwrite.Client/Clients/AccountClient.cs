@@ -8,6 +8,7 @@ using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Client;
+
 public class AccountClient : IAccountClient, ISessionAware
 {
     private readonly IAccountApi _accountApi;
@@ -31,6 +32,7 @@ public class AccountClient : IAccountClient, ISessionAware
         return _sessionAware.Session;
     }
 
+    /// <inheritdoc/>
     public async Task<AppwriteResult<User>> Get()
     {
         try
@@ -46,6 +48,7 @@ public class AccountClient : IAccountClient, ISessionAware
         }
     }
 
+    /// <inheritdoc/>
     public async Task<AppwriteResult<User>> Create(CreateAccountRequest request)
     {
         try
