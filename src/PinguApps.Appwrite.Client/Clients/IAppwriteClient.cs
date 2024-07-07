@@ -14,8 +14,13 @@ public interface IAppwriteClient
     IAccountClient Account { get; }
 
     /// <summary>
-    /// Set the session of your logged in user
+    /// Set the session of the logged in user
     /// </summary>
     /// <param name="session">The session token</param>
     void SetSession(string? session);
+
+    /// <summary>
+    /// The sessio of the currently logged in user
+    /// </summary>
+    string? Session { get; }
 }
