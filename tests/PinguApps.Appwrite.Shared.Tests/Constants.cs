@@ -1,4 +1,4 @@
-﻿namespace PinguApps.Appwrite.Tests.Shared;
+﻿namespace PinguApps.Appwrite.Shared.Tests;
 
 public static class Constants
 {
@@ -54,7 +54,9 @@ public static class Constants
             "emailVerification": true,
             "phoneVerification": true,
             "mfa": true,
-            "prefs": {},
+            "prefs": {
+                "pref1": "val1"
+            },
             "targets": [
                 {
                     "$id": "259125845563242502",

@@ -23,8 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\PinguApps.Appwrite.Server\PinguApps.Appwrite.Server.csproj" />
-    <ProjectReference Include="..\PinguApps.Appwrite.Shared.Tests\PinguApps.Appwrite.Shared.Tests.csproj" />
+    <ProjectReference Include="..\..\src\PinguApps.Appwrite.Common\PinguApps.Appwrite.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -18,7 +18,7 @@ internal static class ResponseUtils
             return new AppwriteResult<T>(result.Content);
         }
 
-        if (result.Error?.Content is null)
+        if (result.Error?.Content is null || string.IsNullOrEmpty(result.Error.Content))
         {
             throw new Exception("Unknown error encountered.");
         }
