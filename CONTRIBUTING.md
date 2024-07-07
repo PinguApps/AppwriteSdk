@@ -72,6 +72,7 @@ Depending on how large the project is, you may want to outsource the questioning
 - If you are creating or modifying anything relating to an endpoint, then you must equally cover both server and client projects, unless either project should not have the given endpoint implementation based on it having a ❌ symbol in the [README](https://github.com/PinguApps/AppwriteSdk/blob/dev/README.md)
 - If applicable, you should provide tests for your code. Existing endpoints have tests, and the same style and tests should be used.
 - You must give your submission a full sanity check before creating a pull request.
+- You must update the [README](https://github.com/PinguApps/AppwriteSdk/blob/dev/README.md) with relevant changes. If adding endpoint implementation, you should reflect their new status as a result of your PR.
 
 ### Reporting Bugs
 
