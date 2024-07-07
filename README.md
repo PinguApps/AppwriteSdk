@@ -1,9 +1,143 @@
 # Appwrite SDK
+This repository contains the source to both the Client and Server .net implimentation for Appwrite API. This is not a first party SDK, rather a third party SDK.
 
-## Work in Progress
-This is a work in progress. There are 2 SDK's - one for client and another for server. You might desire client functionality on the server, particulary is making use of server side rendering, so on the server it might make most sense to use both client and server SDKs. Each have different functionality available.
+[![Client Version](https://img.shields.io/nuget/v/PinguApps.Appwrite.Client?logo=nuget&style=for-the-badge&label=Client%20Version)](https://www.nuget.org/packages/PinguApps.Appwrite.Client) [![Client Downloads](https://img.shields.io/nuget/dt/PinguApps.Appwrite.Client?style=for-the-badge&logo=nuget&label=Client%20Downloads)](https://www.nuget.org/packages/PinguApps.Appwrite.Client) [![Server Version](https://img.shields.io/nuget/v/PinguApps.Appwrite.Server?logo=nuget&style=for-the-badge&label=Server%20Version)](https://www.nuget.org/packages/PinguApps.Appwrite.Server) [![Server Downloads](https://img.shields.io/nuget/dt/PinguApps.Appwrite.Server?style=for-the-badge&logo=nuget&label=Server%20Downloads)](https://www.nuget.org/packages/PinguApps.Appwrite.Server) [![GitHub Repo stars](https://img.shields.io/github/stars/PinguApps/AppwriteSdk?style=for-the-badge&logo=github)](https://github.com/PinguApps/AppwriteSdk/stargazers) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/PinguApps/AppwriteSdk/main.yml?style=for-the-badge&logo=github)](https://github.com/PinguApps/AppwriteSdk/actions/workflows/main.yml) [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/PinguApps/AppwriteSdk?style=for-the-badge&logo=codefactor)](https://www.codefactor.io/repository/github/pinguapps/AppwriteSdk)
 
-## Progress
+## 🚧 Work in Progress
+This is a work in progress. There are 2 SDK's - one for client and another for server.
+
+## 🔧 Installation
+It is recommended to install just the client SDK into client-side projects, and both the client and server SDK into server side projects.
+
+### Client SDK
+```sh
+Install-Package PinguApps.Appwrite.Client -AllowPrereleaseVersions
+```
+or in the Nuget package manager, search for `PinguApps.Appwrite.Client` (ensure you are searching for prerelease versions)
+### Server SDK
+```sh
+Install-Package PinguApps.Appwrite.Server -AllowPrereleaseVersions
+```
+or in the Nuget package manager, search for `PinguApps.Appwrite.Server` (ensure you are searching for prerelease versions)
+
+## 🚀 Usage
+Once the package(s) are installed, you will need to add everything to your DI container. Thankfully, there's an extension method making this simple.
+
+### DI Container
+#### Client SDK
+There are 2 extension methods for the client SDK. One intended for client side usage, and the other for server side usage. The only difference is the lifetimes used in the DI container.
+
+For client side:
+```csharp
+services.AddAppwriteClient("Project_Id");
+```
+
+For Server side:
+
+```csharp
+services.AddAppwriteClientForServer("Project_Id");
+```
+
+> This will assume that you are using Appwrite in the cloud. If you are not, then you can specify your endpoint as the second parameter, which is optional. Additionally, for finer control, you can specify your own `RefitSettings` as the third parameter.
+
+#### Server SDK
+```csharp
+services.AddAppwriteServer("Project_Id", "Api_Key");
+```
+
+> This will assume that you are using Appwrite in the cloud. If you are not, then you can specify your endpoint as the second parameter, which is optional. Additionally, for finer control, you can specify your own `RefitSettings` as the third parameter.
+
+### Injecting
+To inject the SDK, you will need to request either an `IAppwriteClient` or `IAppwriteServer`, depending on which you are working with and need.
+
+```csharp
+public class App
+{
+    private readonly IAppwriteClient _client;
+    private readonly IAppwriteServer _server;
+
+    public App(IAppwriteClient client, IAppwriteServer server)
+    {
+        _client = client;
+        _server = server;
+    }
+}
+```
+
+### Sessions (Client only)
+The Client SDK will manage sessions for you. You can set the current session with:
+```casharp
+_client.SetSession("SessionToken");
+```
+
+### Making Calls
+Both SDK's are split up into sections, matching the [Appwrite Docs](https://appwrite.io/docs/references).
+
+To make a call to get the current logged in account on the client SDK, you can do this with:
+```csharp
+var user = await _client.Account.Get();
+```
+
+To create an account with the Server SDK, it might look like this:
+```csharp
+var request = new CreateAccountRequest
+{
+    Email = "pingu@example.com",
+    Password = "MySuperSecretPassword",
+    Name = "Pingu"
+};
+
+var user = await _server.Account.Create(request);
+```
+
+### Handling the result
+The result object is made up of a `Result` property, as well as some `bool`'s to assist in determining the success or failure. The `Result` Property will be one of 3 different types, depending on what happened.
+
+All following examples will be based on the following preceeding them:
+```csharp
+var userResponse = await _client.Account.Get();
+```
+
+We can determine if the call we made was successful or not by checking `userResponse.Success`. If this is true, the `Result` will be an object of the type returned from the API, in this case it will be of type `User`.
+
+If `userResponse.Success` is false, then `userResponse.IsError` will be true (which we could also use to check the inverse).
+
+If we have errored, then there might be 2 sources for the error. One would be Appwrite throwing an error, and the other would be internal - within the SDK. This could be a bug with the SDK, or invalid input provided to it.
+
+If `userResponse.IsAppwriteError` is true, then `Result` will be of type `AppwriteError`.
+
+If `userResponse.IsInternalError` is true, then `Result` will be of type `InternalError`.
+
+We can switch on the result type, allowing us to perform different logic based on the success status.
+
+```csharp
+userResponse.Result.Switch(
+    account => Console.WriteLine(account.Email),
+    appwriteError => Console.WriteLine(appwriteError.Message),
+    internalError => Console.WriteLine(internalError.Message)
+);
+```
+
+We can also pull out the known type of the response:
+
+```csharp
+if(userResponse.Success)
+{
+    var email = userResponse.Result.AsT0.Email;
+}
+```
+
+Finally, we can return something different depending on what type it is:
+
+```csharp
+string emailAddressOrErrorMessage = userResponse.Result.Match(
+    account => account.Email,
+    appwriteError => appwriteError.Message,
+    internalError => internalError.Message
+);
+```
+
+## ⌛ Progress
 ### Server & Client
 ![3 / 298](https://progress-bar.dev/3/?scale=298&suffix=%20/%20298&width=500)
 ### Server Only
@@ -11,14 +145,14 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 ### Client Only
 ![2 / 93](https://progress-bar.dev/2/?scale=93&suffix=%20/%2093&width=300)
 
-## Key
+### 🔑 Key
 | Icon | Definition |
 |:-:|:-:|
 | ✅ | The endpoint is implemented for the given SDK type (client or server) |
 | ⬛ | The endpoint is not yet implemented for the given SDK type (client or server), but will be |
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
-## Account
+### Account
 ![3 / 52](https://progress-bar.dev/3/?scale=52&suffix=%20/%2052&width=120)
 
 | Endpoint | Client | Server |
@@ -71,7 +205,7 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 | [Create Phone Verification](https://appwrite.io/docs/references/1.5.x/client-rest/account#createPhoneVerification) | ⬛ | ❌ |
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhoneVerification) | ⬛ | ❌ |
 
-## Users
+### Users
 ![0 / 41](https://progress-bar.dev/0/?scale=41&suffix=%20/%2041&width=120)
 
 | Endpoint | Client | Server |
@@ -118,7 +252,7 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 | [Update Email Verification](https://appwrite.io/docs/references/1.5.x/server-rest/users#updateEmailVerification) | ❌ | ⬛ |
 | [Update Phone Verification](https://appwrite.io/docs/references/1.5.x/server-rest/users#updatePhoneVerification) | ❌ | ⬛ |
 
-## Teams
+### Teams
 ![0 / 26](https://progress-bar.dev/0/?scale=26&suffix=%20/%2026&width=120)
 
 | Endpoint | Client | Server |
@@ -137,7 +271,7 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 | [Get Team Memberships](https://appwrite.io/docs/references/1.5.x/client-rest/teams#getPrefs) | ⬛ | ⬛ |
 | [Update Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updatePrefs) | ⬛ | ⬛ |
 
-## Databases
+### Databases
 ![0 / 47](https://progress-bar.dev/0/?scale=47&suffix=%20/%2047&width=120)
 
 | Endpoint | Client | Server |
@@ -185,7 +319,7 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 | [Get Index](https://appwrite.io/docs/references/1.5.x/server-rest/databases#getIndex) | ❌ | ⬛ |
 | [Delete Index](https://appwrite.io/docs/references/1.5.x/server-rest/databases#deleteIndex) | ❌ | ⬛ |
 
-## Storage
+### Storage
 ![0 / 21](https://progress-bar.dev/0/?scale=21&suffix=%20/%2021&width=120)
 
 | Endpoint | Client | Server |
@@ -204,7 +338,7 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 | [Get File Preview](https://appwrite.io/docs/references/1.5.x/client-rest/storage#getFilePreview) | ⬛ | ⬛ |
 | [Get File For View](https://appwrite.io/docs/references/1.5.x/client-rest/storage#getFileView) | ⬛ | ⬛ |
 
-## Functions
+### Functions
 ![0 / 24](https://progress-bar.dev/0/?scale=24&suffix=%20/%2024&width=120)
 
 | Endpoint | Client | Server |
@@ -231,7 +365,7 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 | [Update Variable](https://appwrite.io/docs/references/1.5.x/server-rest/functions#updateVariable) | ❌ | ⬛ |
 | [Delete Variable](https://appwrite.io/docs/references/1.5.x/server-rest/functions#deleteVariable) | ❌ | ⬛ |
 
-## Messaging
+### Messaging
 ![0 / 48](https://progress-bar.dev/0/?scale=48&suffix=%20/%2048&width=120)
 
 | Endpoint | Client | Server |
@@ -283,7 +417,7 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 | [Get Subscriber](https://appwrite.io/docs/references/1.5.x/server-rest/messaging#getSubscriber) | ❌ | ⬛ |
 | [Delete Subscriber](https://appwrite.io/docs/references/1.5.x/client-rest/messaging#deleteSubscriber) | ⬛ | ⬛ |
 
-## Locale
+### Locale
 ![0 / 15](https://progress-bar.dev/0/?scale=15&suffix=%20/%2015&width=120)
 
 | Endpoint | Client | Server |
@@ -297,7 +431,7 @@ This is a work in progress. There are 2 SDK's - one for client and another for s
 | [List Currencies](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listCurrencies) | ⬛ | ⬛ |
 | [List Languages](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listLanguages) | ⬛ | ⬛ |
 
-## Avatars
+### Avatars
 ![0 / 14](https://progress-bar.dev/0/?scale=14&suffix=%20/%2014&width=120)
 
 | Endpoint | Client | Server |
