@@ -5,6 +5,10 @@ using PinguApps.Appwrite.Client.Internals;
 using Refit;
 
 namespace PinguApps.Appwrite.Client;
+
+/// <summary>
+/// Provides extenions to IServiceCollection, to enable adding the SDK to your DI container
+/// </summary>
 public static class ServiceCollectionExtensions
 {
     /// <summary>
