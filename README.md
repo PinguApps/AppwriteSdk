@@ -139,11 +139,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 ### Server & Client
-![3 / 298](https://progress-bar.dev/3/?scale=298&suffix=%20/%20298&width=500)
+![4 / 298](https://progress-bar.dev/4/?scale=298&suffix=%20/%20298&width=500)
 ### Server Only
 ![1 / 195](https://progress-bar.dev/1/?scale=195&suffix=%20/%20195&width=300)
 ### Client Only
-![2 / 93](https://progress-bar.dev/2/?scale=93&suffix=%20/%2093&width=300)
+![3 / 93](https://progress-bar.dev/3/?scale=93&suffix=%20/%2093&width=300)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -153,13 +153,13 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-![3 / 52](https://progress-bar.dev/3/?scale=52&suffix=%20/%2052&width=120)
+![4 / 52](https://progress-bar.dev/4/?scale=52&suffix=%20/%2052&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
 | [Get Account](https://appwrite.io/docs/references/1.5.x/client-rest/account#get) | ✅ | ❌ |
 | [Create Account](https://appwrite.io/docs/references/1.5.x/client-rest/account#create) | ✅ | ✅ |
-| [Update Email](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateEmail) | ⬛ | ❌ |
+| [Update Email](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateEmail) | ✅ | ❌ |
 | [List Identities](https://appwrite.io/docs/references/1.5.x/client-rest/account#listIdentities) | ⬛ | ❌ |
 | [Delete Identity](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteIdentity) | ⬛ | ❌ |
 | [Create JWT](https://appwrite.io/docs/references/1.5.x/client-rest/account#createJWT) | ⬛ | ❌ |
