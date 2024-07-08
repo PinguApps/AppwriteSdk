@@ -21,13 +21,12 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new UpdateEmailRequest
+        var request = new UpdateNameRequest
         {
-            Email = "123@example.com",
-            Password = "ThisIsMyPassword"
+            Name = "newName"
         };
 
-        var result = await _client.Account.UpdateEmail(request);
+        var result = await _client.Account.UpdateName(request);
 
         result.Result.Switch(
             account => Console.WriteLine(account.Email),

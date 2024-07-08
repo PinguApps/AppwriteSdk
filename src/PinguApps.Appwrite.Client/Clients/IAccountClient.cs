@@ -35,4 +35,12 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateEmail(UpdateEmailRequest request);
+
+    /// <summary>
+    /// Update currently logged in user account name
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/server-rest/account#updateName">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
+    Task<AppwriteResult<User>> UpdateName(UpdateNameRequest request);
 }
