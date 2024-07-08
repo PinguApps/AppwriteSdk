@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Playgrou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Server", "src\PinguApps.Appwrite.Server\PinguApps.Appwrite.Server.csproj", "{1E8A9E01-1E1A-4FA6-93AB-E1FA31500DF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Shared", "src\PinguApps.Appwrite.Common\PinguApps.Appwrite.Shared.csproj", "{C02515BD-4CD9-4E0F-8831-A3AB0291AD1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinguApps.Appwrite.Shared", "src\PinguApps.Appwrite.Shared\PinguApps.Appwrite.Shared.csproj", "{C02515BD-4CD9-4E0F-8831-A3AB0291AD1A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{187EBB4D-6799-492C-AAA7-518B2811D800}"
 EndProject
