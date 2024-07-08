@@ -43,4 +43,12 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateName(UpdateNameRequest request);
+
+    /// <summary>
+    /// Update currently logged in user password. For validation, user is required to pass in the new password, and the old password. For users created with OAuth, Team Invites and Magic URL, oldPassword is optional
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/server-rest/account#updatePassword">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
+    Task<AppwriteResult<User>> UpdatePassword(UpdatePasswordRequest request);
 }
