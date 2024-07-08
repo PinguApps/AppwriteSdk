@@ -15,4 +15,7 @@ public interface IAccountApi : IBaseApi
 
     [Patch("/account/email")]
     Task<IApiResponse<User>> UpdateEmail([Header("x-appwrite-session")] string? session, UpdateEmailRequest request);
+
+    [Patch("/account/name")]
+    Task<IApiResponse<User>> UpdateName([Header("x-appwrite-session")] string? session, UpdateNameRequest name);
 }
