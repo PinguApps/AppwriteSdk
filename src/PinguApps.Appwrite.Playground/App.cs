@@ -27,6 +27,8 @@ internal class App
             Phone = "14155552671"
         };
 
+        var f = request.IsValid();
+
         var result = await _client.Account.UpdatePhone(request);
 
         result.Result.Switch(
