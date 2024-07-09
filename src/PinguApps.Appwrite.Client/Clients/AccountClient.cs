@@ -106,4 +106,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<User>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<User>> UpdatePhone(UpdatePhoneRequest request)
+    {
+        try
+        {
+            var result = await _accountApi.UpdatePhone(Session, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 }

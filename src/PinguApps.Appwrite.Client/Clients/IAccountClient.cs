@@ -51,4 +51,12 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdatePassword(UpdatePasswordRequest request);
+
+    /// <summary>
+    /// Update the currently logged in user's phone number. After updating the phone number, the phone verification status will be reset. A confirmation SMS is not sent automatically, however you can use the POST /account/verification/phone endpoint to send a confirmation SMS
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhone">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
+    Task<AppwriteResult<User>> UpdatePhone(UpdatePhoneRequest request);
 }
