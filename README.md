@@ -139,11 +139,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 ### Server & Client
-![6 / 298](https://progress-bar.dev/6/?scale=298&suffix=%20/%20298&width=500)
+![7 / 298](https://progress-bar.dev/7/?scale=298&suffix=%20/%20298&width=500)
 ### Server Only
 ![1 / 195](https://progress-bar.dev/1/?scale=195&suffix=%20/%20195&width=300)
 ### Client Only
-![5 / 93](https://progress-bar.dev/5/?scale=93&suffix=%20/%2093&width=300)
+![6 / 93](https://progress-bar.dev/6/?scale=93&suffix=%20/%2093&width=300)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -153,7 +153,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-![6 / 52](https://progress-bar.dev/6/?scale=52&suffix=%20/%2052&width=120)
+![7 / 52](https://progress-bar.dev/7/?scale=52&suffix=%20/%2052&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -176,7 +176,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Regenerate MFA Recovery Codes](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaRecoveryCodes) | ⬛ | ❌ |
 | [Update Name](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateName) | ✅ | ❌ |
 | [Update Password](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePassword) | ✅ | ❌ |
-| [Update Phone](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhone) | ⬛ | ❌ |
+| [Update Phone](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhone) | ✅ | ❌ |
 | [Get Account Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/account#getPrefs) | ⬛ | ❌ |
 | [Update Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePrefs) | ⬛ | ❌ |
 | [Create Password Recovery](https://appwrite.io/docs/references/1.5.x/client-rest/account#createRecovery) | ⬛ | ❌ |

@@ -21,4 +21,7 @@ public interface IAccountApi : IBaseApi
 
     [Patch("/account/password")]
     Task<IApiResponse<User>> UpdatePassword([Header("x-appwrite-session")] string? session, UpdatePasswordRequest name);
+
+    [Patch("/account/phone")]
+    Task<IApiResponse<User>> UpdatePhone([Header("x-appwrite-session")] string? session, UpdatePhoneRequest name);
 }

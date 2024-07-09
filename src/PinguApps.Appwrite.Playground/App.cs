@@ -21,13 +21,13 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new UpdatePasswordRequest
+        var request = new UpdatePhoneRequest
         {
-            OldPassword = "MyNewPassword",
-            NewPassword = "MyNewPassword123"
+            Password = "MyNewPassword",
+            Phone = "+14155552671"
         };
 
-        var result = await _client.Account.UpdatePassword(request);
+        var result = await _client.Account.UpdatePhone(request);
 
         result.Result.Switch(
             account => Console.WriteLine(account.Email),
