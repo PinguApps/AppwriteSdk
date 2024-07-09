@@ -52,6 +52,8 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
+            request.Validate(true);
+
             var result = await _accountApi.CreateAccount(request);
 
             return result.GetApiResponse();
@@ -67,6 +69,8 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
+            request.Validate(true);
+
             var result = await _accountApi.UpdateEmail(Session, request);
 
             return result.GetApiResponse();
@@ -82,6 +86,8 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
+            request.Validate(true);
+
             var result = await _accountApi.UpdateName(Session, request);
 
             return result.GetApiResponse();
@@ -97,6 +103,8 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
+            request.Validate(true);
+
             var result = await _accountApi.UpdatePassword(Session, request);
 
             return result.GetApiResponse();
@@ -112,6 +120,8 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
+            request.Validate(true);
+
             var result = await _accountApi.UpdatePhone(Session, request);
 
             return result.GetApiResponse();
