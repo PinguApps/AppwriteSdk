@@ -112,6 +112,8 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
+            request.Validate(true);
+
             var result = await _accountApi.UpdatePhone(Session, request);
 
             return result.GetApiResponse();
