@@ -23,8 +23,8 @@ internal class App
 
         var request = new UpdatePhoneRequest
         {
-            Password = "MyNewPassword",
-            Phone = "+14155552671"
+            Password = "sword",
+            Phone = "14155552671"
         };
 
         var result = await _client.Account.UpdatePhone(request);
