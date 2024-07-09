@@ -11,7 +11,7 @@ public class UpdatePhoneRequest
     /// Phone number. Format this number with a leading '+' and a country code, e.g., +16175551212
     /// </summary>
     [JsonPropertyName("phone")]
-    public string? Phone { get; set; }
+    public string Phone { get; set; } = string.Empty;
 
     /// <summary>
     /// New user password. Must be at least 8 chars
