@@ -47,7 +47,7 @@ public class UpdatePasswordRequestTests
         };
 
         // Act
-        bool isValid = request.IsValid();
+        var isValid = request.IsValid();
 
         // Assert
         Assert.True(isValid);
