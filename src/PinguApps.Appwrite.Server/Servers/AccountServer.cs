@@ -20,6 +20,8 @@ public class AccountServer : IAccountServer
     {
         try
         {
+            request.Validate(true);
+
             var result = await _accountApi.CreateAccount(request);
 
             return result.GetApiResponse();

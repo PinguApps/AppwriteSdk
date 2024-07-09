@@ -1,11 +1,12 @@
 ﻿using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Requests.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests;
 
 /// <summary>
 /// The request for updating a users email
 /// </summary>
-public class UpdateEmailRequest
+public class UpdateEmailRequest : BaseRequest<UpdateEmailRequest, UpdateEmailRequestValidator>
 {
     /// <summary>
     /// User email
