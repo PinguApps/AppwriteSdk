@@ -29,7 +29,14 @@ internal class App
 
         var f = request.IsValid();
 
-        var result = await _client.Account.GetAccountPreferences();
+        var result = await _client.Account.UpdatePreferences(new UpdatePreferencesRequest
+        {
+            Preferences = new Dictionary<string, string>
+            {
+                { "key1", "val1" },
+                { "key2", "val2" }
+            }
+        });
 
         result.Result.Switch(
             account => Console.WriteLine(string.Join(',', account)),

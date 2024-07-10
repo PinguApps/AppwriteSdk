@@ -18,14 +18,17 @@ public interface IAccountApi : IBaseApi
     Task<IApiResponse<User>> UpdateEmail([Header("x-appwrite-session")] string? session, UpdateEmailRequest request);
 
     [Patch("/account/name")]
-    Task<IApiResponse<User>> UpdateName([Header("x-appwrite-session")] string? session, UpdateNameRequest name);
+    Task<IApiResponse<User>> UpdateName([Header("x-appwrite-session")] string? session, UpdateNameRequest request);
 
     [Patch("/account/password")]
-    Task<IApiResponse<User>> UpdatePassword([Header("x-appwrite-session")] string? session, UpdatePasswordRequest name);
+    Task<IApiResponse<User>> UpdatePassword([Header("x-appwrite-session")] string? session, UpdatePasswordRequest request);
 
     [Patch("/account/phone")]
-    Task<IApiResponse<User>> UpdatePhone([Header("x-appwrite-session")] string? session, UpdatePhoneRequest name);
+    Task<IApiResponse<User>> UpdatePhone([Header("x-appwrite-session")] string? session, UpdatePhoneRequest request);
 
     [Get("/account/prefs")]
     Task<IApiResponse<IReadOnlyDictionary<string, string>>> GetAccountPreferences([Header("x-appwrite-session")] string? session);
+
+    [Patch("/account/prefs")]
+    Task<IApiResponse<User>> UpdatePreferences([Header("x-appwrite-session")] string? session, UpdatePreferencesRequest request);
 }
