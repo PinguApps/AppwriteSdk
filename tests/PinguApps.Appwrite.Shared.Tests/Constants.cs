@@ -72,4 +72,11 @@ public static class Constants
             "accessedAt": "2020-10-15T06:38:00.000+00:00"
         }
         """;
+
+    public const string PreferencesResponse = """
+        {
+            "abc": "123",
+            "def": "456"
+        }
+        """;
 }
