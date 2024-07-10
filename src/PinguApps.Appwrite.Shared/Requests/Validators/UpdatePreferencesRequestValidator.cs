@@ -5,5 +5,6 @@ public class UpdatePreferencesRequestValidator : AbstractValidator<UpdatePrefere
 {
     public UpdatePreferencesRequestValidator()
     {
+        RuleFor(x => x.Preferences).NotNull();
     }
 }
