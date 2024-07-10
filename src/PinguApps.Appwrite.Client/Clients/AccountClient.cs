@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Internals;
@@ -129,6 +130,21 @@ public class AccountClient : IAccountClient, ISessionAware
         catch (Exception e)
         {
             return e.GetExceptionResponse<User>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetAccountPreferences()
+    {
+        try
+        {
+            var result = await _accountApi.GetAccountPreferences(Session);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<IReadOnlyDictionary<string, string>>();
         }
     }
 }
