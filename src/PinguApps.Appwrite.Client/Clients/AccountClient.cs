@@ -147,4 +147,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<IReadOnlyDictionary<string, string>>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<User>> UpdatePreferences(UpdatePreferencesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.UpdatePreferences(Session, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 }

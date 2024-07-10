@@ -67,4 +67,12 @@ public interface IAccountClient
     /// </summary>
     /// <returns>A dictionary of the user preferences</returns>
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetAccountPreferences();
+
+    /// <summary>
+    /// Update currently logged in user account preferences. The object you pass is stored as is, and replaces any previous value. The maximum allowed prefs size is 64kB and throws error if exceeded
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePrefs">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="preferences">The request content</param>
+    /// <returns>The user</returns>
+    Task<AppwriteResult<User>> UpdatePreferences(UpdatePreferencesRequest request);
 }
