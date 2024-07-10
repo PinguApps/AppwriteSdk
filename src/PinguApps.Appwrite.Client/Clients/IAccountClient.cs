@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Responses;
@@ -59,4 +60,11 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdatePhone(UpdatePhoneRequest request);
+
+    /// <summary>
+    /// Get the preferences as a dictionary for the currently logged in user
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#getPrefs">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>A dictionary of the user preferences</returns>
+    Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetAccountPreferences();
 }

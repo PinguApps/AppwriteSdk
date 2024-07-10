@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Responses;
 using Refit;
@@ -24,4 +25,7 @@ public interface IAccountApi : IBaseApi
 
     [Patch("/account/phone")]
     Task<IApiResponse<User>> UpdatePhone([Header("x-appwrite-session")] string? session, UpdatePhoneRequest name);
+
+    [Get("/account/prefs")]
+    Task<IApiResponse<IReadOnlyDictionary<string, string>>> GetAccountPreferences([Header("x-appwrite-session")] string? session);
 }

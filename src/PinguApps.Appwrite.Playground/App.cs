@@ -29,10 +29,10 @@ internal class App
 
         var f = request.IsValid();
 
-        var result = await _client.Account.UpdatePhone(request);
+        var result = await _client.Account.GetAccountPreferences();
 
         result.Result.Switch(
-            account => Console.WriteLine(account.Email),
+            account => Console.WriteLine(string.Join(',', account)),
             appwriteError => Console.WriteLine(appwriteError.Message),
             internalError => Console.WriteLine(internalError.Message)
         );
