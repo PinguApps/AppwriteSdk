@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Internals;
 using PinguApps.Appwrite.Server.Utils;
 using PinguApps.Appwrite.Shared;
@@ -11,9 +12,9 @@ public class AccountServer : IAccountServer
 {
     private readonly IAccountApi _accountApi;
 
-    public AccountServer(IAccountApi accountApi)
+    public AccountServer(IServiceProvider services)
     {
-        _accountApi = accountApi;
+        _accountApi = services.GetRequiredService<IAccountApi>();
     }
 
     public async Task<AppwriteResult<User>> Create(CreateAccountRequest request)

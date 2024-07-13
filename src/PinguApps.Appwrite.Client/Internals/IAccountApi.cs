@@ -6,7 +6,7 @@ using Refit;
 
 namespace PinguApps.Appwrite.Client.Internals;
 
-public interface IAccountApi : IBaseApi
+internal interface IAccountApi : IBaseApi
 {
     [Get("/account")]
     Task<IApiResponse<User>> GetAccount([Header("x-appwrite-session")] string? session);
