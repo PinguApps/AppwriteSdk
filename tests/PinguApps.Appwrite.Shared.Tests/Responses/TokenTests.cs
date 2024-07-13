@@ -1,10 +1,9 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Shared.Tests.Responses;
 public class TokenTests
 {
-
     [Fact]
     public void Token_Constructor_AssignsPropertiesCorrectly()
     {
