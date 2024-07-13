@@ -79,4 +79,15 @@ public static class Constants
             "def": "456"
         }
         """;
+
+    public const string TokenResponse = """
+        {
+            "$id": "bb8ea5c16897e",
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "userId": "5e5ea5c168bb8",
+            "secret": "secret",
+            "expire": "2020-10-15T06:38:00.000+00:00",
+            "phrase": "Golden Fox"
+        }
+        """;
 }

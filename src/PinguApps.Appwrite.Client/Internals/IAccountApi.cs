@@ -31,4 +31,7 @@ internal interface IAccountApi : IBaseApi
 
     [Patch("/account/prefs")]
     Task<IApiResponse<User>> UpdatePreferences([Header("x-appwrite-session")] string? session, UpdatePreferencesRequest request);
+
+    [Post("/account/tokens/email")]
+    Task<IApiResponse<Token>> CreateEmailToken(CreateEmailTokenRequest request);
 }
