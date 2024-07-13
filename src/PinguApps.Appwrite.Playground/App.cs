@@ -19,24 +19,16 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        _client.SetSession(_session);
+        //_client.SetSession(_session);
 
-        var request = new UpdatePhoneRequest
+        var request = new CreateEmailTokenRequest
         {
-            Password = "sword",
-            Phone = "14155552671"
+            Email = "pingu@example.com",
+            UserId = "664aac1a00113f82e620",
+            Phrase = true
         };
 
-        var f = request.IsValid();
-
-        var result = await _client.Account.UpdatePreferences(new UpdatePreferencesRequest
-        {
-            Preferences = new Dictionary<string, string>
-            {
-                { "key1", "val1" },
-                { "key2", "val2" }
-            }
-        });
+        var result = await _client.Account.CreateEmailToken(request);
 
         result.Result.Switch(
             account => Console.WriteLine(string.Join(',', account)),

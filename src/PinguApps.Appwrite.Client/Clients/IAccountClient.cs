@@ -75,4 +75,12 @@ public interface IAccountClient
     /// <param name="preferences">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdatePreferences(UpdatePreferencesRequest request);
+
+    /// <summary>
+    /// <para>Sends the user an email with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to the Create Session endpoint to complete the login process. The secret sent to the user's email is valid for 15 minutes.</para>
+    /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/products/auth/security#limits">Learn more about session limits.</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The token</returns>
+    Task<AppwriteResult<Token>> CreateEmailToken(CreateEmailTokenRequest request);
 }
