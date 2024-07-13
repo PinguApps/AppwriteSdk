@@ -8,4 +8,7 @@ internal interface IAccountApi : IBaseApi
 {
     [Post("/account")]
     Task<IApiResponse<User>> CreateAccount(CreateAccountRequest request);
+
+    [Post("/account/tokens/email")]
+    Task<IApiResponse<Token>> CreateEmailToken(CreateEmailTokenRequest request);
 }

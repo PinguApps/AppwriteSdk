@@ -28,7 +28,7 @@ internal class App
             Phrase = true
         };
 
-        var result = await _client.Account.CreateEmailToken(request);
+        var result = await _server.Account.CreateEmailToken(request);
 
         result.Result.Switch(
             account => Console.WriteLine(string.Join(',', account)),
