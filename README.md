@@ -139,11 +139,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 ### Server & Client
-![9 / 298](https://progress-bar.dev/9/?scale=298&suffix=%20/%20298&width=500)
+![11 / 298](https://progress-bar.dev/11/?scale=298&suffix=%20/%20298&width=500)
 ### Server Only
-![1 / 195](https://progress-bar.dev/1/?scale=195&suffix=%20/%20195&width=300)
+![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300)
 ### Client Only
-![8 / 93](https://progress-bar.dev/8/?scale=93&suffix=%20/%2093&width=300)
+![9 / 93](https://progress-bar.dev/9/?scale=93&suffix=%20/%2093&width=300)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -153,7 +153,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-![9 / 52](https://progress-bar.dev/9/?scale=52&suffix=%20/%2052&width=120)
+![11 / 52](https://progress-bar.dev/11/?scale=52&suffix=%20/%2052&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -196,7 +196,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Push Target](https://appwrite.io/docs/references/1.5.x/client-rest/account#createPushTarget) | ⬛ | ❌ |
 | [Update Push Target](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePushTarget) | ⬛ | ❌ |
 | [Delete Push Target](https://appwrite.io/docs/references/1.5.x/client-rest/account#deletePushTarget) | ⬛ | ❌ |
-| [Create Email Token (OTP)](https://appwrite.io/docs/references/1.5.x/client-rest/account#createEmailToken) | ⬛ | ⬛ |
+| [Create Email Token (OTP)](https://appwrite.io/docs/references/1.5.x/client-rest/account#createEmailToken) | ✅ | ✅ |
 | [Create Magic URL Token](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMagicURLToken) | ⬛ | ⬛ |
 | [Create OAuth2 Token](https://appwrite.io/docs/references/1.5.x/client-rest/account#createOAuth2Token) | ⬛ | ⬛ |
 | [Create Phone Token](https://appwrite.io/docs/references/1.5.x/client-rest/account#createPhoneToken) | ⬛ | ⬛ |
