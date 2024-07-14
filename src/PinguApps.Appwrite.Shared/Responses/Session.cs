@@ -46,7 +46,7 @@ public record Session(
     [property: JsonPropertyName("provider")] string Provider,
     [property: JsonPropertyName("providerUid")] string ProviderUserId,
     [property: JsonPropertyName("providerAccessToken")] string ProviderAccessToken,
-    [property: JsonPropertyName("providerAccessTokenExpiry")] DateTime? ProviderAccessTokenExpiry,
+    [property: JsonPropertyName("providerAccessTokenExpiry"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? ProviderAccessTokenExpiry,
     [property: JsonPropertyName("providerRefreshToken")] string ProviderRefreshToken,
     [property: JsonPropertyName("ip")] string Ip,
     [property: JsonPropertyName("osCode")] string OsCode,
