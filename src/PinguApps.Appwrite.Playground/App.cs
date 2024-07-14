@@ -24,7 +24,7 @@ internal class App
         var request = new CreateSessionRequest
         {
             UserId = "664aac1a00113f82e620",
-            Secret = "357871"
+            Secret = "524366"
         };
 
         Console.WriteLine($"Session: {_client.Session}");

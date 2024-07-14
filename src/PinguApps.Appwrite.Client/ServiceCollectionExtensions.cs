@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Handlers;
 using PinguApps.Appwrite.Client.Internals;
@@ -45,9 +46,27 @@ public static class ServiceCollectionExtensions
     {
         services.AddSingleton(sp => new HeaderHandler(projectId));
 
-        services.AddRefitClient<IAccountApi>(refitSettings)
-            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
-            .AddHttpMessageHandler<HeaderHandler>();
+        services.AddTransient(x =>
+        {
+            var primaryHandler = new HttpClientHandler()
+            {
+                UseCookies = false
+            };
+
+            var headerHandler = x.GetRequiredService<HeaderHandler>();
+            headerHandler.InnerHandler = primaryHandler;
+
+            var client = new HttpClient(headerHandler)
+            {
+                BaseAddress = new Uri(endpoint)
+            };
+
+            return RestService.For<IAccountApi>(client, refitSettings);
+        });
+
+        //services.AddRefitClient<IAccountApi>(refitSettings)
+        //    .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
+        //    .AddHttpMessageHandler<HeaderHandler>();
 
         services.AddTransient<IAccountClient>(x => new AccountClient(x, false));
         services.AddTransient<IAppwriteClient, AppwriteClient>();
