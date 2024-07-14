@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -12,7 +14,7 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="UserId">User ID</param>
 /// <param name="ExpiresAt">Session expiration date in ISO 8601 format</param>
 /// <param name="Provider">Session Provider</param>
-/// <param name="ProviderId">Session Provider User ID</param>
+/// <param name="ProviderUserId">Session Provider User ID</param>
 /// <param name="ProviderAccessToken">Session Provider Access Token</param>
 /// <param name="ProviderAccessTokenExpiry">The date of when the access token expires in ISO 8601 format</param>
 /// <param name="ProviderRefreshToken">Session Provider Refresh Token</param>
@@ -36,33 +38,33 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Secret">Secret used to authenticate the user. Only included if the request was made with an API key</param>
 /// <param name="MfaUpdatedAt">Most recent date in ISO 8601 format when the session successfully passed MFA challenge</param>
 public record Session(
-    string Id,
-    DateTime CreatedAt,
-    DateTime UpdatedAt,
-    string UserId,
-    DateTime ExpiresAt,
-    string Provider,
-    string ProviderId,
-    string ProviderAccessToken,
-    DateTime? ProviderAccessTokenExpiry,
-    string ProviderRefreshToken,
-    string Ip,
-    string OsCode,
-    string OsName,
-    string OsVersion,
-    string ClientType,
-    string ClientCode,
-    string ClientName,
-    string ClientVersion,
-    string ClientEngine,
-    string ClientEngineVersion,
-    string DeviceName,
-    string DeviceBrand,
-    string DeviceModel,
-    string CountryCode,
-    string CountryName,
-    bool Current,
-    IReadOnlyList<string> Factors,
-    string Secret,
-    DateTime? MfaUpdatedAt
+    [property: JsonPropertyName("$id")] string Id,
+    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
+    [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt,
+    [property: JsonPropertyName("userId")] string UserId,
+    [property: JsonPropertyName("expire")] DateTime ExpiresAt,
+    [property: JsonPropertyName("provider")] string Provider,
+    [property: JsonPropertyName("providerUid")] string ProviderUserId,
+    [property: JsonPropertyName("providerAccessToken")] string ProviderAccessToken,
+    [property: JsonPropertyName("providerAccessTokenExpiry")] DateTime? ProviderAccessTokenExpiry,
+    [property: JsonPropertyName("providerRefreshToken")] string ProviderRefreshToken,
+    [property: JsonPropertyName("ip")] string Ip,
+    [property: JsonPropertyName("osCode")] string OsCode,
+    [property: JsonPropertyName("osName")] string OsName,
+    [property: JsonPropertyName("osVersion")] string OsVersion,
+    [property: JsonPropertyName("clientType")] string ClientType,
+    [property: JsonPropertyName("clientCode")] string ClientCode,
+    [property: JsonPropertyName("clientName")] string ClientName,
+    [property: JsonPropertyName("clientVersion")] string ClientVersion,
+    [property: JsonPropertyName("clientEngine")] string ClientEngine,
+    [property: JsonPropertyName("clientEngineVersion")] string ClientEngineVersion,
+    [property: JsonPropertyName("deviceName")] string DeviceName,
+    [property: JsonPropertyName("deviceBrand")] string DeviceBrand,
+    [property: JsonPropertyName("deviceModel")] string DeviceModel,
+    [property: JsonPropertyName("countryCode")] string CountryCode,
+    [property: JsonPropertyName("countryName")] string CountryName,
+    [property: JsonPropertyName("current")] bool Current,
+    [property: JsonPropertyName("factors")] IReadOnlyList<string> Factors,
+    [property: JsonPropertyName("secret")] string Secret,
+    [property: JsonPropertyName("mfaUpdatedAt"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? MfaUpdatedAt
 );
