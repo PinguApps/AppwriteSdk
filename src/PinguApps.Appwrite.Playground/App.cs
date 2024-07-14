@@ -24,12 +24,12 @@ internal class App
         var request = new CreateSessionRequest
         {
             UserId = "664aac1a00113f82e620",
-            Secret = "287856"
+            Secret = "357871"
         };
 
         Console.WriteLine($"Session: {_client.Session}");
 
-        var result = await _client.Account.CreateSession(request, true);
+        var result = await _client.Account.CreateSession(request);
 
         Console.WriteLine($"Session: {_client.Session}");
 
@@ -38,5 +38,14 @@ internal class App
             appwriteError => Console.WriteLine(appwriteError.Message),
             internalError => Console.WriteLine(internalError.Message)
         );
+
+        Console.WriteLine("Getting Account...");
+
+        var account = await _client.Account.Get();
+
+        Console.WriteLine(account.Result.Match(
+            account => account.ToString(),
+            appwriteError => appwriteError.Message,
+            internalERror => internalERror.Message));
     }
 }

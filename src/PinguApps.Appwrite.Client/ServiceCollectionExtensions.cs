@@ -27,7 +27,7 @@ public static class ServiceCollectionExtensions
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
             .AddHttpMessageHandler<HeaderHandler>();
 
-        services.AddSingleton<IAccountClient, AccountClient>();
+        services.AddSingleton<IAccountClient>(x => new AccountClient(x, true));
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
@@ -49,7 +49,7 @@ public static class ServiceCollectionExtensions
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
             .AddHttpMessageHandler<HeaderHandler>();
 
-        services.AddTransient<IAccountClient, AccountClient>();
+        services.AddTransient<IAccountClient>(x => new AccountClient(x, false));
         services.AddTransient<IAppwriteClient, AppwriteClient>();
 
         return services;

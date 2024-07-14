@@ -7,8 +7,8 @@ using PinguApps.Appwrite.Server;
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.Services.AddAppwriteClient(builder.Configuration.GetValue<string>("ProjectId")!);
-//builder.Services.AddAppwriteClientForServer(builder.Configuration.GetValue<string>("ProjectId")!);
+//builder.Services.AddAppwriteClient(builder.Configuration.GetValue<string>("ProjectId")!);
+builder.Services.AddAppwriteClientForServer(builder.Configuration.GetValue<string>("ProjectId")!);
 builder.Services.AddAppwriteServer(builder.Configuration.GetValue<string>("ProjectId")!, builder.Configuration.GetValue<string>("ApiKey")!);
 builder.Services.AddSingleton<App>();
 

@@ -18,10 +18,12 @@ namespace PinguApps.Appwrite.Client;
 public class AccountClient : IAccountClient, ISessionAware
 {
     private readonly IAccountApi _accountApi;
+    private readonly bool _saveSession;
 
-    public AccountClient(IServiceProvider services)
+    public AccountClient(IServiceProvider services, bool saveSession)
     {
         _accountApi = services.GetRequiredService<IAccountApi>();
+        _saveSession = saveSession;
     }
 
     string? ISessionAware.Session { get; set; }
@@ -42,7 +44,7 @@ public class AccountClient : IAccountClient, ISessionAware
 
     private void SaveSession<T>(IApiResponse<T> response)
     {
-        if (response.IsSuccessStatusCode && SessionChanged is not null)
+        if (_saveSession && response.IsSuccessStatusCode && SessionChanged is not null)
         {
             if (response.Headers.TryGetValues("Set-Cookie", out var values))
             {
@@ -216,7 +218,7 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request, bool saveSession = true)
+    public async Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request)
     {
         try
         {
@@ -224,10 +226,7 @@ public class AccountClient : IAccountClient, ISessionAware
 
             var result = await _accountApi.CreateSession(request);
 
-            if (saveSession)
-            {
-                SaveSession(result);
-            }
+            SaveSession(result);
 
             return result.GetApiResponse();
         }

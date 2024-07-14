@@ -90,7 +90,6 @@ public interface IAccountClient
     /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createSession">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
-    /// <param name="saveSession">If true, on successful response will set the client's session</param>
     /// <returns>The session</returns>
-    Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request, bool saveSession = true);
+    Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);
 }
