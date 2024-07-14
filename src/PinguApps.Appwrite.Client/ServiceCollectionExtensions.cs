@@ -22,14 +22,17 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection, enabling chaining</returns>
     public static IServiceCollection AddAppwriteClient(this IServiceCollection services, string projectId, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
-        services.AddSingleton(sp => new HeaderHandler(projectId));
+        services.AddSingleton(x => new HeaderHandler(projectId));
+        services.AddSingleton<ClientCookieSessionHandler>();
 
         services.AddRefitClient<IAccountApi>(refitSettings)
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
-            .AddHttpMessageHandler<HeaderHandler>();
+            .AddHttpMessageHandler<HeaderHandler>()
+            .AddHttpMessageHandler<ClientCookieSessionHandler>();
 
-        services.AddSingleton<IAccountClient>(x => new AccountClient(x, true));
+        services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
+        services.AddSingleton(x => new Lazy<IAppwriteClient>(() => x.GetRequiredService<IAppwriteClient>()));
 
         return services;
     }
@@ -54,7 +57,7 @@ public static class ServiceCollectionExtensions
                 UseCookies = false
             });
 
-        services.AddSingleton<IAccountClient>(x => new AccountClient(x, false));
+        services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
