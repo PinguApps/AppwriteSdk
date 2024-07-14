@@ -1,4 +1,5 @@
-﻿using PinguApps.Appwrite.Client.Clients;
+﻿using System;
+using PinguApps.Appwrite.Client.Clients;
 
 namespace PinguApps.Appwrite.Client;
 public class AppwriteClient : IAppwriteClient, ISessionAware
@@ -9,9 +10,15 @@ public class AppwriteClient : IAppwriteClient, ISessionAware
     public AppwriteClient(IAccountClient accountClient)
     {
         Account = accountClient;
+        if (Account is ISessionAware sessionAwareAccount)
+        {
+            sessionAwareAccount.SessionChanged += OnSessionChanged;
+        }
     }
 
     string? ISessionAware.Session { get; set; }
+
+    public event EventHandler<string?>? SessionChanged;
 
     ISessionAware? _sessionAware;
     /// <inheritdoc/>
@@ -31,5 +38,10 @@ public class AppwriteClient : IAppwriteClient, ISessionAware
     {
         (this as ISessionAware).UpdateSession(session);
         (Account as ISessionAware)!.UpdateSession(session);
+    }
+
+    private void OnSessionChanged(object? sender, string? newSession)
+    {
+        SetSession(newSession);
     }
 }

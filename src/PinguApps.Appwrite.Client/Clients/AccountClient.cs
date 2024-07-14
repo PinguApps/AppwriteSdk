@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Clients;
@@ -8,6 +11,7 @@ using PinguApps.Appwrite.Client.Utils;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Responses;
+using Refit;
 
 namespace PinguApps.Appwrite.Client;
 
@@ -22,6 +26,8 @@ public class AccountClient : IAccountClient, ISessionAware
 
     string? ISessionAware.Session { get; set; }
 
+    public event EventHandler<string?>? SessionChanged;
+
     ISessionAware? _sessionAware;
     public string? Session => GetSession();
     private string? GetSession()
@@ -32,6 +38,32 @@ public class AccountClient : IAccountClient, ISessionAware
         }
 
         return _sessionAware.Session;
+    }
+
+    private void SaveSession<T>(IApiResponse<T> response)
+    {
+        if (response.IsSuccessStatusCode && SessionChanged is not null)
+        {
+            if (response.Headers.TryGetValues("Set-Cookie", out var values))
+            {
+                var sessionCookie = values.FirstOrDefault(x => x.StartsWith("a_session", StringComparison.OrdinalIgnoreCase) && !x.Contains("legacy", StringComparison.OrdinalIgnoreCase));
+
+                if (sessionCookie is null)
+                    return;
+
+                var base64 = sessionCookie.Split('=')[1].Split(';')[0];
+
+                var decodedBytes = Convert.FromBase64String(base64);
+                var decoded = Encoding.UTF8.GetString(decodedBytes);
+
+                var sessionData = JsonSerializer.Deserialize<CookieSessionData>(decoded);
+
+                if (sessionData is null)
+                    return;
+
+                SessionChanged.Invoke(this, sessionData.Secret);
+            }
+        }
     }
 
     /// <inheritdoc/>
@@ -180,6 +212,28 @@ public class AccountClient : IAccountClient, ISessionAware
         catch (Exception e)
         {
             return e.GetExceptionResponse<Token>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request, bool saveSession = true)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.CreateSession(request);
+
+            if (saveSession)
+            {
+                SaveSession(result);
+            }
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Session>();
         }
     }
 }

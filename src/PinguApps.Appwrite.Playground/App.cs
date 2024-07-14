@@ -21,14 +21,17 @@ internal class App
     {
         //_client.SetSession(_session);
 
-        var request = new CreateEmailTokenRequest
+        var request = new CreateSessionRequest
         {
-            Email = "pingu@example.com",
             UserId = "664aac1a00113f82e620",
-            Phrase = true
+            Secret = "287856"
         };
 
-        var result = await _server.Account.CreateEmailToken(request);
+        Console.WriteLine($"Session: {_client.Session}");
+
+        var result = await _client.Account.CreateSession(request, true);
+
+        Console.WriteLine($"Session: {_client.Session}");
 
         result.Result.Switch(
             account => Console.WriteLine(string.Join(',', account)),
