@@ -35,7 +35,7 @@ public static class ServiceCollectionExtensions
     }
 
     /// <summary>
-    /// Adds all necessary components for the Client SDK in a transient state. Best used on server-side to perform client SDK abilities on behalf of users
+    /// Adds all necessary components for the Client SDK such that session will not be remembered. Best used on server-side to perform client SDK abilities on behalf of users
     /// </summary>
     /// <param name="services">The service collection to add to</param>
     /// <param name="projectId">Your Appwrite Project ID</param>
@@ -46,30 +46,16 @@ public static class ServiceCollectionExtensions
     {
         services.AddSingleton(sp => new HeaderHandler(projectId));
 
-        services.AddTransient(x =>
-        {
-            var primaryHandler = new HttpClientHandler()
+        services.AddRefitClient<IAccountApi>(refitSettings)
+            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
             {
                 UseCookies = false
-            };
+            });
 
-            var headerHandler = x.GetRequiredService<HeaderHandler>();
-            headerHandler.InnerHandler = primaryHandler;
-
-            var client = new HttpClient(headerHandler)
-            {
-                BaseAddress = new Uri(endpoint)
-            };
-
-            return RestService.For<IAccountApi>(client, refitSettings);
-        });
-
-        //services.AddRefitClient<IAccountApi>(refitSettings)
-        //    .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
-        //    .AddHttpMessageHandler<HeaderHandler>();
-
-        services.AddTransient<IAccountClient>(x => new AccountClient(x, false));
-        services.AddTransient<IAppwriteClient, AppwriteClient>();
+        services.AddSingleton<IAccountClient>(x => new AccountClient(x, false));
+        services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
     }
