@@ -43,15 +43,27 @@ internal class ClientCookieSessionHandler : DelegatingHandler
                 var semicolonIndex = sessionCookie.IndexOf(';', afterEquals);
                 var base64 = sessionCookie.Substring(afterEquals, semicolonIndex - afterEquals);
 
+                if (string.Equals(base64, "deleted", StringComparison.OrdinalIgnoreCase))
+                {
+                    AppwriteClient.SetSession(null);
+                    return;
+                }
+
                 var decodedBytes = Convert.FromBase64String(base64);
                 var decoded = Encoding.UTF8.GetString(decodedBytes);
 
-                var sessionData = JsonSerializer.Deserialize<CookieSessionData>(decoded);
+                try
+                {
+                    var sessionData = JsonSerializer.Deserialize<CookieSessionData>(decoded);
 
-                if (sessionData is null)
-                    return;
+                    if (sessionData is null || sessionData.Id is null || sessionData.Secret is null)
+                        return;
 
-                AppwriteClient.SetSession(sessionData.Secret);
+                    AppwriteClient.SetSession(sessionData.Secret);
+                }
+                catch (JsonException)
+                {
+                }
             }
         }
     }
