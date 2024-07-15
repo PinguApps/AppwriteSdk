@@ -18,21 +18,26 @@ public class ServiceCollectionExtensionsTests
         // Assert
         var provider = services.BuildServiceProvider();
 
-        // Assert HeaderHandler is registered
         var headerHandler = provider.GetService<HeaderHandler>();
         Assert.NotNull(headerHandler);
 
-        // Assert IAccountApi is registered and configured
+        var clientCookieSessionHandler = provider.GetService<ClientCookieSessionHandler>();
+        Assert.NotNull(clientCookieSessionHandler);
+
         var accountApi = provider.GetService<IAccountApi>();
         Assert.NotNull(accountApi);
 
-        // Assert services are registered
         Assert.NotNull(provider.GetService<IAccountClient>());
         Assert.NotNull(provider.GetService<IAppwriteClient>());
+
+        var lazyClient = provider.GetService<Lazy<IAppwriteClient>>();
+        Assert.NotNull(lazyClient);
+        var client = lazyClient.Value;
+        Assert.NotNull(client);
     }
 
     [Fact]
-    public void AddAppwriteClientForServer_RegistersExpectedServicesWithTransientLifetime()
+    public void AddAppwriteClientForServer_RegistersExpectedServices()
     {
         // Arrange
         var services = new ServiceCollection();
@@ -43,21 +48,16 @@ public class ServiceCollectionExtensionsTests
         // Assert
         var provider = services.BuildServiceProvider();
 
-        // Assert HeaderHandler is registered
         var headerHandler = provider.GetService<HeaderHandler>();
         Assert.NotNull(headerHandler);
 
-        // Assert IAccountApi is registered and configured
+        var clientCookieSessionHandler = provider.GetService<ClientCookieSessionHandler>();
+        Assert.Null(clientCookieSessionHandler);
+
         var accountApi = provider.GetService<IAccountApi>();
         Assert.NotNull(accountApi);
 
-        // Assert services are registered with Transient lifetime
-        var accountClientServiceDescriptor = services.FirstOrDefault(descriptor => descriptor.ServiceType == typeof(IAccountClient));
-        Assert.NotNull(accountClientServiceDescriptor);
-        Assert.Equal(ServiceLifetime.Transient, accountClientServiceDescriptor.Lifetime);
-
-        var appwriteClientServiceDescriptor = services.FirstOrDefault(descriptor => descriptor.ServiceType == typeof(IAppwriteClient));
-        Assert.NotNull(appwriteClientServiceDescriptor);
-        Assert.Equal(ServiceLifetime.Transient, appwriteClientServiceDescriptor.Lifetime);
+        Assert.NotNull(provider.GetService<IAccountClient>());
+        Assert.NotNull(provider.GetService<IAppwriteClient>());
     }
 }

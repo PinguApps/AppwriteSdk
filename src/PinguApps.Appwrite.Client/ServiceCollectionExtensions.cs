@@ -52,9 +52,12 @@ public static class ServiceCollectionExtensions
         services.AddRefitClient<IAccountApi>(refitSettings)
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
-            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            .ConfigurePrimaryHttpMessageHandler((handler, sp) =>
             {
-                UseCookies = false
+                if (handler is HttpClientHandler clientHandler)
+                {
+                    clientHandler.UseCookies = false;
+                }
             });
 
         services.AddSingleton<IAccountClient, AccountClient>();
