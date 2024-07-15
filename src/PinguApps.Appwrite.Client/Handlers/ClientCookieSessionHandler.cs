@@ -39,7 +39,9 @@ internal class ClientCookieSessionHandler : DelegatingHandler
                 if (sessionCookie is null)
                     return;
 
-                var base64 = sessionCookie.Split('=')[1].Split(';')[0];
+                var afterEquals = sessionCookie.IndexOf('=') + 1;
+                var semicolonIndex = sessionCookie.IndexOf(';', afterEquals);
+                var base64 = sessionCookie.Substring(afterEquals, semicolonIndex - afterEquals);
 
                 var decodedBytes = Convert.FromBase64String(base64);
                 var decoded = Encoding.UTF8.GetString(decodedBytes);
