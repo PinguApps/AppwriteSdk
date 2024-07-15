@@ -23,11 +23,6 @@ internal class NullableDateTimeConverter : JsonConverter<DateTime?>
             throw new JsonException($"Unable to parse '{stringValue}' to DateTime.");
         }
 
-        if (reader.TokenType == JsonTokenType.Null)
-        {
-            return null;
-        }
-
         throw new JsonException("Unexpected token type.");
     }
 
@@ -36,10 +31,6 @@ internal class NullableDateTimeConverter : JsonConverter<DateTime?>
         if (value.HasValue)
         {
             writer.WriteStringValue(value.Value.ToString("o"));
-        }
-        else
-        {
-            writer.WriteNullValue();
         }
     }
 }
