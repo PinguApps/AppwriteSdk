@@ -90,4 +90,40 @@ public static class Constants
             "phrase": "Golden Fox"
         }
         """;
+
+    public const string SessionResponse = """
+        {
+            "$id": "5e5ea5c16897e",
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "userId": "5e5bb8c16897e",
+            "expire": "2020-10-15T06:38:00.000+00:00",
+            "provider": "email",
+            "providerUid": "user@example.com",
+            "providerAccessToken": "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+            "providerAccessTokenExpiry": "2020-10-15T06:38:00.000+00:00",
+            "providerRefreshToken": "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+            "ip": "127.0.0.1",
+            "osCode": "Mac",
+            "osName": "Mac",
+            "osVersion": "Mac",
+            "clientType": "browser",
+            "clientCode": "CM",
+            "clientName": "Chrome Mobile iOS",
+            "clientVersion": "84.0",
+            "clientEngine": "WebKit",
+            "clientEngineVersion": "605.1.15",
+            "deviceName": "smartphone",
+            "deviceBrand": "Google",
+            "deviceModel": "Nexus 5",
+            "countryCode": "US",
+            "countryName": "United States",
+            "current": true,
+            "factors": [
+                "email"
+            ],
+            "secret": "5e5bb8c16897e",
+            "mfaUpdatedAt": "2020-10-15T06:38:00.000+00:00"
+        }
+        """;
 }

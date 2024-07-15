@@ -21,19 +21,31 @@ internal class App
     {
         //_client.SetSession(_session);
 
-        var request = new CreateEmailTokenRequest
+        var request = new CreateSessionRequest
         {
-            Email = "pingu@example.com",
             UserId = "664aac1a00113f82e620",
-            Phrase = true
+            Secret = "834938"
         };
 
-        var result = await _server.Account.CreateEmailToken(request);
+        Console.WriteLine($"Session: {_client.Session}");
+
+        var result = await _client.Account.CreateSession(request);
+
+        Console.WriteLine($"Session: {_client.Session}");
 
         result.Result.Switch(
             account => Console.WriteLine(string.Join(',', account)),
             appwriteError => Console.WriteLine(appwriteError.Message),
             internalError => Console.WriteLine(internalError.Message)
         );
+
+        Console.WriteLine("Getting Account...");
+
+        var account = await _client.Account.Get();
+
+        Console.WriteLine(account.Result.Match(
+            account => account.ToString(),
+            appwriteError => appwriteError.Message,
+            internalERror => internalERror.Message));
     }
 }
