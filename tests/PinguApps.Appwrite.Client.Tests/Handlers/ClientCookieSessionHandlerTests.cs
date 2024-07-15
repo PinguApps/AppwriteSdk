@@ -173,5 +173,4 @@ public class ClientCookieSessionHandlerTests
         Assert.Null(caughtException);
         _mockAppwriteClient.Verify(client => client.SetSession(It.IsAny<string>()), Times.Never);
     }
-
 }
