@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Client;
 using PinguApps.Appwrite.Server.Servers;
-using PinguApps.Appwrite.Shared.Requests;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -19,29 +18,11 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        //_client.SetSession(_session);
+        _client.SetSession(_session);
 
-        var request = new CreateSessionRequest
-        {
-            UserId = "664aac1a00113f82e620",
-            Secret = "834938"
-        };
+        Console.WriteLine("Getting Session...");
 
-        Console.WriteLine($"Session: {_client.Session}");
-
-        var result = await _client.Account.CreateSession(request);
-
-        Console.WriteLine($"Session: {_client.Session}");
-
-        result.Result.Switch(
-            account => Console.WriteLine(string.Join(',', account)),
-            appwriteError => Console.WriteLine(appwriteError.Message),
-            internalError => Console.WriteLine(internalError.Message)
-        );
-
-        Console.WriteLine("Getting Account...");
-
-        var account = await _client.Account.Get();
+        var account = await _client.Account.GetSession("6695d717983fadf6ece1");
 
         Console.WriteLine(account.Result.Match(
             account => account.ToString(),
