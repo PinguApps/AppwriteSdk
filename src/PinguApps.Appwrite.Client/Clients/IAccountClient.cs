@@ -92,4 +92,12 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The session</returns>
     Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);
+
+    /// <summary>
+    /// Use this endpoint to get a logged in user's session using a Session ID. Inputting 'current' will return the current session being used
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#getSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="sessionId">Session ID. Use the string 'current' to get the current device session</param>
+    /// <returns>The session</returns>
+    Task<AppwriteResult<Session>> GetSession(string sessionId = "current");
 }

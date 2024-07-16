@@ -37,4 +37,7 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/sessions/token")]
     Task<IApiResponse<Session>> CreateSession(CreateSessionRequest request);
+
+    [Get("/account/sessions/{sessionId}")]
+    Task<IApiResponse<Session>> GetSession([Header("x-appwrite-session")] string? session, string sessionId);
 }
