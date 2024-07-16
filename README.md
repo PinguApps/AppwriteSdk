@@ -139,7 +139,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 ### Server & Client
-![13 / 298](https://progress-bar.dev/13/?scale=298&suffix=%20/%20298&width=500)
+![13 / 288](https://progress-bar.dev/13/?scale=288&suffix=%20/%20288&width=500)
 ### Server Only
 ![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300)
 ### Client Only
