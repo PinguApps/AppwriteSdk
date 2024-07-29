@@ -100,4 +100,12 @@ public interface IAccountClient
     /// <param name="sessionId">Session ID. Use the string 'current' to get the current device session</param>
     /// <returns>The session</returns>
     Task<AppwriteResult<Session>> GetSession(string sessionId = "current");
+
+    /// <summary>
+    /// Use this endpoint to extend a session's length. Extending a session is useful when session expiry is short. If the session was created using an OAuth provider, this endpoint refreshes the access token from the provider.
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updateSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="sessionId">Session ID. Use the string 'current' to update the current device session.</param>
+    /// <returns>The session</returns>
+    Task<AppwriteResult<Session>> UpdateSession(string sessionId = "current");
 }

@@ -22,9 +22,28 @@ internal class App
 
         Console.WriteLine("Getting Session...");
 
-        var account = await _client.Account.GetSession("6695d717983fadf6ece1");
+        //var response = await _client.Account.CreateEmailToken(new CreateEmailTokenRequest
+        //{
+        //    Email = "pingu@pinguapps.com",
+        //    UserId = "664aac1a00113f82e620"
+        //});
 
-        Console.WriteLine(account.Result.Match(
+        //var response = await _client.Account.CreateSession(new CreateSessionRequest
+        //{
+        //    UserId = "664aac1a00113f82e620",
+        //    Secret = "623341"
+        //});
+
+        var response = await _client.Account.GetSession("66a810f2e55b1329e25b");
+
+        var response2 = await _client.Account.UpdateSession("66a810f2e55b1329e25b");
+
+        Console.WriteLine(response.Result.Match(
+            account => account.ToString(),
+            appwriteError => appwriteError.Message,
+            internalERror => internalERror.Message));
+
+        Console.WriteLine(response2.Result.Match(
             account => account.ToString(),
             appwriteError => appwriteError.Message,
             internalERror => internalERror.Message));

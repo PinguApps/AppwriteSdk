@@ -42,7 +42,7 @@ public record Session(
     [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
     [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt,
     [property: JsonPropertyName("userId")] string UserId,
-    [property: JsonPropertyName("expire")] DateTime ExpiresAt,
+    [property: JsonPropertyName("expire"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime ExpiresAt,
     [property: JsonPropertyName("provider")] string Provider,
     [property: JsonPropertyName("providerUid")] string ProviderUserId,
     [property: JsonPropertyName("providerAccessToken")] string ProviderAccessToken,
