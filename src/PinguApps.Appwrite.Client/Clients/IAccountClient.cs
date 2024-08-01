@@ -108,4 +108,13 @@ public interface IAccountClient
     /// <param name="sessionId">Session ID. Use the string 'current' to update the current device session.</param>
     /// <returns>The session</returns>
     Task<AppwriteResult<Session>> UpdateSession(string sessionId = "current");
+
+    /// <summary>
+    /// <para>Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the userId and secret arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the userId and secret parameters. Learn more about how to <see href="https://appwrite.io/docs/references/cloud/client-web/account#updateVerification">complete the verification process</see>. The verification link sent to the user's email address is valid for 7 days.</para>
+    /// <para>Please note that in order to avoid a <see href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md">Redirect Attack</see>, the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface.</para>
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createVerification">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The token</returns>
+    Task<AppwriteResult<Token>> CreateEmailVerification(CreateEmailVerificationRequest request);
 }
