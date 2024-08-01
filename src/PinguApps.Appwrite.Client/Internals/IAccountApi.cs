@@ -40,4 +40,7 @@ internal interface IAccountApi : IBaseApi
 
     [Get("/account/sessions/{sessionId}")]
     Task<IApiResponse<Session>> GetSession([Header("x-appwrite-session")] string? session, string sessionId);
+
+    [Patch("/account/sessions/{sessionId}")]
+    Task<IApiResponse<Session>> UpdateSession([Header("x-appwrite-session")] string? session, string sessionId);
 }

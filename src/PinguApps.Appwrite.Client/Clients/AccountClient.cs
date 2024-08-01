@@ -214,4 +214,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<Session>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Session>> UpdateSession(string sessionId = "current")
+    {
+        try
+        {
+            var result = await _accountApi.UpdateSession(Session, sessionId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Session>();
+        }
+    }
 }
