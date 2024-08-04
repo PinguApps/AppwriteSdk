@@ -28,6 +28,14 @@ internal class App
 
         var response = await _client.Account.CreateEmailVerification(request);
 
+        //var request = new CreateEmailVerificationConfirmationRequest
+        //{
+        //    Secret = "secret",
+        //    UserId = "userId"
+        //};
+
+        //var response = await _client.Account.CreateEmailVerificationConfirmation(request);
+
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
             appwriteError => appwriteError.Message,
