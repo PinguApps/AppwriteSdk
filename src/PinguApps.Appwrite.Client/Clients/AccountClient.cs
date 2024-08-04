@@ -229,4 +229,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<Session>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Token>> CreateEmailVerification(CreateEmailVerificationRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.CreateEmailVerification(Session, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Token>();
+        }
+    }
 }
