@@ -44,6 +44,9 @@ internal interface IAccountApi : IBaseApi
     [Patch("/account/sessions/{sessionId}")]
     Task<IApiResponse<Session>> UpdateSession([Header("x-appwrite-session")] string? session, string sessionId);
 
-    [Post(("/account/verification"))]
+    [Post("/account/verification")]
     Task<IApiResponse<Token>> CreateEmailVerification([Header("x-appwrite-session")] string? session, CreateEmailVerificationRequest request);
+
+    [Put("/account/verification")]
+    Task<IApiResponse<Token>> CreateEmailVerificationConfirmation([Header("x-appwrite-session")] string? session, CreateEmailVerificationConfirmationRequest request);
 }

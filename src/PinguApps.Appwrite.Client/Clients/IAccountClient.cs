@@ -117,4 +117,12 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The token</returns>
     Task<AppwriteResult<Token>> CreateEmailVerification(CreateEmailVerificationRequest request);
+
+    /// <summary>
+    /// Use this endpoint to complete the user email verification process. Use both the userId and secret parameters that were attached to your app URL to verify the user email ownership. If confirmed this route will return a 200 status code.
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updateVerification">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The token</returns>
+    Task<AppwriteResult<Token>> CreateEmailVerificationConfirmation(CreateEmailVerificationConfirmationRequest request);
 }
