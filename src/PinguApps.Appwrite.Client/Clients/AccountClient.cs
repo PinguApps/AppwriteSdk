@@ -254,7 +254,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.CreateEmailVerificationConfirmation(Session, request);
+            var result = await _accountApi.CreateEmailVerificationConfirmation(request);
 
             return result.GetApiResponse();
         }

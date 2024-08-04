@@ -21,20 +21,20 @@ internal class App
     {
         _client.SetSession(_session);
 
-        //var request = new CreateEmailVerificationRequest
-        //{
-        //    Url = "https://localhost:5001/abc123"
-        //};
-
-        //var response = await _client.Account.CreateEmailVerification(request);
-
-        var request = new CreateEmailVerificationConfirmationRequest
+        var request = new CreateEmailVerificationRequest
         {
-            Secret = "secret",
-            UserId = "userid"
+            Url = "https://localhost:5001/abc123"
         };
 
-        var response = await _client.Account.CreateEmailVerificationConfirmation(request);
+        var response = await _client.Account.CreateEmailVerification(request);
+
+        //var request = new CreateEmailVerificationConfirmationRequest
+        //{
+        //    Secret = "secret",
+        //    UserId = "userId"
+        //};
+
+        //var response = await _client.Account.CreateEmailVerificationConfirmation(request);
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),

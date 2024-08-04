@@ -48,5 +48,5 @@ internal interface IAccountApi : IBaseApi
     Task<IApiResponse<Token>> CreateEmailVerification([Header("x-appwrite-session")] string? session, CreateEmailVerificationRequest request);
 
     [Put("/account/verification")]
-    Task<IApiResponse<Token>> CreateEmailVerificationConfirmation([Header("x-appwrite-session")] string? session, CreateEmailVerificationConfirmationRequest request);
+    Task<IApiResponse<Token>> CreateEmailVerificationConfirmation(CreateEmailVerificationConfirmationRequest request);
 }
