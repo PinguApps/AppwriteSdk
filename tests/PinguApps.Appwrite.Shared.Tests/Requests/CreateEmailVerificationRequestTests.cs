@@ -4,7 +4,6 @@ using PinguApps.Appwrite.Shared.Requests;
 namespace PinguApps.Appwrite.Shared.Tests.Requests;
 public class CreateEmailVerificationRequestTests
 {
-
     [Fact]
     public void Constructor_InitializesWithExpectedValues()
     {
