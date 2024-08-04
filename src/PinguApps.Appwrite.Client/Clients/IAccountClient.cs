@@ -125,4 +125,11 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The token</returns>
     Task<AppwriteResult<Token>> CreateEmailVerificationConfirmation(CreateEmailVerificationConfirmationRequest request);
+
+    /// <summary>
+    /// Use this endpoint to create a JSON Web Token. You can use the resulting JWT to authenticate on behalf of the current user when working with the Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes from its creation and will be invalid if the user will logout in that time frame.
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createJWT">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The JWT</returns>
+    Task<AppwriteResult<Jwt>> CreateJwt();
 }

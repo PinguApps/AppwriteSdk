@@ -26,15 +26,7 @@ internal class App
             Url = "https://localhost:5001/abc123"
         };
 
-        var response = await _client.Account.CreateEmailVerification(request);
-
-        //var request = new CreateEmailVerificationConfirmationRequest
-        //{
-        //    Secret = "secret",
-        //    UserId = "userId"
-        //};
-
-        //var response = await _client.Account.CreateEmailVerificationConfirmation(request);
+        var response = await _client.Account.CreateJwt();
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),

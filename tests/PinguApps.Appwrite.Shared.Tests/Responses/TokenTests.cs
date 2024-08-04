@@ -15,7 +15,6 @@ public class TokenTests
         var expiresAt = DateTime.UtcNow;
         var phrase = "phrase";
 
-
         // Act
         var token = new Token(id, createdAt, userId, secret, expiresAt, phrase);
 
