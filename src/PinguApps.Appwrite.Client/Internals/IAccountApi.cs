@@ -49,4 +49,7 @@ internal interface IAccountApi : IBaseApi
 
     [Put("/account/verification")]
     Task<IApiResponse<Token>> CreateEmailVerificationConfirmation(CreateEmailVerificationConfirmationRequest request);
+
+    [Post("/account/jwt")]
+    Task<IApiResponse<Jwt>> CreateJwt([Header("x-appwrite-session")] string? session);
 }

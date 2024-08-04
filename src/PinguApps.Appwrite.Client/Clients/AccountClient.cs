@@ -263,4 +263,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<Token>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Jwt>> CreateJwt()
+    {
+        try
+        {
+            var result = await _accountApi.CreateJwt(Session);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Jwt>();
+        }
+    }
 }
