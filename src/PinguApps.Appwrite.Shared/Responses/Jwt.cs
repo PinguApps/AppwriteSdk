@@ -7,5 +7,5 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// </summary>
 /// <param name="token">JWT encoded string</param>
 public record Jwt(
-    [property: JsonPropertyName("jwt")] string token
+    [property: JsonPropertyName("jwt")] string Token
 );
