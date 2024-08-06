@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Clients;
@@ -8,6 +9,7 @@ using PinguApps.Appwrite.Client.Utils;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Responses;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Client;
 
@@ -276,6 +278,23 @@ public class AccountClient : IAccountClient, ISessionAware
         catch (Exception e)
         {
             return e.GetExceptionResponse<Jwt>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<LogsList>> ListLogs(List<Query>? queries = null)
+    {
+        try
+        {
+            var queryStrings = queries?.Select(x => x.GetQueryString()) ?? [];
+
+            var result = await _accountApi.ListLogs(Session, queryStrings);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<LogsList>();
         }
     }
 }

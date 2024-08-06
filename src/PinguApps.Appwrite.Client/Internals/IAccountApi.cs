@@ -52,4 +52,8 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/jwt")]
     Task<IApiResponse<Jwt>> CreateJwt([Header("x-appwrite-session")] string? session);
+
+    [Get("/account/logs")]
+    [QueryUriFormat(System.UriFormat.Unescaped)]
+    Task<IApiResponse<LogsList>> ListLogs([Header("x-appwrite-session")] string? session, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries);
 }

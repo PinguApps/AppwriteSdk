@@ -19,24 +19,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var limit = Query.Limit(5);
-        var offset = Query.Offset(5);
+        _client.SetSession(_session);
 
-        Console.WriteLine(limit.GetQueryString());
-        Console.WriteLine(offset.GetQueryString());
+        var response = await _client.Account.ListLogs([Query.Limit(2)]);
 
-        //_client.SetSession(_session);
-
-        //var request = new CreateEmailVerificationRequest
-        //{
-        //    Url = "https://localhost:5001/abc123"
-        //};
-
-        //var response = await _client.Account.CreateJwt();
-
-        //Console.WriteLine(response.Result.Match(
-        //    account => account.ToString(),
-        //    appwriteError => appwriteError.Message,
-        //    internalERror => internalERror.Message));
+        Console.WriteLine(response.Result.Match(
+            account => account.ToString(),
+            appwriteError => appwriteError.Message,
+            internalERror => internalERror.Message));
     }
 }
