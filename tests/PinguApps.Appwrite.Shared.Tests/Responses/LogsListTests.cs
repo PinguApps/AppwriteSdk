@@ -4,7 +4,6 @@ using PinguApps.Appwrite.Shared.Responses;
 namespace PinguApps.Appwrite.Shared.Tests.Responses;
 public class LogsListTests
 {
-
     [Fact]
     public void LogsList_Constructor_AssignsPropertiesCorrectly()
     {
