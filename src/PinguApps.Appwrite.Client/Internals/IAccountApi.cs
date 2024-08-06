@@ -56,4 +56,7 @@ internal interface IAccountApi : IBaseApi
     [Get("/account/logs")]
     [QueryUriFormat(System.UriFormat.Unescaped)]
     Task<IApiResponse<LogsList>> ListLogs([Header("x-appwrite-session")] string? session, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries);
+
+    [Post("/account/mfa/authenticators/{type}")]
+    Task<IApiResponse<MfaType>> AddAuthenticator([Header("x-appwrite-session")] string? session, string type);
 }

@@ -141,4 +141,12 @@ public interface IAccountClient
     /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Only supported methods are limit and offset</param>
     /// <returns>The Logs List</returns>
     Task<AppwriteResult<LogsList>> ListLogs(List<Query>? queries = null);
+
+    /// <summary>
+    /// Add an authenticator app to be used as an MFA factor. Verify the authenticator using the verify authenticator method
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="type">Type of authenticator. Must be `totp`</param>
+    /// <returns>The MfaType</returns>
+    Task<AppwriteResult<MfaType>> AddAuthenticator(string type = "totp");
 }
