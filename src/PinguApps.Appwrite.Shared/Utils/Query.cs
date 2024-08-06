@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -21,9 +22,13 @@ public class Query
         Method = method;
         Attribute = attribute;
 
-        if (values is IEnumerable valuesList)
+        if (values is IEnumerable<object> objects)
         {
-            Values = [valuesList];
+            Values = objects.ToList();
+        }
+        else if (values is ICollection valuesList)
+        {
+            Values = [.. valuesList];
         }
         else if (values is not null)
         {
