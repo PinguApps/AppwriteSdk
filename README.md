@@ -139,11 +139,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 ### Server & Client
-![17 / 288](https://progress-bar.dev/17/?scale=288&suffix=%20/%20288&width=500)
+![18 / 288](https://progress-bar.dev/18/?scale=288&suffix=%20/%20288&width=500)
 ### Server Only
 ![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300)
 ### Client Only
-![15 / 93](https://progress-bar.dev/15/?scale=93&suffix=%20/%2093&width=300)
+![16 / 93](https://progress-bar.dev/16/?scale=93&suffix=%20/%2093&width=300)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -153,7 +153,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-![17 / 52](https://progress-bar.dev/17/?scale=52&suffix=%20/%2052&width=120)
+![18 / 52](https://progress-bar.dev/18/?scale=52&suffix=%20/%2052&width=120)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -163,7 +163,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [List Identities](https://appwrite.io/docs/references/1.5.x/client-rest/account#listIdentities) | ⬛ | ❌ |
 | [Delete Identity](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteIdentity) | ⬛ | ❌ |
 | [Create JWT](https://appwrite.io/docs/references/1.5.x/client-rest/account#createJWT) | ✅ | ❌ |
-| [List Logs](https://appwrite.io/docs/references/1.5.x/client-rest/account#listLogs) | ⬛ | ❌ |
+| [List Logs](https://appwrite.io/docs/references/1.5.x/client-rest/account#listLogs) | ✅ | ❌ |
 | [Update MFA](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMFA) | ⬛ | ❌ |
 | [Add Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator) | ⬛ | ❌ |
 | [Verify Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaAuthenticator) | ⬛ | ❌ |
