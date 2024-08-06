@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Responses;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Client;
 
@@ -132,4 +133,12 @@ public interface IAccountClient
     /// </summary>
     /// <returns>The JWT</returns>
     Task<AppwriteResult<Jwt>> CreateJwt();
+
+    /// <summary>
+    /// Get the list of latest security activity logs for the currently logged in user. Each log returns user IP address, location and date and time of log.
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#listLogs">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Only supported methods are limit and offset</param>
+    /// <returns>The Logs List</returns>
+    Task<AppwriteResult<LogsList>> ListLogs(List<Query>? queries = null);
 }

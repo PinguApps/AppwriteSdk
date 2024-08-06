@@ -66,6 +66,16 @@ public class ResponseUtilsTests
     }
 
     [Fact]
+    public void GetApiResponse_FailureButNullError_ThrowsException()
+    {
+        var mockApiResponse = new Mock<IApiResponse<string>>();
+        mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(false);
+        mockApiResponse.SetupGet(x => x.Error).Returns((ApiException)null!);
+
+        Assert.Throws<Exception>(() => mockApiResponse.Object.GetApiResponse());
+    }
+
+    [Fact]
     public void GetExceptionResponse_ReturnsInternalError()
     {
         var exception = new Exception("Test exception");

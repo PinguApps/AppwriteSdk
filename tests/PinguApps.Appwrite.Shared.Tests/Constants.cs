@@ -132,4 +132,35 @@ public static class Constants
             "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
         }
         """;
+
+    public const string LogsListResponse = """
+        {
+            "total": 5,
+            "logs": [
+                {
+                    "event": "account.sessions.create",
+                    "userId": "610fc2f985ee0",
+                    "userEmail": "john@appwrite.io",
+                    "userName": "John Doe",
+                    "mode": "admin",
+                    "ip": "127.0.0.1",
+                    "time": "2020-10-15T06:38:00.000+00:00",
+                    "osCode": "Mac",
+                    "osName": "Mac",
+                    "osVersion": "Mac",
+                    "clientType": "browser",
+                    "clientCode": "CM",
+                    "clientName": "Chrome Mobile iOS",
+                    "clientVersion": "84.0",
+                    "clientEngine": "WebKit",
+                    "clientEngineVersion": "605.1.15",
+                    "deviceName": "smartphone",
+                    "deviceBrand": "Google",
+                    "deviceModel": "Nexus 5",
+                    "countryCode": "US",
+                    "countryName": "United States"
+                }
+            ]
+        }
+        """;
 }

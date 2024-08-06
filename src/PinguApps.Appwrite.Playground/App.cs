@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Client;
 using PinguApps.Appwrite.Server.Servers;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -21,12 +21,7 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new CreateEmailVerificationRequest
-        {
-            Url = "https://localhost:5001/abc123"
-        };
-
-        var response = await _client.Account.CreateJwt();
+        var response = await _client.Account.ListLogs([Query.Limit(2)]);
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
