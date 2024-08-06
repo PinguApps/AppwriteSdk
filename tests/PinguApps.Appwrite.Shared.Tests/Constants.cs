@@ -163,4 +163,11 @@ public static class Constants
             ]
         }
         """;
+
+    public const string MfaTypeResponse = """
+        {
+            "secret": "The_Secret",
+            "uri": "otpauth://totp/Appwrite%20Test%3Apingu%40appwrite.com?issuer=Appwrite%20Test&secret=The_Secret"
+        }
+        """;
 }
