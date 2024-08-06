@@ -66,7 +66,7 @@ public class ResponseUtilsTests
     }
 
     [Fact]
-    public async Task GetApiResponse_FailureButNullError_ThrowsException()
+    public void GetApiResponse_FailureButNullError_ThrowsException()
     {
         var mockApiResponse = new Mock<IApiResponse<string>>();
         mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(false);
