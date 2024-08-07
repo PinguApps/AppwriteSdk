@@ -143,10 +143,18 @@ public interface IAccountClient
     Task<AppwriteResult<LogsList>> ListLogs(List<Query>? queries = null);
 
     /// <summary>
-    /// Add an authenticator app to be used as an MFA factor. Verify the authenticator using the verify authenticator method
+    /// Add an authenticator app to be used as an MFA factor. Verify the authenticator using <see cref="VerifyAuthenticator"/>
     /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="type">Type of authenticator. Must be `totp`</param>
     /// <returns>The MfaType</returns>
     Task<AppwriteResult<MfaType>> AddAuthenticator(string type = "totp");
+
+    /// <summary>
+    /// Verify an authenticator app after adding it using <see cref="AddAuthenticator"/>.
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <param name="type">Type of authenticator</param>
+    /// <returns>The User</returns>
+    Task<AppwriteResult<User>> VerifyAuthenticator(VerifyAuthenticatorRequest request, string type = "totp");
 }

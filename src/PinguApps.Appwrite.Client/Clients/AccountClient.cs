@@ -312,4 +312,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<MfaType>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<User>> VerifyAuthenticator(VerifyAuthenticatorRequest request, string type = "totp")
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.VerifyAuthenticator(Session, type, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 }

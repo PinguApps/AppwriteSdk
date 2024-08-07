@@ -20,7 +20,11 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var response = await _client.Account.AddAuthenticator();
+        //var response = await _client.Account.AddAuthenticator();
+        var response = await _client.Account.VerifyAuthenticator(new Shared.Requests.VerifyAuthenticatorRequest
+        {
+            Otp = "623850"
+        });
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
