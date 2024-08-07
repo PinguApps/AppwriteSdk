@@ -138,12 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-### Server & Client
-![18 / 288](https://progress-bar.dev/18/?scale=288&suffix=%20/%20288&width=500)
-### Server Only
-![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300)
-### Client Only
-![16 / 93](https://progress-bar.dev/16/?scale=93&suffix=%20/%2093&width=300)
+<!-- ![19 / 288](https://progress-bar.dev/19/?scale=288&suffix=%20/%20288&width=500) -->
+![Server & Client - 19 / 288](https://img.shields.io/badge/Server_&_Client-19%20%2F%20288-red?style=for-the-badge)
+
+<!-- ![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300) -->
+![Server - 2 / 195](https://img.shields.io/badge/Server-2%20%2F%20195-red?style=for-the-badge)
+
+<!-- ![17 / 93](https://progress-bar.dev/17/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 17 / 93](https://img.shields.io/badge/Client-17%20%2F%2093-red?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -153,7 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-![18 / 52](https://progress-bar.dev/18/?scale=52&suffix=%20/%2052&width=120)
+<!-- ![19 / 52](https://progress-bar.dev/19/?scale=52&suffix=%20/%2052&width=120) -->
+![Account - 19 / 52](https://img.shields.io/badge/Account-19%20%2F%2052-yellow?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -165,7 +168,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create JWT](https://appwrite.io/docs/references/1.5.x/client-rest/account#createJWT) | ✅ | ❌ |
 | [List Logs](https://appwrite.io/docs/references/1.5.x/client-rest/account#listLogs) | ✅ | ❌ |
 | [Update MFA](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMFA) | ⬛ | ❌ |
-| [Add Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator) | ⬛ | ❌ |
+| [Add Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator) | ✅ | ❌ |
 | [Verify Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaAuthenticator) | ⬛ | ❌ |
 | [Delete Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteMfaAuthenticator) | ⬛ | ❌ |
 | [Create 2FA Challenge](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaChallenge) | ⬛ | ❌ |
@@ -206,7 +209,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhoneVerification) | ⬛ | ❌ |
 
 ### Users
-![0 / 41](https://progress-bar.dev/0/?scale=41&suffix=%20/%2041&width=120)
+<!-- ![0 / 41](https://progress-bar.dev/0/?scale=41&suffix=%20/%2041&width=120) -->
+![Account - 0 / 41](https://img.shields.io/badge/Users-0%20%2F%2041-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -253,7 +257,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Phone Verification](https://appwrite.io/docs/references/1.5.x/server-rest/users#updatePhoneVerification) | ❌ | ⬛ |
 
 ### Teams
-![0 / 26](https://progress-bar.dev/0/?scale=26&suffix=%20/%2026&width=120)
+<!-- ![0 / 26](https://progress-bar.dev/0/?scale=26&suffix=%20/%2026&width=120) -->
+![Teams - 0 / 26](https://img.shields.io/badge/Teams-0%20%2F%2026-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -272,7 +277,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updatePrefs) | ⬛ | ⬛ |
 
 ### Databases
-![0 / 47](https://progress-bar.dev/0/?scale=47&suffix=%20/%2047&width=120)
+<!-- ![0 / 47](https://progress-bar.dev/0/?scale=47&suffix=%20/%2047&width=120) -->
+![Databases - 0 / 47](https://img.shields.io/badge/Databases-0%20%2F%2047-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -320,7 +326,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Index](https://appwrite.io/docs/references/1.5.x/server-rest/databases#deleteIndex) | ❌ | ⬛ |
 
 ### Storage
-![0 / 21](https://progress-bar.dev/0/?scale=21&suffix=%20/%2021&width=120)
+<!-- ![0 / 21](https://progress-bar.dev/0/?scale=21&suffix=%20/%2021&width=120) -->
+![storage - 0 / 21](https://img.shields.io/badge/Storage-0%20%2F%2021-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -339,7 +346,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Get File For View](https://appwrite.io/docs/references/1.5.x/client-rest/storage#getFileView) | ⬛ | ⬛ |
 
 ### Functions
-![0 / 24](https://progress-bar.dev/0/?scale=24&suffix=%20/%2024&width=120)
+<!-- ![0 / 24](https://progress-bar.dev/0/?scale=24&suffix=%20/%2024&width=120) -->
+![Functions - 0 / 24](https://img.shields.io/badge/Functions-0%20%2F%2024-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -366,7 +374,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Variable](https://appwrite.io/docs/references/1.5.x/server-rest/functions#deleteVariable) | ❌ | ⬛ |
 
 ### Messaging
-![0 / 48](https://progress-bar.dev/0/?scale=48&suffix=%20/%2048&width=120)
+<!-- ![0 / 48](https://progress-bar.dev/0/?scale=48&suffix=%20/%2048&width=120) -->
+![Messaging - 0 / 48](https://img.shields.io/badge/Messaging-0%20%2F%2048-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -418,7 +427,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Subscriber](https://appwrite.io/docs/references/1.5.x/client-rest/messaging#deleteSubscriber) | ⬛ | ⬛ |
 
 ### Locale
-![0 / 15](https://progress-bar.dev/0/?scale=15&suffix=%20/%2015&width=120)
+<!-- ![0 / 15](https://progress-bar.dev/0/?scale=15&suffix=%20/%2015&width=120) -->
+![Locale - 0 / 15](https://img.shields.io/badge/Locale-0%20%2F%2015-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -432,7 +442,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [List Languages](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listLanguages) | ⬛ | ⬛ |
 
 ### Avatars
-![0 / 14](https://progress-bar.dev/0/?scale=14&suffix=%20/%2014&width=120)
+<!-- ![0 / 14](https://progress-bar.dev/0/?scale=14&suffix=%20/%2014&width=120) -->
+![Avatars - 0 / 14](https://img.shields.io/badge/Avatars-0%20%2F%2014-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|

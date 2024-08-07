@@ -297,4 +297,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<LogsList>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<MfaType>> AddAuthenticator(string type = "totp")
+    {
+        try
+        {
+            var result = await _accountApi.AddAuthenticator(Session, type);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<MfaType>();
+        }
+    }
 }
