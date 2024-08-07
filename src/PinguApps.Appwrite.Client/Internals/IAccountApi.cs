@@ -59,4 +59,7 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/mfa/authenticators/{type}")]
     Task<IApiResponse<MfaType>> AddAuthenticator([Header("x-appwrite-session")] string? session, string type);
+
+    [Put("/account/mfa/authenticators/{type}")]
+    Task<IApiResponse<User>> VerifyAuthenticator([Header("x-appwrite-session")] string? session, string type, VerifyAuthenticatorRequest request);
 }
