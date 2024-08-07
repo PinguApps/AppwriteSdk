@@ -1,3 +1,22 @@
+<style>
+  .progress-container {
+    position: relative;
+    width: 100%;
+  }
+  .progress-bar {
+    width: 100%;
+    height: 50px;
+  }
+  .progress-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 0;
+    font-weight: bold;
+    padding-top: 13px;
+  }
+</style>
+
 # Appwrite SDK
 This repository contains the source to both the Client and Server .net implimentation for Appwrite API. This is not a first party SDK, rather a third party SDK.
 
@@ -139,11 +158,25 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 ### Server & Client
-![18 / 288](https://progress-bar.dev/18/?scale=288&suffix=%20/%20288&width=500)
+<!-- ![18 / 288](https://progress-bar.dev/18/?scale=288&suffix=%20/%20288&width=500) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="18" max="288"></progress>
+    <div class="progress-text">18 / 288</div>
+</div>
+
 ### Server Only
-![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300)
+<!-- ![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="2" max="195"></progress>
+    <div class="progress-text">2 / 195</div>
+</div>
+
 ### Client Only
-![16 / 93](https://progress-bar.dev/16/?scale=93&suffix=%20/%2093&width=300)
+<!-- ![16 / 93](https://progress-bar.dev/16/?scale=93&suffix=%20/%2093&width=300) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="16" max="93"></progress>
+    <div class="progress-text">16 / 93</div>
+</div>
 
 ### 🔑 Key
 | Icon | Definition |
@@ -153,7 +186,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-![18 / 52](https://progress-bar.dev/18/?scale=52&suffix=%20/%2052&width=120)
+<!-- ![18 / 52](https://progress-bar.dev/18/?scale=52&suffix=%20/%2052&width=120) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="18" max="52"></progress>
+    <div class="progress-text">18 / 52</div>
+</div>
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -206,7 +243,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhoneVerification) | ⬛ | ❌ |
 
 ### Users
-![0 / 41](https://progress-bar.dev/0/?scale=41&suffix=%20/%2041&width=120)
+<!-- ![0 / 41](https://progress-bar.dev/0/?scale=41&suffix=%20/%2041&width=120) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="0" max="41"></progress>
+    <div class="progress-text">0 / 41</div>
+</div>
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -253,7 +294,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Phone Verification](https://appwrite.io/docs/references/1.5.x/server-rest/users#updatePhoneVerification) | ❌ | ⬛ |
 
 ### Teams
-![0 / 26](https://progress-bar.dev/0/?scale=26&suffix=%20/%2026&width=120)
+<!-- ![0 / 26](https://progress-bar.dev/0/?scale=26&suffix=%20/%2026&width=120) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="0" max="26"></progress>
+    <div class="progress-text">0 / 26</div>
+</div>
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -272,7 +317,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/teams#updatePrefs) | ⬛ | ⬛ |
 
 ### Databases
-![0 / 47](https://progress-bar.dev/0/?scale=47&suffix=%20/%2047&width=120)
+<!-- ![0 / 47](https://progress-bar.dev/0/?scale=47&suffix=%20/%2047&width=120) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="0" max="47"></progress>
+    <div class="progress-text">0 / 47</div>
+</div>
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -320,7 +369,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Index](https://appwrite.io/docs/references/1.5.x/server-rest/databases#deleteIndex) | ❌ | ⬛ |
 
 ### Storage
-![0 / 21](https://progress-bar.dev/0/?scale=21&suffix=%20/%2021&width=120)
+<!-- ![0 / 21](https://progress-bar.dev/0/?scale=21&suffix=%20/%2021&width=120) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="0" max="21"></progress>
+    <div class="progress-text">0 / 21</div>
+</div>
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -339,7 +392,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Get File For View](https://appwrite.io/docs/references/1.5.x/client-rest/storage#getFileView) | ⬛ | ⬛ |
 
 ### Functions
-![0 / 24](https://progress-bar.dev/0/?scale=24&suffix=%20/%2024&width=120)
+<!-- ![0 / 24](https://progress-bar.dev/0/?scale=24&suffix=%20/%2024&width=120) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="0" max="24"></progress>
+    <div class="progress-text">0 / 24</div>
+</div>
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -366,7 +423,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Variable](https://appwrite.io/docs/references/1.5.x/server-rest/functions#deleteVariable) | ❌ | ⬛ |
 
 ### Messaging
-![0 / 48](https://progress-bar.dev/0/?scale=48&suffix=%20/%2048&width=120)
+<!-- ![0 / 48](https://progress-bar.dev/0/?scale=48&suffix=%20/%2048&width=120) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="0" max="48"></progress>
+    <div class="progress-text">0 / 48</div>
+</div>
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -418,7 +479,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Subscriber](https://appwrite.io/docs/references/1.5.x/client-rest/messaging#deleteSubscriber) | ⬛ | ⬛ |
 
 ### Locale
-![0 / 15](https://progress-bar.dev/0/?scale=15&suffix=%20/%2015&width=120)
+<!-- ![0 / 15](https://progress-bar.dev/0/?scale=15&suffix=%20/%2015&width=120) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="0" max="15"></progress>
+    <div class="progress-text">0 / 15</div>
+</div>
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -432,7 +497,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [List Languages](https://appwrite.io/docs/references/1.5.x/client-rest/locale#listLanguages) | ⬛ | ⬛ |
 
 ### Avatars
-![0 / 14](https://progress-bar.dev/0/?scale=14&suffix=%20/%2014&width=120)
+<!-- ![0 / 14](https://progress-bar.dev/0/?scale=14&suffix=%20/%2014&width=120) -->
+<div class="progress-container">
+    <progress class="progress-bar" value="0" max="14"></progress>
+    <div class="progress-text">0 / 14</div>
+</div>
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
