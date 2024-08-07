@@ -1,22 +1,3 @@
-<style>
-  .progress-container {
-    position: relative;
-    width: 100%;
-  }
-  .progress-bar {
-    width: 100%;
-    height: 50px;
-  }
-  .progress-text {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    top: 0;
-    font-weight: bold;
-    padding-top: 13px;
-  }
-</style>
-
 # Appwrite SDK
 This repository contains the source to both the Client and Server .net implimentation for Appwrite API. This is not a first party SDK, rather a third party SDK.
 
@@ -157,26 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-### Server & Client
 <!-- ![19 / 288](https://progress-bar.dev/19/?scale=288&suffix=%20/%20288&width=500) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="19" max="288"></progress>
-    <div class="progress-text">19 / 288</div>
-</div>
+![Server & Client - 19 / 288](https://img.shields.io/badge/Server_&_Client-19%20%2F%20288-red?style=for-the-badge)
 
-### Server Only
 <!-- ![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="2" max="195"></progress>
-    <div class="progress-text">2 / 195</div>
-</div>
+![Server - 2 / 195](https://img.shields.io/badge/Server-2%20%2F%20195-red?style=for-the-badge)
 
-### Client Only
 <!-- ![17 / 93](https://progress-bar.dev/17/?scale=93&suffix=%20/%2093&width=300) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="17" max="93"></progress>
-    <div class="progress-text">17 / 93</div>
-</div>
+![Client - 17 / 93](https://img.shields.io/badge/Client-17%20%2F%2093-red?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -187,10 +156,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ### Account
 <!-- ![19 / 52](https://progress-bar.dev/19/?scale=52&suffix=%20/%2052&width=120) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="19" max="52"></progress>
-    <div class="progress-text">19 / 52</div>
-</div>
+![Account - 19 / 52](https://img.shields.io/badge/Account-19%20%2F%2052-yellow?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -244,10 +210,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ### Users
 <!-- ![0 / 41](https://progress-bar.dev/0/?scale=41&suffix=%20/%2041&width=120) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="0" max="41"></progress>
-    <div class="progress-text">0 / 41</div>
-</div>
+![Account - 0 / 41](https://img.shields.io/badge/Users-0%20%2F%2041-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -295,10 +258,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ### Teams
 <!-- ![0 / 26](https://progress-bar.dev/0/?scale=26&suffix=%20/%2026&width=120) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="0" max="26"></progress>
-    <div class="progress-text">0 / 26</div>
-</div>
+![Teams - 0 / 26](https://img.shields.io/badge/Teams-0%20%2F%2026-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -318,10 +278,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ### Databases
 <!-- ![0 / 47](https://progress-bar.dev/0/?scale=47&suffix=%20/%2047&width=120) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="0" max="47"></progress>
-    <div class="progress-text">0 / 47</div>
-</div>
+![Databases - 0 / 47](https://img.shields.io/badge/Databases-0%20%2F%2047-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -370,10 +327,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ### Storage
 <!-- ![0 / 21](https://progress-bar.dev/0/?scale=21&suffix=%20/%2021&width=120) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="0" max="21"></progress>
-    <div class="progress-text">0 / 21</div>
-</div>
+![storage - 0 / 21](https://img.shields.io/badge/Storage-0%20%2F%2021-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -393,10 +347,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ### Functions
 <!-- ![0 / 24](https://progress-bar.dev/0/?scale=24&suffix=%20/%2024&width=120) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="0" max="24"></progress>
-    <div class="progress-text">0 / 24</div>
-</div>
+![Functions - 0 / 24](https://img.shields.io/badge/Functions-0%20%2F%2024-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -424,10 +375,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ### Messaging
 <!-- ![0 / 48](https://progress-bar.dev/0/?scale=48&suffix=%20/%2048&width=120) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="0" max="48"></progress>
-    <div class="progress-text">0 / 48</div>
-</div>
+![Messaging - 0 / 48](https://img.shields.io/badge/Messaging-0%20%2F%2048-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -480,10 +428,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ### Locale
 <!-- ![0 / 15](https://progress-bar.dev/0/?scale=15&suffix=%20/%2015&width=120) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="0" max="15"></progress>
-    <div class="progress-text">0 / 15</div>
-</div>
+![Locale - 0 / 15](https://img.shields.io/badge/Locale-0%20%2F%2015-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -498,10 +443,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ### Avatars
 <!-- ![0 / 14](https://progress-bar.dev/0/?scale=14&suffix=%20/%2014&width=120) -->
-<div class="progress-container">
-    <progress class="progress-bar" value="0" max="14"></progress>
-    <div class="progress-text">0 / 14</div>
-</div>
+![Avatars - 0 / 14](https://img.shields.io/badge/Avatars-0%20%2F%2014-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
