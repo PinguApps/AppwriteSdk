@@ -158,10 +158,10 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 ### Server & Client
-<!-- ![18 / 288](https://progress-bar.dev/18/?scale=288&suffix=%20/%20288&width=500) -->
+<!-- ![19 / 288](https://progress-bar.dev/19/?scale=288&suffix=%20/%20288&width=500) -->
 <div class="progress-container">
-    <progress class="progress-bar" value="18" max="288"></progress>
-    <div class="progress-text">18 / 288</div>
+    <progress class="progress-bar" value="19" max="288"></progress>
+    <div class="progress-text">19 / 288</div>
 </div>
 
 ### Server Only
@@ -172,10 +172,10 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 </div>
 
 ### Client Only
-<!-- ![16 / 93](https://progress-bar.dev/16/?scale=93&suffix=%20/%2093&width=300) -->
+<!-- ![17 / 93](https://progress-bar.dev/17/?scale=93&suffix=%20/%2093&width=300) -->
 <div class="progress-container">
-    <progress class="progress-bar" value="16" max="93"></progress>
-    <div class="progress-text">16 / 93</div>
+    <progress class="progress-bar" value="17" max="93"></progress>
+    <div class="progress-text">17 / 93</div>
 </div>
 
 ### 🔑 Key
@@ -186,10 +186,10 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![18 / 52](https://progress-bar.dev/18/?scale=52&suffix=%20/%2052&width=120) -->
+<!-- ![19 / 52](https://progress-bar.dev/19/?scale=52&suffix=%20/%2052&width=120) -->
 <div class="progress-container">
-    <progress class="progress-bar" value="18" max="52"></progress>
-    <div class="progress-text">18 / 52</div>
+    <progress class="progress-bar" value="19" max="52"></progress>
+    <div class="progress-text">19 / 52</div>
 </div>
 
 | Endpoint | Client | Server |
@@ -202,7 +202,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create JWT](https://appwrite.io/docs/references/1.5.x/client-rest/account#createJWT) | ✅ | ❌ |
 | [List Logs](https://appwrite.io/docs/references/1.5.x/client-rest/account#listLogs) | ✅ | ❌ |
 | [Update MFA](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMFA) | ⬛ | ❌ |
-| [Add Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator) | ⬛ | ❌ |
+| [Add Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator) | ✅ | ❌ |
 | [Verify Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaAuthenticator) | ⬛ | ❌ |
 | [Delete Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteMfaAuthenticator) | ⬛ | ❌ |
 | [Create 2FA Challenge](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaChallenge) | ⬛ | ❌ |
