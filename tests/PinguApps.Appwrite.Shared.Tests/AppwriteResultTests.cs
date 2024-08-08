@@ -13,7 +13,7 @@ public class AppwriteResultTests
         Assert.False(result.IsError);
         Assert.False(result.IsAppwriteError);
         Assert.False(result.IsInternalError);
-        Assert.True(result.Result.AsT0 == "Success");
+        Assert.Equal("Success", result.Result.AsT0);
     }
 
     [Fact]
@@ -25,6 +25,7 @@ public class AppwriteResultTests
         Assert.True(result.IsError);
         Assert.True(result.IsAppwriteError);
         Assert.False(result.IsInternalError);
+        Assert.Equal("Message", result.Result.AsT1.Message);
     }
 
     [Fact]
@@ -36,5 +37,6 @@ public class AppwriteResultTests
         Assert.True(result.IsError);
         Assert.False(result.IsAppwriteError);
         Assert.True(result.IsInternalError);
+        Assert.Equal("Message", result.Result.AsT2.Message);
     }
 }
