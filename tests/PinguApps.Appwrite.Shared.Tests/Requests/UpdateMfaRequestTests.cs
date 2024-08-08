@@ -3,7 +3,6 @@
 namespace PinguApps.Appwrite.Shared.Tests.Requests;
 public class UpdateMfaRequestTests
 {
-
     [Fact]
     public void Constructor_InitializesWithExpectedValues()
     {
