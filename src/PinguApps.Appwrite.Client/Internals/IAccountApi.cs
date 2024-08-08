@@ -65,4 +65,7 @@ internal interface IAccountApi : IBaseApi
 
     [Patch("/account/mfa")]
     Task<IApiResponse<User>> UpdateMfa([Header("x-appwrite-session")] string? session, UpdateMfaRequest request);
+
+    [Delete("/account/mfa/authenticators/{type}")]
+    Task<IApiResponse> DeleteAuthenticator([Header("x-appwrite-session")] string? session, string type, [Body] DeleteAuthenticatorRequest request);
 }

@@ -166,4 +166,12 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request);
+
+    /// <summary>
+    /// Delete an authenticator for a user by ID
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteMfaAuthenticator">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The result</returns>
+    Task<AppwriteResult> DeleteAuthenticator(DeleteAuthenticatorRequest request);
 }
