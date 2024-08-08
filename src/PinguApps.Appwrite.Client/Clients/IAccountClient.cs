@@ -152,6 +152,7 @@ public interface IAccountClient
 
     /// <summary>
     /// Verify an authenticator app after adding it using <see cref="AddAuthenticator"/>.
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaAuthenticator">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <param name="type">Type of authenticator</param>
@@ -160,6 +161,7 @@ public interface IAccountClient
 
     /// <summary>
     /// Enable or disable MFA on an account
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMFA">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
