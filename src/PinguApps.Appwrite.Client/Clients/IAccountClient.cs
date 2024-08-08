@@ -157,4 +157,11 @@ public interface IAccountClient
     /// <param name="type">Type of authenticator</param>
     /// <returns>The User</returns>
     Task<AppwriteResult<User>> VerifyAuthenticator(VerifyAuthenticatorRequest request, string type = "totp");
+
+    /// <summary>
+    /// Enable or disable MFA on an account
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
+    Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request);
 }
