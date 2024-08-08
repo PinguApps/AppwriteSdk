@@ -21,9 +21,9 @@ internal class App
         _client.SetSession(_session);
 
         //var response = await _client.Account.AddAuthenticator();
-        var response = await _client.Account.VerifyAuthenticator(new Shared.Requests.VerifyAuthenticatorRequest
+        var response = await _client.Account.UpdateMfa(new Shared.Requests.UpdateMfaRequest
         {
-            Otp = "623850"
+            MfaEnabled = false
         });
 
         Console.WriteLine(response.Result.Match(

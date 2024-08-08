@@ -138,14 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![20 / 288](https://progress-bar.dev/20/?scale=288&suffix=%20/%20288&width=500) -->
-![Server & Client - 20 / 288](https://img.shields.io/badge/Server_&_Client-20%20%2F%20288-red?style=for-the-badge)
+<!-- ![21 / 288](https://progress-bar.dev/21/?scale=288&suffix=%20/%20288&width=500) -->
+![Server & Client - 21 / 288](https://img.shields.io/badge/Server_&_Client-21%20%2F%20288-red?style=for-the-badge)
 
 <!-- ![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300) -->
 ![Server - 2 / 195](https://img.shields.io/badge/Server-2%20%2F%20195-red?style=for-the-badge)
 
-<!-- ![18 / 93](https://progress-bar.dev/18/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 18 / 93](https://img.shields.io/badge/Client-18%20%2F%2093-red?style=for-the-badge)
+<!-- ![19 / 93](https://progress-bar.dev/19/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 19 / 93](https://img.shields.io/badge/Client-19%20%2F%2093-red?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![20 / 52](https://progress-bar.dev/20/?scale=52&suffix=%20/%2052&width=120) -->
-![Account - 20 / 52](https://img.shields.io/badge/Account-20%20%2F%2052-yellow?style=for-the-badge)
+<!-- ![21 / 52](https://progress-bar.dev/21/?scale=52&suffix=%20/%2052&width=120) -->
+![Account - 21 / 52](https://img.shields.io/badge/Account-21%20%2F%2052-yellow?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -167,7 +167,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Identity](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteIdentity) | ⬛ | ❌ |
 | [Create JWT](https://appwrite.io/docs/references/1.5.x/client-rest/account#createJWT) | ✅ | ❌ |
 | [List Logs](https://appwrite.io/docs/references/1.5.x/client-rest/account#listLogs) | ✅ | ❌ |
-| [Update MFA](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMFA) | ⬛ | ❌ |
+| [Update MFA](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMFA) | ✅ | ❌ |
 | [Add Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator) | ✅ | ❌ |
 | [Verify Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaAuthenticator) | ✅ | ❌ |
 | [Delete Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteMfaAuthenticator) | ⬛ | ❌ |
