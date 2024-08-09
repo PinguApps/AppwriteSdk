@@ -365,4 +365,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<MfaChallenge>> Create2faChallenge(Create2faChallengeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.Create2faChallenge(Session, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<MfaChallenge>();
+        }
+    }
 }

@@ -174,4 +174,12 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The result</returns>
     Task<AppwriteResult> DeleteAuthenticator(DeleteAuthenticatorRequest request);
+
+    /// <summary>
+    /// Begin the process of MFA verification after sign-in. Finish the flow with updateMfaChallenge method
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaChallenge">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The Mfa Challenge</returns>
+    Task<AppwriteResult<MfaChallenge>> Create2faChallenge(Create2faChallengeRequest request);
 }

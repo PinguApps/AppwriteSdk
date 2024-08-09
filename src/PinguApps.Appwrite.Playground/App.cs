@@ -21,10 +21,9 @@ internal class App
         _client.SetSession(_session);
 
         //var response = await _client.Account.AddAuthenticator();
-        var response = await _client.Account.DeleteAuthenticator(new Shared.Requests.DeleteAuthenticatorRequest
+        var response = await _client.Account.Create2faChallenge(new Shared.Requests.Create2faChallengeRequest
         {
-            Type = "totp",
-            Otp = "413526"
+            Factor = Shared.Enums.SecondFactor.Email
         });
 
         Console.WriteLine(response.Result.Match(
