@@ -8,7 +8,6 @@ using Refit;
 namespace PinguApps.Appwrite.Client.Tests.Utils;
 public class ResponseUtilsTests
 {
-
     [Fact]
     public void GetApiResponse_Success_ReturnsContent()
     {
