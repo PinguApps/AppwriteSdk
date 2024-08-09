@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
 
@@ -9,6 +10,8 @@ public partial class AccountClientTests
     public async Task AddAuthenticator_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
+        var request = new AddAuthenticatorRequest();
+
         _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
             .Respond(Constants.AppJson, Constants.MfaTypeResponse);
@@ -16,7 +19,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.AddAuthenticator();
+        var result = await _appwriteClient.Account.AddAuthenticator(request);
 
         // Assert
         Assert.True(result.Success);
@@ -27,19 +30,23 @@ public partial class AccountClientTests
     {
         // Arrange
         var type = "newAuth";
+        var request = new AddAuthenticatorRequest()
+        {
+            Type = type
+        };
         var requestUri = $"{Constants.Endpoint}/account/mfa/authenticators/{type}";
-        var request = _mockHttp.Expect(HttpMethod.Post, requestUri)
+        var mockRequest = _mockHttp.Expect(HttpMethod.Post, requestUri)
             .ExpectedHeaders(true)
             .Respond(Constants.AppJson, Constants.MfaTypeResponse);
 
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.AddAuthenticator(type);
+        var result = await _appwriteClient.Account.AddAuthenticator(request);
 
         // Assert
         _mockHttp.VerifyNoOutstandingExpectation();
-        var matches = _mockHttp.GetMatchCount(request);
+        var matches = _mockHttp.GetMatchCount(mockRequest);
         Assert.Equal(1, matches);
     }
 
@@ -47,6 +54,8 @@ public partial class AccountClientTests
     public async Task AddAuthenticator_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
+        var request = new AddAuthenticatorRequest();
+
         _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
             .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
@@ -54,7 +63,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.AddAuthenticator();
+        var result = await _appwriteClient.Account.AddAuthenticator(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -65,6 +74,8 @@ public partial class AccountClientTests
     public async Task AddAuthenticator_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
+        var request = new AddAuthenticatorRequest();
+
         _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
@@ -72,7 +83,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.AddAuthenticator();
+        var result = await _appwriteClient.Account.AddAuthenticator(request);
 
         // Assert
         Assert.False(result.Success);

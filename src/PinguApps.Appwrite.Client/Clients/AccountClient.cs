@@ -299,11 +299,13 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<MfaType>> AddAuthenticator(string type = "totp")
+    public async Task<AppwriteResult<MfaType>> AddAuthenticator(AddAuthenticatorRequest request)
     {
         try
         {
-            var result = await _accountApi.AddAuthenticator(Session, type);
+            request.Validate(true);
+
+            var result = await _accountApi.AddAuthenticator(Session, request.Type);
 
             return result.GetApiResponse();
         }
@@ -314,13 +316,13 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<User>> VerifyAuthenticator(VerifyAuthenticatorRequest request, string type = "totp")
+    public async Task<AppwriteResult<User>> VerifyAuthenticator(VerifyAuthenticatorRequest request)
     {
         try
         {
             request.Validate(true);
 
-            var result = await _accountApi.VerifyAuthenticator(Session, type, request);
+            var result = await _accountApi.VerifyAuthenticator(Session, request.Type, request);
 
             return result.GetApiResponse();
         }
