@@ -21,9 +21,10 @@ internal class App
         _client.SetSession(_session);
 
         //var response = await _client.Account.AddAuthenticator();
-        var response = await _client.Account.UpdateMfa(new Shared.Requests.UpdateMfaRequest
+        var response = await _client.Account.DeleteAuthenticator(new Shared.Requests.DeleteAuthenticatorRequest
         {
-            MfaEnabled = false
+            Type = "totp",
+            Otp = "413526"
         });
 
         Console.WriteLine(response.Result.Match(

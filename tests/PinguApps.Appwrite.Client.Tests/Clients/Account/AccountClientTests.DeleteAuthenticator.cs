@@ -7,42 +7,48 @@ namespace PinguApps.Appwrite.Client.Tests.Clients.Account;
 public partial class AccountClientTests
 {
     [Fact]
-    public async Task AddAuthenticator_ShouldReturnSuccess_WhenApiCallSucceeds()
+    public async Task DeleteAuthenticator_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        var request = new AddAuthenticatorRequest();
+        var request = new DeleteAuthenticatorRequest()
+        {
+            Otp = "123456"
+        };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
+            .WithJsonContent(request)
             .Respond(Constants.AppJson, Constants.MfaTypeResponse);
 
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.AddAuthenticator(request);
+        var result = await _appwriteClient.Account.DeleteAuthenticator(request);
 
         // Assert
         Assert.True(result.Success);
     }
 
     [Fact]
-    public async Task AddAuthenticator_ShouldHitDifferentEndpoint_WhenNewTypeIsUsed()
+    public async Task DeleteAuthenticator_ShouldHitDifferentEndpoint_WhenNewTypeIsUsed()
     {
         // Arrange
         var type = "newAuth";
-        var request = new AddAuthenticatorRequest()
+        var request = new DeleteAuthenticatorRequest()
         {
-            Type = type
+            Type = type,
+            Otp = "123456"
         };
         var requestUri = $"{Constants.Endpoint}/account/mfa/authenticators/{type}";
-        var mockRequest = _mockHttp.Expect(HttpMethod.Post, requestUri)
+        var mockRequest = _mockHttp.Expect(HttpMethod.Delete, requestUri)
             .ExpectedHeaders(true)
+            .WithJsonContent(request)
             .Respond(Constants.AppJson, Constants.MfaTypeResponse);
 
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.AddAuthenticator(request);
+        var result = await _appwriteClient.Account.DeleteAuthenticator(request);
 
         // Assert
         _mockHttp.VerifyNoOutstandingExpectation();
@@ -51,19 +57,23 @@ public partial class AccountClientTests
     }
 
     [Fact]
-    public async Task AddAuthenticator_ShouldHandleException_WhenApiCallFails()
+    public async Task DeleteAuthenticator_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        var request = new AddAuthenticatorRequest();
+        var request = new DeleteAuthenticatorRequest()
+        {
+            Otp = "123456"
+        };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
+            .WithJsonContent(request)
             .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
 
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.AddAuthenticator(request);
+        var result = await _appwriteClient.Account.DeleteAuthenticator(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -71,19 +81,23 @@ public partial class AccountClientTests
     }
 
     [Fact]
-    public async Task AddAuthenticator_ShouldReturnErrorResponse_WhenExceptionOccurs()
+    public async Task DeleteAuthenticator_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        var request = new AddAuthenticatorRequest();
+        var request = new DeleteAuthenticatorRequest()
+        {
+            Otp = "123456"
+        };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
+            .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));
 
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.AddAuthenticator(request);
+        var result = await _appwriteClient.Account.DeleteAuthenticator(request);
 
         // Assert
         Assert.False(result.Success);

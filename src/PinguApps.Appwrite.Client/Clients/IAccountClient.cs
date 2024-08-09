@@ -148,7 +148,7 @@ public interface IAccountClient
     /// </summary>
     /// <param name="type">Type of authenticator. Must be `totp`</param>
     /// <returns>The MfaType</returns>
-    Task<AppwriteResult<MfaType>> AddAuthenticator(string type = "totp");
+    Task<AppwriteResult<MfaType>> AddAuthenticator(AddAuthenticatorRequest request);
 
     /// <summary>
     /// Verify an authenticator app after adding it using <see cref="AddAuthenticator"/>.
@@ -157,7 +157,7 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <param name="type">Type of authenticator</param>
     /// <returns>The User</returns>
-    Task<AppwriteResult<User>> VerifyAuthenticator(VerifyAuthenticatorRequest request, string type = "totp");
+    Task<AppwriteResult<User>> VerifyAuthenticator(VerifyAuthenticatorRequest request);
 
     /// <summary>
     /// Enable or disable MFA on an account
@@ -166,4 +166,12 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request);
+
+    /// <summary>
+    /// Delete an authenticator for a user by ID
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteMfaAuthenticator">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The result</returns>
+    Task<AppwriteResult> DeleteAuthenticator(DeleteAuthenticatorRequest request);
 }

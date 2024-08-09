@@ -36,7 +36,8 @@ public partial class AccountClientTests
         var requestUri = $"{Constants.Endpoint}/account/mfa/authenticators/{type}";
         var requestBody = new VerifyAuthenticatorRequest
         {
-            Otp = "123456"
+            Otp = "123456",
+            Type = type
         };
         var request = _mockHttp.Expect(HttpMethod.Put, requestUri)
             .WithJsonContent(requestBody)
@@ -46,7 +47,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.VerifyAuthenticator(requestBody, type);
+        var result = await _appwriteClient.Account.VerifyAuthenticator(requestBody);
 
         // Assert
         _mockHttp.VerifyNoOutstandingExpectation();
