@@ -176,10 +176,18 @@ public interface IAccountClient
     Task<AppwriteResult> DeleteAuthenticator(DeleteAuthenticatorRequest request);
 
     /// <summary>
-    /// Begin the process of MFA verification after sign-in. Finish the flow with updateMfaChallenge method
+    /// Begin the process of MFA verification after sign-in. Finish the flow with <see cref="Create2faChallengeConfirmation(Create2faChallengeConfirmationRequest)"/>
     /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaChallenge">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The Mfa Challenge</returns>
     Task<AppwriteResult<MfaChallenge>> Create2faChallenge(Create2faChallengeRequest request);
+
+    /// <summary>
+    /// Complete the MFA challenge by providing the one-time password. Finish the process of MFA verification by providing the one-time password. To begin the flow, use <see cref="Create2faChallenge(Create2faChallengeRequest)"/>
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaChallenge">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The result</returns>
+    Task<AppwriteResult> Create2faChallengeConfirmation(Create2faChallengeConfirmationRequest request);
 }

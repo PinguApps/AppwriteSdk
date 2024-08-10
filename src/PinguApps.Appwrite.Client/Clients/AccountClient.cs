@@ -25,8 +25,9 @@ public class AccountClient : IAccountClient, ISessionAware
     string? ISessionAware.Session { get; set; }
 
     ISessionAware? _sessionAware;
-    public string? Session => GetSession();
-    private string? GetSession()
+    public string? Session => GetCurrentSession();
+
+    private string? GetCurrentSession()
     {
         if (_sessionAware is null)
         {
@@ -36,12 +37,17 @@ public class AccountClient : IAccountClient, ISessionAware
         return _sessionAware.Session;
     }
 
+    private string GetCurrentSessionOrThrow()
+    {
+        return GetCurrentSession() ?? throw new Exception(ISessionAware.SessionExceptionMessage);
+    }
+
     /// <inheritdoc/>
     public async Task<AppwriteResult<User>> Get()
     {
         try
         {
-            var result = await _accountApi.GetAccount(Session);
+            var result = await _accountApi.GetAccount(GetCurrentSessionOrThrow());
 
             return result.GetApiResponse();
         }
@@ -75,7 +81,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.UpdateEmail(Session, request);
+            var result = await _accountApi.UpdateEmail(GetCurrentSessionOrThrow(), request);
 
             return result.GetApiResponse();
         }
@@ -92,7 +98,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.UpdateName(Session, request);
+            var result = await _accountApi.UpdateName(GetCurrentSessionOrThrow(), request);
 
             return result.GetApiResponse();
         }
@@ -109,7 +115,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.UpdatePassword(Session, request);
+            var result = await _accountApi.UpdatePassword(GetCurrentSessionOrThrow(), request);
 
             return result.GetApiResponse();
         }
@@ -126,7 +132,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.UpdatePhone(Session, request);
+            var result = await _accountApi.UpdatePhone(GetCurrentSessionOrThrow(), request);
 
             return result.GetApiResponse();
         }
@@ -141,7 +147,7 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
-            var result = await _accountApi.GetAccountPreferences(Session);
+            var result = await _accountApi.GetAccountPreferences(GetCurrentSessionOrThrow());
 
             return result.GetApiResponse();
         }
@@ -158,7 +164,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.UpdatePreferences(Session, request);
+            var result = await _accountApi.UpdatePreferences(GetCurrentSessionOrThrow(), request);
 
             return result.GetApiResponse();
         }
@@ -207,7 +213,7 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
-            var result = await _accountApi.GetSession(Session, sessionId);
+            var result = await _accountApi.GetSession(GetCurrentSessionOrThrow(), sessionId);
 
             return result.GetApiResponse();
         }
@@ -222,7 +228,7 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
-            var result = await _accountApi.UpdateSession(Session, sessionId);
+            var result = await _accountApi.UpdateSession(GetCurrentSessionOrThrow(), sessionId);
 
             return result.GetApiResponse();
         }
@@ -239,7 +245,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.CreateEmailVerification(Session, request);
+            var result = await _accountApi.CreateEmailVerification(GetCurrentSessionOrThrow(), request);
 
             return result.GetApiResponse();
         }
@@ -271,7 +277,7 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         try
         {
-            var result = await _accountApi.CreateJwt(Session);
+            var result = await _accountApi.CreateJwt(GetCurrentSessionOrThrow());
 
             return result.GetApiResponse();
         }
@@ -288,7 +294,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             var queryStrings = queries?.Select(x => x.GetQueryString()) ?? [];
 
-            var result = await _accountApi.ListLogs(Session, queryStrings);
+            var result = await _accountApi.ListLogs(GetCurrentSessionOrThrow(), queryStrings);
 
             return result.GetApiResponse();
         }
@@ -305,7 +311,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.AddAuthenticator(Session, request.Type);
+            var result = await _accountApi.AddAuthenticator(GetCurrentSessionOrThrow(), request.Type);
 
             return result.GetApiResponse();
         }
@@ -322,7 +328,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.VerifyAuthenticator(Session, request.Type, request);
+            var result = await _accountApi.VerifyAuthenticator(GetCurrentSessionOrThrow(), request.Type, request);
 
             return result.GetApiResponse();
         }
@@ -339,7 +345,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.UpdateMfa(Session, request);
+            var result = await _accountApi.UpdateMfa(GetCurrentSessionOrThrow(), request);
 
             return result.GetApiResponse();
         }
@@ -356,7 +362,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.DeleteAuthenticator(Session, request.Type, request);
+            var result = await _accountApi.DeleteAuthenticator(GetCurrentSessionOrThrow(), request.Type, request);
 
             return result.GetApiResponse();
         }
@@ -373,13 +379,30 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var result = await _accountApi.Create2faChallenge(Session, request);
+            var result = await _accountApi.Create2faChallenge(GetCurrentSessionOrThrow(), request);
 
             return result.GetApiResponse();
         }
         catch (Exception e)
         {
             return e.GetExceptionResponse<MfaChallenge>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult> Create2faChallengeConfirmation(Create2faChallengeConfirmationRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.Create2faChallengeConfirmation(GetCurrentSessionOrThrow(), request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
         }
     }
 }

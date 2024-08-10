@@ -3,6 +3,10 @@ using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests;
+
+/// <summary>
+/// The request for creating a 2fa challenge
+/// </summary>
 public class Create2faChallengeRequest : BaseRequest<Create2faChallengeRequest, Create2faChallengeRequestValidator>
 {
     /// <summary>
