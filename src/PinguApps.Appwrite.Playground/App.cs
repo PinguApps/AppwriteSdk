@@ -20,10 +20,11 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var response = await _client.Account.CreatePasswordRecovery(new Shared.Requests.CreatePasswordRecoveryRequest
+        var response = await _client.Account.CreatePasswordRecoveryConfirmation(new Shared.Requests.CreatePasswordRecoveryConfirmationRequest
         {
-            Email = "pingu@example.com",
-            Url = "https://localhost:5001/abc"
+            UserId = "censored",
+            Secret = "censored",
+            Password = "MyNewSuperAwesomePassword!"
         });
 
         Console.WriteLine(response.Result.Match(

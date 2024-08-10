@@ -220,10 +220,19 @@ public interface IAccountClient
     Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes();
 
     /// <summary>
-    /// Sends the user an email with a temporary secret key for password reset. When the user clicks the confirmation link he is redirected back to your app password reset URL with the secret key and email address values attached to the URL query string. Use the query string params to submit a request to the PUT /account/recovery endpoint to complete the process. The verification link sent to the user's email address is valid for 1 hour
+    /// Sends the user an email with a temporary secret key for password reset. When the user clicks the confirmation link he is redirected back to your app password reset URL with the secret key and email address values attached to the URL query string. Use the query string params to submit a request to <see cref="CreatePasswordRecoveryConfirmation(CreatePasswordRecoveryConfirmationRequest)"/> to complete the process. The verification link sent to the user's email address is valid for 1 hour
     /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createRecovery">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The Token</returns>
     Task<AppwriteResult<Token>> CreatePasswordRecovery(CreatePasswordRecoveryRequest request);
+
+    /// <summary>
+    /// <para>Use this endpoint to complete the user account password reset. Both the userId and secret arguments will be passed as query parameters to the redirect URL you have provided when sending your request to <see cref="CreatePasswordRecovery(CreatePasswordRecoveryRequest)"/></para>
+    /// <para>Please note that in order to avoid a <see href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md">Redirect Attack</see> the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface</para>
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updateRecovery">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    Task<AppwriteResult<Token>> CreatePasswordRecoveryConfirmation(CreatePasswordRecoveryConfirmationRequest request);
 }
