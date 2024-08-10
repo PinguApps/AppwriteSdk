@@ -214,8 +214,16 @@ public interface IAccountClient
 
     /// <summary>
     /// Regenerate recovery codes that can be used as backup for MFA flow. Before regenerating codes, they must be first generated using <see cref="CreateMfaRecoveryCodes"/> method. An OTP challenge is required to regenreate recovery codes
-    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaRecoveryCodes">Appwrite Docs</see></para> 
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaRecoveryCodes">Appwrite Docs</see></para>
     /// </summary>
     /// <returns></returns>
     Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes();
+
+    /// <summary>
+    /// Sends the user an email with a temporary secret key for password reset. When the user clicks the confirmation link he is redirected back to your app password reset URL with the secret key and email address values attached to the URL query string. Use the query string params to submit a request to the PUT /account/recovery endpoint to complete the process. The verification link sent to the user's email address is valid for 1 hour
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createRecovery">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The Token</returns>
+    Task<AppwriteResult<Token>> CreatePasswordRecovery(CreatePasswordRecoveryRequest request);
 }
