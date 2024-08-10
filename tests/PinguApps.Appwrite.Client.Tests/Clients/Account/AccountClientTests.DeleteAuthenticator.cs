@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
@@ -54,6 +55,24 @@ public partial class AccountClientTests
         _mockHttp.VerifyNoOutstandingExpectation();
         var matches = _mockHttp.GetMatchCount(mockRequest);
         Assert.Equal(1, matches);
+    }
+
+    [Fact]
+    public async Task DeleteAuthenticator_ShouldReturnError_WhenSessionIsNull()
+    {
+        // Arrange
+        var request = new DeleteAuthenticatorRequest()
+        {
+            Otp = "123456"
+        };
+
+        // Act
+        var result = await _appwriteClient.Account.DeleteAuthenticator(request);
+
+        // Assert
+        Assert.True(result.IsError);
+        Assert.True(result.IsInternalError);
+        Assert.Equal(ISessionAware.SessionExceptionMessage, result.Result.AsT2.Message);
     }
 
     [Fact]

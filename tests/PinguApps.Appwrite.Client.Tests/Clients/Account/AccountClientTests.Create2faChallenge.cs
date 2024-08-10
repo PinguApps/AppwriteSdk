@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
@@ -29,6 +30,21 @@ public partial class AccountClientTests
 
         // Assert
         Assert.True(result.Success);
+    }
+
+    [Fact]
+    public async Task Create2faChallenge_ShouldReturnError_WhenSessionIsNull()
+    {
+        // Arrange
+        var request = new Create2faChallengeRequest();
+
+        // Act
+        var result = await _appwriteClient.Account.Create2faChallenge(request);
+
+        // Assert
+        Assert.True(result.IsError);
+        Assert.True(result.IsInternalError);
+        Assert.Equal(ISessionAware.SessionExceptionMessage, result.Result.AsT2.Message);
     }
 
     [Fact]

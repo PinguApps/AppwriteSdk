@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
@@ -27,6 +28,24 @@ public partial class AccountClientTests
 
         // Assert
         Assert.True(result.Success);
+    }
+
+    [Fact]
+    public async Task UpdateName_ShouldReturnError_WhenSessionIsNull()
+    {
+        // Arrange
+        var request = new UpdateNameRequest()
+        {
+            Name = "newName"
+        };
+
+        // Act
+        var result = await _appwriteClient.Account.UpdateName(request);
+
+        // Assert
+        Assert.True(result.IsError);
+        Assert.True(result.IsInternalError);
+        Assert.Equal(ISessionAware.SessionExceptionMessage, result.Result.AsT2.Message);
     }
 
     [Fact]

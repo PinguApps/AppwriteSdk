@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
 
@@ -20,6 +21,18 @@ public partial class AccountClientTests
 
         // Assert
         Assert.True(result.Success);
+    }
+
+    [Fact]
+    public async Task CreateJwt_ShouldReturnError_WhenSessionIsNull()
+    {
+        // Act
+        var result = await _appwriteClient.Account.CreateJwt();
+
+        // Assert
+        Assert.True(result.IsError);
+        Assert.True(result.IsInternalError);
+        Assert.Equal(ISessionAware.SessionExceptionMessage, result.Result.AsT2.Message);
     }
 
     [Fact]
