@@ -83,4 +83,7 @@ internal interface IAccountApi : IBaseApi
 
     [Get("/account/mfa/recovery-codes")]
     Task<IApiResponse<MfaRecoveryCodes>> GetMfaRecoveryCodes([Header("x-appwrite-session")] string session);
+
+    [Patch("/account/mfa/recovery-codes")]
+    Task<IApiResponse<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes([Header("x-appwrite-session")] string session);
 }
