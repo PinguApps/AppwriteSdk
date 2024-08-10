@@ -20,7 +20,7 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var response = await _client.Account.ListFactors();
+        var response = await _client.Account.CreateMfaRecoveryCodes();
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),

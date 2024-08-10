@@ -197,4 +197,11 @@ public interface IAccountClient
     /// </summary>
     /// <returns>The Mfa Factors</returns>
     Task<AppwriteResult<MfaFactors>> ListFactors();
+
+    /// <summary>
+    /// Generate recovery codes as backup for MFA flow. It's recommended to generate and show then immediately after user successfully adds their authenticator. Recovery codes can be used as a MFA verification type in <see cref="Create2faChallenge(Create2faChallengeRequest)"/>
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaRecoveryCodes">Appwrite Docs</see></para> 
+    /// </summary>
+    /// <returns>The Mfa Recovery Codes</returns>
+    Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes();
 }
