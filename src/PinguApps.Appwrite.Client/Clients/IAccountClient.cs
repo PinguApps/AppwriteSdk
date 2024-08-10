@@ -204,4 +204,11 @@ public interface IAccountClient
     /// </summary>
     /// <returns>The Mfa Recovery Codes</returns>
     Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes();
+
+    /// <summary>
+    /// Get recovery codes that can be used as backup for MFA flow. Before getting codes, they must be generated using <see cref="CreateMfaRecoveryCodes"/> method. An OTP challenge is required to read recovery codes
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#getMfaRecoveryCodes">Appwrite Docs</see></para> 
+    /// </summary>
+    /// <returns>The Mfa Recovery Codes</returns>
+    Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes();
 }

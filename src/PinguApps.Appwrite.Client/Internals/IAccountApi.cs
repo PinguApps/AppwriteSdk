@@ -80,4 +80,7 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/mfa/recovery-codes")]
     Task<IApiResponse<MfaRecoveryCodes>> CreateMfaRecoveryCodes([Header("x-appwrite-session")] string session);
+
+    [Get("/account/mfa/recovery-codes")]
+    Task<IApiResponse<MfaRecoveryCodes>> GetMfaRecoveryCodes([Header("x-appwrite-session")] string session);
 }
