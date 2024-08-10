@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using PinguApps.Appwrite.Client.Clients;
+using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Shared.Tests;
 using Refit;
 using RichardSzalay.MockHttp;
@@ -23,29 +26,22 @@ public partial class AccountClientTests
 
         _appwriteClient = serviceProvider.GetRequiredService<IAppwriteClient>();
     }
-}
 
-public static class AccountTestsExtensions
-{
-    public static MockedRequest ExpectedHeaders(this MockedRequest request, bool addSessionHeaders = false)
+    [Fact]
+    public void SetSession_UpdatesSession()
     {
-        var req = request
-            .WithHeaders("x-appwrite-project", Constants.ProjectId)
-            .WithHeaders("x-sdk-name", Constants.SdkName)
-            .WithHeaders("x-sdk-platform", "client")
-            .WithHeaders("x-sdk-language", Constants.SdkLanguage)
-            .WithHeaders("x-sdk-version", Constants.SdkVersion)
-            .WithHeaders("x-appwrite-response-format", Constants.AppwriteResponseFormat);
+        // Arrange
+        var sc = new ServiceCollection();
+        var mockAccountApi = new Mock<IAccountApi>();
+        sc.AddSingleton(mockAccountApi.Object);
+        var sp = sc.BuildServiceProvider();
+        var accountClient = new AccountClient(sp);
+        var sessionAware = accountClient as ISessionAware;
 
-        if (addSessionHeaders)
-            return req.ExpectSessionHeaders();
+        // Act
+        sessionAware.UpdateSession(Constants.Session);
 
-        return req;
-    }
-
-    public static MockedRequest ExpectSessionHeaders(this MockedRequest request)
-    {
-        return request
-            .WithHeaders("x-appwrite-session", Constants.Session);
+        // Assert
+        Assert.Equal(Constants.Session, accountClient.Session);
     }
 }

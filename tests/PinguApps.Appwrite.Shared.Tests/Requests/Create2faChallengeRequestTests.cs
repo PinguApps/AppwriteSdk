@@ -58,8 +58,6 @@ public class Create2faChallengeRequestTests
             Factor = factor
         };
 
-        var ggg = (int)factor;
-
         // Act
         var isValid = request.IsValid();
 

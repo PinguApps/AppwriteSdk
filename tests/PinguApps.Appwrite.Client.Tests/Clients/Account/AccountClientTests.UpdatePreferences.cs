@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
@@ -27,6 +28,24 @@ public partial class AccountClientTests
 
         // Assert
         Assert.True(result.Success);
+    }
+
+    [Fact]
+    public async Task UpdatePreferences_ShouldReturnError_WhenSessionIsNull()
+    {
+        // Arrange
+        var request = new UpdatePreferencesRequest()
+        {
+            Preferences = new Dictionary<string, string> { { "key1", "val1" }, { "key2", "val2" } }
+        };
+
+        // Act
+        var result = await _appwriteClient.Account.UpdatePreferences(request);
+
+        // Assert
+        Assert.True(result.IsError);
+        Assert.True(result.IsInternalError);
+        Assert.Equal(ISessionAware.SessionExceptionMessage, result.Result.AsT2.Message);
     }
 
     [Fact]
