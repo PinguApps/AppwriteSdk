@@ -420,4 +420,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<MfaFactors>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes()
+    {
+        try
+        {
+            var result = await _accountApi.CreateMfaRecoveryCodes(GetCurrentSessionOrThrow());
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<MfaRecoveryCodes>();
+        }
+    }
 }
