@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using PinguApps.Appwrite.Client.Clients;
+using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Shared.Tests;
 using Refit;
 using RichardSzalay.MockHttp;
@@ -22,6 +25,24 @@ public partial class AccountClientTests
         var serviceProvider = services.BuildServiceProvider();
 
         _appwriteClient = serviceProvider.GetRequiredService<IAppwriteClient>();
+    }
+
+    [Fact]
+    public void SetSession_UpdatesSession()
+    {
+        // Arrange
+        var sc = new ServiceCollection();
+        var mockAccountApi = new Mock<IAccountApi>();
+        sc.AddSingleton(mockAccountApi.Object);
+        var sp = sc.BuildServiceProvider();
+        var accountClient = new AccountClient(sp);
+        var sessionAware = accountClient as ISessionAware;
+
+        // Act
+        sessionAware.UpdateSession(Constants.Session);
+
+        // Assert
+        Assert.Equal(Constants.Session, accountClient.Session);
     }
 }
 
