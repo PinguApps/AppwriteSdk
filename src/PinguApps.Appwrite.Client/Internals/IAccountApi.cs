@@ -89,4 +89,7 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/recovery")]
     Task<IApiResponse<Token>> CreatePasswordRecovery(CreatePasswordRecoveryRequest request);
+
+    [Put("/account/recovery")]
+    Task<IApiResponse<Token>> CreatePasswordRecoveryConfirmation(CreatePasswordRecoveryConfirmationRequest request);
 }
