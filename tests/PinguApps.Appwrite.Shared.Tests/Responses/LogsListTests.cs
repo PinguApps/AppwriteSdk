@@ -5,7 +5,7 @@ namespace PinguApps.Appwrite.Shared.Tests.Responses;
 public class LogsListTests
 {
     [Fact]
-    public void LogsList_Constructor_AssignsPropertiesCorrectly()
+    public void Constructor_AssignsPropertiesCorrectly()
     {
         // Arrange
         var total = 5;
@@ -64,7 +64,7 @@ public class LogsListTests
     }
 
     [Fact]
-    public void LogsList_CanBeDeserialized_FromJson()
+    public void CanBeDeserialized_FromJson()
     {
         // Act
         var logsList = JsonSerializer.Deserialize<LogsList>(Constants.LogsListResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });

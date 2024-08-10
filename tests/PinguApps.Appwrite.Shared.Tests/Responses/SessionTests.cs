@@ -5,7 +5,7 @@ namespace PinguApps.Appwrite.Shared.Tests.Responses;
 public class SessionTests
 {
     [Fact]
-    public void Session_Constructor_AssignsPropertiesCorrectly()
+    public void Constructor_AssignsPropertiesCorrectly()
     {
         // Arrange
         var id = "5e5ea5c16897e";
@@ -49,7 +49,7 @@ public class SessionTests
     }
 
     [Fact]
-    public void Session_CanBeDeserialized_FromJson()
+    public void CanBeDeserialized_FromJson()
     {
         // Act
         var session = JsonSerializer.Deserialize<Session>(Constants.SessionResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });

@@ -74,4 +74,7 @@ internal interface IAccountApi : IBaseApi
 
     [Put("/account/mfa/challenge")]
     Task<IApiResponse> Create2faChallengeConfirmation([Header("x-appwrite-session")] string session, Create2faChallengeConfirmationRequest request);
+
+    [Get("/account/mfa/factors")]
+    Task<IApiResponse<MfaFactors>> ListFactors([Header("x-appwrite-session")] string session);
 }

@@ -5,7 +5,7 @@ namespace PinguApps.Appwrite.Shared.Tests.Responses;
 public class MfaChallengeTests
 {
     [Fact]
-    public void MfaChallenge_Constructor_AssignsPropertiesCorrectly()
+    public void Constructor_AssignsPropertiesCorrectly()
     {
         // Arrange
         var id = "bb8ea5c16897e";
@@ -24,7 +24,7 @@ public class MfaChallengeTests
     }
 
     [Fact]
-    public void MfaChallenge_CanBeDeserialized_FromJson()
+    public void CanBeDeserialized_FromJson()
     {
         // Act
         var mfaType = JsonSerializer.Deserialize<MfaChallenge>(Constants.MfaChallengeResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });

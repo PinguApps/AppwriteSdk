@@ -5,7 +5,7 @@ namespace PinguApps.Appwrite.Shared.Tests.Responses;
 public class TokenTests
 {
     [Fact]
-    public void Token_Constructor_AssignsPropertiesCorrectly()
+    public void Constructor_AssignsPropertiesCorrectly()
     {
         // Arrange
         var id = "testId";
@@ -28,7 +28,7 @@ public class TokenTests
     }
 
     [Fact]
-    public void Token_CanBeDeserialized_FromJson()
+    public void CanBeDeserialized_FromJson()
     {
         // Act
         var token = JsonSerializer.Deserialize<Token>(Constants.TokenResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });

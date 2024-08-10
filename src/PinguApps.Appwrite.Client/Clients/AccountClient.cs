@@ -405,4 +405,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<MfaFactors>> ListFactors()
+    {
+        try
+        {
+            var result = await _accountApi.ListFactors(GetCurrentSessionOrThrow());
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<MfaFactors>();
+        }
+    }
 }

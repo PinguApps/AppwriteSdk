@@ -20,25 +20,11 @@ internal class App
     {
         _client.SetSession(_session);
 
-        Console.WriteLine(_client.Session);
-
-        //var response = await _client.Account.AddAuthenticator();
-        //var response = await _client.Account.Create2faChallenge(new Shared.Requests.Create2faChallengeRequest
-        //{
-        //    Factor = Shared.Enums.SecondFactor.Email
-        //});
-
-        var response = await _client.Account.Create2faChallengeConfirmation(new Shared.Requests.Create2faChallengeConfirmationRequest
-        {
-            ChallengeId = "66b771b7bdcb152aaa5b",
-            Otp = "474376"
-        });
+        var response = await _client.Account.ListFactors();
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
             appwriteError => appwriteError.Message,
             internalERror => internalERror.Message));
-
-        Console.WriteLine(_client.Session);
     }
 }
