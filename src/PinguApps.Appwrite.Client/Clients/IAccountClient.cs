@@ -190,4 +190,11 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The result</returns>
     Task<AppwriteResult> Create2faChallengeConfirmation(Create2faChallengeConfirmationRequest request);
+
+    /// <summary>
+    /// List the factors available on the account to be used as a MFA challange
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#listMfaFactors">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The Mfa Factors</returns>
+    Task<AppwriteResult<MfaFactors>> ListFactors();
 }
