@@ -6,7 +6,7 @@ namespace PinguApps.Appwrite.Shared.Tests.Responses;
 public class UserTests
 {
     [Fact]
-    public void User_Constructor_AssignsPropertiesCorrectly()
+    public void Constructor_AssignsPropertiesCorrectly()
     {
         // Arrange
         var id = "testId";
@@ -53,7 +53,7 @@ public class UserTests
     }
 
     [Fact]
-    public void User_CanBeDeserialized_FromJson()
+    public void CanBeDeserialized_FromJson()
     {
         // Act
         var user = JsonSerializer.Deserialize<User>(Constants.UserResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });

@@ -5,7 +5,7 @@ namespace PinguApps.Appwrite.Shared.Tests.Responses;
 public class MfaTypeTests
 {
     [Fact]
-    public void LogsList_Constructor_AssignsPropertiesCorrectly()
+    public void Constructor_AssignsPropertiesCorrectly()
     {
         // Arrange
         var secret = "The_Secret";
@@ -20,7 +20,7 @@ public class MfaTypeTests
     }
 
     [Fact]
-    public void LogsList_CanBeDeserialized_FromJson()
+    public void CanBeDeserialized_FromJson()
     {
         // Act
         var mfaType = JsonSerializer.Deserialize<MfaType>(Constants.MfaTypeResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });

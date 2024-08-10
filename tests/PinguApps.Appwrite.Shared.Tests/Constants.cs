@@ -179,4 +179,13 @@ public static class Constants
             "expire": "2020-10-15T06:38:00.000+00:00"
         }
         """;
+
+    public const string MfaFactorsResponse = """
+        {
+            "totp": true,
+            "phone": true,
+            "email": true,
+            "recoveryCode": true
+        }
+        """;
 }

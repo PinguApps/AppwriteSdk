@@ -5,7 +5,7 @@ namespace PinguApps.Appwrite.Shared.Tests.Responses;
 public class JwtTests
 {
     [Fact]
-    public void Token_Constructor_AssignsPropertiesCorrectly()
+    public void Constructor_AssignsPropertiesCorrectly()
     {
         // Arrange
         var token = "testToken";
@@ -18,7 +18,7 @@ public class JwtTests
     }
 
     [Fact]
-    public void Token_CanBeDeserialized_FromJson()
+    public void CanBeDeserialized_FromJson()
     {
         // Act
         var jwt = JsonSerializer.Deserialize<Jwt>(Constants.JwtResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
