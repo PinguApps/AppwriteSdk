@@ -68,4 +68,7 @@ internal interface IAccountApi : IBaseApi
 
     [Delete("/account/mfa/authenticators/{type}")]
     Task<IApiResponse> DeleteAuthenticator([Header("x-appwrite-session")] string? session, string type, [Body] DeleteAuthenticatorRequest request);
+
+    [Post("/account/mfa/challenge")]
+    Task<IApiResponse<MfaChallenge>> Create2faChallenge([Header("x-appwrite-session")] string? session, Create2faChallengeRequest request);
 }

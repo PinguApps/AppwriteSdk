@@ -138,14 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![22 / 288](https://progress-bar.dev/22/?scale=288&suffix=%20/%20288&width=500) -->
-![Server & Client - 22 / 288](https://img.shields.io/badge/Server_&_Client-22%20%2F%20288-red?style=for-the-badge)
+<!-- ![23 / 288](https://progress-bar.dev/23/?scale=288&suffix=%20/%20288&width=500) -->
+![Server & Client - 23 / 288](https://img.shields.io/badge/Server_&_Client-23%20%2F%20288-red?style=for-the-badge)
 
 <!-- ![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300) -->
 ![Server - 2 / 195](https://img.shields.io/badge/Server-2%20%2F%20195-red?style=for-the-badge)
 
-<!-- ![20 / 93](https://progress-bar.dev/20/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 20 / 93](https://img.shields.io/badge/Client-20%20%2F%2093-red?style=for-the-badge)
+<!-- ![21 / 93](https://progress-bar.dev/21/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 21 / 93](https://img.shields.io/badge/Client-21%20%2F%2093-red?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![22 / 52](https://progress-bar.dev/22/?scale=52&suffix=%20/%2052&width=120) -->
-![Account - 22 / 52](https://img.shields.io/badge/Account-22%20%2F%2052-yellow?style=for-the-badge)
+<!-- ![23 / 52](https://progress-bar.dev/23/?scale=52&suffix=%20/%2052&width=120) -->
+![Account - 23 / 52](https://img.shields.io/badge/Account-23%20%2F%2052-yellow?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -171,7 +171,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Add Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaAuthenticator) | ✅ | ❌ |
 | [Verify Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaAuthenticator) | ✅ | ❌ |
 | [Delete Authenticator](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteMfaAuthenticator) | ✅ | ❌ |
-| [Create 2FA Challenge](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaChallenge) | ⬛ | ❌ |
+| [Create 2FA Challenge](https://appwrite.io/docs/references/1.5.x/client-rest/account#createMfaChallenge) | ✅ | ❌ |
 | [Create MFA Challenge (confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaChallenge) | ⬛ | ❌ |
 | [List Factors](https://appwrite.io/docs/references/1.5.x/client-rest/account#listMfaFactors) | ⬛ | ❌ |
 | [Get MFA Recovery Codes](https://appwrite.io/docs/references/1.5.x/client-rest/account#getMfaRecoveryCodes) | ⬛ | ❌ |

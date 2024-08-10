@@ -170,4 +170,13 @@ public static class Constants
             "uri": "otpauth://totp/Appwrite%20Test%3Apingu%40appwrite.com?issuer=Appwrite%20Test&secret=The_Secret"
         }
         """;
+
+    public const string MfaChallengeResponse = """
+        {
+            "$id": "bb8ea5c16897e",
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "userId": "5e5ea5c168bb8",
+            "expire": "2020-10-15T06:38:00.000+00:00"
+        }
+        """;
 }
