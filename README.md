@@ -138,14 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![28 / 288](https://progress-bar.dev/28/?scale=288&suffix=%20/%20288&width=500) -->
-![Server & Client - 28 / 288](https://img.shields.io/badge/Server_&_Client-28%20%2F%20288-red?style=for-the-badge)
+<!-- ![29 / 288](https://progress-bar.dev/29/?scale=288&suffix=%20/%20288&width=500) -->
+![Server & Client - 29 / 288](https://img.shields.io/badge/Server_&_Client-29%20%2F%20288-red?style=for-the-badge)
 
 <!-- ![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300) -->
 ![Server - 2 / 195](https://img.shields.io/badge/Server-2%20%2F%20195-red?style=for-the-badge)
 
-<!-- ![26 / 93](https://progress-bar.dev/26/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 26 / 93](https://img.shields.io/badge/Client-26%20%2F%2093-red?style=for-the-badge)
+<!-- ![27 / 93](https://progress-bar.dev/27/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 27 / 93](https://img.shields.io/badge/Client-27%20%2F%2093-red?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![28 / 52](https://progress-bar.dev/28/?scale=52&suffix=%20/%2052&width=120) -->
-![Account - 28 / 52](https://img.shields.io/badge/Account-28%20%2F%2052-yellow?style=for-the-badge)
+<!-- ![29 / 52](https://progress-bar.dev/29/?scale=52&suffix=%20/%2052&width=120) -->
+![Account - 29 / 52](https://img.shields.io/badge/Account-29%20%2F%2052-yellow?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -182,7 +182,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Phone](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePhone) | ✅ | ❌ |
 | [Get Account Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/account#getPrefs) | ✅ | ❌ |
 | [Update Preferences](https://appwrite.io/docs/references/1.5.x/client-rest/account#updatePrefs) | ✅ | ❌ |
-| [Create Password Recovery](https://appwrite.io/docs/references/1.5.x/client-rest/account#createRecovery) | ⬛ | ❌ |
+| [Create Password Recovery](https://appwrite.io/docs/references/1.5.x/client-rest/account#createRecovery) | ✅ | ❌ |
 | [Create Password Recovery (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateRecovery) | ⬛ | ❌ |
 | [List Sessions](https://appwrite.io/docs/references/1.5.x/client-rest/account#listSessions) | ⬛ | ❌ |
 | [Delete Sessions](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteSessions) | ⬛ | ❌ |

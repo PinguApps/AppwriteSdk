@@ -465,4 +465,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<MfaRecoveryCodes>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Token>> CreatePasswordRecovery(CreatePasswordRecoveryRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.CreatePasswordRecovery(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Token>();
+        }
+    }
 }

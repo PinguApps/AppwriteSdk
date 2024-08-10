@@ -20,7 +20,11 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var response = await _client.Account.RegenerateMfaRecoveryCodes();
+        var response = await _client.Account.CreatePasswordRecovery(new Shared.Requests.CreatePasswordRecoveryRequest
+        {
+            Email = "pingu@example.com",
+            Url = "https://localhost:5001/abc"
+        });
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),

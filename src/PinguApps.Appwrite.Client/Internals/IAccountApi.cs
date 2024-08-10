@@ -86,4 +86,7 @@ internal interface IAccountApi : IBaseApi
 
     [Patch("/account/mfa/recovery-codes")]
     Task<IApiResponse<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes([Header("x-appwrite-session")] string session);
+
+    [Post("/account/recovery")]
+    Task<IApiResponse<Token>> CreatePasswordRecovery(CreatePasswordRecoveryRequest request);
 }
