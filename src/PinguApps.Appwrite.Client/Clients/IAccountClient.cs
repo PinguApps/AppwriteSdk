@@ -216,7 +216,7 @@ public interface IAccountClient
     /// Regenerate recovery codes that can be used as backup for MFA flow. Before regenerating codes, they must be first generated using <see cref="CreateMfaRecoveryCodes"/> method. An OTP challenge is required to regenreate recovery codes
     /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMfaRecoveryCodes">Appwrite Docs</see></para>
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The Mfa Recovery Codes</returns>
     Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes();
 
     /// <summary>
@@ -232,7 +232,14 @@ public interface IAccountClient
     /// <para>Please note that in order to avoid a <see href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md">Redirect Attack</see> the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface</para>
     /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#updateRecovery">Appwrite Docs</see></para>
     /// </summary>
-    /// <param name="request"></param>
-    /// <returns></returns>
+    /// <param name="request">The request content</param>
+    /// <returns>The Token</returns>
     Task<AppwriteResult<Token>> CreatePasswordRecoveryConfirmation(CreatePasswordRecoveryConfirmationRequest request);
+
+    /// <summary>
+    /// Get the list of active sessions across different devices for the currently logged in user
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#listSessions">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The Sessions List</returns>
+    Task<AppwriteResult<SessionsList>> ListSessions();
 }

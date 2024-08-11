@@ -499,4 +499,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<Token>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<SessionsList>> ListSessions()
+    {
+        try
+        {
+            var result = await _accountApi.ListSessions(GetCurrentSessionOrThrow());
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<SessionsList>();
+        }
+    }
 }

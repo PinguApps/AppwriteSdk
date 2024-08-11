@@ -20,12 +20,7 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var response = await _client.Account.CreatePasswordRecoveryConfirmation(new Shared.Requests.CreatePasswordRecoveryConfirmationRequest
-        {
-            UserId = "censored",
-            Secret = "censored",
-            Password = "MyNewSuperAwesomePassword!"
-        });
+        var response = await _client.Account.ListSessions();
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
