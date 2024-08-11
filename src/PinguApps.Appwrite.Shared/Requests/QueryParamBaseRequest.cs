@@ -88,12 +88,12 @@ public abstract class QueryParamBaseRequest<TRequest, TValidator> : BaseRequest<
             return existingPath;
         }
 
-        if (!urlPath.EndsWith("/"))
+        if (!urlPath.EndsWith('/'))
         {
             urlPath += "/";
         }
 
-        if (existingPath.StartsWith("/"))
+        if (existingPath.StartsWith('/'))
         {
             existingPath = existingPath.TrimStart('/');
         }
