@@ -138,14 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![32 / 288](https://progress-bar.dev/32/?scale=288&suffix=%20/%20288&width=500) -->
-![Server & Client - 32 / 288](https://img.shields.io/badge/Server_&_Client-32%20%2F%20288-red?style=for-the-badge)
+<!-- ![33 / 288](https://progress-bar.dev/33/?scale=288&suffix=%20/%20288&width=500) -->
+![Server & Client - 33 / 288](https://img.shields.io/badge/Server_&_Client-33%20%2F%20288-red?style=for-the-badge)
 
 <!-- ![2 / 195](https://progress-bar.dev/2/?scale=195&suffix=%20/%20195&width=300) -->
 ![Server - 2 / 195](https://img.shields.io/badge/Server-2%20%2F%20195-red?style=for-the-badge)
 
-<!-- ![30 / 93](https://progress-bar.dev/30/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 30 / 93](https://img.shields.io/badge/Client-30%20%2F%2093-red?style=for-the-badge)
+<!-- ![31 / 93](https://progress-bar.dev/31/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 31 / 93](https://img.shields.io/badge/Client-31%20%2F%2093-red?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![32 / 52](https://progress-bar.dev/32/?scale=52&suffix=%20/%2052&width=120) -->
-![Account - 32 / 52](https://img.shields.io/badge/Account-32%20%2F%2052-yellow?style=for-the-badge)
+<!-- ![33 / 52](https://progress-bar.dev/33/?scale=52&suffix=%20/%2052&width=120) -->
+![Account - 33 / 52](https://img.shields.io/badge/Account-33%20%2F%2052-yellow?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -186,7 +186,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Password Recovery (Confirmation)](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateRecovery) | ✅ | ❌ |
 | [List Sessions](https://appwrite.io/docs/references/1.5.x/client-rest/account#listSessions) | ✅ | ❌ |
 | [Delete Sessions](https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteSessions) | ✅ | ❌ |
-| [Create Anonymous Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createAnonymousSession) | ⬛ | ❌ |
+| [Create Anonymous Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createAnonymousSession) | ✅ | ❌ |
 | [Create Email Password Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createEmailPasswordSession) | ⬛ | ❌ |
 | [Update Magic URL Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#updateMagicURLSession) | ⬛ | ❌ |
 | [Create OAuth2 Session](https://appwrite.io/docs/references/1.5.x/client-rest/account#createOAuth2Session) | ⬛ | ❌ |
