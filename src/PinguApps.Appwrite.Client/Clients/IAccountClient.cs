@@ -265,4 +265,5 @@ public interface IAccountClient
     /// <param name="request">The request</param>
     /// <returns>The Session</returns>
     Task<AppwriteResult<Session>> CreateEmailPasswordSession(CreateEmailPasswordSessionRequest request);
+    AppwriteResult<CreateOauth2Session> CreateOauth2Session(CreateOauth2SessionRequest request);
 }

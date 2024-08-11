@@ -16,10 +16,12 @@ namespace PinguApps.Appwrite.Client;
 public class AccountClient : IAccountClient, ISessionAware
 {
     private readonly IAccountApi _accountApi;
+    private readonly Config _config;
 
-    public AccountClient(IServiceProvider services)
+    public AccountClient(IServiceProvider services, Config config)
     {
         _accountApi = services.GetRequiredService<IAccountApi>();
+        _config = config;
     }
 
     string? ISessionAware.Session { get; set; }
@@ -559,6 +561,23 @@ public class AccountClient : IAccountClient, ISessionAware
         catch (Exception e)
         {
             return e.GetExceptionResponse<Session>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public AppwriteResult<CreateOauth2Session> CreateOauth2Session(CreateOauth2SessionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var uri = request.BuildUri(_config.Endpoint, _config.ProjectId);
+
+            return new AppwriteResult<CreateOauth2Session>(new CreateOauth2Session(uri.AbsoluteUri));
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<CreateOauth2Session>();
         }
     }
 }
