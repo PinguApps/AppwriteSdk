@@ -262,8 +262,17 @@ public interface IAccountClient
     /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/authentication-security#limits">Learn more about session limits</see>.</para>
     /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createEmailPasswordSession">Appwrite Docs</see></para>
     /// </summary>
-    /// <param name="request">The request</param>
+    /// <param name="request">The request content</param>
     /// <returns>The Session</returns>
     Task<AppwriteResult<Session>> CreateEmailPasswordSession(CreateEmailPasswordSessionRequest request);
+
+    /// <summary>
+    /// <para>Allow the user to login to their account using the OAuth2 provider of their choice. Each OAuth2 provider should be enabled from the Appwrite console first. Use the success and failure arguments to provide a redirect URL's back to your app when login is completed.</para>
+    /// <para>If authentication succeeds, <c>userId</c> and <c>secret</c> of a token will be appended to the success URL as query parameters. These can be used to create a new session using <see cref="CreateSession(CreateSessionRequest)"/>.</para>
+    /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/authentication-security#limits">Learn more about session limits</see></para>
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createOAuth2Token">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The CreateOauth2Session object</returns>
     AppwriteResult<CreateOauth2Session> CreateOauth2Session(CreateOauth2SessionRequest request);
 }
