@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -61,16 +60,9 @@ public abstract class QueryParamBaseRequest<TRequest, TValidator> : BaseRequest<
 
             var attribute = property.GetCustomAttribute<QueryParameterAttribute>();
 
-            if (value is IEnumerable<object> values)
+            if (value is IEnumerable<object> values && value is not string)
             {
                 foreach (var item in values)
-                {
-                    queries.Add($"{attribute.Key}={Uri.EscapeDataString(item.ToString())}");
-                }
-            }
-            else if (value is ICollection valuesCollection)
-            {
-                foreach (var item in valuesCollection)
                 {
                     queries.Add($"{attribute.Key}={Uri.EscapeDataString(item.ToString())}");
                 }
@@ -108,7 +100,6 @@ public abstract class QueryParamBaseRequest<TRequest, TValidator> : BaseRequest<
 
         return urlPath + existingPath;
     }
-
 
     protected abstract string Path { get; }
 }

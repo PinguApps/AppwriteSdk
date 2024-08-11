@@ -2,6 +2,7 @@
 using Moq;
 using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Internals;
+using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Tests;
 using Refit;
 using RichardSzalay.MockHttp;
