@@ -242,4 +242,10 @@ public interface IAccountClient
     /// </summary>
     /// <returns>The Sessions List</returns>
     Task<AppwriteResult<SessionsList>> ListSessions();
+
+    /// <summary>
+    /// Delete all sessions from the user account and remove any sessions cookies from the end client
+    /// </summary>
+    /// <returns>The result</returns>
+    Task<AppwriteResult> DeleteSessions();
 }

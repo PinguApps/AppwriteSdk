@@ -20,11 +20,15 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var response = await _client.Account.ListSessions();
+        Console.WriteLine(_client.Session);
+
+        var response = await _client.Account.DeleteSessions();
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
             appwriteError => appwriteError.Message,
             internalERror => internalERror.Message));
+
+        Console.WriteLine(_client.Session);
     }
 }

@@ -95,4 +95,7 @@ internal interface IAccountApi : IBaseApi
 
     [Get("/account/sessions")]
     Task<IApiResponse<SessionsList>> ListSessions([Header("x-appwrite-session")] string session);
+
+    [Delete("/account/sessions")]
+    Task<IApiResponse> DeleteSessions([Header("x-appwrite-session")] string session);
 }

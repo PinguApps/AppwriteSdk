@@ -514,4 +514,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<SessionsList>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult> DeleteSessions()
+    {
+        try
+        {
+            var result = await _accountApi.DeleteSessions(GetCurrentSessionOrThrow());
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
 }
