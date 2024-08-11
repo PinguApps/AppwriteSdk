@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace PinguApps.Appwrite.Shared.Utils;
 public static class TokenUtils
 {
-    private record SessionToken(
+    internal record SessionToken(
         [property: JsonPropertyName("id")] string Id,
         [property: JsonPropertyName("secret")] string Secret
     );
