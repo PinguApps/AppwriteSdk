@@ -92,4 +92,7 @@ internal interface IAccountApi : IBaseApi
 
     [Put("/account/recovery")]
     Task<IApiResponse<Token>> CreatePasswordRecoveryConfirmation(CreatePasswordRecoveryConfirmationRequest request);
+
+    [Get("/account/sessions")]
+    Task<IApiResponse<SessionsList>> ListSessions([Header("x-appwrite-session")] string session);
 }
