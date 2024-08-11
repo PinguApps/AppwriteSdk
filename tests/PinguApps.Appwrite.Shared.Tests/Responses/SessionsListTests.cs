@@ -2,12 +2,13 @@
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Shared.Tests.Responses;
-public class SessionTests
+public class SessionsListTests
 {
     [Fact]
     public void Constructor_AssignsPropertiesCorrectly()
     {
         // Arrange
+        var total = 5;
         var id = "5e5ea5c16897e";
         var createdAt = DateTime.UtcNow;
         var updatedAt = DateTime.UtcNow;
@@ -44,46 +45,58 @@ public class SessionTests
             clientVersion, clientEngine, clientEngineVersion, deviceName, deviceBrand, deviceModel, countryCode, countryName,
             current, factors, secret, mfaUpdatedAt);
 
+        var sessionsList = new SessionsList(total, [session]);
+
         // Assert
-        Assert.Equal(id, session.Id);
-        Assert.Equal(createdAt.ToUniversalTime(), session.CreatedAt.ToUniversalTime());
-        Assert.Equal(updatedAt.ToUniversalTime(), session.UpdatedAt.ToUniversalTime());
-        Assert.Equal(userId, session.UserId);
-        Assert.Equal(expiresAt.ToUniversalTime(), session.ExpiresAt.ToUniversalTime());
-        Assert.Equal(provider, session.Provider);
-        Assert.Equal(providerUserId, session.ProviderUserId);
-        Assert.Equal(providerAccessToken, session.ProviderAccessToken);
-        Assert.Equal(providerAccessTokenExpiry.ToUniversalTime(), session.ProviderAccessTokenExpiry?.ToUniversalTime());
-        Assert.Equal(ProviderRefreshToken, session.ProviderRefreshToken);
-        Assert.Equal(ip, session.Ip);
-        Assert.Equal(osCode, session.OsCode);
-        Assert.Equal(osName, session.OsName);
-        Assert.Equal(osVersion, session.OsVersion);
-        Assert.Equal(clientType, session.ClientType);
-        Assert.Equal(clientCode, session.ClientCode);
-        Assert.Equal(clientName, session.ClientName);
-        Assert.Equal(clientVersion, session.ClientVersion);
-        Assert.Equal(clientEngine, session.ClientEngine);
-        Assert.Equal(clientEngineVersion, session.ClientEngineVersion);
-        Assert.Equal(deviceName, session.DeviceName);
-        Assert.Equal(deviceBrand, session.DeviceBrand);
-        Assert.Equal(deviceModel, session.DeviceModel);
-        Assert.Equal(countryCode, session.CountryCode);
-        Assert.Equal(countryName, session.CountryName);
-        Assert.Equal(current, session.Current);
-        Assert.Equal(factors, session.Factors);
-        Assert.Equal(secret, session.Secret);
-        Assert.Equal(mfaUpdatedAt.ToUniversalTime(), session.MfaUpdatedAt?.ToUniversalTime());
+        Assert.Equal(total, sessionsList.Total);
+
+        Assert.Single(sessionsList.Sessions);
+        var extractedSession = sessionsList.Sessions[0];
+
+        Assert.Equal(id, extractedSession.Id);
+        Assert.Equal(createdAt.ToUniversalTime(), extractedSession.CreatedAt.ToUniversalTime());
+        Assert.Equal(updatedAt.ToUniversalTime(), extractedSession.UpdatedAt.ToUniversalTime());
+        Assert.Equal(userId, extractedSession.UserId);
+        Assert.Equal(expiresAt.ToUniversalTime(), extractedSession.ExpiresAt.ToUniversalTime());
+        Assert.Equal(provider, extractedSession.Provider);
+        Assert.Equal(providerUserId, extractedSession.ProviderUserId);
+        Assert.Equal(providerAccessToken, extractedSession.ProviderAccessToken);
+        Assert.Equal(providerAccessTokenExpiry.ToUniversalTime(), extractedSession.ProviderAccessTokenExpiry?.ToUniversalTime());
+        Assert.Equal(ProviderRefreshToken, extractedSession.ProviderRefreshToken);
+        Assert.Equal(ip, extractedSession.Ip);
+        Assert.Equal(osCode, extractedSession.OsCode);
+        Assert.Equal(osName, extractedSession.OsName);
+        Assert.Equal(osVersion, extractedSession.OsVersion);
+        Assert.Equal(clientType, extractedSession.ClientType);
+        Assert.Equal(clientCode, extractedSession.ClientCode);
+        Assert.Equal(clientName, extractedSession.ClientName);
+        Assert.Equal(clientVersion, extractedSession.ClientVersion);
+        Assert.Equal(clientEngine, extractedSession.ClientEngine);
+        Assert.Equal(clientEngineVersion, extractedSession.ClientEngineVersion);
+        Assert.Equal(deviceName, extractedSession.DeviceName);
+        Assert.Equal(deviceBrand, extractedSession.DeviceBrand);
+        Assert.Equal(deviceModel, extractedSession.DeviceModel);
+        Assert.Equal(countryCode, extractedSession.CountryCode);
+        Assert.Equal(countryName, extractedSession.CountryName);
+        Assert.Equal(current, extractedSession.Current);
+        Assert.Equal(factors, extractedSession.Factors);
+        Assert.Equal(secret, extractedSession.Secret);
+        Assert.Equal(mfaUpdatedAt.ToUniversalTime(), extractedSession.MfaUpdatedAt?.ToUniversalTime());
     }
 
     [Fact]
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var session = JsonSerializer.Deserialize<Session>(Constants.SessionResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var sessionsList = JsonSerializer.Deserialize<SessionsList>(Constants.SessionsListResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
-        Assert.NotNull(session);
+        Assert.NotNull(sessionsList);
+        Assert.Equal(5, sessionsList.Total);
+
+        Assert.Single(sessionsList.Sessions);
+        var session = sessionsList.Sessions[0];
+
         Assert.Equal("5e5ea5c16897e", session.Id);
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), session.CreatedAt.ToUniversalTime());
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), session.UpdatedAt.ToUniversalTime());
