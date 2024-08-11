@@ -22,10 +22,12 @@ internal class App
 
         Console.WriteLine(_client.Session);
 
-        var response = await _client.Account.CreateEmailPasswordSession(new Shared.Requests.CreateEmailPasswordSessionRequest
+        var response = _client.Account.CreateOauth2Session(new Shared.Requests.CreateOauth2SessionRequest
         {
-            Email = "pingu@example.com",
-            Password = "password"
+            Provider = "google",
+            SuccessUri = "https://localhost:5001/success",
+            FailureUri = "https://localhost:5001/fail",
+            Scopes = ["scope1", "scope2"]
         });
 
         Console.WriteLine(response.Result.Match(

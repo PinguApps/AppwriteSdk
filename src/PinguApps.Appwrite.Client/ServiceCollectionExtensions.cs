@@ -3,6 +3,7 @@ using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Handlers;
 using PinguApps.Appwrite.Client.Internals;
+using PinguApps.Appwrite.Shared;
 using Refit;
 
 namespace PinguApps.Appwrite.Client;
@@ -29,6 +30,8 @@ public static class ServiceCollectionExtensions
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
             .AddHttpMessageHandler<ClientCookieSessionHandler>();
+
+        services.AddSingleton(new Config(endpoint, projectId));
 
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
@@ -59,6 +62,8 @@ public static class ServiceCollectionExtensions
                     clientHandler.UseCookies = false;
                 }
             });
+
+        services.AddSingleton(new Config(endpoint, projectId));
 
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
