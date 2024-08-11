@@ -18,11 +18,11 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        _client.SetSession(_session);
+        //_client.SetSession(_session);
 
         Console.WriteLine(_client.Session);
 
-        var response = await _client.Account.DeleteSessions();
+        var response = await _client.Account.CreateAnonymousSession();
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),

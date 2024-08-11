@@ -245,7 +245,15 @@ public interface IAccountClient
 
     /// <summary>
     /// Delete all sessions from the user account and remove any sessions cookies from the end client
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#deleteSessions">Appwrite Docs</see></para>
     /// </summary>
     /// <returns>The result</returns>
     Task<AppwriteResult> DeleteSessions();
+
+    /// <summary>
+    /// Use this endpoint to allow a new user to register an anonymous account in your project. This route will also create a new session for the user. To allow the new user to convert an anonymous account to a normal account, you need to call <see cref="UpdateEmail(UpdateEmailRequest)"/> or create an OAuth2 session
+    /// <para><see href="https://appwrite.io/docs/references/1.5.x/client-rest/account#createAnonymousSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The Session</returns>
+    Task<AppwriteResult<Session>> CreateAnonymousSession();
 }

@@ -98,4 +98,7 @@ internal interface IAccountApi : IBaseApi
 
     [Delete("/account/sessions")]
     Task<IApiResponse> DeleteSessions([Header("x-appwrite-session")] string session);
+
+    [Post("/account/sessions/anonymous")]
+    Task<IApiResponse<Session>> CreateAnonymousSession();
 }

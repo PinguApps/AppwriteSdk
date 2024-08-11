@@ -529,4 +529,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Session>> CreateAnonymousSession()
+    {
+        try
+        {
+            var result = await _accountApi.CreateAnonymousSession();
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Session>();
+        }
+    }
 }
