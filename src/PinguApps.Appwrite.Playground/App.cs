@@ -22,7 +22,11 @@ internal class App
 
         Console.WriteLine(_client.Session);
 
-        var response = await _client.Account.CreateAnonymousSession();
+        var response = await _client.Account.CreateEmailPasswordSession(new Shared.Requests.CreateEmailPasswordSessionRequest
+        {
+            Email = "pingu@example.com",
+            Password = "password"
+        });
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
