@@ -36,4 +36,13 @@ public interface IAccountServer
     /// </summary>
     /// <returns>The Session</returns>
     Task<AppwriteResult<Session>> CreateAnonymousSession();
+
+    /// <summary>
+    /// <para>Allow the user to login into their account by providing a valid email and password combination. This route will create a new session for the user.</para>
+    /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/authentication-security#limits">Learn more about session limits</see>.</para>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account#createEmailPasswordSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The Session</returns>
+    Task<AppwriteResult<Session>> CreateEmailPasswordSession(CreateEmailPasswordSessionRequest request);
 }

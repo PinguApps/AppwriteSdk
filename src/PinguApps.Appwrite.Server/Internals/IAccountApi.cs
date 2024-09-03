@@ -14,4 +14,7 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/sessions/anonymous")]
     Task<IApiResponse<Session>> CreateAnonymousSession();
+
+    [Post("/account/sessions/email")]
+    Task<IApiResponse<Session>> CreateEmailPasswordSession(CreateEmailPasswordSessionRequest request);
 }
