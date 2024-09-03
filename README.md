@@ -138,11 +138,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![35 / 293](https://progress-bar.dev/35/?scale=293&suffix=%20/%20288&width=500) -->
-![Server & Client - 35 / 293](https://img.shields.io/badge/Server_&_Client-35%20%2F%20293-red?style=for-the-badge)
+<!-- ![36 / 293](https://progress-bar.dev/36 /?scale=293&suffix=%20/%20288&width=500) -->
+![Server & Client - 36 / 293](https://img.shields.io/badge/Server_&_Client-36%20%2F%20293-red?style=for-the-badge)
 
-<!-- ![2 / 200](https://progress-bar.dev/2/?scale=195&suffix=%20/%20200&width=300) -->
-![Server - 2 / 200](https://img.shields.io/badge/Server-2%20%2F%20200-red?style=for-the-badge)
+<!-- ![3 / 200](https://progress-bar.dev/3/?scale=195&suffix=%20/%20200&width=300) -->
+![Server - 3 / 200](https://img.shields.io/badge/Server-3%20%2F%20200-red?style=for-the-badge)
 
 <!-- ![33 / 93](https://progress-bar.dev/33/?scale=93&suffix=%20/%2093&width=300) -->
 ![Client - 33 / 93](https://img.shields.io/badge/Client-33%20%2F%2093-red?style=for-the-badge)
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![35 / 57](https://progress-bar.dev/35/?scale=57&suffix=%20/%2052&width=120) -->
-![Account - 35 / 57](https://img.shields.io/badge/Account-35%20%2F%2057-0af0?style=for-the-badge)
+<!-- ![36 / 57](https://progress-bar.dev/36/?scale=57&suffix=%20/%2052&width=120) -->
+![Account - 36 / 57](https://img.shields.io/badge/Account-36%20%2F%2057-gold?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -186,7 +186,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Password Recovery (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateRecovery) | ✅ | ❌ |
 | [List Sessions](https://appwrite.io/docs/references/1.6.x/client-rest/account#listSessions) | ✅ | ❌ |
 | [Delete Sessions](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteSessions) | ✅ | ❌ |
-| [Create Anonymous Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createAnonymousSession) | ✅ | ⬛ |
+| [Create Anonymous Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createAnonymousSession) | ✅ | ✅ |
 | [Create Email Password Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailPasswordSession) | ✅ | ⬛ |
 | [Update Magic URL Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMagicURLSession) | ⬛ | ⬛ |
 | [Create OAuth2 Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Session) | ✅ | ❌ |
