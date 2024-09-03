@@ -20,21 +20,20 @@ internal class App
     {
         //_client.SetSession(_session);
 
-        Console.WriteLine(_client.Session);
-
-        var response = _client.Account.CreateOauth2Session(new Shared.Requests.CreateOauth2SessionRequest
-        {
-            Provider = "google",
-            SuccessUri = "https://localhost:5001/success",
-            FailureUri = "https://localhost:5001/fail",
-            Scopes = ["scope1", "scope2"]
-        });
+        var response = await _server.Account.CreateAnonymousSession();
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
             appwriteError => appwriteError.Message,
             internalERror => internalERror.Message));
 
-        Console.WriteLine(_client.Session);
+        await Task.Delay(5000);
+
+        var response2 = await _server.Account.CreateAnonymousSession();
+
+        Console.WriteLine(response2.Result.Match(
+            account => account.ToString(),
+            appwriteError => appwriteError.Message,
+            internalERror => internalERror.Message));
     }
 }
