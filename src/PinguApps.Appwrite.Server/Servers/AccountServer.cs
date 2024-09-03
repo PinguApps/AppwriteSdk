@@ -50,4 +50,19 @@ public class AccountServer : IAccountServer
             return e.GetExceptionResponse<Token>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Session>> CreateAnonymousSession()
+    {
+        try
+        {
+            var result = await _accountApi.CreateAnonymousSession();
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Session>();
+        }
+    }
 }
