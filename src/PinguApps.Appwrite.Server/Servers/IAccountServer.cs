@@ -45,4 +45,12 @@ public interface IAccountServer
     /// <param name="request">The request content</param>
     /// <returns>The Session</returns>
     Task<AppwriteResult<Session>> CreateEmailPasswordSession(CreateEmailPasswordSessionRequest request);
+
+    /// <summary>
+    /// Use this endpoint to create a session from token. Provide the userId and secret parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account#createSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The session</returns>
+    Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);
 }

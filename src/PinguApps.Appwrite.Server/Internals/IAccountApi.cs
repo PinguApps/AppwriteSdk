@@ -17,4 +17,7 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/sessions/email")]
     Task<IApiResponse<Session>> CreateEmailPasswordSession(CreateEmailPasswordSessionRequest request);
+
+    [Post("/account/sessions/token")]
+    Task<IApiResponse<Session>> CreateSession(CreateSessionRequest request);
 }
