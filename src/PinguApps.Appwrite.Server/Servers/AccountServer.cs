@@ -82,4 +82,21 @@ public class AccountServer : IAccountServer
             return e.GetExceptionResponse<Session>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.CreateSession(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Session>();
+        }
+    }
 }

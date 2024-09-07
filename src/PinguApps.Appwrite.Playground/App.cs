@@ -21,25 +21,15 @@ internal class App
     {
         //_client.SetSession(_session);
 
-        var request = new CreateEmailPasswordSessionRequest()
+        var request = new CreateSessionRequest()
         {
-            Email = "pingu@pinguapps.com",
-            Password = "REDACTED"
+            UserId = "664aac1a00113f82e620",
+            Secret = "339597"
         };
 
-
-        var response = await _server.Account.CreateEmailPasswordSession(request);
+        var response = await _server.Account.CreateSession(request);
 
         Console.WriteLine(response.Result.Match(
-            account => account.ToString(),
-            appwriteError => appwriteError.Message,
-            internalERror => internalERror.Message));
-
-        await Task.Delay(5000);
-
-        var response2 = await _server.Account.CreateEmailPasswordSession(request);
-
-        Console.WriteLine(response2.Result.Match(
             account => account.ToString(),
             appwriteError => appwriteError.Message,
             internalERror => internalERror.Message));
