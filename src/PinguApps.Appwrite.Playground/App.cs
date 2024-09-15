@@ -19,17 +19,25 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        //_client.SetSession(_session);
+        _client.SetSession(_session);
 
-        var request = new CreateSessionRequest()
-        {
-            UserId = "664aac1a00113f82e620",
-            Secret = "339597"
-        };
-
-        var response = await _server.Account.CreateSession(request);
+        var response = await _client.Account.Get();
 
         Console.WriteLine(response.Result.Match(
+            account => account.ToString(),
+            appwriteError => appwriteError.Message,
+            internalERror => internalERror.Message));
+
+        var r2 = await _client.Account.DeleteSession(new DeleteSessionRequest());
+
+        Console.WriteLine(r2.Result.Match(
+            account => account.ToString(),
+            appwriteError => appwriteError.Message,
+            internalERror => internalERror.Message));
+
+        var r3 = await _client.Account.Get();
+
+        Console.WriteLine(r3.Result.Match(
             account => account.ToString(),
             appwriteError => appwriteError.Message,
             internalERror => internalERror.Message));

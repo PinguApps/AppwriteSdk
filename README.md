@@ -138,14 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![38 / 293](https://progress-bar.dev/38/?scale=293&suffix=%20/%20288&width=500) -->
-![Server & Client - 38 / 293](https://img.shields.io/badge/Server_&_Client-38%20%2F%20293-red?style=for-the-badge)
+<!-- ![39 / 293](https://progress-bar.dev/39/?scale=293&suffix=%20/%20288&width=500) -->
+![Server & Client - 39 / 293](https://img.shields.io/badge/Server_&_Client-39%20%2F%20293-red?style=for-the-badge)
 
 <!-- ![5 / 200](https://progress-bar.dev/5/?scale=195&suffix=%20/%20200&width=300) -->
 ![Server - 5 / 200](https://img.shields.io/badge/Server-5%20%2F%20200-red?style=for-the-badge)
 
-<!-- ![33 / 93](https://progress-bar.dev/33/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 33 / 93](https://img.shields.io/badge/Client-33%20%2F%2093-red?style=for-the-badge)
+<!-- ![34 / 93](https://progress-bar.dev/34/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 34 / 93](https://img.shields.io/badge/Client-34%20%2F%2093-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![38 / 57](https://progress-bar.dev/38/?scale=57&suffix=%20/%2052&width=120) -->
-![Account - 38 / 57](https://img.shields.io/badge/Account-38%20%2F%2057-forestgreen?style=for-the-badge)
+<!-- ![39 / 57](https://progress-bar.dev/39/?scale=57&suffix=%20/%2052&width=120) -->
+![Account - 39 / 57](https://img.shields.io/badge/Account-39%20%2F%2057-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -194,7 +194,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createSession) | ✅ | ✅ |
 | [Get Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#getSession) | ✅ | ❌ |
 | [Update Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateSession) | ✅ | ❌ |
-| [Delete Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteSession) | ⬛ | ❌ |
+| [Delete Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteSession) | ✅ | ❌ |
 | [Update Status](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateStatus) | ⬛ | ❌ |
 | [Create Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPushTarget) | ⬛ | ❌ |
 | [Update Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePushTarget) | ⬛ | ❌ |

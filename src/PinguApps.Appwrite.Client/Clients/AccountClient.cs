@@ -580,4 +580,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<CreateOauth2Session>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult> DeleteSession(DeleteSessionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.DeleteSession(GetCurrentSessionOrThrow(), request.SessionId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
 }

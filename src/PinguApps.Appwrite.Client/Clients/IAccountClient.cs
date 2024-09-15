@@ -275,4 +275,12 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The CreateOauth2Session object</returns>
     AppwriteResult<CreateOauth2Session> CreateOauth2Session(CreateOauth2SessionRequest request);
+
+    /// <summary>
+    /// Logout the user. Use 'current' as the session ID to logout on this device, use a session ID to logout on another device. If you're looking to logout the user on all devices, use <see cref="DeleteSessions"/> instead.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>code 204 for success</returns>
+    Task<AppwriteResult> DeleteSession(DeleteSessionRequest request);
 }

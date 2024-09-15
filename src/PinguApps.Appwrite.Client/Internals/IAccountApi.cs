@@ -104,4 +104,7 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/sessions/email")]
     Task<IApiResponse<Session>> CreateEmailPasswordSession(CreateEmailPasswordSessionRequest request);
+
+    [Delete("/account/sessions/{sessionId}")]
+    Task<IApiResponse> DeleteSession([Header("x-appwrite-session")] string session, string sessionId);
 }
