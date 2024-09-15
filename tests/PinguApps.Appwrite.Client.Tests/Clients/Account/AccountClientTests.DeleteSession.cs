@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Tests;
@@ -7,7 +7,6 @@ using RichardSzalay.MockHttp;
 namespace PinguApps.Appwrite.Client.Tests.Clients.Account;
 public partial class AccountClientTests
 {
-
     [Fact]
     public async Task DeleteSession_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
