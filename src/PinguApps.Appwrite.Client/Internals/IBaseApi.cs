@@ -7,7 +7,7 @@ namespace PinguApps.Appwrite.Client.Internals;
     "x-sdk-platform: client",
     "x-sdk-language: dotnet",
     "x-sdk-version: 0.0.1",
-    "X-Appwrite-Response-Format: 1.5.0")]
+    "X-Appwrite-Response-Format: 1.6.0")]
 internal interface IBaseApi
 {
 }
