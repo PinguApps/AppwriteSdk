@@ -18,7 +18,7 @@ public static class Constants
 
     public const string SdkVersion = "0.0.1";
 
-    public const string AppwriteResponseFormat = "1.5.0";
+    public const string AppwriteResponseFormat = "1.6.0";
 
     public const string AppwriteError = """
         {
