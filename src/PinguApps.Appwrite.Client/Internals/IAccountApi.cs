@@ -107,4 +107,7 @@ internal interface IAccountApi : IBaseApi
 
     [Delete("/account/sessions/{sessionId}")]
     Task<IApiResponse> DeleteSession([Header("x-appwrite-session")] string session, string sessionId);
+
+    [Patch("/account/status")]
+    Task<IApiResponse<User>> UpdateStatus([Header("x-appwrite-session")] string session);
 }

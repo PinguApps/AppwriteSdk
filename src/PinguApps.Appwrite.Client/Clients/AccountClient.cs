@@ -597,4 +597,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<User>> UpdateStatus()
+    {
+        try
+        {
+            var result = await _accountApi.UpdateStatus(GetCurrentSessionOrThrow());
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 }
