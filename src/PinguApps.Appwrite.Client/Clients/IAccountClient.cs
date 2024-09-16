@@ -283,4 +283,10 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>code 204 for success</returns>
     Task<AppwriteResult> DeleteSession(DeleteSessionRequest request);
+
+    /// <summary>
+    /// Block the currently logged in user account. Behind the scene, the user record is not deleted but permanently blocked from any access. To completely delete a user, use the Users API instead.
+    /// </summary>
+    /// <returns>The User</returns>
+    Task<AppwriteResult<User>> UpdateStatus();
 }
