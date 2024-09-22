@@ -99,4 +99,21 @@ public class AccountServer : IAccountServer
             return e.GetExceptionResponse<Session>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.CreateMagicUrlToken(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Token>();
+        }
+    }
 }

@@ -612,4 +612,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<User>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.CreateMagicUrlToken(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Token>();
+        }
+    }
 }
