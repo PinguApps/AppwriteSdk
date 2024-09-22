@@ -5,6 +5,7 @@ public class DeleteSessionRequestValidator : AbstractValidator<DeleteSessionRequ
 {
     public DeleteSessionRequestValidator()
     {
-        RuleFor(x => x.SessionId).NotEmpty();
+        RuleFor(x => x.SessionId)
+            .NotEmpty().WithMessage("SessionId is required.");
     }
 }

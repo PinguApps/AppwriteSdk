@@ -5,6 +5,7 @@ public class UpdateMfaRequestValidator : AbstractValidator<UpdateMfaRequest>
 {
     public UpdateMfaRequestValidator()
     {
-        RuleFor(x => x.MfaEnabled).NotNull();
+        RuleFor(x => x.MfaEnabled)
+            .NotNull().WithMessage("MfaEnabled is required.");
     }
 }

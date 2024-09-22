@@ -5,7 +5,11 @@ public class UpdatePasswordRequestValidator : AbstractValidator<UpdatePasswordRe
 {
     public UpdatePasswordRequestValidator()
     {
-        RuleFor(x => x.NewPassword).NotEmpty().MinimumLength(8);
-        RuleFor(x => x.OldPassword).MinimumLength(8).When(x => x.OldPassword is not null);
+        RuleFor(x => x.NewPassword)
+            .NotEmpty().WithMessage("NewPassword is required.")
+            .MinimumLength(8).WithMessage("NewPassword must be at least 8 characters long.");
+
+        RuleFor(x => x.OldPassword)
+            .MinimumLength(8).When(x => x.OldPassword is not null).WithMessage("OldPassword must be at least 8 characters long.");
     }
 }

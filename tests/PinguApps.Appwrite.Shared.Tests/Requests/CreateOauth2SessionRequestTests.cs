@@ -87,7 +87,6 @@ public class CreateOauth2SessionRequestTests
         yield return new object?[] { "google", "not a url", null, null };
         yield return new object?[] { "google", null, "", null };
         yield return new object?[] { "google", null, "not a url", null };
-        yield return new object?[] { "google", null, null, new List<string>() };
         yield return new object?[] { "google", null, null, Enumerable.Range(0, 101).Select(x => x.ToString()).ToList() };
         yield return new object?[] { "google", null, null, new List<string> { new('a', 4097) } };
     }

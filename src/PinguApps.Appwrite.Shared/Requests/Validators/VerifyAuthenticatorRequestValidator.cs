@@ -5,7 +5,10 @@ public class VerifyAuthenticatorRequestValidator : AbstractValidator<VerifyAuthe
 {
     public VerifyAuthenticatorRequestValidator()
     {
-        RuleFor(x => x.Otp).NotEmpty();
-        RuleFor(x => x.Type).NotEmpty();
+        RuleFor(x => x.Otp)
+            .NotEmpty().WithMessage("Otp is required.");
+
+        RuleFor(x => x.Type)
+            .NotEmpty().WithMessage("Type is required.");
     }
 }

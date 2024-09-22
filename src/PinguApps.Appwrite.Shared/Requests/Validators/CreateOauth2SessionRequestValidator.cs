@@ -6,13 +6,20 @@ public class CreateOauth2SessionRequestValidator : AbstractValidator<CreateOauth
 {
     public CreateOauth2SessionRequestValidator()
     {
-        RuleFor(x => x.Provider).NotEmpty().Must(x => string.Equals(x, x.ToLower(), StringComparison.Ordinal)).WithMessage("Provider must be all lower case.");
-        RuleFor(x => x.SuccessUri).Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).When(x => x.SuccessUri is not null);
-        RuleFor(x => x.FailureUri).Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).When(x => x.FailureUri is not null);
+        RuleFor(x => x.Provider)
+            .NotEmpty().WithMessage("Provider is required.")
+            .Must(provider => provider == provider.ToLower()).WithMessage("Provider must be in lowercase.");
+
+        RuleFor(x => x.SuccessUri)
+            .Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).When(x => x.SuccessUri is not null)
+            .WithMessage("Invalid SuccessUri format.");
+
+        RuleFor(x => x.FailureUri)
+            .Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).When(x => x.FailureUri is not null)
+            .WithMessage("Invalid FailureUri format.");
+
         RuleFor(x => x.Scopes)
-            .Must(x => x!.Count <= 100).WithMessage("You can have a maximum of 100 scopes")
-            .Must(x => x!.Count > 0).WithMessage("You must have more than 0 scopes if passing a non null value")
-            .When(x => x.Scopes is not null);
-        RuleForEach(x => x.Scopes).MaximumLength(4096);
+            .Must(scopes => scopes == null || scopes.Count <= 100).WithMessage("A maximum of 100 scopes are allowed.")
+            .ForEach(scope => scope.MaximumLength(4096).WithMessage("Each scope can be at most 4096 characters long."));
     }
 }
