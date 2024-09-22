@@ -6,6 +6,8 @@ public class CreateEmailVerificationRequestValidator : AbstractValidator<CreateE
 {
     public CreateEmailVerificationRequestValidator()
     {
-        RuleFor(x => x.Url).NotEmpty().Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _));
+        RuleFor(x => x.Url)
+            .NotEmpty().WithMessage("Url is required.")
+            .Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).WithMessage("Invalid URL format.");
     }
 }

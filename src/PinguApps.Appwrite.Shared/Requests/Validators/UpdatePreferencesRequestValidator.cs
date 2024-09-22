@@ -5,6 +5,7 @@ public class UpdatePreferencesRequestValidator : AbstractValidator<UpdatePrefere
 {
     public UpdatePreferencesRequestValidator()
     {
-        RuleFor(x => x.Preferences).NotNull();
+        RuleFor(x => x.Preferences)
+            .NotNull().WithMessage("Preferences are required.");
     }
 }

@@ -5,6 +5,7 @@ public class AddAuthenticatorRequestValidator : AbstractValidator<AddAuthenticat
 {
     public AddAuthenticatorRequestValidator()
     {
-        RuleFor(x => x.Type).NotEmpty();
+        RuleFor(x => x.Type)
+            .NotEmpty().WithMessage("Type is required.");
     }
 }

@@ -6,7 +6,12 @@ public class CreatePasswordRecoveryRequestValidator : AbstractValidator<CreatePa
 {
     public CreatePasswordRecoveryRequestValidator()
     {
-        RuleFor(x => x.Email).NotEmpty().EmailAddress();
-        RuleFor(x => x.Url).NotEmpty().Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _));
+        RuleFor(x => x.Email)
+            .NotEmpty().WithMessage("Email is required.")
+            .EmailAddress().WithMessage("Invalid email format.");
+
+        RuleFor(x => x.Url)
+            .NotEmpty().WithMessage("Url is required.")
+            .Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).WithMessage("Invalid URL format.");
     }
 }
