@@ -21,7 +21,7 @@ internal class App
     {
         //_client.SetSession(_session);
 
-        var response = await _client.Account.CreateMagicUrlToken(new CreateMagicUrlTokenRequest
+        var response = await _server.Account.CreateMagicUrlToken(new CreateMagicUrlTokenRequest
         {
             UserId = "664aac1a00113f82e620",
             Email = "blah@blah.com",

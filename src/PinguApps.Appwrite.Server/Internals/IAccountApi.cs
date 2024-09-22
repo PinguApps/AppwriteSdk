@@ -20,4 +20,7 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/sessions/token")]
     Task<IApiResponse<Session>> CreateSession(CreateSessionRequest request);
+
+    [Post("/account/tokens/magic-url")]
+    Task<IApiResponse<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request);
 }
