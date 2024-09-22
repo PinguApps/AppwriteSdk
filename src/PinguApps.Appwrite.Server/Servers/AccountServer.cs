@@ -116,4 +116,21 @@ public class AccountServer : IAccountServer
             return e.GetExceptionResponse<Token>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Session>> UpdateMagicUrlSession(UpdateMagicUrlSessionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.UpdateMagicUrlSession(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Session>();
+        }
+    }
 }

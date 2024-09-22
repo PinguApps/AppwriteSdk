@@ -28,12 +28,11 @@ internal class App
         //    Url = "https://localhost:1234/magic",
         //    Phrase = true
         //});
-        Console.WriteLine($"Session: {_client.Session}");
 
-        var response = await _client.Account.UpdateMagicUrlSession(new UpdateMagicUrlSessionRequest
+        var response = await _server.Account.UpdateMagicUrlSession(new UpdateMagicUrlSessionRequest
         {
-            UserId = "my Id",
-            Secret = "My secret"
+            UserId = "",
+            Secret = ""
         });
 
         Console.WriteLine(response.Result.Match(
@@ -41,6 +40,11 @@ internal class App
             appwriteError => appwriteError.Message,
             internalERror => internalERror.Message));
 
-        Console.WriteLine($"Session: {_client.Session}");
+        var res2 = await _server.Account.CreateAnonymousSession();
+
+        Console.WriteLine(res2.Result.Match(
+            account => account.ToString(),
+            appwriteError => appwriteError.Message,
+            internalERror => internalERror.Message));
     }
 }
