@@ -21,17 +21,26 @@ internal class App
     {
         //_client.SetSession(_session);
 
-        var response = await _server.Account.CreateMagicUrlToken(new CreateMagicUrlTokenRequest
+        //var response = await _server.Account.CreateMagicUrlToken(new CreateMagicUrlTokenRequest
+        //{
+        //    UserId = "",
+        //    Email = "pingu@example.com",
+        //    Url = "https://localhost:1234/magic",
+        //    Phrase = true
+        //});
+        Console.WriteLine($"Session: {_client.Session}");
+
+        var response = await _client.Account.UpdateMagicUrlSession(new UpdateMagicUrlSessionRequest
         {
-            UserId = "664aac1a00113f82e620",
-            Email = "blah@blah.com",
-            Url = "https://localhost:1234/magic",
-            Phrase = true
+            UserId = "my Id",
+            Secret = "My secret"
         });
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
             appwriteError => appwriteError.Message,
             internalERror => internalERror.Message));
+
+        Console.WriteLine($"Session: {_client.Session}");
     }
 }
