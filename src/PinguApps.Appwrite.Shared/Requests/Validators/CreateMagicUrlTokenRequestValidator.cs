@@ -15,7 +15,7 @@ public class CreateMagicUrlTokenRequestValidator : AbstractValidator<CreateMagic
             .EmailAddress().WithMessage("Invalid email format.");
 
         RuleFor(x => x.Url)
-            .Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).When(x => !string.IsNullOrEmpty(x.Url))
+            .Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).When(x => x.Url is not null)
             .WithMessage("Invalid URL format.");
 
         RuleFor(x => x.Phrase)
