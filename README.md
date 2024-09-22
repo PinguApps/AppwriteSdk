@@ -138,14 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![10 / 290](https://progress-bar.dev/40/?scale=290&suffix=%20/%20288&width=500) -->
-![Server & Client - 40 / 290](https://img.shields.io/badge/Server_&_Client-40%20%2F%20290-red?style=for-the-badge)
+<!-- ![42 / 290](https://progress-bar.dev/42/?scale=290&suffix=%20/%20288&width=500) -->
+![Server & Client - 42 / 290](https://img.shields.io/badge/Server_&_Client-42%20%2F%20290-red?style=for-the-badge)
 
-<!-- ![5 / 200](https://progress-bar.dev/5/?scale=195&suffix=%20/%20200&width=300) -->
-![Server - 5 / 200](https://img.shields.io/badge/Server-5%20%2F%20200-red?style=for-the-badge)
+<!-- ![6 / 200](https://progress-bar.dev/6/?scale=195&suffix=%20/%20200&width=300) -->
+![Server - 6 / 200](https://img.shields.io/badge/Server-6%20%2F%20200-red?style=for-the-badge)
 
-<!-- ![35 / 93](https://progress-bar.dev/35/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 35 / 90](https://img.shields.io/badge/Client-35%20%2F%2090-gold?style=for-the-badge)
+<!-- ![36 / 93](https://progress-bar.dev/36/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 36 / 90](https://img.shields.io/badge/Client-36%20%2F%2090-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![40 / 54](https://progress-bar.dev/40/?scale=54&suffix=%20/%2052&width=120) -->
-![Account - 40 / 54](https://img.shields.io/badge/Account-40%20%2F%2054-forestgreen?style=for-the-badge)
+<!-- ![42 / 54](https://progress-bar.dev/42/?scale=54&suffix=%20/%2052&width=120) -->
+![Account - 42 / 54](https://img.shields.io/badge/Account-42%20%2F%2054-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server | Notes |
 |:-:|:-:|:-:|:-:|
@@ -200,7 +200,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePushTarget) | ❌ | ❌ | Appwrite functionality broken - Use Users API instead. |
 | [Delete Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#deletePushTarget) | ❌ | ❌ | Appwrite functionality broken - Use Users API instead. |
 | [Create Email Token (OTP)](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailToken) | ✅ | ✅ |  |
-| [Create Magic URL Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMagicURLToken) | ⬛ | ⬛ |  |
+| [Create Magic URL Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMagicURLToken) | ✅ | ✅ |  |
 | [Create OAuth2 Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Token) | ⬛ | ⬛ |  |
 | [Create Phone Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneToken) | ⬛ | ⬛ |  |
 | [Create Email Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createVerification) | ✅ | ❌ |  |
