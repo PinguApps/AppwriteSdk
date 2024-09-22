@@ -21,15 +21,28 @@ internal class App
     {
         //_client.SetSession(_session);
 
-        var response = await _server.Account.CreateMagicUrlToken(new CreateMagicUrlTokenRequest
+        //var response = await _server.Account.CreateMagicUrlToken(new CreateMagicUrlTokenRequest
+        //{
+        //    UserId = "",
+        //    Email = "pingu@example.com",
+        //    Url = "https://localhost:1234/magic",
+        //    Phrase = true
+        //});
+
+        var response = await _server.Account.UpdateMagicUrlSession(new UpdateMagicUrlSessionRequest
         {
-            UserId = "664aac1a00113f82e620",
-            Email = "blah@blah.com",
-            Url = "https://localhost:1234/magic",
-            Phrase = true
+            UserId = "",
+            Secret = ""
         });
 
         Console.WriteLine(response.Result.Match(
+            account => account.ToString(),
+            appwriteError => appwriteError.Message,
+            internalERror => internalERror.Message));
+
+        var res2 = await _server.Account.CreateAnonymousSession();
+
+        Console.WriteLine(res2.Result.Match(
             account => account.ToString(),
             appwriteError => appwriteError.Message,
             internalERror => internalERror.Message));

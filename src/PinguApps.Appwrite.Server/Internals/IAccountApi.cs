@@ -23,4 +23,7 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/tokens/magic-url")]
     Task<IApiResponse<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request);
+
+    [Put("/account/sessions/magic-url")]
+    Task<IApiResponse<Session>> UpdateMagicUrlSession(UpdateMagicUrlSessionRequest request);
 }

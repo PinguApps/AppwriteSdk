@@ -299,4 +299,11 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The token</returns>
     Task<AppwriteResult<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request);
+
+    /// <summary>
+    /// Use this endpoint to create a session from token. Provide the <see cref="UpdateMagicUrlSessionRequest.UserId"/> and <see cref="UpdateMagicUrlSessionRequest.Secret"/> parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The session</returns>
+    Task<AppwriteResult<Session>> UpdateMagicUrlSession(UpdateMagicUrlSessionRequest request);
 }
