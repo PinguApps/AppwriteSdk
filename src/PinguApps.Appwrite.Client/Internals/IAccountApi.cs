@@ -110,4 +110,7 @@ internal interface IAccountApi : IBaseApi
 
     [Patch("/account/status")]
     Task<IApiResponse<User>> UpdateStatus([Header("x-appwrite-session")] string session);
+
+    [Post("/account/tokens/magic-url")]
+    Task<IApiResponse<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request);
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Client;
 using PinguApps.Appwrite.Server.Servers;
+using PinguApps.Appwrite.Shared.Requests;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -18,9 +19,15 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        _client.SetSession(_session);
+        //_client.SetSession(_session);
 
-        var response = await _client.Account.UpdateStatus();
+        var response = await _client.Account.CreateMagicUrlToken(new CreateMagicUrlTokenRequest
+        {
+            UserId = "664aac1a00113f82e620",
+            Email = "blah@blah.com",
+            Url = "https://localhost:1234/magic",
+            Phrase = true
+        });
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
