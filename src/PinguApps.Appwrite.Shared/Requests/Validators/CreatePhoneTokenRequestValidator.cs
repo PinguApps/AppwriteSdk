@@ -5,7 +5,6 @@ public class CreatePhoneTokenRequestValidator : AbstractValidator<CreatePhoneTok
 {
     public CreatePhoneTokenRequestValidator()
     {
-
         RuleFor(request => request.UserId)
             .NotEmpty().WithMessage("User ID must not be empty.")
             .Matches("^[a-zA-Z0-9][a-zA-Z0-9._-]{0,35}$").WithMessage("User ID must be alphanumeric and can include periods, hyphens, and underscores. It cannot start with a special character and must be at most 36 characters long.");
