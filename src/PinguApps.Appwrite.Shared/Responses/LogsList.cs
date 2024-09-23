@@ -10,5 +10,5 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Logs">List of logs. Can be one of: <see cref="LogModel"/></param>
 public record LogsList(
     [property: JsonPropertyName("total")] int Total,
-    [property: JsonPropertyName("logs")] List<LogModel> Logs
+    [property: JsonPropertyName("logs")] IReadOnlyList<LogModel> Logs
 );
