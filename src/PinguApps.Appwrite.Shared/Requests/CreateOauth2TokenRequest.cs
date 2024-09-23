@@ -5,9 +5,9 @@ using PinguApps.Appwrite.Shared.Requests.Validators;
 namespace PinguApps.Appwrite.Shared.Requests;
 
 /// <summary>
-/// The request for creating an Oauth2 Session
+/// The request for creating an Oauth2 token
 /// </summary>
-public class CreateOauth2SessionRequest : QueryParamBaseRequest<CreateOauth2SessionRequest, CreateOauth2SessionRequestValidator>
+public class CreateOauth2TokenRequest : QueryParamBaseRequest<CreateOauth2TokenRequest, CreateOauth2TokenRequestValidator>
 {
     /// <summary>
     /// OAuth2 Provider. Currently, supported providers are:
@@ -34,5 +34,5 @@ public class CreateOauth2SessionRequest : QueryParamBaseRequest<CreateOauth2Sess
     [QueryParameter("scopes[]")]
     public List<string>? Scopes { get; set; }
 
-    protected override string Path => "/account/sessions/oauth2/{provider}";
+    protected override string Path => "/account/tokens/oauth2/{provider}";
 }
