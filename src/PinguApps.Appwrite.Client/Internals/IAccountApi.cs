@@ -120,4 +120,7 @@ internal interface IAccountApi : IBaseApi
     [Get("/account/identities")]
     [QueryUriFormat(System.UriFormat.Unescaped)]
     Task<IApiResponse<IdentitiesList>> ListIdentities([Header("x-appwrite-session")] string session, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries);
+
+    [Delete("/account/identities/{identityId}")]
+    Task<IApiResponse> DeleteIdentity([Header("x-appwrite-session")] string session, string identityId);
 }
