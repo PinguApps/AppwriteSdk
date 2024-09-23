@@ -21,7 +21,7 @@ internal class App
     {
         //_client.SetSession(_session);
 
-        var response = _client.Account.CreateOauth2Token(new CreateOauth2TokenRequest
+        var response = _server.Account.CreateOauth2Token(new CreateOauth2TokenRequest
         {
             Provider = "google",
             SuccessUri = "https://localhost:1234/success",

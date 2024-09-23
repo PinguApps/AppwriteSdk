@@ -12,9 +12,12 @@ public class AccountServer : IAccountServer
 {
     private readonly IAccountApi _accountApi;
 
-    public AccountServer(IServiceProvider services)
+    private readonly Config _config;
+
+    public AccountServer(IServiceProvider services, Config config)
     {
         _accountApi = services.GetRequiredService<IAccountApi>();
+        _config = config;
     }
 
     /// <inheritdoc/>
@@ -131,6 +134,23 @@ public class AccountServer : IAccountServer
         catch (Exception e)
         {
             return e.GetExceptionResponse<Session>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public AppwriteResult<CreateOauth2Token> CreateOauth2Token(CreateOauth2TokenRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var uri = request.BuildUri(_config.Endpoint, _config.ProjectId);
+
+            return new AppwriteResult<CreateOauth2Token>(new CreateOauth2Token(uri.AbsoluteUri));
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<CreateOauth2Token>();
         }
     }
 }

@@ -302,6 +302,7 @@ public interface IAccountClient
 
     /// <summary>
     /// Use this endpoint to create a session from token. Provide the <see cref="UpdateMagicUrlSessionRequest.UserId"/> and <see cref="UpdateMagicUrlSessionRequest.Secret"/> parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMagicURLSession">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The session</returns>
