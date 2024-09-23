@@ -153,4 +153,21 @@ public class AccountServer : IAccountServer
             return e.GetExceptionResponse<CreateOauth2Token>();
         }
     }
+
+    /// <inheritdoc/>
+    public AppwriteResult<CreateOauth2Session> CreateOauth2Session(CreateOauth2SessionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var uri = request.BuildUri(_config.Endpoint, _config.ProjectId);
+
+            return new AppwriteResult<CreateOauth2Session>(new CreateOauth2Session(uri.AbsoluteUri));
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<CreateOauth2Session>();
+        }
+    }
 }
