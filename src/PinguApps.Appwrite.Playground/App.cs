@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Client;
 using PinguApps.Appwrite.Server.Servers;
-using PinguApps.Appwrite.Shared.Requests;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -19,14 +18,9 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        //_client.SetSession(_session);
+        _client.SetSession(_session);
 
-        var response = _server.Account.CreateOauth2Token(new CreateOauth2TokenRequest
-        {
-            Provider = "google",
-            SuccessUri = "https://localhost:1234/success",
-            FailureUri = "https://localhost:1234/success"
-        });
+        var response = await _client.Account.ListIdentities();
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),

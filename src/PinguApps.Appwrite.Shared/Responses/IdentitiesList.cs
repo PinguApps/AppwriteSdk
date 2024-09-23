@@ -9,6 +9,6 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Count">Total number of identities documents that matched your query.</param>
 /// <param name="Identities">List of identities. Can be one of: <see cref="IdentityModel"/></param>
 public record IdentitiesList(
-    [property: JsonPropertyName("count")] int Count,
+    [property: JsonPropertyName("total")] int Total,
     [property: JsonPropertyName("identities")] IReadOnlyList<IdentityModel> Identities
 );

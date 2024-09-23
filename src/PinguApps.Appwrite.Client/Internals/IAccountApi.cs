@@ -116,4 +116,8 @@ internal interface IAccountApi : IBaseApi
 
     [Put("/account/sessions/magic-url")]
     Task<IApiResponse<Session>> UpdateMagicUrlSession(UpdateMagicUrlSessionRequest request);
+
+    [Get("/account/identities")]
+    [QueryUriFormat(System.UriFormat.Unescaped)]
+    Task<IApiResponse<IdentitiesList>> ListIdentities([Header("x-appwrite-session")] string session, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries);
 }

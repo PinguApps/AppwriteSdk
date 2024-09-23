@@ -663,4 +663,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<CreateOauth2Token>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<IdentitiesList>> ListIdentities(List<Query>? queries = null)
+    {
+        try
+        {
+            var queryStrings = queries?.Select(x => x.GetQueryString()) ?? [];
+
+            var result = await _accountApi.ListIdentities(GetCurrentSessionOrThrow(), queryStrings);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<IdentitiesList>();
+        }
+    }
 }
