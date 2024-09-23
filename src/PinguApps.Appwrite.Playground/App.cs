@@ -21,7 +21,7 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var response = await _client.Account.CreatePhoneToken(new CreatePhoneTokenRequest
+        var response = await _server.Account.CreatePhoneToken(new CreatePhoneTokenRequest
         {
             UserId = "664aac1a00113f82e620",
             PhoneNumber = "+447500112374"
