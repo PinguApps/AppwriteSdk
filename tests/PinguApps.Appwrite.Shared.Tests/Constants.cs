@@ -229,4 +229,24 @@ public static class Constants
             ]
         }
         """;
+
+    public const string IdentitiesListResponse = """
+        {
+            "total": 5,
+            "identities": [
+                {
+                    "$id": "5e5ea5c16897e",
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "userId": "5e5bb8c16897e",
+                    "provider": "email",
+                    "providerUid": "5e5bb8c16897e",
+                    "providerEmail": "user@example.com",
+                    "providerAccessToken": "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
+                    "providerAccessTokenExpiry": "2020-10-15T06:38:00.000+00:00",
+                    "providerRefreshToken": "MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3"
+                }
+            ]
+        }
+        """;
 }

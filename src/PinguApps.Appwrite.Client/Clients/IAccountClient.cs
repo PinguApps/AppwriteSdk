@@ -317,4 +317,12 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The CreateOauth2Token object</returns>
     AppwriteResult<CreateOauth2Token> CreateOauth2Token(CreateOauth2TokenRequest request);
+
+    /// <summary>
+    /// Get the list of identities for the currently logged in user
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listIdentities">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: <c>userId</c>, <c>provider</c>, <c>providerUid</c>, <c>providerEmail</c>, <c>providerAccessTokenExpiry</c></param>
+    /// <returns>The Identities List</returns>
+    Task<AppwriteResult<IdentitiesList>> ListIdentities(List<Query>? queries = null);
 }
