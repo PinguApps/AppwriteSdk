@@ -26,4 +26,7 @@ internal interface IAccountApi : IBaseApi
 
     [Put("/account/sessions/magic-url")]
     Task<IApiResponse<Session>> UpdateMagicUrlSession(UpdateMagicUrlSessionRequest request);
+
+    [Post("/account/tokens/phone")]
+    Task<IApiResponse<Token>> CreatePhoneToken(CreatePhoneTokenRequest request);
 }

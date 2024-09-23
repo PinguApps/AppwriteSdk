@@ -170,4 +170,21 @@ public class AccountServer : IAccountServer
             return e.GetExceptionResponse<CreateOauth2Session>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Token>> CreatePhoneToken(CreatePhoneTokenRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.CreatePhoneToken(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Token>();
+        }
+    }
 }

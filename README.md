@@ -138,14 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![49 / 291](https://progress-bar.dev/49/?scale=291&suffix=%20/%20288&width=500) -->
-![Server & Client - 49 / 291](https://img.shields.io/badge/Server_&_Client-49%20%2F%20291-red?style=for-the-badge)
+<!-- ![51 / 291](https://progress-bar.dev/51/?scale=291&suffix=%20/%20288&width=500) -->
+![Server & Client - 51 / 291](https://img.shields.io/badge/Server_&_Client-51%20%2F%20291-red?style=for-the-badge)
 
-<!-- ![9 / 201](https://progress-bar.dev/9/?scale=195&suffix=%20/%20201&width=300) -->
-![Server - 9 / 201](https://img.shields.io/badge/Server-9%20%2F%20201-red?style=for-the-badge)
+<!-- ![10 / 201](https://progress-bar.dev/10/?scale=201&suffix=%20/%20201&width=300) -->
+![Server - 10 / 201](https://img.shields.io/badge/Server-10%20%2F%20201-red?style=for-the-badge)
 
-<!-- ![40 / 93](https://progress-bar.dev/40/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 40 / 90](https://img.shields.io/badge/Client-40%20%2F%2090-gold?style=for-the-badge)
+<!-- ![41 / 93](https://progress-bar.dev/41/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 41 / 90](https://img.shields.io/badge/Client-41%20%2F%2090-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![49 / 55](https://progress-bar.dev/49/?scale=55&suffix=%20/%2052&width=120) -->
-![Account - 49 / 55](https://img.shields.io/badge/Account-49%20%2F%2055-forestgreen?style=for-the-badge)
+<!-- ![51 / 55](https://progress-bar.dev/51/?scale=55&suffix=%20/%2052&width=120) -->
+![Account - 51 / 55](https://img.shields.io/badge/Account-51%20%2F%2055-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server | Notes |
 |:-:|:-:|:-:|:-:|
@@ -190,7 +190,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Email Password Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailPasswordSession) | ✅ | ✅ |  |
 | [Update Magic URL Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMagicURLSession) | ✅ | ✅ |  |
 | [Create OAuth2 Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Session) | ✅ | ✅ |  |
-| [Update Phone Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneSession) | ⬛ | ⬛ |  |
+| [Update Phone Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneSession) | ✅ | ✅ |  |
 | [Create Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createSession) | ✅ | ✅ |  |
 | [Get Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#getSession) | ✅ | ❌ |  |
 | [Update Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateSession) | ✅ | ❌ |  |
