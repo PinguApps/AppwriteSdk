@@ -138,14 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![44 / 290](https://progress-bar.dev/44/?scale=290&suffix=%20/%20288&width=500) -->
-![Server & Client - 44 / 290](https://img.shields.io/badge/Server_&_Client-44%20%2F%20290-red?style=for-the-badge)
+<!-- ![47 / 291](https://progress-bar.dev/47/?scale=291&suffix=%20/%20288&width=500) -->
+![Server & Client - 47 / 291](https://img.shields.io/badge/Server_&_Client-47%20%2F%20291-red?style=for-the-badge)
 
-<!-- ![7 / 200](https://progress-bar.dev/7/?scale=195&suffix=%20/%20200&width=300) -->
-![Server - 7 / 200](https://img.shields.io/badge/Server-7%20%2F%20200-red?style=for-the-badge)
+<!-- ![9 / 201](https://progress-bar.dev/9/?scale=195&suffix=%20/%20201&width=300) -->
+![Server - 9 / 201](https://img.shields.io/badge/Server-9%20%2F%20201-red?style=for-the-badge)
 
-<!-- ![37 / 93](https://progress-bar.dev/37/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 37 / 90](https://img.shields.io/badge/Client-377%20%2F%2090-gold?style=for-the-badge)
+<!-- ![38 / 93](https://progress-bar.dev/38/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 38 / 90](https://img.shields.io/badge/Client-38%20%2F%2090-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![44 / 54](https://progress-bar.dev/44/?scale=54&suffix=%20/%2052&width=120) -->
-![Account - 44 / 54](https://img.shields.io/badge/Account-44%20%2F%2054-forestgreen?style=for-the-badge)
+<!-- ![47 / 55](https://progress-bar.dev/47/?scale=55&suffix=%20/%2052&width=120) -->
+![Account - 47 / 55](https://img.shields.io/badge/Account-44%20%2F%2055-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server | Notes |
 |:-:|:-:|:-:|:-:|
@@ -189,7 +189,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Anonymous Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createAnonymousSession) | ✅ | ✅ |  |
 | [Create Email Password Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailPasswordSession) | ✅ | ✅ |  |
 | [Update Magic URL Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMagicURLSession) | ✅ | ✅ |  |
-| [Create OAuth2 Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Session) | ✅ | ❌ |  |
+| [Create OAuth2 Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Session) | ✅ | ✅ |  |
 | [Update Phone Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneSession) | ⬛ | ⬛ |  |
 | [Create Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createSession) | ✅ | ✅ |  |
 | [Get Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#getSession) | ✅ | ❌ |  |
@@ -201,7 +201,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#deletePushTarget) | ❌ | ❌ | Appwrite functionality broken - Use Users API instead. |
 | [Create Email Token (OTP)](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailToken) | ✅ | ✅ |  |
 | [Create Magic URL Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMagicURLToken) | ✅ | ✅ |  |
-| [Create OAuth2 Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Token) | ⬛ | ⬛ |  |
+| [Create OAuth2 Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Token) | ✅| ✅ |  |
 | [Create Phone Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneToken) | ⬛ | ⬛ |  |
 | [Create Email Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createVerification) | ✅ | ❌ |  |
 | [Create Email Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateVerification) | ✅ | ❌ |  |

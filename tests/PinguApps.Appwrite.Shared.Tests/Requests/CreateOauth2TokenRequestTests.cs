@@ -2,9 +2,9 @@
 using PinguApps.Appwrite.Shared.Requests;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests;
-public class CreateOauth2SessionRequestTests
+public class CreateOauth2TokenRequestTests
 {
-    public class TestableCreateOauth2SessionRequest : CreateOauth2SessionRequest
+    public class TestableCreateOauth2TokenRequest : CreateOauth2TokenRequest
     {
         public string ExposedPath => Path;
     }
@@ -13,14 +13,14 @@ public class CreateOauth2SessionRequestTests
     public void Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
-        var request = new TestableCreateOauth2SessionRequest();
+        var request = new TestableCreateOauth2TokenRequest();
 
         // Assert
         Assert.Equal(string.Empty, request.Provider);
         Assert.Null(request.SuccessUri);
         Assert.Null(request.FailureUri);
         Assert.Null(request.Scopes);
-        Assert.Equal("/account/sessions/oauth2/{provider}", request.ExposedPath);
+        Assert.Equal("/account/tokens/oauth2/{provider}", request.ExposedPath);
     }
 
     [Fact]
@@ -36,7 +36,7 @@ public class CreateOauth2SessionRequestTests
             "scope2"
         };
 
-        var request = new CreateOauth2SessionRequest();
+        var request = new CreateOauth2TokenRequest();
 
         // Act
         request.Provider = provider;
@@ -62,7 +62,7 @@ public class CreateOauth2SessionRequestTests
     public void IsValid_WithValidData_ReturnsTrue(string provider, string? success, string? failure, List<string> scopes)
     {
         // Arrange
-        var request = new CreateOauth2SessionRequest
+        var request = new CreateOauth2TokenRequest
         {
             Provider = provider,
             SuccessUri = success,
@@ -96,7 +96,7 @@ public class CreateOauth2SessionRequestTests
     public void IsValid_WithInvalidData_ReturnsFalse(string? provider, string? success, string? failure, List<string> scopes)
     {
         // Arrange
-        var request = new CreateOauth2SessionRequest
+        var request = new CreateOauth2TokenRequest
         {
             Provider = provider!,
             SuccessUri = success,
@@ -115,7 +115,7 @@ public class CreateOauth2SessionRequestTests
     public void Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = new CreateOauth2SessionRequest
+        var request = new CreateOauth2TokenRequest
         {
             Provider = "",
             SuccessUri = "not a url"
@@ -129,7 +129,7 @@ public class CreateOauth2SessionRequestTests
     public void Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = new CreateOauth2SessionRequest
+        var request = new CreateOauth2TokenRequest
         {
             Provider = "",
             SuccessUri = "not a url"

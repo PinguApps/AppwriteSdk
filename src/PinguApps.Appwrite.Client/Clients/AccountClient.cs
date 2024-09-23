@@ -646,4 +646,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<Session>();
         }
     }
+
+    /// <inheritdoc/>
+    public AppwriteResult<CreateOauth2Token> CreateOauth2Token(CreateOauth2TokenRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var uri = request.BuildUri(_config.Endpoint, _config.ProjectId);
+
+            return new AppwriteResult<CreateOauth2Token>(new CreateOauth2Token(uri.AbsoluteUri));
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<CreateOauth2Token>();
+        }
+    }
 }

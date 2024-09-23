@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Handlers;
 using PinguApps.Appwrite.Server.Internals;
 using PinguApps.Appwrite.Server.Servers;
+using PinguApps.Appwrite.Shared;
 using Refit;
 
 namespace PinguApps.Appwrite.Server;
@@ -36,6 +37,8 @@ public static class ServiceCollectionExtensions
                      clientHandler.UseCookies = false;
                  }
              });
+
+        services.AddSingleton(new Config(endpoint, projectId));
 
         services.AddSingleton<IAccountServer, AccountServer>();
         services.AddSingleton<IAppwriteServer, AppwriteServer>();
