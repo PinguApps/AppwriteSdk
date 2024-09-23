@@ -328,8 +328,18 @@ public interface IAccountClient
 
     /// <summary>
     /// Delete an identity by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteIdentity">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>code 204 ofr success</returns>
     Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request);
+
+    /// <summary>
+    /// <para>Sends the user an SMS with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to <see cref="CreateSession(CreateSessionRequest)"/> to complete the login process. The secret sent to the user's phone is valid for 15 minutes.</para>
+    /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/authentication-security#limits">Learn more about session limits</see>.</para>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneToken">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The token</returns>
+    Task<AppwriteResult<Token>> CreatePhoneToken(CreatePhoneTokenRequest request);
 }

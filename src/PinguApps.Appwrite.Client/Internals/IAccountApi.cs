@@ -123,4 +123,7 @@ internal interface IAccountApi : IBaseApi
 
     [Delete("/account/identities/{identityId}")]
     Task<IApiResponse> DeleteIdentity([Header("x-appwrite-session")] string session, string identityId);
+
+    [Post("/account/tokens/phone")]
+    Task<IApiResponse<Token>> CreatePhoneToken(CreatePhoneTokenRequest request);
 }

@@ -21,9 +21,10 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var response = await _client.Account.DeleteIdentity(new DeleteIdentityRequest
+        var response = await _client.Account.CreatePhoneToken(new CreatePhoneTokenRequest
         {
-            IdentityId = "my identity id"
+            UserId = "664aac1a00113f82e620",
+            PhoneNumber = "+447500112374"
         });
 
         Console.WriteLine(response.Result.Match(
