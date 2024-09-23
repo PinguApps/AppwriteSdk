@@ -325,4 +325,11 @@ public interface IAccountClient
     /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: <c>userId</c>, <c>provider</c>, <c>providerUid</c>, <c>providerEmail</c>, <c>providerAccessTokenExpiry</c></param>
     /// <returns>The Identities List</returns>
     Task<AppwriteResult<IdentitiesList>> ListIdentities(List<Query>? queries = null);
+
+    /// <summary>
+    /// Delete an identity by its unique ID
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>code 204 ofr success</returns>
+    Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request);
 }

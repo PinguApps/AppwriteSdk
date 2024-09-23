@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Client;
 using PinguApps.Appwrite.Server.Servers;
+using PinguApps.Appwrite.Shared.Requests;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -20,7 +21,10 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var response = await _client.Account.ListIdentities();
+        var response = await _client.Account.DeleteIdentity(new DeleteIdentityRequest
+        {
+            IdentityId = "my identity id"
+        });
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),

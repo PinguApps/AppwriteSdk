@@ -680,4 +680,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<IdentitiesList>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.DeleteIdentity(GetCurrentSessionOrThrow(), request.IdentityId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
 }
