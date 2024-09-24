@@ -19,17 +19,23 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        _client.SetSession(_session);
+        //_client.SetSession(_session);
 
-        var response = await _server.Account.CreatePhoneToken(new CreatePhoneTokenRequest
+        Console.WriteLine(_client.Session);
+
+        var response = await _client.Account.UpdatePhoneSession(new UpdatePhoneSessionRequest
         {
             UserId = "664aac1a00113f82e620",
-            PhoneNumber = "+447500112374"
+            //PhoneNumber = "+44123456",
+            Secret = "242849"
         });
 
         Console.WriteLine(response.Result.Match(
             account => account.ToString(),
             appwriteError => appwriteError.Message,
-            internalERror => internalERror.Message));
+            internalError => internalError.Message));
+
+
+        Console.WriteLine(_client.Session);
     }
 }

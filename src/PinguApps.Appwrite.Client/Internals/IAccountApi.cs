@@ -126,4 +126,7 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/tokens/phone")]
     Task<IApiResponse<Token>> CreatePhoneToken(CreatePhoneTokenRequest request);
+
+    [Put("/account/sessions/phone")]
+    Task<IApiResponse<Session>> UpdatePhoneSession(UpdatePhoneSessionRequest request);
 }

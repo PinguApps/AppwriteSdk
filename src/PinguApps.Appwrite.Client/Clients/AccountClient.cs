@@ -714,4 +714,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<Token>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Session>> UpdatePhoneSession(UpdatePhoneSessionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.UpdatePhoneSession(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Session>();
+        }
+    }
 }
