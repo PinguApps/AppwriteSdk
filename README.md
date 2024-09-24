@@ -138,14 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![51 / 291](https://progress-bar.dev/51/?scale=291&suffix=%20/%20288&width=500) -->
-![Server & Client - 51 / 291](https://img.shields.io/badge/Server_&_Client-51%20%2F%20291-red?style=for-the-badge)
+<!-- ![53 / 291](https://progress-bar.dev/53/?scale=291&suffix=%20/%20288&width=500) -->
+![Server & Client - 53 / 291](https://img.shields.io/badge/Server_&_Client-53%20%2F%20291-red?style=for-the-badge)
 
-<!-- ![10 / 201](https://progress-bar.dev/10/?scale=201&suffix=%20/%20201&width=300) -->
-![Server - 10 / 201](https://img.shields.io/badge/Server-10%20%2F%20201-red?style=for-the-badge)
+<!-- ![11 / 201](https://progress-bar.dev/11/?scale=201&suffix=%20/%20201&width=300) -->
+![Server - 11 / 201](https://img.shields.io/badge/Server-11%20%2F%20201-red?style=for-the-badge)
 
-<!-- ![41 / 93](https://progress-bar.dev/41/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 41 / 90](https://img.shields.io/badge/Client-41%20%2F%2090-gold?style=for-the-badge)
+<!-- ![42 / 93](https://progress-bar.dev/42/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 42 / 90](https://img.shields.io/badge/Client-42%20%2F%2090-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![51 / 55](https://progress-bar.dev/51/?scale=55&suffix=%20/%2052&width=120) -->
-![Account - 51 / 55](https://img.shields.io/badge/Account-51%20%2F%2055-forestgreen?style=for-the-badge)
+<!-- ![53 / 55](https://progress-bar.dev/53/?scale=55&suffix=%20/%2052&width=120) -->
+![Account - 53 / 55](https://img.shields.io/badge/Account-53%20%2F%2055-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server | Notes |
 |:-:|:-:|:-:|:-:|
@@ -202,7 +202,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Email Token (OTP)](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailToken) | ✅ | ✅ |  |
 | [Create Magic URL Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMagicURLToken) | ✅ | ✅ |  |
 | [Create OAuth2 Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Token) | ✅| ✅ |  |
-| [Create Phone Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneToken) | ⬛ | ⬛ |  |
+| [Create Phone Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneToken) | ✅ | ✅ |  |
 | [Create Email Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createVerification) | ✅ | ❌ |  |
 | [Create Email Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateVerification) | ✅ | ❌ |  |
 | [Create Phone Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneVerification) | ⬛ | ❌ |  |
