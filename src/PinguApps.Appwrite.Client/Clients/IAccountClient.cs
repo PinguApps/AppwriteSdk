@@ -350,4 +350,11 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The session</returns>
     Task<AppwriteResult<Session>> UpdatePhoneSession(UpdatePhoneSessionRequest request);
+
+    /// <summary>
+    /// Use this endpoint to send a verification SMS to the currently logged in user. This endpoint is meant for use after updating a user's phone number using <see cref="UpdatePhone(UpdatePhoneRequest)"/>. Learn more about how to <see href="https://appwrite.io/docs/references/cloud/client-web/account#updatePhoneVerification">complete the verification process</see>. The verification code sent to the user's phone number is valid for 15 minutes.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneVerification">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The token</returns>
+    Task<AppwriteResult<Token>> CreatePhoneVerification();
 }
