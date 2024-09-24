@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Requests.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests;
 public class UpdatePhoneVerificationConfirmationRequest : BaseRequest<UpdatePhoneVerificationConfirmationRequest, UpdatePhoneVerificationConfirmationRequestValidator>

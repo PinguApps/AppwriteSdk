@@ -357,4 +357,12 @@ public interface IAccountClient
     /// </summary>
     /// <returns>The token</returns>
     Task<AppwriteResult<Token>> CreatePhoneVerification();
+
+    /// <summary>
+    /// Use this endpoint to complete the user phone verification process. Use the <c>userId</c> and <c>secret</c> that were sent to your user's phone number to verify the user email ownership. If confirmed this route will return a 200 status code.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The token</returns>
+    Task<AppwriteResult<Token>> UpdatePhoneVerificationConfirmation(UpdatePhoneVerificationConfirmationRequest request);
 }

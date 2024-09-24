@@ -746,4 +746,21 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<Token>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Token>> UpdatePhoneVerificationConfirmation(UpdatePhoneVerificationConfirmationRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.UpdatePhoneVerificationConfirmation(GetCurrentSessionOrThrow(), request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Token>();
+        }
+    }
 }
