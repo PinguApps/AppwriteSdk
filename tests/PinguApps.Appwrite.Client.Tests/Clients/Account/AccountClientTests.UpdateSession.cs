@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using PinguApps.Appwrite.Client.Clients;
+using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Tests;
 using PinguApps.Appwrite.Shared.Utils;
 using RichardSzalay.MockHttp;
@@ -11,6 +12,8 @@ public partial class AccountClientTests
     public async Task UpdateSession_HitsCurrent_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
+        var request = new UpdatetSessionRequest();
+
         _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/sessions/current")
             .ExpectedHeaders(true)
             .Respond(Constants.AppJson, Constants.UserResponse);
@@ -18,7 +21,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.UpdateSession();
+        var result = await _appwriteClient.Account.UpdateSession(request);
 
         // Assert
         Assert.True(result.Success);
@@ -28,16 +31,19 @@ public partial class AccountClientTests
     public async Task UpdateSession_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        var sessionId = IdUtils.GenerateUniqueId();
+        var request = new UpdatetSessionRequest
+        {
+            SessionId = IdUtils.GenerateUniqueId()
+        };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/sessions/{sessionId}")
+        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/sessions/{request.SessionId}")
             .ExpectedHeaders(true)
             .Respond(Constants.AppJson, Constants.UserResponse);
 
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.UpdateSession(sessionId);
+        var result = await _appwriteClient.Account.UpdateSession(request);
 
         // Assert
         Assert.True(result.Success);
@@ -46,8 +52,11 @@ public partial class AccountClientTests
     [Fact]
     public async Task UpdateSession_ShouldReturnError_WhenSessionIsNull()
     {
+        // Arrange
+        var request = new UpdatetSessionRequest();
+
         // Act
-        var result = await _appwriteClient.Account.UpdateSession();
+        var result = await _appwriteClient.Account.UpdateSession(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -59,6 +68,8 @@ public partial class AccountClientTests
     public async Task UpdateSession_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
+        var request = new UpdatetSessionRequest();
+
         _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/sessions/current")
             .ExpectedHeaders(true)
             .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
@@ -66,7 +77,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.UpdateSession();
+        var result = await _appwriteClient.Account.UpdateSession(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -77,6 +88,8 @@ public partial class AccountClientTests
     public async Task UpdateSession_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
+        var request = new UpdatetSessionRequest();
+
         _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/sessions/current")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
@@ -84,7 +97,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.UpdateSession();
+        var result = await _appwriteClient.Account.UpdateSession(request);
 
         // Assert
         Assert.False(result.Success);

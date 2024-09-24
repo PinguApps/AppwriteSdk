@@ -211,11 +211,13 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<Session>> GetSession(string sessionId = "current")
+    public async Task<AppwriteResult<Session>> GetSession(GetSessionRequest request)
     {
         try
         {
-            var result = await _accountApi.GetSession(GetCurrentSessionOrThrow(), sessionId);
+            request.Validate(true);
+
+            var result = await _accountApi.GetSession(GetCurrentSessionOrThrow(), request.SessionId);
 
             return result.GetApiResponse();
         }
@@ -226,11 +228,13 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<Session>> UpdateSession(string sessionId = "current")
+    public async Task<AppwriteResult<Session>> UpdateSession(UpdatetSessionRequest request)
     {
         try
         {
-            var result = await _accountApi.UpdateSession(GetCurrentSessionOrThrow(), sessionId);
+            request.Validate(true);
+
+            var result = await _accountApi.UpdateSession(GetCurrentSessionOrThrow(), request.SessionId);
 
             return result.GetApiResponse();
         }

@@ -98,17 +98,17 @@ public interface IAccountClient
     /// Use this endpoint to get a logged in user's session using a Session ID. Inputting 'current' will return the current session being used
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#getSession">Appwrite Docs</see></para>
     /// </summary>
-    /// <param name="sessionId">Session ID. Use the string 'current' to get the current device session</param>
+    /// <param name="request">The request content</param>
     /// <returns>The session</returns>
-    Task<AppwriteResult<Session>> GetSession(string sessionId = "current");
+    Task<AppwriteResult<Session>> GetSession(GetSessionRequest request);
 
     /// <summary>
     /// Use this endpoint to extend a session's length. Extending a session is useful when session expiry is short. If the session was created using an OAuth provider, this endpoint refreshes the access token from the provider.
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateSession">Appwrite Docs</see></para>
     /// </summary>
-    /// <param name="sessionId">Session ID. Use the string 'current' to update the current device session.</param>
+    /// <param name="request">The request content</param>
     /// <returns>The session</returns>
-    Task<AppwriteResult<Session>> UpdateSession(string sessionId = "current");
+    Task<AppwriteResult<Session>> UpdateSession(UpdatetSessionRequest request);
 
     /// <summary>
     /// <para>Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the userId and secret arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the userId and secret parameters. Learn more about how to <see href="https://appwrite.io/docs/references/cloud/client-web/account#updateVerification">complete the verification process</see>. The verification link sent to the user's email address is valid for 7 days.</para>
