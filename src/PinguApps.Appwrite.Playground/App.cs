@@ -23,11 +23,11 @@ internal class App
 
         Console.WriteLine(_client.Session);
 
-        var response = await _client.Account.UpdatePhoneSession(new UpdatePhoneSessionRequest
+        var response = await _server.Account.UpdatePhoneSession(new UpdatePhoneSessionRequest
         {
             UserId = "664aac1a00113f82e620",
             //PhoneNumber = "+44123456",
-            Secret = "242849"
+            Secret = "816076"
         });
 
         Console.WriteLine(response.Result.Match(

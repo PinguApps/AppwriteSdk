@@ -343,9 +343,9 @@ public interface IAccountClient
     /// <returns>The token</returns>
     Task<AppwriteResult<Token>> CreatePhoneToken(CreatePhoneTokenRequest request);
 
-
     /// <summary>
     /// Use this endpoint to create a session from token. Provide the <c>userId</c> and <c>secret</c> parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneSession">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The session</returns>
