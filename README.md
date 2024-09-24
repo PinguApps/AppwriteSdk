@@ -138,14 +138,14 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![53 / 291](https://progress-bar.dev/53/?scale=291&suffix=%20/%20288&width=500) -->
-![Server & Client - 53 / 291](https://img.shields.io/badge/Server_&_Client-53%20%2F%20291-red?style=for-the-badge)
+<!-- ![54 / 291](https://progress-bar.dev/54/?scale=291&suffix=%20/%20288&width=500) -->
+![Server & Client - 54 / 291](https://img.shields.io/badge/Server_&_Client-54%20%2F%20291-red?style=for-the-badge)
 
 <!-- ![11 / 201](https://progress-bar.dev/11/?scale=201&suffix=%20/%20201&width=300) -->
 ![Server - 11 / 201](https://img.shields.io/badge/Server-11%20%2F%20201-red?style=for-the-badge)
 
-<!-- ![42 / 93](https://progress-bar.dev/42/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 42 / 90](https://img.shields.io/badge/Client-42%20%2F%2090-gold?style=for-the-badge)
+<!-- ![43 / 93](https://progress-bar.dev/43/?scale=93&suffix=%20/%2093&width=300) -->
+![Client - 43 / 90](https://img.shields.io/badge/Client-43%20%2F%2090-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,8 +155,8 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![53 / 55](https://progress-bar.dev/53/?scale=55&suffix=%20/%2052&width=120) -->
-![Account - 53 / 55](https://img.shields.io/badge/Account-53%20%2F%2055-forestgreen?style=for-the-badge)
+<!-- ![54 / 55](https://progress-bar.dev/54/?scale=55&suffix=%20/%2052&width=120) -->
+![Account - 54 / 55](https://img.shields.io/badge/Account-54%20%2F%2055-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server | Notes |
 |:-:|:-:|:-:|:-:|
@@ -205,7 +205,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneToken) | ✅ | ✅ |  |
 | [Create Email Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createVerification) | ✅ | ❌ |  |
 | [Create Email Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateVerification) | ✅ | ❌ |  |
-| [Create Phone Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneVerification) | ⬛ | ❌ |  |
+| [Create Phone Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneVerification) | ✅ | ❌ |  |
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ⬛ | ❌ |  |
 
 ### Users

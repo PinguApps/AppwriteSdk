@@ -731,4 +731,19 @@ public class AccountClient : IAccountClient, ISessionAware
             return e.GetExceptionResponse<Session>();
         }
     }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Token>> CreatePhoneVerification()
+    {
+        try
+        {
+            var result = await _accountApi.CreatePhoneVerification(GetCurrentSessionOrThrow());
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Token>();
+        }
+    }
 }

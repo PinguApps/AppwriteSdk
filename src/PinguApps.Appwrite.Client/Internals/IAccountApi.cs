@@ -129,4 +129,7 @@ internal interface IAccountApi : IBaseApi
 
     [Put("/account/sessions/phone")]
     Task<IApiResponse<Session>> UpdatePhoneSession(UpdatePhoneSessionRequest request);
+
+    [Post("/account/verification/phone")]
+    Task<IApiResponse<Token>> CreatePhoneVerification([Header("x-appwrite-session")] string session);
 }
