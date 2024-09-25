@@ -9,9 +9,6 @@ internal interface IAccountApi : IBaseApi
     [Post("/account")]
     Task<IApiResponse<User>> CreateAccount(CreateAccountRequest request);
 
-    [Post("/account/tokens/email")]
-    Task<IApiResponse<Token>> CreateEmailToken(CreateEmailTokenRequest request);
-
     [Post("/account/sessions/anonymous")]
     Task<IApiResponse<Session>> CreateAnonymousSession();
 
@@ -20,6 +17,9 @@ internal interface IAccountApi : IBaseApi
 
     [Post("/account/sessions/token")]
     Task<IApiResponse<Session>> CreateSession(CreateSessionRequest request);
+
+    [Post("/account/tokens/email")]
+    Task<IApiResponse<Token>> CreateEmailToken(CreateEmailTokenRequest request);
 
     [Post("/account/tokens/magic-url")]
     Task<IApiResponse<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request);
