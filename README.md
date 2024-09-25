@@ -11,14 +11,14 @@ It is recommended to install just the client SDK into client-side projects, and 
 
 ### Client SDK
 ```sh
-Install-Package PinguApps.Appwrite.Client -AllowPrereleaseVersions
+Install-Package PinguApps.Appwrite.Client
 ```
 or in the Nuget package manager, search for `PinguApps.Appwrite.Client` (ensure you are searching for prerelease versions)
 ### Server SDK
 ```sh
-Install-Package PinguApps.Appwrite.Server -AllowPrereleaseVersions
+Install-Package PinguApps.Appwrite.Server
 ```
-or in the Nuget package manager, search for `PinguApps.Appwrite.Server` (ensure you are searching for prerelease versions)
+or in the Nuget package manager, search for `PinguApps.Appwrite.Server`
 
 ## 🚀 Usage
 Once the package(s) are installed, you will need to add everything to your DI container. Thankfully, there's an extension method making this simple.
