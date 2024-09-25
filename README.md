@@ -11,14 +11,14 @@ It is recommended to install just the client SDK into client-side projects, and 
 
 ### Client SDK
 ```sh
-Install-Package PinguApps.Appwrite.Client -AllowPrereleaseVersions
+Install-Package PinguApps.Appwrite.Client
 ```
 or in the Nuget package manager, search for `PinguApps.Appwrite.Client` (ensure you are searching for prerelease versions)
 ### Server SDK
 ```sh
-Install-Package PinguApps.Appwrite.Server -AllowPrereleaseVersions
+Install-Package PinguApps.Appwrite.Server
 ```
-or in the Nuget package manager, search for `PinguApps.Appwrite.Server` (ensure you are searching for prerelease versions)
+or in the Nuget package manager, search for `PinguApps.Appwrite.Server`
 
 ## 🚀 Usage
 Once the package(s) are installed, you will need to add everything to your DI container. Thankfully, there's an extension method making this simple.
@@ -235,7 +235,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Authenticator](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteMfaAuthenticator) | ❌ | ⬛ |
 | [List Factors](https://appwrite.io/docs/references/1.6.x/server-rest/users#listMfaFactors) | ❌ | ⬛ |
 | [Get MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#getMfaRecoveryCodes) | ❌ | ⬛ |
-| [Regenerator MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfaRecoveryCodes) | ❌ | ⬛ |
+| [Regenerate MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfaRecoveryCodes) | ❌ | ⬛ |
 | [Create MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#createMfaRecoveryCodes) | ❌ | ⬛ |
 | [Update Name](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateName) | ❌ | ⬛ |
 | [Update Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePassword) | ❌ | ⬛ |
