@@ -22,15 +22,6 @@ public interface IAccountServer
     Task<AppwriteResult<User>> Create(CreateAccountRequest request);
 
     /// <summary>
-    /// <para>Sends the user an email with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to the Create Session endpoint to complete the login process. The secret sent to the user's email is valid for 15 minutes.</para>
-    /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/products/auth/security#limits">Learn more about session limits.</see></para>
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account#createEmailToken">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The token</returns>
-    Task<AppwriteResult<Token>> CreateEmailToken(CreateEmailTokenRequest request);
-
-    /// <summary>
     /// Use this endpoint to allow a new user to register an anonymous account in your project. This route will also create a new session for the user. To allow the new user to convert an anonymous account to a normal account, you need to call <see cref="UpdateEmail(UpdateEmailRequest)"/> or create an OAuth2 session
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account#createAnonymousSession">Appwrite Docs</see></para>
     /// </summary>
@@ -47,12 +38,31 @@ public interface IAccountServer
     Task<AppwriteResult<Session>> CreateEmailPasswordSession(CreateEmailPasswordSessionRequest request);
 
     /// <summary>
+    /// <para>Allow the user to login to their account using the OAuth2 provider of their choice. Each OAuth2 provider should be enabled from the Appwrite console first. Use the success and failure arguments to provide a redirect URL's back to your app when login is completed.</para>
+    /// <para>If there is already an active session, the new session will be attached to the logged-in account. If there are no active sessions, the server will attempt to look for a user with the same email address as the email received from the OAuth2 provider and attach the new session to the existing user. If no matching user is found - the server will create a new user.</para>
+    /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/authentication-security#limits">Learn more about session limits</see></para>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account#createOAuth2Session">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The CreateOauth2Session object</returns>
+    AppwriteResult<CreateOauth2Session> CreateOauth2Session(CreateOauth2SessionRequest request);
+
+    /// <summary>
     /// Use this endpoint to create a session from token. Provide the userId and secret parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account#createSession">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The session</returns>
     Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);
+
+    /// <summary>
+    /// <para>Sends the user an email with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to the Create Session endpoint to complete the login process. The secret sent to the user's email is valid for 15 minutes.</para>
+    /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/products/auth/security#limits">Learn more about session limits.</see></para>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account#createEmailToken">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The token</returns>
+    Task<AppwriteResult<Token>> CreateEmailToken(CreateEmailTokenRequest request);
 
     /// <summary>
     /// <para>Sends the user an email with a secret key for creating a session. If the provided user ID has not been registered, a new user will be created. When the user clicks the link in the email, the user is redirected back to the URL you provided with the secret key and userId values attached to the URL query string. Use the query string parameters to submit a request to the <see cref="CreateSession(CreateSessionRequest)"/> endpoint to complete the login process. The link sent to the user's email address is valid for 1 hour. If you are on a mobile device you can leave the URL parameter empty, so that the login completion will be handled by your Appwrite instance by default.</para>
@@ -80,16 +90,6 @@ public interface IAccountServer
     /// <param name="request">The request content</param>
     /// <returns>The CreateOauth2Token object</returns>
     AppwriteResult<CreateOauth2Token> CreateOauth2Token(CreateOauth2TokenRequest request);
-
-    /// <summary>
-    /// <para>Allow the user to login to their account using the OAuth2 provider of their choice. Each OAuth2 provider should be enabled from the Appwrite console first. Use the success and failure arguments to provide a redirect URL's back to your app when login is completed.</para>
-    /// <para>If there is already an active session, the new session will be attached to the logged-in account. If there are no active sessions, the server will attempt to look for a user with the same email address as the email received from the OAuth2 provider and attach the new session to the existing user. If no matching user is found - the server will create a new user.</para>
-    /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/authentication-security#limits">Learn more about session limits</see></para>
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account#createOAuth2Session">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The CreateOauth2Session object</returns>
-    AppwriteResult<CreateOauth2Session> CreateOauth2Session(CreateOauth2SessionRequest request);
 
     /// <summary>
     /// <para>Sends the user an SMS with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to <see cref="CreateSession(CreateSessionRequest)"/> to complete the login process. The secret sent to the user's phone is valid for 15 minutes.</para>

@@ -38,23 +38,6 @@ public class AccountServer : IAccountServer
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<Token>> CreateEmailToken(CreateEmailTokenRequest request)
-    {
-        try
-        {
-            request.Validate(true);
-
-            var result = await _accountApi.CreateEmailToken(request);
-
-            return result.GetApiResponse();
-        }
-        catch (Exception e)
-        {
-            return e.GetExceptionResponse<Token>();
-        }
-    }
-
-    /// <inheritdoc/>
     public async Task<AppwriteResult<Session>> CreateAnonymousSession()
     {
         try
@@ -87,6 +70,23 @@ public class AccountServer : IAccountServer
     }
 
     /// <inheritdoc/>
+    public AppwriteResult<CreateOauth2Session> CreateOauth2Session(CreateOauth2SessionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var uri = request.BuildUri(_config.Endpoint, _config.ProjectId);
+
+            return new AppwriteResult<CreateOauth2Session>(new CreateOauth2Session(uri.AbsoluteUri));
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<CreateOauth2Session>();
+        }
+    }
+
+    /// <inheritdoc/>
     public async Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request)
     {
         try
@@ -100,6 +100,23 @@ public class AccountServer : IAccountServer
         catch (Exception e)
         {
             return e.GetExceptionResponse<Session>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Token>> CreateEmailToken(CreateEmailTokenRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.CreateEmailToken(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Token>();
         }
     }
 
@@ -151,23 +168,6 @@ public class AccountServer : IAccountServer
         catch (Exception e)
         {
             return e.GetExceptionResponse<CreateOauth2Token>();
-        }
-    }
-
-    /// <inheritdoc/>
-    public AppwriteResult<CreateOauth2Session> CreateOauth2Session(CreateOauth2SessionRequest request)
-    {
-        try
-        {
-            request.Validate(true);
-
-            var uri = request.BuildUri(_config.Endpoint, _config.ProjectId);
-
-            return new AppwriteResult<CreateOauth2Session>(new CreateOauth2Session(uri.AbsoluteUri));
-        }
-        catch (Exception e)
-        {
-            return e.GetExceptionResponse<CreateOauth2Session>();
         }
     }
 
