@@ -1,6 +1,10 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
+
+/// <summary>
+/// Validator for <see cref="UpdatePasswordRequest"/>
+/// </summary>
 public class UpdatePasswordRequestValidator : AbstractValidator<UpdatePasswordRequest>
 {
     public UpdatePasswordRequestValidator()

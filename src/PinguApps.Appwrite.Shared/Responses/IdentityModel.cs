@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace PinguApps.Appwrite.Shared.Responses;
 
 /// <summary>
-/// 
+/// An Appwrite IdentityModel object
 /// </summary>
 /// <param name="Id">Identity ID</param>
 /// <param name="CreatedAt">Identity creation date in ISO 8601 format</param>

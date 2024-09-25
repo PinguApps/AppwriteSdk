@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests;
+
+/// <summary>
+/// The request for updating a phone verification confirmation
+/// </summary>
 public class UpdatePhoneVerificationConfirmationRequest : BaseRequest<UpdatePhoneVerificationConfirmationRequest, UpdatePhoneVerificationConfirmationRequestValidator>
 {
     /// <summary>

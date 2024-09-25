@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests;
+
+/// <summary>
+/// The request for updating a magic url session
+/// </summary>
 public class UpdateMagicUrlSessionRequest : BaseRequest<UpdateMagicUrlSessionRequest, UpdateMagicUrlSessionRequestValidator>
 {
     /// <summary>

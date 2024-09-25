@@ -1,6 +1,10 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
+
+/// <summary>
+/// Validator for <see cref="UpdatePhoneVerificationConfirmationRequest"/>
+/// </summary>
 public class UpdatePhoneVerificationConfirmationRequestValidator : AbstractValidator<UpdatePhoneVerificationConfirmationRequest>
 {
     public UpdatePhoneVerificationConfirmationRequestValidator()

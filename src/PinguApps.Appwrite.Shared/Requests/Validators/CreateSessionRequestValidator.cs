@@ -1,6 +1,10 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
+
+/// <summary>
+/// Validator for <see cref="CreateSessionRequest"/>
+/// </summary>
 public class CreateSessionRequestValidator : AbstractValidator<CreateSessionRequest>
 {
     public CreateSessionRequestValidator()

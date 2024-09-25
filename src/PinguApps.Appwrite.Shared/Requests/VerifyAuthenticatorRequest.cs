@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests;
+
+/// <summary>
+/// The request for Verifying an authenticator
+/// </summary>
 public class VerifyAuthenticatorRequest : BaseRequest<VerifyAuthenticatorRequest, VerifyAuthenticatorRequestValidator>
 {
     /// <summary>

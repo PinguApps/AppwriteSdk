@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests;
+
+/// <summary>
+/// The request for creating a magic url token
+/// </summary>
 public class CreateMagicUrlTokenRequest : BaseRequest<CreateMagicUrlTokenRequest, CreateMagicUrlTokenRequestValidator>
 {
     /// <summary>

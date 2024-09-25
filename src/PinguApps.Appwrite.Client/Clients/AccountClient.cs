@@ -27,6 +27,9 @@ public class AccountClient : IAccountClient, ISessionAware
     string? ISessionAware.Session { get; set; }
 
     ISessionAware? _sessionAware;
+    /// <summary>
+    /// Get the current session
+    /// </summary>
     public string? Session => GetCurrentSession();
 
     private string? GetCurrentSession()
@@ -620,7 +623,7 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<Session>> UpdateSession(UpdatetSessionRequest request)
+    public async Task<AppwriteResult<Session>> UpdateSession(UpdateSessionRequest request)
     {
         try
         {

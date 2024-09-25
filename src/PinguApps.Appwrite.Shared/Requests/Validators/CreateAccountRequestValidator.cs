@@ -1,6 +1,10 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
+
+/// <summary>
+/// Validator for <see cref="CreateAccountRequest"/>
+/// </summary>
 public class CreateAccountRequestValidator : AbstractValidator<CreateAccountRequest>
 {
     public CreateAccountRequestValidator()

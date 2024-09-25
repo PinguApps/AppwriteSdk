@@ -2,6 +2,10 @@
 using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
+
+/// <summary>
+/// Validator for <see cref="CreateMagicUrlTokenRequest"/>
+/// </summary>
 public class CreateMagicUrlTokenRequestValidator : AbstractValidator<CreateMagicUrlTokenRequest>
 {
     public CreateMagicUrlTokenRequestValidator()

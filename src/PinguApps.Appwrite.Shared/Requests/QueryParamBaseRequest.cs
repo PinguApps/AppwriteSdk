@@ -6,10 +6,22 @@ using FluentValidation;
 using PinguApps.Appwrite.Shared.Attributes;
 
 namespace PinguApps.Appwrite.Shared.Requests;
+
+/// <summary>
+/// the base request for requests which are designed to build query strings rather than exist as body content - Provides core functionality
+/// </summary>
+/// <typeparam name="TRequest">The request type</typeparam>
+/// <typeparam name="TValidator">The request validator type</typeparam>
 public abstract class QueryParamBaseRequest<TRequest, TValidator> : BaseRequest<TRequest, TValidator>
     where TRequest : class
     where TValidator : IValidator<TRequest>, new()
 {
+    /// <summary>
+    /// Builds the URI given the provided parameters
+    /// </summary>
+    /// <param name="endpoint">The endpoint for your appwrite instance</param>
+    /// <param name="projectId">The project Id for your appwrite project</param>
+    /// <returns></returns>
     public Uri BuildUri(string endpoint, string? projectId)
     {
         var endpointUri = new Uri(endpoint);
