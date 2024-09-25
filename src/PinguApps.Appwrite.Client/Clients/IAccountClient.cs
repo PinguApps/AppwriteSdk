@@ -16,6 +16,13 @@ namespace PinguApps.Appwrite.Client;
 public interface IAccountClient
 {
     /// <summary>
+    /// Get the currently logged in user.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#get">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The user</returns>
+    Task<AppwriteResult<User>> Get();
+
+    /// <summary>
     /// Use this endpoint to allow a new user to register a new account in your project. After the user registration completes successfully, you can use the /account/verfication route to start verifying the user email address. To allow the new user to login to their new account, you need to create a new account session.
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#create">Appwrite Docs</see></para>
     /// </summary>
@@ -24,19 +31,120 @@ public interface IAccountClient
     Task<AppwriteResult<User>> Create(CreateAccountRequest request);
 
     /// <summary>
-    /// Get the currently logged in user.
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#get">Appwrite Docs</see></para>
-    /// </summary>
-    /// <returns>The user</returns>
-    Task<AppwriteResult<User>> Get();
-
-    /// <summary>
     /// Update currently logged in user account email address. After changing user address, the user confirmation status will get reset. A new confirmation email is not sent automatically however you can use the send confirmation email endpoint again to send the confirmation email. For security measures, user password is required to complete this request. This endpoint can also be used to convert an anonymous account to a normal one, by passing an email address and a new password.
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account#updateEmail">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateEmail(UpdateEmailRequest request);
+
+    /// <summary>
+    /// Get the list of identities for the currently logged in user
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listIdentities">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: <c>userId</c>, <c>provider</c>, <c>providerUid</c>, <c>providerEmail</c>, <c>providerAccessTokenExpiry</c></param>
+    /// <returns>The Identities List</returns>
+    Task<AppwriteResult<IdentitiesList>> ListIdentities(List<Query>? queries = null);
+
+    /// <summary>
+    /// Delete an identity by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteIdentity">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>code 204 ofr success</returns>
+    Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request);
+
+    /// <summary>
+    /// Use this endpoint to create a JSON Web Token. You can use the resulting JWT to authenticate on behalf of the current user when working with the Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes from its creation and will be invalid if the user will logout in that time frame.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createJWT">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The JWT</returns>
+    Task<AppwriteResult<Jwt>> CreateJwt();
+
+    /// <summary>
+    /// Get the list of latest security activity logs for the currently logged in user. Each log returns user IP address, location and date and time of log.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listLogs">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Only supported methods are limit and offset</param>
+    /// <returns>The Logs List</returns>
+    Task<AppwriteResult<LogsList>> ListLogs(List<Query>? queries = null);
+
+    /// <summary>
+    /// Enable or disable MFA on an account
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMFA">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
+    Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request);
+
+    /// <summary>
+    /// Delete an authenticator for a user by ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteMfaAuthenticator">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The result</returns>
+    Task<AppwriteResult> DeleteAuthenticator(DeleteAuthenticatorRequest request);
+
+    /// <summary>
+    /// Add an authenticator app to be used as an MFA factor. Verify the authenticator using <see cref="VerifyAuthenticator"/>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaAuthenticator">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="type">Type of authenticator. Must be `totp`</param>
+    /// <returns>The MfaType</returns>
+    Task<AppwriteResult<MfaType>> AddAuthenticator(AddAuthenticatorRequest request);
+
+    /// <summary>
+    /// Verify an authenticator app after adding it using <see cref="AddAuthenticator"/>.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaAuthenticator">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <param name="type">Type of authenticator</param>
+    /// <returns>The User</returns>
+    Task<AppwriteResult<User>> VerifyAuthenticator(VerifyAuthenticatorRequest request);
+
+    /// <summary>
+    /// Begin the process of MFA verification after sign-in. Finish the flow with <see cref="Create2faChallengeConfirmation(Create2faChallengeConfirmationRequest)"/>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaChallenge">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The Mfa Challenge</returns>
+    Task<AppwriteResult<MfaChallenge>> Create2faChallenge(Create2faChallengeRequest request);
+
+    /// <summary>
+    /// Complete the MFA challenge by providing the one-time password. Finish the process of MFA verification by providing the one-time password. To begin the flow, use <see cref="Create2faChallenge(Create2faChallengeRequest)"/>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaChallenge">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The result</returns>
+    Task<AppwriteResult> Create2faChallengeConfirmation(Create2faChallengeConfirmationRequest request);
+
+    /// <summary>
+    /// List the factors available on the account to be used as a MFA challange
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listMfaFactors">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The Mfa Factors</returns>
+    Task<AppwriteResult<MfaFactors>> ListFactors();
+
+    /// <summary>
+    /// Get recovery codes that can be used as backup for MFA flow. Before getting codes, they must be generated using <see cref="CreateMfaRecoveryCodes"/> method. An OTP challenge is required to read recovery codes
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#getMfaRecoveryCodes">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The Mfa Recovery Codes</returns>
+    Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes();
+
+    /// <summary>
+    /// Regenerate recovery codes that can be used as backup for MFA flow. Before regenerating codes, they must be first generated using <see cref="CreateMfaRecoveryCodes"/> method. An OTP challenge is required to regenreate recovery codes
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaRecoveryCodes">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The Mfa Recovery Codes</returns>
+    Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes();
+
+    /// <summary>
+    /// Generate recovery codes as backup for MFA flow. It's recommended to generate and show then immediately after user successfully adds their authenticator. Recovery codes can be used as a MFA verification type in <see cref="Create2faChallenge(Create2faChallengeRequest)"/>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaRecoveryCodes">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The Mfa Recovery Codes</returns>
+    Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes();
 
     /// <summary>
     /// Update currently logged in user account name
@@ -78,148 +186,6 @@ public interface IAccountClient
     Task<AppwriteResult<User>> UpdatePreferences(UpdatePreferencesRequest request);
 
     /// <summary>
-    /// <para>Sends the user an email with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to the Create Session endpoint to complete the login process. The secret sent to the user's email is valid for 15 minutes.</para>
-    /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/products/auth/security#limits">Learn more about session limits.</see></para>
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailToken">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The token</returns>
-    Task<AppwriteResult<Token>> CreateEmailToken(CreateEmailTokenRequest request);
-
-    /// <summary>
-    /// Use this endpoint to create a session from token. Provide the userId and secret parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createSession">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The session</returns>
-    Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);
-
-    /// <summary>
-    /// Use this endpoint to get a logged in user's session using a Session ID. Inputting 'current' will return the current session being used
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#getSession">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The session</returns>
-    Task<AppwriteResult<Session>> GetSession(GetSessionRequest request);
-
-    /// <summary>
-    /// Use this endpoint to extend a session's length. Extending a session is useful when session expiry is short. If the session was created using an OAuth provider, this endpoint refreshes the access token from the provider.
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateSession">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The session</returns>
-    Task<AppwriteResult<Session>> UpdateSession(UpdatetSessionRequest request);
-
-    /// <summary>
-    /// <para>Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the userId and secret arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the userId and secret parameters. Learn more about how to <see href="https://appwrite.io/docs/references/cloud/client-web/account#updateVerification">complete the verification process</see>. The verification link sent to the user's email address is valid for 7 days.</para>
-    /// <para>Please note that in order to avoid a <see href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md">Redirect Attack</see>, the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface.</para>
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createVerification">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The token</returns>
-    Task<AppwriteResult<Token>> CreateEmailVerification(CreateEmailVerificationRequest request);
-
-    /// <summary>
-    /// Use this endpoint to complete the user email verification process. Use both the userId and secret parameters that were attached to your app URL to verify the user email ownership. If confirmed this route will return a 200 status code.
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateVerification">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The token</returns>
-    Task<AppwriteResult<Token>> CreateEmailVerificationConfirmation(CreateEmailVerificationConfirmationRequest request);
-
-    /// <summary>
-    /// Use this endpoint to create a JSON Web Token. You can use the resulting JWT to authenticate on behalf of the current user when working with the Appwrite server-side API and SDKs. The JWT secret is valid for 15 minutes from its creation and will be invalid if the user will logout in that time frame.
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createJWT">Appwrite Docs</see></para>
-    /// </summary>
-    /// <returns>The JWT</returns>
-    Task<AppwriteResult<Jwt>> CreateJwt();
-
-    /// <summary>
-    /// Get the list of latest security activity logs for the currently logged in user. Each log returns user IP address, location and date and time of log.
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listLogs">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Only supported methods are limit and offset</param>
-    /// <returns>The Logs List</returns>
-    Task<AppwriteResult<LogsList>> ListLogs(List<Query>? queries = null);
-
-    /// <summary>
-    /// Add an authenticator app to be used as an MFA factor. Verify the authenticator using <see cref="VerifyAuthenticator"/>
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaAuthenticator">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="type">Type of authenticator. Must be `totp`</param>
-    /// <returns>The MfaType</returns>
-    Task<AppwriteResult<MfaType>> AddAuthenticator(AddAuthenticatorRequest request);
-
-    /// <summary>
-    /// Verify an authenticator app after adding it using <see cref="AddAuthenticator"/>.
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaAuthenticator">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <param name="type">Type of authenticator</param>
-    /// <returns>The User</returns>
-    Task<AppwriteResult<User>> VerifyAuthenticator(VerifyAuthenticatorRequest request);
-
-    /// <summary>
-    /// Enable or disable MFA on an account
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMFA">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The user</returns>
-    Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request);
-
-    /// <summary>
-    /// Delete an authenticator for a user by ID
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteMfaAuthenticator">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The result</returns>
-    Task<AppwriteResult> DeleteAuthenticator(DeleteAuthenticatorRequest request);
-
-    /// <summary>
-    /// Begin the process of MFA verification after sign-in. Finish the flow with <see cref="Create2faChallengeConfirmation(Create2faChallengeConfirmationRequest)"/>
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaChallenge">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The Mfa Challenge</returns>
-    Task<AppwriteResult<MfaChallenge>> Create2faChallenge(Create2faChallengeRequest request);
-
-    /// <summary>
-    /// Complete the MFA challenge by providing the one-time password. Finish the process of MFA verification by providing the one-time password. To begin the flow, use <see cref="Create2faChallenge(Create2faChallengeRequest)"/>
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaChallenge">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The result</returns>
-    Task<AppwriteResult> Create2faChallengeConfirmation(Create2faChallengeConfirmationRequest request);
-
-    /// <summary>
-    /// List the factors available on the account to be used as a MFA challange
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listMfaFactors">Appwrite Docs</see></para>
-    /// </summary>
-    /// <returns>The Mfa Factors</returns>
-    Task<AppwriteResult<MfaFactors>> ListFactors();
-
-    /// <summary>
-    /// Generate recovery codes as backup for MFA flow. It's recommended to generate and show then immediately after user successfully adds their authenticator. Recovery codes can be used as a MFA verification type in <see cref="Create2faChallenge(Create2faChallengeRequest)"/>
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaRecoveryCodes">Appwrite Docs</see></para>
-    /// </summary>
-    /// <returns>The Mfa Recovery Codes</returns>
-    Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes();
-
-    /// <summary>
-    /// Get recovery codes that can be used as backup for MFA flow. Before getting codes, they must be generated using <see cref="CreateMfaRecoveryCodes"/> method. An OTP challenge is required to read recovery codes
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#getMfaRecoveryCodes">Appwrite Docs</see></para>
-    /// </summary>
-    /// <returns>The Mfa Recovery Codes</returns>
-    Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes();
-
-    /// <summary>
-    /// Regenerate recovery codes that can be used as backup for MFA flow. Before regenerating codes, they must be first generated using <see cref="CreateMfaRecoveryCodes"/> method. An OTP challenge is required to regenreate recovery codes
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaRecoveryCodes">Appwrite Docs</see></para>
-    /// </summary>
-    /// <returns>The Mfa Recovery Codes</returns>
-    Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes();
-
-    /// <summary>
     /// Sends the user an email with a temporary secret key for password reset. When the user clicks the confirmation link he is redirected back to your app password reset URL with the secret key and email address values attached to the URL query string. Use the query string params to submit a request to <see cref="CreatePasswordRecoveryConfirmation(CreatePasswordRecoveryConfirmationRequest)"/> to complete the process. The verification link sent to the user's email address is valid for 1 hour
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createRecovery">Appwrite Docs</see></para>
     /// </summary>
@@ -237,11 +203,13 @@ public interface IAccountClient
     Task<AppwriteResult<Token>> CreatePasswordRecoveryConfirmation(CreatePasswordRecoveryConfirmationRequest request);
 
     /// <summary>
-    /// Get the list of active sessions across different devices for the currently logged in user
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listSessions">Appwrite Docs</see></para>
+    /// <para>Sends the user an email with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to the Create Session endpoint to complete the login process. The secret sent to the user's email is valid for 15 minutes.</para>
+    /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/products/auth/security#limits">Learn more about session limits.</see></para>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailToken">Appwrite Docs</see></para>
     /// </summary>
-    /// <returns>The Sessions List</returns>
-    Task<AppwriteResult<SessionsList>> ListSessions();
+    /// <param name="request">The request content</param>
+    /// <returns>The token</returns>
+    Task<AppwriteResult<Token>> CreateEmailToken(CreateEmailTokenRequest request);
 
     /// <summary>
     /// Delete all sessions from the user account and remove any sessions cookies from the end client
@@ -249,6 +217,13 @@ public interface IAccountClient
     /// </summary>
     /// <returns>The result</returns>
     Task<AppwriteResult> DeleteSessions();
+
+    /// <summary>
+    /// Get the list of active sessions across different devices for the currently logged in user
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listSessions">Appwrite Docs</see></para>
+    /// </summary>
+    /// <returns>The Sessions List</returns>
+    Task<AppwriteResult<SessionsList>> ListSessions();
 
     /// <summary>
     /// Use this endpoint to allow a new user to register an anonymous account in your project. This route will also create a new session for the user. To allow the new user to convert an anonymous account to a normal account, you need to call <see cref="UpdateEmail(UpdateEmailRequest)"/> or create an OAuth2 session
@@ -267,6 +242,14 @@ public interface IAccountClient
     Task<AppwriteResult<Session>> CreateEmailPasswordSession(CreateEmailPasswordSessionRequest request);
 
     /// <summary>
+    /// Use this endpoint to create a session from token. Provide the <see cref="UpdateMagicUrlSessionRequest.UserId"/> and <see cref="UpdateMagicUrlSessionRequest.Secret"/> parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMagicURLSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The session</returns>
+    Task<AppwriteResult<Session>> UpdateMagicUrlSession(UpdateMagicUrlSessionRequest request);
+
+    /// <summary>
     /// <para>Allow the user to login to their account using the OAuth2 provider of their choice. Each OAuth2 provider should be enabled from the Appwrite console first. Use the success and failure arguments to provide a redirect URL's back to your app when login is completed.</para>
     /// <para>If there is already an active session, the new session will be attached to the logged-in account. If there are no active sessions, the server will attempt to look for a user with the same email address as the email received from the OAuth2 provider and attach the new session to the existing user. If no matching user is found - the server will create a new user.</para>
     /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/authentication-security#limits">Learn more about session limits</see></para>
@@ -277,12 +260,44 @@ public interface IAccountClient
     AppwriteResult<CreateOauth2Session> CreateOauth2Session(CreateOauth2SessionRequest request);
 
     /// <summary>
+    /// Use this endpoint to create a session from token. Provide the <c>userId</c> and <c>secret</c> parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The session</returns>
+    Task<AppwriteResult<Session>> UpdatePhoneSession(UpdatePhoneSessionRequest request);
+
+    /// <summary>
+    /// Use this endpoint to create a session from token. Provide the userId and secret parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The session</returns>
+    Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);
+
+    /// <summary>
     /// Logout the user. Use 'current' as the session ID to logout on this device, use a session ID to logout on another device. If you're looking to logout the user on all devices, use <see cref="DeleteSessions"/> instead.
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteSession">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>code 204 for success</returns>
     Task<AppwriteResult> DeleteSession(DeleteSessionRequest request);
+
+    /// <summary>
+    /// Use this endpoint to get a logged in user's session using a Session ID. Inputting 'current' will return the current session being used
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#getSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The session</returns>
+    Task<AppwriteResult<Session>> GetSession(GetSessionRequest request);
+
+    /// <summary>
+    /// Use this endpoint to extend a session's length. Extending a session is useful when session expiry is short. If the session was created using an OAuth provider, this endpoint refreshes the access token from the provider.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The session</returns>
+    Task<AppwriteResult<Session>> UpdateSession(UpdatetSessionRequest request);
 
     /// <summary>
     /// Block the currently logged in user account. Behind the scene, the user record is not deleted but permanently blocked from any access. To completely delete a user, use the Users API instead.
@@ -301,14 +316,6 @@ public interface IAccountClient
     Task<AppwriteResult<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request);
 
     /// <summary>
-    /// Use this endpoint to create a session from token. Provide the <see cref="UpdateMagicUrlSessionRequest.UserId"/> and <see cref="UpdateMagicUrlSessionRequest.Secret"/> parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMagicURLSession">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The session</returns>
-    Task<AppwriteResult<Session>> UpdateMagicUrlSession(UpdateMagicUrlSessionRequest request);
-
-    /// <summary>
     /// <para>Allow the user to login to their account using the OAuth2 provider of their choice. Each OAuth2 provider should be enabled from the Appwrite console first. Use the success and failure arguments to provide a redirect URL's back to your app when login is completed.</para>
     /// <para>If authentication succeeds, userId and secret of a token will be appended to the success URL as query parameters. These can be used to create a new session using <see cref="CreateSession(CreateSessionRequest)"/>.</para>
     /// <para>A user is limited to 10 active sessions at a time by default. <see href="https://appwrite.io/docs/authentication-security#limits">Learn more about session limits</see></para>
@@ -317,22 +324,6 @@ public interface IAccountClient
     /// <param name="request">The request content</param>
     /// <returns>The CreateOauth2Token object</returns>
     AppwriteResult<CreateOauth2Token> CreateOauth2Token(CreateOauth2TokenRequest request);
-
-    /// <summary>
-    /// Get the list of identities for the currently logged in user
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listIdentities">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: <c>userId</c>, <c>provider</c>, <c>providerUid</c>, <c>providerEmail</c>, <c>providerAccessTokenExpiry</c></param>
-    /// <returns>The Identities List</returns>
-    Task<AppwriteResult<IdentitiesList>> ListIdentities(List<Query>? queries = null);
-
-    /// <summary>
-    /// Delete an identity by its unique ID
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteIdentity">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>code 204 ofr success</returns>
-    Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request);
 
     /// <summary>
     /// <para>Sends the user an SMS with a secret key for creating a session. If the provided user ID has not be registered, a new user will be created. Use the returned user ID and secret and submit a request to <see cref="CreateSession(CreateSessionRequest)"/> to complete the login process. The secret sent to the user's phone is valid for 15 minutes.</para>
@@ -344,12 +335,21 @@ public interface IAccountClient
     Task<AppwriteResult<Token>> CreatePhoneToken(CreatePhoneTokenRequest request);
 
     /// <summary>
-    /// Use this endpoint to create a session from token. Provide the <c>userId</c> and <c>secret</c> parameters from the successful response of authentication flows initiated by token creation. For example, magic URL and phone login.
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneSession">Appwrite Docs</see></para>
+    /// <para>Use this endpoint to send a verification message to your user email address to confirm they are the valid owners of that address. Both the userId and secret arguments will be passed as query parameters to the URL you have provided to be attached to the verification email. The provided URL should redirect the user back to your app and allow you to complete the verification process by verifying both the userId and secret parameters. Learn more about how to <see href="https://appwrite.io/docs/references/cloud/client-web/account#updateVerification">complete the verification process</see>. The verification link sent to the user's email address is valid for 7 days.</para>
+    /// <para>Please note that in order to avoid a <see href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md">Redirect Attack</see>, the only valid redirect URLs are the ones from domains you have set when adding your platforms in the console interface.</para>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createVerification">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
-    /// <returns>The session</returns>
-    Task<AppwriteResult<Session>> UpdatePhoneSession(UpdatePhoneSessionRequest request);
+    /// <returns>The token</returns>
+    Task<AppwriteResult<Token>> CreateEmailVerification(CreateEmailVerificationRequest request);
+
+    /// <summary>
+    /// Use this endpoint to complete the user email verification process. Use both the userId and secret parameters that were attached to your app URL to verify the user email ownership. If confirmed this route will return a 200 status code.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateVerification">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The token</returns>
+    Task<AppwriteResult<Token>> CreateEmailVerificationConfirmation(CreateEmailVerificationConfirmationRequest request);
 
     /// <summary>
     /// Use this endpoint to send a verification SMS to the currently logged in user. This endpoint is meant for use after updating a user's phone number using <see cref="UpdatePhone(UpdatePhoneRequest)"/>. Learn more about how to <see href="https://appwrite.io/docs/references/cloud/client-web/account#updatePhoneVerification">complete the verification process</see>. The verification code sent to the user's phone number is valid for 15 minutes.
