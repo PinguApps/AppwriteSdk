@@ -2,6 +2,10 @@
 using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
+
+/// <summary>
+/// Validator for <see cref="CreateOauth2TokenRequest"/>
+/// </summary>
 public class CreateOauth2TokenRequestValidator : AbstractValidator<CreateOauth2TokenRequest>
 {
     public CreateOauth2TokenRequestValidator()

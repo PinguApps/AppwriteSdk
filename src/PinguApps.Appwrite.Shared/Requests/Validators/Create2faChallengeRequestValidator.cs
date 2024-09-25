@@ -1,6 +1,10 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
+
+/// <summary>
+/// Validator for <see cref="Create2faChallengeRequest"/>
+/// </summary>
 public class Create2faChallengeRequestValidator : AbstractValidator<Create2faChallengeRequest>
 {
     public Create2faChallengeRequestValidator()

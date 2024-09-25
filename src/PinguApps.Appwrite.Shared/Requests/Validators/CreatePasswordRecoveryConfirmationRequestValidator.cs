@@ -1,6 +1,10 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
+
+/// <summary>
+/// Validator for <see cref="CreatePasswordRecoveryConfirmationRequest"/>
+/// </summary>
 public class CreatePasswordRecoveryConfirmationRequestValidator : AbstractValidator<CreatePasswordRecoveryConfirmationRequest>
 {
     public CreatePasswordRecoveryConfirmationRequestValidator()

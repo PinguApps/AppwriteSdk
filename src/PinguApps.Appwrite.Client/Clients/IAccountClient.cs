@@ -51,7 +51,7 @@ public interface IAccountClient
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteIdentity">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
-    /// <returns>code 204 ofr success</returns>
+    /// <returns>code 204 for success</returns>
     Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request);
 
     /// <summary>
@@ -297,7 +297,7 @@ public interface IAccountClient
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The session</returns>
-    Task<AppwriteResult<Session>> UpdateSession(UpdatetSessionRequest request);
+    Task<AppwriteResult<Session>> UpdateSession(UpdateSessionRequest request);
 
     /// <summary>
     /// Block the currently logged in user account. Behind the scene, the user record is not deleted but permanently blocked from any access. To completely delete a user, use the Users API instead.

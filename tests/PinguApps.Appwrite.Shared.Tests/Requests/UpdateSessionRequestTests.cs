@@ -8,7 +8,7 @@ public class UpdateSessionRequestTests
     public void Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
-        var request = new UpdatetSessionRequest();
+        var request = new UpdateSessionRequest();
 
         // Assert
         Assert.Equal("current", request.SessionId);
@@ -19,7 +19,7 @@ public class UpdateSessionRequestTests
     public void Properties_CanBeSet(string sessionId)
     {
         // Arrange
-        var request = new UpdatetSessionRequest();
+        var request = new UpdateSessionRequest();
 
         // Act
         request.SessionId = sessionId;
@@ -32,7 +32,7 @@ public class UpdateSessionRequestTests
     public void IsValid_WithValidInputs_ReturnsTrue()
     {
         // Arrange
-        var request = new UpdatetSessionRequest
+        var request = new UpdateSessionRequest
         {
             SessionId = "blahblah"
         };
@@ -50,7 +50,7 @@ public class UpdateSessionRequestTests
     public void IsValid_WithInvalidInputs_ReturnsFalse(string? sessionId)
     {
         // Arrange
-        var request = new UpdatetSessionRequest
+        var request = new UpdateSessionRequest
         {
             SessionId = sessionId!
         };
@@ -66,7 +66,7 @@ public class UpdateSessionRequestTests
     public void Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = new UpdatetSessionRequest
+        var request = new UpdateSessionRequest
         {
             SessionId = ""
         };
@@ -79,7 +79,7 @@ public class UpdateSessionRequestTests
     public void Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = new UpdatetSessionRequest
+        var request = new UpdateSessionRequest
         {
             SessionId = ""
         };

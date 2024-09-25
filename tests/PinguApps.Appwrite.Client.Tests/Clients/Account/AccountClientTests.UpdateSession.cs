@@ -12,7 +12,7 @@ public partial class AccountClientTests
     public async Task UpdateSession_HitsCurrent_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        var request = new UpdatetSessionRequest();
+        var request = new UpdateSessionRequest();
 
         _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/sessions/current")
             .ExpectedHeaders(true)
@@ -31,7 +31,7 @@ public partial class AccountClientTests
     public async Task UpdateSession_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        var request = new UpdatetSessionRequest
+        var request = new UpdateSessionRequest
         {
             SessionId = IdUtils.GenerateUniqueId()
         };
@@ -53,7 +53,7 @@ public partial class AccountClientTests
     public async Task UpdateSession_ShouldReturnError_WhenSessionIsNull()
     {
         // Arrange
-        var request = new UpdatetSessionRequest();
+        var request = new UpdateSessionRequest();
 
         // Act
         var result = await _appwriteClient.Account.UpdateSession(request);
@@ -68,7 +68,7 @@ public partial class AccountClientTests
     public async Task UpdateSession_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        var request = new UpdatetSessionRequest();
+        var request = new UpdateSessionRequest();
 
         _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/sessions/current")
             .ExpectedHeaders(true)
@@ -88,7 +88,7 @@ public partial class AccountClientTests
     public async Task UpdateSession_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        var request = new UpdatetSessionRequest();
+        var request = new UpdateSessionRequest();
 
         _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/sessions/current")
             .ExpectedHeaders(true)

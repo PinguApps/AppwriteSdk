@@ -2,6 +2,12 @@
 using FluentValidation.Results;
 
 namespace PinguApps.Appwrite.Shared.Requests;
+
+/// <summary>
+/// The base request - Provides core functionality to all requests
+/// </summary>
+/// <typeparam name="TRequest">The request type</typeparam>
+/// <typeparam name="TValidator">The request validator type</typeparam>
 public abstract class BaseRequest<TRequest, TValidator>
     where TRequest : class
     where TValidator : IValidator<TRequest>, new()

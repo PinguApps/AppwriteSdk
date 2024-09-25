@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests;
+
+/// <summary>
+/// The request for creating an email verification confirmation
+/// </summary>
 public class CreateEmailVerificationConfirmationRequest : BaseRequest<CreateEmailVerificationConfirmationRequest, CreateEmailVerificationConfirmationRequestValidator>
 {
     /// <summary>

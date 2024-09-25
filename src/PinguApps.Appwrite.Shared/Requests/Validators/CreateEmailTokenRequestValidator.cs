@@ -1,6 +1,10 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
+
+/// <summary>
+/// Validator for <see cref="CreateEmailTokenRequest"/>
+/// </summary>
 public class CreateEmailTokenRequestValidator : AbstractValidator<CreateEmailTokenRequest>
 {
     public CreateEmailTokenRequestValidator()

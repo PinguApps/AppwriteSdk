@@ -1,6 +1,10 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
+
+/// <summary>
+/// Validator for <see cref="CreateEmailPasswordSessionRequest"/>
+/// </summary>
 public class CreateEmailPasswordSessionRequestValidator : AbstractValidator<CreateEmailPasswordSessionRequest>
 {
     public CreateEmailPasswordSessionRequestValidator()

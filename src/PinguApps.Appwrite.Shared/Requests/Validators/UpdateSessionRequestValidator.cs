@@ -3,11 +3,11 @@
 namespace PinguApps.Appwrite.Shared.Requests.Validators;
 
 /// <summary>
-/// Validator for <see cref="GetSessionRequest"/>
+/// Validator for <see cref="UpdateSessionRequest"/>
 /// </summary>
-public class GetSessionRequestValidator : AbstractValidator<GetSessionRequest>
+public class UpdateSessionRequestValidator : AbstractValidator<UpdateSessionRequest>
 {
-    public GetSessionRequestValidator()
+    public UpdateSessionRequestValidator()
     {
         RuleFor(x => x.SessionId)
             .NotEmpty().WithMessage("SessionId is required.");
