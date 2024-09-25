@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Client;
 using PinguApps.Appwrite.Server.Servers;
+using PinguApps.Appwrite.Shared.Requests;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -20,21 +21,16 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var result = await _client.Account.Get();
+        //var response = await _client.Account.CreatePhoneVerification();
+        var response = await _client.Account.UpdatePhoneVerificationConfirmation(new UpdatePhoneVerificationConfirmationRequest
+        {
+            UserId = "664aac1a00113f82e620",
+            Secret = "325437"
+        });
 
-        result.Result.Switch(
-            account => Console.WriteLine(account.Email),
-            appwriteError => Console.WriteLine(appwriteError.Message),
-            internalError => Console.WriteLine(internalError.Message)
-        );
-
-        //var request = new CreateAccountRequest
-        //{
-        //    Email = "test2@example.com",
-        //    Password = "ThisIsMyPassword",
-        //    Name = "Two Names"
-        //};
-
-        //var result = await _server.Account.Create(request);
+        Console.WriteLine(response.Result.Match(
+            account => account.ToString(),
+            appwriteError => appwriteError.Message,
+            internalError => internalError.Message));
     }
 }
