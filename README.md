@@ -235,7 +235,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Authenticator](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteMfaAuthenticator) | ❌ | ⬛ |
 | [List Factors](https://appwrite.io/docs/references/1.6.x/server-rest/users#listMfaFactors) | ❌ | ⬛ |
 | [Get MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#getMfaRecoveryCodes) | ❌ | ⬛ |
-| [Regenerator MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfaRecoveryCodes) | ❌ | ⬛ |
+| [Regenerate MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfaRecoveryCodes) | ❌ | ⬛ |
 | [Create MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#createMfaRecoveryCodes) | ❌ | ⬛ |
 | [Update Name](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateName) | ❌ | ⬛ |
 | [Update Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePassword) | ❌ | ⬛ |
