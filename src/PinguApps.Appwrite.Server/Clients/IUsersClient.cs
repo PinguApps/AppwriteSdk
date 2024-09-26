@@ -1,0 +1,49 @@
+﻿using System.Threading.Tasks;
+using PinguApps.Appwrite.Shared;
+
+namespace PinguApps.Appwrite.Server.Clients;
+public interface IUsersClient
+{
+    Task<AppwriteResult> ListUsers();
+    Task<AppwriteResult> CreateUser();
+    Task<AppwriteResult> CreateUserWithArgon2Password();
+    Task<AppwriteResult> CreateUserWithBcryptPassword();
+    Task<AppwriteResult> ListIdentities();
+    Task<AppwriteResult> DeleteIdentity();
+    Task<AppwriteResult> CreateUserWithMd5Password();
+    Task<AppwriteResult> CreateUserWithPhpassPassword();
+    Task<AppwriteResult> CreateUserWithScryptPassword();
+    Task<AppwriteResult> CreateUserWithScryptModifiedPassword();
+    Task<AppwriteResult> CreateUserWithShaPassword();
+    Task<AppwriteResult> DeleteUser();
+    Task<AppwriteResult> GetUser();
+    Task<AppwriteResult> UpdateEmail();
+    Task<AppwriteResult> CreateUserJwt();
+    Task<AppwriteResult> UpdateUserLabels();
+    Task<AppwriteResult> ListUserLogs();
+    Task<AppwriteResult> ListUserMemberships();
+    Task<AppwriteResult> UpdateMfa();
+    Task<AppwriteResult> DeleteAuthenticator();
+    Task<AppwriteResult> ListFactors();
+    Task<AppwriteResult> GetMfaRecoveryCodes();
+    Task<AppwriteResult> CreateMfaRecoveryCodes();
+    Task<AppwriteResult> RegenerateMfaRecoveryCodes();
+    Task<AppwriteResult> UpdateName();
+    Task<AppwriteResult> UpdatePassword();
+    Task<AppwriteResult> UpdatePhone();
+    Task<AppwriteResult> GetUserPreferences();
+    Task<AppwriteResult> UpdateUserPreferences();
+    Task<AppwriteResult> DeleteUserSessions();
+    Task<AppwriteResult> ListUserSessions();
+    Task<AppwriteResult> CreateSession();
+    Task<AppwriteResult> DeleteUserSession();
+    Task<AppwriteResult> UpdateUserStatus();
+    Task<AppwriteResult> ListUserTargets();
+    Task<AppwriteResult> CreateUserTarget();
+    Task<AppwriteResult> DeleteUserTarget();
+    Task<AppwriteResult> GetUserTarget();
+    Task<AppwriteResult> UpdateUserTarget();
+    Task<AppwriteResult> CreateToken();
+    Task<AppwriteResult> UpdateEmailVerification();
+    Task<AppwriteResult> UpdatePhoneVerification();
+}
