@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
+using PinguApps.Appwrite.Server.Clients;
 using PinguApps.Appwrite.Server.Handlers;
 using PinguApps.Appwrite.Server.Internals;
-using PinguApps.Appwrite.Server.Servers;
 using PinguApps.Appwrite.Shared;
 using Refit;
 
@@ -50,8 +50,8 @@ public static class ServiceCollectionExtensions
                 }
             });
 
-        services.AddSingleton<IAccountServer, AccountServer>();
-        services.AddSingleton<IAppwriteServer, AppwriteServer>();
+        services.AddSingleton<IAccountClient, AccountClient>();
+        services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
     }

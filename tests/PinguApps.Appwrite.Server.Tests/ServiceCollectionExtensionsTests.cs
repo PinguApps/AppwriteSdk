@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Handlers;
 using PinguApps.Appwrite.Server.Internals;
-using PinguApps.Appwrite.Server.Servers;
+using PinguApps.Appwrite.Server.Clients;
 using PinguApps.Appwrite.Shared.Tests;
 
 namespace PinguApps.Appwrite.Server.Tests;
@@ -28,8 +28,8 @@ public class ServiceCollectionExtensionsTests
         Assert.NotNull(accountApi);
 
         // Assert services are registered
-        Assert.NotNull(provider.GetService<IAccountServer>());
-        Assert.NotNull(provider.GetService<IAppwriteServer>());
+        Assert.NotNull(provider.GetService<IAccountClient>());
+        Assert.NotNull(provider.GetService<IAppwriteClient>());
     }
 
     // Additional tests can be added to verify different configurations or overloads of AddAppwriteServer

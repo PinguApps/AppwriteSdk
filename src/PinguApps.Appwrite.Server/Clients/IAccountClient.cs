@@ -3,7 +3,7 @@ using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Responses;
 
-namespace PinguApps.Appwrite.Server.Servers;
+namespace PinguApps.Appwrite.Server.Clients;
 
 /// <summary>
 /// <para>The Account service allows you to authenticate and manage a user account. You can use the account service to update user information, retrieve the user sessions across different devices, and fetch the user security logs with his or her recent activity.</para>
@@ -11,7 +11,7 @@ namespace PinguApps.Appwrite.Server.Servers;
 /// <para>This service also exposes an endpoint to save and read the user preferences as a key-value object. This feature is handy if you want to allow extra customization in your app.Common usage for this feature may include saving the user's preferred locale, timezone, or custom app theme.</para>
 /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account">Appwrite Docs</see></para>
 /// </summary>
-public interface IAccountServer
+public interface IAccountClient
 {
     /// <summary>
     /// Use this endpoint to allow a new user to register a new account in your project. After the user registration completes successfully, you can use the /account/verfication route to start verifying the user email address. To allow the new user to login to their new account, you need to create a new account session.

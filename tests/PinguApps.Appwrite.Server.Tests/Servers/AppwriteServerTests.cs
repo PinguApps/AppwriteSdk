@@ -1,5 +1,5 @@
 ﻿using Moq;
-using PinguApps.Appwrite.Server.Servers;
+using PinguApps.Appwrite.Server.Clients;
 
 namespace PinguApps.Appwrite.Server.Tests.Servers;
 public class AppwriteServerTests
@@ -8,9 +8,9 @@ public class AppwriteServerTests
     public void Constructor_AssignsAccountServerCorrectly()
     {
         // Arrange
-        var mockAccountServer = new Mock<IAccountServer>();
+        var mockAccountServer = new Mock<IAccountClient>();
         // Act
-        var appwriteServer = new AppwriteServer(mockAccountServer.Object);
+        var appwriteServer = new AppwriteClient(mockAccountServer.Object);
         // Assert
         Assert.Equal(mockAccountServer.Object, appwriteServer.Account);
     }

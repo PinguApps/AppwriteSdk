@@ -7,14 +7,14 @@ using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests;
 using PinguApps.Appwrite.Shared.Responses;
 
-namespace PinguApps.Appwrite.Server.Servers;
-public class AccountServer : IAccountServer
+namespace PinguApps.Appwrite.Server.Clients;
+public class AccountClient : IAccountClient
 {
     private readonly IAccountApi _accountApi;
 
     private readonly Config _config;
 
-    public AccountServer(IServiceProvider services, Config config)
+    public AccountClient(IServiceProvider services, Config config)
     {
         _accountApi = services.GetRequiredService<IAccountApi>();
         _config = config;

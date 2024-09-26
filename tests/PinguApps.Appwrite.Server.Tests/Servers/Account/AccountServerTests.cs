@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PinguApps.Appwrite.Server.Servers;
+using PinguApps.Appwrite.Server.Clients;
 using PinguApps.Appwrite.Shared.Tests;
 using Refit;
 using RichardSzalay.MockHttp;
@@ -8,7 +8,7 @@ namespace PinguApps.Appwrite.Server.Tests.Servers.Account;
 public partial class AccountServerTests
 {
     private readonly MockHttpMessageHandler _mockHttp;
-    private readonly IAppwriteServer _appwriteServer;
+    private readonly IAppwriteClient _appwriteServer;
 
     public AccountServerTests()
     {
@@ -22,6 +22,6 @@ public partial class AccountServerTests
 
         var serviceProvider = services.BuildServiceProvider();
 
-        _appwriteServer = serviceProvider.GetRequiredService<IAppwriteServer>();
+        _appwriteServer = serviceProvider.GetRequiredService<IAppwriteClient>();
     }
 }

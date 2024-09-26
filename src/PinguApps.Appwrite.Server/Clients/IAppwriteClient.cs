@@ -1,9 +1,9 @@
-﻿namespace PinguApps.Appwrite.Server.Servers;
+﻿namespace PinguApps.Appwrite.Server.Clients;
 
 /// <summary>
 /// The root of the Client SDK. Access all API sections from here
 /// </summary>
-public interface IAppwriteServer
+public interface IAppwriteClient
 {
     /// <summary>
     /// <para>The Account service allows you to authenticate and manage a user account. You can use the account service to update user information, retrieve the user sessions across different devices, and fetch the user security logs with his or her recent activity.</para>
@@ -11,5 +11,5 @@ public interface IAppwriteServer
     /// <para>This service also exposes an endpoint to save and read the user preferences as a key-value object. This feature is handy if you want to allow extra customization in your app.Common usage for this feature may include saving the user's preferred locale, timezone, or custom app theme.</para>
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account">Appwrite Docs</see></para>
     /// </summary>
-    IAccountServer Account { get; }
+    IAccountClient Account { get; }
 }
