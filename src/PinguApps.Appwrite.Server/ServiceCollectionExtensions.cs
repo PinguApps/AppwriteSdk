@@ -25,6 +25,7 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection, enabling chaining</returns>
     public static IServiceCollection AddAppwriteServer(this IServiceCollection services, string projectId, string apiKey, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
+        services.AddSingleton(new Config(endpoint, projectId, apiKey));
         services.AddSingleton<HeaderHandler>();
 
         services.AddRefitClient<IAccountApi>(refitSettings)
@@ -38,7 +39,16 @@ public static class ServiceCollectionExtensions
                  }
              });
 
-        services.AddSingleton(new Config(endpoint, projectId, apiKey));
+        services.AddRefitClient<IUsersApi>(refitSettings)
+            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .ConfigurePrimaryHttpMessageHandler((handler, sp) =>
+            {
+                if (handler is HttpClientHandler clientHandler)
+                {
+                    clientHandler.UseCookies = false;
+                }
+            });
 
         services.AddSingleton<IAccountServer, AccountServer>();
         services.AddSingleton<IAppwriteServer, AppwriteServer>();
