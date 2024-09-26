@@ -296,4 +296,29 @@ public static class Constants
             ]
         }
         """;
+
+    public const string MembershipsListResponse = """
+        {
+            "total": 5,
+            "memberships": [
+                {
+                    "$id": "5e5ea5c16897e",
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "userId": "5e5ea5c16897e",
+                    "userName": "John Doe",
+                    "userEmail": "john@appwrite.io",
+                    "teamId": "5e5ea5c16897e",
+                    "teamName": "VIP",
+                    "invited": "2020-10-15T06:38:00.000+00:00",
+                    "joined": "2020-10-15T06:38:00.000+00:00",
+                    "confirm": false,
+                    "mfa": false,
+                    "roles": [
+                        "owner"
+                    ]
+                }
+            ]
+        }
+        """;
 }
