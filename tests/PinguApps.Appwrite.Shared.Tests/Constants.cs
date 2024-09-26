@@ -321,4 +321,22 @@ public static class Constants
             ]
         }
         """;
+
+    public const string TargetListResponse = """
+        {
+            "total": 5,
+            "targets": [
+                {
+                    "$id": "259125845563242502",
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "name": "Aegon apple token",
+                    "userId": "259125845563242502",
+                    "providerId": "259125845563242502",
+                    "providerType": "email",
+                    "identifier": "token"
+                }
+            ]
+        }
+        """;
 }
