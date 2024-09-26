@@ -23,15 +23,14 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection, enabling chaining</returns>
     public static IServiceCollection AddAppwriteClient(this IServiceCollection services, string projectId, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
-        services.AddSingleton(x => new HeaderHandler(projectId));
-        services.AddSingleton<ClientCookieSessionHandler>();
+        services.AddSingleton(new Config(endpoint, projectId));
+        services.AddTransient<HeaderHandler>();
+        services.AddTransient<ClientCookieSessionHandler>();
 
         services.AddRefitClient<IAccountApi>(refitSettings)
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
             .AddHttpMessageHandler<ClientCookieSessionHandler>();
-
-        services.AddSingleton(new Config(endpoint, projectId));
 
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
@@ -50,7 +49,8 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection, enabling chaining</returns>
     public static IServiceCollection AddAppwriteClientForServer(this IServiceCollection services, string projectId, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
-        services.AddSingleton(sp => new HeaderHandler(projectId));
+        services.AddSingleton(new Config(endpoint, projectId));
+        services.AddTransient<HeaderHandler>();
 
         services.AddRefitClient<IAccountApi>(refitSettings)
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
@@ -62,8 +62,6 @@ public static class ServiceCollectionExtensions
                     clientHandler.UseCookies = false;
                 }
             });
-
-        services.AddSingleton(new Config(endpoint, projectId));
 
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
