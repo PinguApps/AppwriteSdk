@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Internals;
 using PinguApps.Appwrite.Server.Utils;
 using PinguApps.Appwrite.Shared;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Server.Clients;

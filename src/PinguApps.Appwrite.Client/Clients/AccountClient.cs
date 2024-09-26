@@ -7,7 +7,7 @@ using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Client.Utils;
 using PinguApps.Appwrite.Shared;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Responses;
 using PinguApps.Appwrite.Shared.Utils;
 

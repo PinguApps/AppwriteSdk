@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App

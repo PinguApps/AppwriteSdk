@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Server.Clients;
