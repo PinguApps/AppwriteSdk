@@ -44,4 +44,15 @@ public class HeaderHandlerTests
             ItExpr.IsAny<CancellationToken>()
         );
     }
+
+    [Fact]
+    public void Constructor_ShouldThrowArgumentNullException_WhenApiKeyIsNull()
+    {
+        // Arrange
+        var config = new Config(Constants.Endpoint, Constants.ProjectId, null);
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() => new HeaderHandler(config));
+        Assert.Equal("config.ApiKey", exception.ParamName);
+    }
 }
