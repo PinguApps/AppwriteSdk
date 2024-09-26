@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 
-namespace PinguApps.Appwrite.Shared.Requests.Account;
+namespace PinguApps.Appwrite.Shared.Requests;
 
 /// <summary>
 /// The base request - Provides core functionality to all requests

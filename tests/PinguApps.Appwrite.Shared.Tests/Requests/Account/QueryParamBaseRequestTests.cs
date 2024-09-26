@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using PinguApps.Appwrite.Shared.Attributes;
-using PinguApps.Appwrite.Shared.Requests.Account;
+using PinguApps.Appwrite.Shared.Requests;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Account;
 public class QueryParamBaseRequestTests

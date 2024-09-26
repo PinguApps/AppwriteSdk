@@ -5,7 +5,7 @@ using System.Reflection;
 using FluentValidation;
 using PinguApps.Appwrite.Shared.Attributes;
 
-namespace PinguApps.Appwrite.Shared.Requests.Account;
+namespace PinguApps.Appwrite.Shared.Requests;
 
 /// <summary>
 /// the base request for requests which are designed to build query strings rather than exist as body content - Provides core functionality
