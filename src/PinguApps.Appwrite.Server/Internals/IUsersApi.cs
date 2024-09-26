@@ -20,7 +20,7 @@ internal interface IUsersApi : IBaseApi
     Task<IApiResponse> ListIdentities();
 
     [Delete("/users/identities/{identityId}")]
-    Task<IApiResponse> DeleteIdentity();
+    Task<IApiResponse> DeleteIdentity(string identityId);
 
     [Post("/users/md5")]
     Task<IApiResponse> CreateUserWithMd5Password();
@@ -38,95 +38,95 @@ internal interface IUsersApi : IBaseApi
     Task<IApiResponse> CreateUserWithShaPassword();
 
     [Delete("/users/{userId}")]
-    Task<IApiResponse> DeleteUser();
+    Task<IApiResponse> DeleteUser(string userId);
 
     [Get("/users/{userId}")]
-    Task<IApiResponse> GetUser();
+    Task<IApiResponse> GetUser(string userId);
 
     [Patch("/users/{userId}/email")]
-    Task<IApiResponse> UpdateEmail();
+    Task<IApiResponse> UpdateEmail(string userId);
 
     [Post("/users/{userId}/jwts")]
-    Task<IApiResponse> CreateUserJwt();
+    Task<IApiResponse> CreateUserJwt(string userId);
 
     [Put("/users/{userId}/labels")]
-    Task<IApiResponse> UpdateUserLabels();
+    Task<IApiResponse> UpdateUserLabels(string userId);
 
     [Get("/users/{userId}/logs")]
-    Task<IApiResponse> ListUserLogs();
+    Task<IApiResponse> ListUserLogs(string userId);
 
     [Get("/users/{userId}/memberships")]
-    Task<IApiResponse> ListUserMemberships();
+    Task<IApiResponse> ListUserMemberships(string userId);
 
     [Patch("/users/{userId}/mfa")]
-    Task<IApiResponse> UpdateMfa();
+    Task<IApiResponse> UpdateMfa(string userId);
 
     [Delete("/users/{userId}/mfa/authenticators/{type}")]
-    Task<IApiResponse> DeleteAuthenticator();
+    Task<IApiResponse> DeleteAuthenticator(string userId, string type);
 
     [Get("/users/{userId}/mfa/factors")]
-    Task<IApiResponse> ListFactors();
+    Task<IApiResponse> ListFactors(string userId);
 
     [Get("/users/{userId}/mfa/recovery-codes")]
-    Task<IApiResponse> GetMfaRecoveryCodes();
+    Task<IApiResponse> GetMfaRecoveryCodes(string userId);
 
     [Patch("/users{userId}/mfa/recovery-codes")]
-    Task<IApiResponse> CreateMfaRecoveryCodes();
+    Task<IApiResponse> CreateMfaRecoveryCodes(string userId);
 
     [Put("/users/{userId}/mfa/recovery-codes")]
-    Task<IApiResponse> RegenerateMfaRecoveryCodes();
+    Task<IApiResponse> RegenerateMfaRecoveryCodes(string userId);
 
     [Patch("/users/{userId}/mame")]
-    Task<IApiResponse> UpdateName();
+    Task<IApiResponse> UpdateName(string userId);
 
     [Patch("/users/{userId}/password")]
-    Task<IApiResponse> UpdatePassword();
+    Task<IApiResponse> UpdatePassword(string userId);
 
     [Patch("/users/{userId}/phone")]
-    Task<IApiResponse> UpdatePhone();
+    Task<IApiResponse> UpdatePhone(string userId);
 
     [Get("/users/{userId}/prefs")]
-    Task<IApiResponse> GetUserPreferences();
+    Task<IApiResponse> GetUserPreferences(string userId);
 
     [Patch("/users/{userId}/prefs")]
-    Task<IApiResponse> UpdateUserPreferences();
+    Task<IApiResponse> UpdateUserPreferences(string userId);
 
     [Delete("/users/{userId}/sessions")]
-    Task<IApiResponse> DeleteUserSessions();
+    Task<IApiResponse> DeleteUserSessions(string userId);
 
     [Get("/users/{userId}/sessions")]
-    Task<IApiResponse> ListUserSessions();
+    Task<IApiResponse> ListUserSessions(string userId);
 
     [Post("/users/{userId}/sessions")]
-    Task<IApiResponse> CreateSession();
+    Task<IApiResponse> CreateSession(string userId);
 
     [Delete("/users/{userId}/sessions/{sessionId}")]
-    Task<IApiResponse> DeleteUserSession();
+    Task<IApiResponse> DeleteUserSession(string userId, string sessionId);
 
     [Patch("/users/{userId}/status")]
-    Task<IApiResponse> UpdateUserStatus();
+    Task<IApiResponse> UpdateUserStatus(string userId);
 
     [Get("/users/{userId}/targets")]
-    Task<IApiResponse> ListUserTargets();
+    Task<IApiResponse> ListUserTargets(string userId);
 
     [Post("/users/{userId}/targets")]
-    Task<IApiResponse> CreateUserTarget();
+    Task<IApiResponse> CreateUserTarget(string userId);
 
     [Delete("/users/{userId}/targets/{targetId}")]
-    Task<IApiResponse> DeleteUserTarget();
+    Task<IApiResponse> DeleteUserTarget(string userId, string targetId);
 
     [Get("/users/{userId}/targets/{targetId}")]
-    Task<IApiResponse> GetUserTarget();
+    Task<IApiResponse> GetUserTarget(string userId, string targetId);
 
     [Patch("/users/{userId}/targets/{targetId}")]
-    Task<IApiResponse> UpdateUserTarget();
+    Task<IApiResponse> UpdateUserTarget(string userId, string targetId);
 
     [Post("/users/{userId}/tokens")]
-    Task<IApiResponse> CreateToken();
+    Task<IApiResponse> CreateToken(string userId);
 
     [Patch("/users/{userId}/verification")]
-    Task<IApiResponse> UpdateEmailVerification();
+    Task<IApiResponse> UpdateEmailVerification(string userId);
 
     [Patch("/users/{userId}/verification/phone")]
-    Task<IApiResponse> UpdatePhoneVerification();
+    Task<IApiResponse> UpdatePhoneVerification(string userId);
 }

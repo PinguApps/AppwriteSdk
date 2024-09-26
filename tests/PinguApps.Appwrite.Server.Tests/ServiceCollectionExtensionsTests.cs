@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PinguApps.Appwrite.Server.Clients;
 using PinguApps.Appwrite.Server.Handlers;
 using PinguApps.Appwrite.Server.Internals;
-using PinguApps.Appwrite.Server.Clients;
 using PinguApps.Appwrite.Shared.Tests;
 
 namespace PinguApps.Appwrite.Server.Tests;
@@ -29,6 +29,7 @@ public class ServiceCollectionExtensionsTests
 
         // Assert services are registered
         Assert.NotNull(provider.GetService<IAccountClient>());
+        Assert.NotNull(provider.GetService<IUsersClient>());
         Assert.NotNull(provider.GetService<IAppwriteClient>());
     }
 
