@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Moq.Protected;
 using PinguApps.Appwrite.Server.Handlers;
+using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Tests;
 
 namespace PinguApps.Appwrite.Server.Tests.Handlers;
@@ -20,7 +21,9 @@ public class HeaderHandlerTests
             .ReturnsAsync(new HttpResponseMessage())
             .Verifiable();
 
-        var headerHandler = new HeaderHandler(Constants.ProjectId, Constants.ApiKey)
+        var config = new Config(Constants.Endpoint, Constants.ProjectId, Constants.ApiKey);
+
+        var headerHandler = new HeaderHandler(config)
         {
             InnerHandler = mockInnerHandler.Object
         };
