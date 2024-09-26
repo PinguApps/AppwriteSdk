@@ -12,4 +12,10 @@ public interface IAppwriteClient
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account">Appwrite Docs</see></para>
     /// </summary>
     IAccountClient Account { get; }
+
+    /// <summary>
+    /// The Users service allows you to manage your project users. Use this service to search, block, and view your users' info, current sessions, and latest activity logs. You can also use the Users service to edit your users' preferences and personal info.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users">Appwrite Docs</see></para>
+    /// </summary>
+    IUsersClient Users { get; }
 }

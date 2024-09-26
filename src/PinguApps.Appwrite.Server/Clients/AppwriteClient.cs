@@ -2,9 +2,11 @@
 public class AppwriteClient : IAppwriteClient
 {
     public IAccountClient Account { get; }
+    public IUsersClient Users { get; }
 
-    public AppwriteClient(IAccountClient accountServer)
+    public AppwriteClient(IAccountClient accountClient, IUsersClient usersClient)
     {
-        Account = accountServer;
+        Account = accountClient;
+        Users = usersClient;
     }
 }
