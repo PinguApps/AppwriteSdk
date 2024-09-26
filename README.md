@@ -228,6 +228,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Get User](https://appwrite.io/docs/references/1.6.x/server-rest/users#get) | ❌ | ⬛ |
 | [Delete User](https://appwrite.io/docs/references/1.6.x/server-rest/users#delete) | ❌ | ⬛ |
 | [Update Email](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmail) | ❌ | ⬛ |
+| [Create User JWT](https://appwrite.io/docs/references/1.6.x/server-rest/users#createJWT) | ❌ | ⬛ |
 | [Update User Labels](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateLabels) | ❌ | ⬛ |
 | [List User Logs](https://appwrite.io/docs/references/1.6.x/server-rest/users#listLogs) | ❌ | ⬛ |
 | [List User Memberships](https://appwrite.io/docs/references/1.6.x/server-rest/users#listMemberships) | ❌ | ⬛ |
