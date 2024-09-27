@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Responses;
-using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Client;
 
@@ -67,7 +66,7 @@ public interface IAccountClient
     /// </summary>
     /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Only supported methods are limit and offset</param>
     /// <returns>The Logs List</returns>
-    Task<AppwriteResult<LogsList>> ListLogs(List<Query>? queries = null);
+    Task<AppwriteResult<LogsList>> ListLogs(ListLogsRequest request);
 
     /// <summary>
     /// Enable or disable MFA on an account
