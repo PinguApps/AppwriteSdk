@@ -8,7 +8,7 @@ namespace PinguApps.Appwrite.Shared.Requests;
 /// </summary>
 /// <typeparam name="TRequest">The request type</typeparam>
 /// <typeparam name="TValidator">The request validator type</typeparam>
-public class QuerySearchBaseRequest<TRequest, TValidator> : QueryBaseRequest<TRequest, TValidator>
+public abstract class QuerySearchBaseRequest<TRequest, TValidator> : QueryBaseRequest<TRequest, TValidator>
     where TRequest : class
     where TValidator : IValidator<TRequest>, new()
 {
