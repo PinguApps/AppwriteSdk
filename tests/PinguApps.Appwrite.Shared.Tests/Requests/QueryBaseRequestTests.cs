@@ -8,7 +8,7 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     where TValidator : AbstractValidator<TRequest>, new()
 {
     [Fact]
-    public void Constructor_InitializesWithExpectedValues()
+    public void QueryBase_Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
         var request = new TRequest();
@@ -18,7 +18,7 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void Properties_CanBeSet()
+    public void QueryBase_Properties_CanBeSet()
     {
         // Arrange
         var attributeName = "attributeName";
@@ -43,7 +43,7 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void IsValid_WithValidData_ReturnsTrue()
+    public void QueryBase_IsValid_WithValidData_ReturnsTrue()
     {
         // Arrange
         var request = new TRequest
@@ -59,7 +59,7 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void IsValid_WithNullQueries_ReturnsTrue()
+    public void QueryBase_IsValid_WithNullQueries_ReturnsTrue()
     {
         // Arrange
         var request = new TRequest();
@@ -72,7 +72,7 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void IsValid_WithInvalidData_QueryTooLarge_ReturnsFalse()
+    public void QueryBase_IsValid_WithInvalidData_QueryTooLarge_ReturnsFalse()
     {
         // Arrange
         var request = new TRequest
@@ -88,7 +88,7 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void IsValid_WithInvalidData_TooManyQueries_ReturnsFalse()
+    public void QueryBase_IsValid_WithInvalidData_TooManyQueries_ReturnsFalse()
     {
         // Arrange
         var request = new TRequest
@@ -106,7 +106,7 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
+    public void QueryBase_Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
         var request = new TRequest
@@ -121,7 +121,7 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
+    public void QueryBase_Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
         var request = new TRequest
