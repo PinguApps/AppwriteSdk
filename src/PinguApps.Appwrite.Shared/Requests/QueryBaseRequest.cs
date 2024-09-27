@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using FluentValidation;
 using PinguApps.Appwrite.Shared.Utils;
 
@@ -16,5 +17,6 @@ public class QueryBaseRequest<TRequest, TValidator> : BaseRequest<TRequest, TVal
     /// <summary>
     /// Array of query strings generated using the Query class provided by the SDK. Learn more about queries. Maximum of 100 queries are allowed, each 4096 characters long.
     /// </summary>
+    [JsonPropertyName("queries")]
     public virtual List<Query>? Queries { get; set; } = null;
 }
