@@ -1,28 +1,17 @@
 ﻿using FluentValidation;
 using PinguApps.Appwrite.Shared.Requests;
-using PinguApps.Appwrite.Shared.Requests.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests;
-public class QueryBaseRequestTests
+public abstract class QueryBaseRequestTests<TRequest, TValidator>
+    where TRequest : QueryBaseRequest<TRequest, TValidator>, new()
+    where TValidator : AbstractValidator<TRequest>, new()
 {
-    public class TestRequest : QueryBaseRequest<TestRequest, TestValidator>
-    { }
-
-    public class TestValidator : AbstractValidator<TestRequest>
-    {
-        public TestValidator()
-        {
-            Include(new QueryBaseRequestValidator<TestRequest, TestValidator>());
-        }
-    }
-
-
     [Fact]
     public void Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
-        var request = new TestRequest();
+        var request = new TRequest();
 
         // Assert
         Assert.Null(request.Queries);
@@ -35,7 +24,7 @@ public class QueryBaseRequestTests
         var attributeName = "attributeName";
         var value = "value";
         List<Query> queries = [Query.Equal(attributeName, value)];
-        var request = new TestRequest();
+        var request = new TRequest();
 
         // Act
         request.Queries = queries;
@@ -57,7 +46,7 @@ public class QueryBaseRequestTests
     public void IsValid_WithValidData_ReturnsTrue()
     {
         // Arrange
-        var request = new TestRequest
+        var request = new TRequest
         {
             Queries = [Query.Equal("attributeName", "value")]
         };
@@ -73,7 +62,7 @@ public class QueryBaseRequestTests
     public void IsValid_WithNullQueries_ReturnsTrue()
     {
         // Arrange
-        var request = new TestRequest();
+        var request = new TRequest();
 
         // Act
         var isValid = request.IsValid();
@@ -86,7 +75,7 @@ public class QueryBaseRequestTests
     public void IsValid_WithInvalidData_QueryTooLarge_ReturnsFalse()
     {
         // Arrange
-        var request = new TestRequest
+        var request = new TRequest
         {
             Queries = [Query.Equal("attributeName", new string('a', 4097))]
         };
@@ -102,7 +91,7 @@ public class QueryBaseRequestTests
     public void IsValid_WithInvalidData_TooManyQueries_ReturnsFalse()
     {
         // Arrange
-        var request = new TestRequest
+        var request = new TRequest
         {
             Queries = Enumerable.Range(0, 101)
                 .Select(_ => Query.Equal("attributeName", "value"))
@@ -120,7 +109,7 @@ public class QueryBaseRequestTests
     public void Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = new TestRequest
+        var request = new TRequest
         {
             Queries = Enumerable.Range(0, 101)
                 .Select(_ => Query.Equal("attributeName", "value"))
@@ -135,7 +124,7 @@ public class QueryBaseRequestTests
     public void Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = new TestRequest
+        var request = new TRequest
         {
             Queries = Enumerable.Range(0, 101)
                 .Select(_ => Query.Equal("attributeName", "value"))

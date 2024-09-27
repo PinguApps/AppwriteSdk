@@ -97,11 +97,13 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<IdentitiesList>> ListIdentities(List<Query>? queries = null)
+    public async Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request)
     {
         try
         {
-            var queryStrings = queries?.Select(x => x.GetQueryString()) ?? [];
+            request.Validate(true);
+
+            var queryStrings = request.Queries?.Select(x => x.GetQueryString()) ?? [];
 
             var result = await _accountApi.ListIdentities(GetCurrentSessionOrThrow(), queryStrings);
 

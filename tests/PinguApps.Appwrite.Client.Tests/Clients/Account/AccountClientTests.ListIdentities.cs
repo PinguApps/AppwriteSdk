@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using PinguApps.Appwrite.Client.Clients;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Tests;
 using PinguApps.Appwrite.Shared.Utils;
 using RichardSzalay.MockHttp;
@@ -11,6 +12,8 @@ public partial class AccountClientTests
     public async Task ListIdentities_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
+        var request = new ListIdentitiesRequest();
+
         _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/identities")
             .ExpectedHeaders(true)
             .Respond(Constants.AppJson, Constants.IdentitiesListResponse);
@@ -18,7 +21,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.ListIdentities();
+        var result = await _appwriteClient.Account.ListIdentities(request);
 
         // Assert
         Assert.True(result.Success);
@@ -29,6 +32,10 @@ public partial class AccountClientTests
     {
         // Arrange
         var query = Query.Limit(5);
+        var request = new ListIdentitiesRequest()
+        {
+            Queries = [query]
+        };
 
         _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/identities")
             .ExpectedHeaders(true)
@@ -38,7 +45,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.ListIdentities([query]);
+        var result = await _appwriteClient.Account.ListIdentities(request);
 
         // Assert
         Assert.True(result.Success);
@@ -47,8 +54,11 @@ public partial class AccountClientTests
     [Fact]
     public async Task ListIdentities_ShouldReturnError_WhenSessionIsNull()
     {
+        // Arrange
+        var request = new ListIdentitiesRequest();
+
         // Act
-        var result = await _appwriteClient.Account.ListLogs();
+        var result = await _appwriteClient.Account.ListIdentities(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -60,6 +70,8 @@ public partial class AccountClientTests
     public async Task ListIdentities_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
+        var request = new ListIdentitiesRequest();
+
         _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/identities")
             .ExpectedHeaders(true)
             .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
@@ -67,7 +79,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.ListIdentities();
+        var result = await _appwriteClient.Account.ListIdentities(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -78,6 +90,8 @@ public partial class AccountClientTests
     public async Task ListIdentities_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
+        var request = new ListIdentitiesRequest();
+
         _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/identities")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
@@ -85,7 +99,7 @@ public partial class AccountClientTests
         _appwriteClient.SetSession(Constants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.ListIdentities();
+        var result = await _appwriteClient.Account.ListIdentities(request);
 
         // Assert
         Assert.False(result.Success);
