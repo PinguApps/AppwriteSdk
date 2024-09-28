@@ -7,7 +7,7 @@ public class QuerySearchBaseRequestValidator<TRequest, TValidator> : AbstractVal
 {
     public QuerySearchBaseRequestValidator()
     {
-        Include(new QuerySearchBaseRequestValidator<TRequest, TValidator>());
+        Include(new QueryBaseRequestValidator<TRequest, TValidator>());
 
         RuleFor(request => request.Search)
             .MaximumLength(256)
