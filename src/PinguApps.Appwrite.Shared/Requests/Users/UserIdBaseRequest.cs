@@ -8,7 +8,7 @@ namespace PinguApps.Appwrite.Shared.Requests.Users;
 /// </summary>
 /// <typeparam name="TRequest">The request type</typeparam>
 /// <typeparam name="TValidator">The request validator type</typeparam>
-public class UserIdBaseRequest<TRequest, TValidator> : BaseRequest<TRequest, TValidator>
+public abstract class UserIdBaseRequest<TRequest, TValidator> : BaseRequest<TRequest, TValidator>
     where TRequest : class
     where TValidator : IValidator<TRequest>, new()
 {
