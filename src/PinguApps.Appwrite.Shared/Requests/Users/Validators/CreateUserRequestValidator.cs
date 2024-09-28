@@ -23,6 +23,9 @@ public class CreateUserRequestValidator : AbstractValidator<CreateUserRequest>
             .WithMessage("Password must be at least 8 characters long.");
 
         RuleFor(request => request.Name)
+            .NotEmpty()
+            .When(x => x.Name is not null)
+            .WithMessage("Name must not be an empty string.")
             .MaximumLength(128)
             .When(x => x.Name is not null)
             .WithMessage("Name must not exceed 128 characters.");

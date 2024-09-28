@@ -2,15 +2,17 @@
 using PinguApps.Appwrite.Shared.Requests.Users;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Users;
-public abstract class UserIdBaseRequestTests<TRequest, TValidator> : IClassFixture<TRequest>
-        where TRequest : UserIdBaseRequest<TRequest, TValidator>, new()
+public abstract class UserIdBaseRequestTests<TRequest, TValidator>
+        where TRequest : UserIdBaseRequest<TRequest, TValidator>
         where TValidator : AbstractValidator<TRequest>, new()
 {
+    protected abstract TRequest CreateValidRequest { get; }
+
     [Fact]
     public void UserIdBase_Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
-        var request = new TRequest();
+        var request = CreateValidRequest;
 
         // Assert
         Assert.Equal(string.Empty, request.UserId);
@@ -21,7 +23,7 @@ public abstract class UserIdBaseRequestTests<TRequest, TValidator> : IClassFixtu
     {
         // Arrange
         var userIdValue = "validUserId";
-        var request = new TRequest();
+        var request = CreateValidRequest;
 
         // Act
         request.UserId = userIdValue;
@@ -34,10 +36,8 @@ public abstract class UserIdBaseRequestTests<TRequest, TValidator> : IClassFixtu
     public void UserIdBase_IsValid_WithValidUserId_ReturnsTrue()
     {
         // Arrange
-        var request = new TRequest
-        {
-            UserId = "valid_User-Id."
-        };
+        var request = CreateValidRequest;
+        request.UserId = "valid_User-Id.";
 
         // Act
         var isValid = request.IsValid();
@@ -55,10 +55,8 @@ public abstract class UserIdBaseRequestTests<TRequest, TValidator> : IClassFixtu
     public void UserIdBase_IsValid_WithInvalidData_ReturnsFalse(string? userId)
     {
         // Arrange
-        var request = new TRequest
-        {
-            UserId = userId!
-        };
+        var request = CreateValidRequest;
+        request.UserId = userId!;
 
         // Act
         var isValid = request.IsValid();
@@ -71,10 +69,8 @@ public abstract class UserIdBaseRequestTests<TRequest, TValidator> : IClassFixtu
     public void UserIdBase_Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = new TRequest
-        {
-            UserId = string.Empty // Invalid UserId
-        };
+        var request = CreateValidRequest;
+        request.UserId = string.Empty; // Invalid UserId
 
         // Assert
         Assert.Throws<ValidationException>(() => request.Validate(true));
@@ -84,10 +80,8 @@ public abstract class UserIdBaseRequestTests<TRequest, TValidator> : IClassFixtu
     public void UserIdBase_Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = new TRequest
-        {
-            UserId = string.Empty // Invalid UserId
-        };
+        var request = CreateValidRequest;
+        request.UserId = string.Empty; // Invalid UserId
 
         // Act
         var result = request.Validate(false);
