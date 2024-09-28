@@ -11,7 +11,7 @@ public abstract class QuerySearchBaseRequestTests<TRequest, TValidator> : QueryB
     {
         // Arrange
         var searchValue = "test search";
-        var request = new TRequest();
+        var request = CreateValidRequest;
 
         // Act
         request.Search = searchValue;
@@ -24,10 +24,8 @@ public abstract class QuerySearchBaseRequestTests<TRequest, TValidator> : QueryB
     public void QuerySearchBase_IsValid_WithValidSearch_ReturnsTrue()
     {
         // Arrange
-        var request = new TRequest
-        {
-            Search = "valid search term"
-        };
+        var request = CreateValidRequest;
+        request.Search = "valid search term";
 
         // Act
         var isValid = request.IsValid();
@@ -40,10 +38,8 @@ public abstract class QuerySearchBaseRequestTests<TRequest, TValidator> : QueryB
     public void QuerySearchBase_IsValid_WithSearchTooLong_ReturnsFalse()
     {
         // Arrange
-        var request = new TRequest
-        {
-            Search = new string('a', 257) // 257 characters, exceeding the limit
-        };
+        var request = CreateValidRequest;
+        request.Search = new string('a', 257); // 257 characters, exceeding the limit
 
         // Act
         var isValid = request.IsValid();
@@ -56,10 +52,8 @@ public abstract class QuerySearchBaseRequestTests<TRequest, TValidator> : QueryB
     public void QuerySearchBase_Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = new TRequest
-        {
-            Search = new string('a', 257) // 257 characters, exceeding the limit
-        };
+        var request = CreateValidRequest;
+        request.Search = new string('a', 257); // 257 characters, exceeding the limit
 
         // Assert
         Assert.Throws<ValidationException>(() => request.Validate(true));
@@ -69,10 +63,8 @@ public abstract class QuerySearchBaseRequestTests<TRequest, TValidator> : QueryB
     public void QuerySearchBase_Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = new TRequest
-        {
-            Search = new string('a', 257) // 257 characters, exceeding the limit
-        };
+        var request = CreateValidRequest;
+        request.Search = new string('a', 257); // 257 characters, exceeding the limit
 
         // Act
         var result = request.Validate(false);

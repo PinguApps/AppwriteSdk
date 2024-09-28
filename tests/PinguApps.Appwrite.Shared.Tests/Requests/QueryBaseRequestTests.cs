@@ -4,14 +4,16 @@ using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests;
 public abstract class QueryBaseRequestTests<TRequest, TValidator>
-    where TRequest : QueryBaseRequest<TRequest, TValidator>, new()
+    where TRequest : QueryBaseRequest<TRequest, TValidator>
     where TValidator : AbstractValidator<TRequest>, new()
 {
+    protected abstract TRequest CreateValidRequest { get; }
+
     [Fact]
     public void QueryBase_Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
-        var request = new TRequest();
+        var request = CreateValidRequest;
 
         // Assert
         Assert.Null(request.Queries);
@@ -24,7 +26,7 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
         var attributeName = "attributeName";
         var value = "value";
         List<Query> queries = [Query.Equal(attributeName, value)];
-        var request = new TRequest();
+        var request = CreateValidRequest;
 
         // Act
         request.Queries = queries;
@@ -46,10 +48,8 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     public void QueryBase_IsValid_WithValidData_ReturnsTrue()
     {
         // Arrange
-        var request = new TRequest
-        {
-            Queries = [Query.Equal("attributeName", "value")]
-        };
+        var request = CreateValidRequest;
+        request.Queries = [Query.Equal("attributeName", "value")];
 
         // Act
         var isValid = request.IsValid();
@@ -62,7 +62,7 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     public void QueryBase_IsValid_WithNullQueries_ReturnsTrue()
     {
         // Arrange
-        var request = new TRequest();
+        var request = CreateValidRequest;
 
         // Act
         var isValid = request.IsValid();
@@ -75,10 +75,8 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     public void QueryBase_IsValid_WithInvalidData_QueryTooLarge_ReturnsFalse()
     {
         // Arrange
-        var request = new TRequest
-        {
-            Queries = [Query.Equal("attributeName", new string('a', 4097))]
-        };
+        var request = CreateValidRequest;
+        request.Queries = [Query.Equal("attributeName", new string('a', 4097))];
 
         // Act
         var isValid = request.IsValid();
@@ -91,12 +89,10 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     public void QueryBase_IsValid_WithInvalidData_TooManyQueries_ReturnsFalse()
     {
         // Arrange
-        var request = new TRequest
-        {
-            Queries = Enumerable.Range(0, 101)
-                .Select(_ => Query.Equal("attributeName", "value"))
-                .ToList()
-        };
+        var request = CreateValidRequest;
+        request.Queries = Enumerable.Range(0, 101)
+            .Select(_ => Query.Equal("attributeName", "value"))
+            .ToList();
 
         // Act
         var isValid = request.IsValid();
@@ -109,12 +105,10 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     public void QueryBase_Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = new TRequest
-        {
-            Queries = Enumerable.Range(0, 101)
-                .Select(_ => Query.Equal("attributeName", "value"))
-                .ToList()
-        };
+        var request = CreateValidRequest;
+        request.Queries = Enumerable.Range(0, 101)
+            .Select(_ => Query.Equal("attributeName", "value"))
+            .ToList();
 
         // Assert
         Assert.Throws<ValidationException>(() => request.Validate(true));
@@ -124,12 +118,10 @@ public abstract class QueryBaseRequestTests<TRequest, TValidator>
     public void QueryBase_Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = new TRequest
-        {
-            Queries = Enumerable.Range(0, 101)
-                .Select(_ => Query.Equal("attributeName", "value"))
-                .ToList()
-        };
+        var request = CreateValidRequest;
+        request.Queries = Enumerable.Range(0, 101)
+            .Select(_ => Query.Equal("attributeName", "value"))
+            .ToList();
 
         // Act
         var result = request.Validate(false);
