@@ -8,7 +8,6 @@ public class CreateUserRequestTests : UserIdBaseRequestTests<CreateUserRequest, 
 {
     protected override CreateUserRequest CreateValidRequest => new();
 
-
     [Fact]
     public void Constructor_InitializesWithExpectedValues()
     {
@@ -29,7 +28,6 @@ public class CreateUserRequestTests : UserIdBaseRequestTests<CreateUserRequest, 
         var phone = "+4412345678901";
         var password = "ThisIsMySecretPassword";
         var name = "Pingu";
-
 
         // Arrange
         var request = new CreateUserRequest();
