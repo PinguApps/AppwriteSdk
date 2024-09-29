@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users.Validators;
-public class UpdateUserLabelsValidator : AbstractValidator<UpdateUserLabels>
+public class UpdateUserLabelsRequestValidator : AbstractValidator<UpdateUserLabelsRequest>
 {
-    public UpdateUserLabelsValidator()
+    public UpdateUserLabelsRequestValidator()
     {
-        Include(new UserIdBaseRequestValidator<UpdateUserLabels, UpdateUserLabelsValidator>());
+        Include(new UserIdBaseRequestValidator<UpdateUserLabelsRequest, UpdateUserLabelsRequestValidator>());
 
         RuleFor(x => x.Labels)
             .NotNull().WithMessage("Labels cannot be null.")
