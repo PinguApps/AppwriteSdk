@@ -15,7 +15,7 @@ public abstract class QueryBaseRequest<TRequest, TValidator> : BaseRequest<TRequ
     where TValidator : IValidator<TRequest>, new()
 {
     /// <summary>
-    /// Array of query strings generated using the Query class provided by the SDK. Learn more about queries. Maximum of 100 queries are allowed, each 4096 characters long.
+    /// Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Maximum of 100 queries are allowed, each 4096 characters long.
     /// </summary>
     [JsonPropertyName("queries")]
     public virtual List<Query>? Queries { get; set; } = null;
