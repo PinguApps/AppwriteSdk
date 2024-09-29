@@ -21,6 +21,6 @@ public class CreateUserWithShaPasswordRequestValidator : AbstractValidator<Creat
 
     private bool BeAValidPasswordVersion(string? passwordVersion)
     {
-        return string.IsNullOrEmpty(passwordVersion) || AllowedPasswordVersions.Contains(passwordVersion);
+        return passwordVersion is null || AllowedPasswordVersions.Contains(passwordVersion);
     }
 }
