@@ -67,7 +67,6 @@ public class CreateUserRequestTests : UserIdBaseRequestTests<CreateUserRequest, 
 
         // Act
         var isValid = request.IsValid();
-        var result = request.Validate(false);
 
         // Assert
         Assert.True(isValid);
