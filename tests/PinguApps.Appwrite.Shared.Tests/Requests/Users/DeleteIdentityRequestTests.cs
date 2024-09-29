@@ -4,7 +4,6 @@ using PinguApps.Appwrite.Shared.Requests.Users;
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Users;
 public class DeleteIdentityRequestTests
 {
-
     [Fact]
     public void Constructor_InitializesWithExpectedValues()
     {

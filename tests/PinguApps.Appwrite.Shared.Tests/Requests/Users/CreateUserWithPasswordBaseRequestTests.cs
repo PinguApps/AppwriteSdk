@@ -91,7 +91,7 @@ public abstract class CreateUserWithPasswordBaseRequestTests<TRequest, TValidato
     }
 
     [Fact]
-    public void Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
+    public void CreateUserWithPasswordBase_Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
         var request = CreateValidRequest;
@@ -105,7 +105,7 @@ public abstract class CreateUserWithPasswordBaseRequestTests<TRequest, TValidato
     }
 
     [Fact]
-    public void Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
+    public void CreateUserWithPasswordBase_Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
         var request = CreateValidRequest;
