@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using PinguApps.Appwrite.Server.Tests.Clients;
 using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
