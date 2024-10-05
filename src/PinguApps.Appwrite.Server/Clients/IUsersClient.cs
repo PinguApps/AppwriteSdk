@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
+using PinguApps.Appwrite.Shared.Requests.Users;
+using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Server.Clients;
 
@@ -11,87 +14,87 @@ namespace PinguApps.Appwrite.Server.Clients;
 public interface IUsersClient
 {
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> ListUsers();
+    Task<AppwriteResult<UsersList>> ListUsers(ListUsersRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateUser();
+    Task<AppwriteResult<User>> CreateUser(CreateUserRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateUserWithArgon2Password();
+    Task<AppwriteResult<User>> CreateUserWithArgon2Password(CreateUserWithArgon2PasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateUserWithBcryptPassword();
+    Task<AppwriteResult<User>> CreateUserWithBcryptPassword(CreateUserWithBcryptPasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> ListIdentities();
+    Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> DeleteIdentity();
+    Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateUserWithMd5Password();
+    Task<AppwriteResult<User>> CreateUserWithMd5Password(CreateUserWithMd5PasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateUserWithPhpassPassword();
+    Task<AppwriteResult<User>> CreateUserWithPhpassPassword(CreateUserWithPhpassPasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateUserWithScryptPassword();
+    Task<AppwriteResult<User>> CreateUserWithScryptPassword(CreateUserWithScryptPasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateUserWithScryptModifiedPassword();
+    Task<AppwriteResult<User>> CreateUserWithScryptModifiedPassword(CreateUserWithScryptModifiedPasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateUserWithShaPassword();
+    Task<AppwriteResult<User>> CreateUserWithShaPassword(CreateUserWithShaPasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> DeleteUser();
+    Task<AppwriteResult> DeleteUser(DeleteUserRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> GetUser();
+    Task<AppwriteResult<User>> GetUser(GetUserRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdateEmail();
+    Task<AppwriteResult<User>> UpdateEmail(UpdateEmailRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateUserJwt();
+    Task<AppwriteResult<Jwt>> CreateUserJwt(CreateUserJwtRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdateUserLabels();
+    Task<AppwriteResult<User>> UpdateUserLabels(UpdateUserLabelsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> ListUserLogs();
+    Task<AppwriteResult<LogsList>> ListUserLogs(ListUserLogsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> ListUserMemberships();
+    Task<AppwriteResult<MembershipsList>> ListUserMemberships(ListUserMembershipsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdateMfa();
+    Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> DeleteAuthenticator();
+    Task<AppwriteResult<User>> DeleteAuthenticator(DeleteAuthenticatorRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> ListFactors();
+    Task<AppwriteResult<MfaFactors>> ListFactors(ListFactorsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> GetMfaRecoveryCodes();
+    Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes(GetMfaRecoveryCodesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateMfaRecoveryCodes();
+    Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes(CreateMfaRecoveryCodesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> RegenerateMfaRecoveryCodes();
+    Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes(RegenerateMfaRecoveryCodesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdateName();
+    Task<AppwriteResult<User>> UpdateName(UpdateNameRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdatePassword();
+    Task<AppwriteResult<User>> UpdatePassword(UpdatePasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdatePhone();
+    Task<AppwriteResult<User>> UpdatePhone(UpdatePhoneRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> GetUserPreferences();
+    Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetUserPreferences(GetUserPreferencesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdateUserPreferences();
+    Task<AppwriteResult<IReadOnlyDictionary<string, string>>> UpdateUserPreferences(UpdateUserPreferencesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> DeleteUserSessions();
+    Task<AppwriteResult> DeleteUserSessions(DeleteUserSessionsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> ListUserSessions();
+    Task<AppwriteResult<SessionsList>> ListUserSessions(ListUserSessionsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateSession();
+    Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> DeleteUserSession();
+    Task<AppwriteResult> DeleteUserSession(DeleteUserSessionRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdateUserStatus();
+    Task<AppwriteResult<User>> UpdateUserStatus(UpdateUserStatusRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> ListUserTargets();
+    Task<AppwriteResult<TargetList>> ListUserTargets(ListUserTargetsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateUserTarget();
+    Task<AppwriteResult<Target>> CreateUserTarget(CreateUserTargetRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> DeleteUserTarget();
+    Task<AppwriteResult> DeleteUserTarget(DeleteUserTargetRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> GetUserTarget();
+    Task<AppwriteResult<Target>> GetUserTarget(GetUserTargetRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdateUserTarget();
+    Task<AppwriteResult<Target>> UpdateUserTarget(UpdateUserTargertRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> CreateToken();
+    Task<AppwriteResult<Token>> CreateToken(CreateTokenRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdateEmailVerification();
+    Task<AppwriteResult<User>> UpdateEmailVerification(UpdateEmailVerificationRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
-    Task<AppwriteResult> UpdatePhoneVerification();
+    Task<AppwriteResult<User>> UpdatePhoneVerification(UpdatePhoneVerificationRequest request);
 }

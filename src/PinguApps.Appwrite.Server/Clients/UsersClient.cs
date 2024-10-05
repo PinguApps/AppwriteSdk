@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Internals;
 using PinguApps.Appwrite.Shared;
+using PinguApps.Appwrite.Shared.Requests.Users;
+using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Server.Clients;
 public class UsersClient : IUsersClient
@@ -19,169 +22,169 @@ public class UsersClient : IUsersClient
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> ListUsers() => throw new NotImplementedException();
+    public Task<AppwriteResult<UsersList>> ListUsers(ListUsersRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateUser() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> CreateUser(CreateUserRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateUserWithArgon2Password() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> CreateUserWithArgon2Password(CreateUserWithArgon2PasswordRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateUserWithBcryptPassword() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> CreateUserWithBcryptPassword(CreateUserWithBcryptPasswordRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> ListIdentities() => throw new NotImplementedException();
+    public Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteIdentity() => throw new NotImplementedException();
+    public Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateUserWithMd5Password() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> CreateUserWithMd5Password(CreateUserWithMd5PasswordRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateUserWithPhpassPassword() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> CreateUserWithPhpassPassword(CreateUserWithPhpassPasswordRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateUserWithScryptPassword() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> CreateUserWithScryptPassword(CreateUserWithScryptPasswordRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateUserWithScryptModifiedPassword() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> CreateUserWithScryptModifiedPassword(CreateUserWithScryptModifiedPasswordRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateUserWithShaPassword() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> CreateUserWithShaPassword(CreateUserWithShaPasswordRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteUser() => throw new NotImplementedException();
+    public Task<AppwriteResult> DeleteUser(DeleteUserRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> GetUser() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> GetUser(GetUserRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdateEmail() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> UpdateEmail(UpdateEmailRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateUserJwt() => throw new NotImplementedException();
+    public Task<AppwriteResult<Jwt>> CreateUserJwt(CreateUserJwtRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdateUserLabels() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> UpdateUserLabels(UpdateUserLabelsRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> ListUserLogs() => throw new NotImplementedException();
+    public Task<AppwriteResult<LogsList>> ListUserLogs(ListUserLogsRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> ListUserMemberships() => throw new NotImplementedException();
+    public Task<AppwriteResult<MembershipsList>> ListUserMemberships(ListUserMembershipsRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdateMfa() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteAuthenticator() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> DeleteAuthenticator(DeleteAuthenticatorRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> ListFactors() => throw new NotImplementedException();
+    public Task<AppwriteResult<MfaFactors>> ListFactors(ListFactorsRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> GetMfaRecoveryCodes() => throw new NotImplementedException();
+    public Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes(GetMfaRecoveryCodesRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateMfaRecoveryCodes() => throw new NotImplementedException();
+    public Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes(CreateMfaRecoveryCodesRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> RegenerateMfaRecoveryCodes() => throw new NotImplementedException();
+    public Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes(RegenerateMfaRecoveryCodesRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdateName() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> UpdateName(UpdateNameRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdatePassword() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> UpdatePassword(UpdatePasswordRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdatePhone() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> UpdatePhone(UpdatePhoneRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> GetUserPreferences() => throw new NotImplementedException();
+    public Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetUserPreferences(GetUserPreferencesRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdateUserPreferences() => throw new NotImplementedException();
+    public Task<AppwriteResult<IReadOnlyDictionary<string, string>>> UpdateUserPreferences(UpdateUserPreferencesRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteUserSessions() => throw new NotImplementedException();
+    public Task<AppwriteResult> DeleteUserSessions(DeleteUserSessionsRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> ListUserSessions() => throw new NotImplementedException();
+    public Task<AppwriteResult<SessionsList>> ListUserSessions(ListUserSessionsRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateSession() => throw new NotImplementedException();
+    public Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteUserSession() => throw new NotImplementedException();
+    public Task<AppwriteResult> DeleteUserSession(DeleteUserSessionRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdateUserStatus() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> UpdateUserStatus(UpdateUserStatusRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> ListUserTargets() => throw new NotImplementedException();
+    public Task<AppwriteResult<TargetList>> ListUserTargets(ListUserTargetsRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateUserTarget() => throw new NotImplementedException();
+    public Task<AppwriteResult<Target>> CreateUserTarget(CreateUserTargetRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteUserTarget() => throw new NotImplementedException();
+    public Task<AppwriteResult> DeleteUserTarget(DeleteUserTargetRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> GetUserTarget() => throw new NotImplementedException();
+    public Task<AppwriteResult<Target>> GetUserTarget(GetUserTargetRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdateUserTarget() => throw new NotImplementedException();
+    public Task<AppwriteResult<Target>> UpdateUserTarget(UpdateUserTargertRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> CreateToken() => throw new NotImplementedException();
+    public Task<AppwriteResult<Token>> CreateToken(CreateTokenRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdateEmailVerification() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> UpdateEmailVerification(UpdateEmailVerificationRequest request) => throw new NotImplementedException();
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> UpdatePhoneVerification() => throw new NotImplementedException();
+    public Task<AppwriteResult<User>> UpdatePhoneVerification(UpdatePhoneVerificationRequest request) => throw new NotImplementedException();
 }
