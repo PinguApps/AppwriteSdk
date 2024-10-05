@@ -1,132 +1,139 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using PinguApps.Appwrite.Shared.Requests.Users;
+using PinguApps.Appwrite.Shared.Responses;
 using Refit;
 
 namespace PinguApps.Appwrite.Server.Internals;
 internal interface IUsersApi : IBaseApi
 {
     [Get("/users")]
-    Task<IApiResponse> ListUsers();
+    [QueryUriFormat(System.UriFormat.Unescaped)]
+    Task<IApiResponse<UsersList>> ListUsers([Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries, string search);
 
     [Post("/users")]
-    Task<IApiResponse> CreateUser();
+    Task<IApiResponse<User>> CreateUser(CreateUserRequest request);
 
     [Post("/users/argon2")]
-    Task<IApiResponse> CreateUserWithArgon2Password();
+    Task<IApiResponse<User>> CreateUserWithArgon2Password(CreateUserWithArgon2PasswordRequest request);
 
     [Post("/users/bcrypt")]
-    Task<IApiResponse> CreateUserWithBcryptPassword();
+    Task<IApiResponse<User>> CreateUserWithBcryptPassword(CreateUserWithBcryptPasswordRequest request);
 
     [Get("/users/identities")]
-    Task<IApiResponse> ListIdentities();
+    [QueryUriFormat(System.UriFormat.Unescaped)]
+    Task<IApiResponse<IdentitiesList>> ListIdentities([Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries, string search);
 
     [Delete("/users/identities/{identityId}")]
     Task<IApiResponse> DeleteIdentity(string identityId);
 
     [Post("/users/md5")]
-    Task<IApiResponse> CreateUserWithMd5Password();
+    Task<IApiResponse<User>> CreateUserWithMd5Password(CreateUserWithMd5PasswordRequest request);
 
     [Post("/users/phpass")]
-    Task<IApiResponse> CreateUserWithPhpassPassword();
+    Task<IApiResponse<User>> CreateUserWithPhpassPassword(CreateUserWithPhpassPasswordRequest request);
 
     [Post("/users/scrypt")]
-    Task<IApiResponse> CreateUserWithScryptPassword();
+    Task<IApiResponse<User>> CreateUserWithScryptPassword(CreateUserWithScryptPasswordRequest request);
 
     [Post("/users/scrypt-modified")]
-    Task<IApiResponse> CreateUserWithScryptModifiedPassword();
+    Task<IApiResponse<User>> CreateUserWithScryptModifiedPassword(CreateUserWithScryptModifiedPasswordRequest request);
 
     [Post("/users/sha")]
-    Task<IApiResponse> CreateUserWithShaPassword();
+    Task<IApiResponse<User>> CreateUserWithShaPassword(CreateUserWithShaPasswordRequest request);
 
     [Delete("/users/{userId}")]
     Task<IApiResponse> DeleteUser(string userId);
 
     [Get("/users/{userId}")]
-    Task<IApiResponse> GetUser(string userId);
+    Task<IApiResponse<User>> GetUser(string userId);
 
     [Patch("/users/{userId}/email")]
-    Task<IApiResponse> UpdateEmail(string userId);
+    Task<IApiResponse<User>> UpdateEmail(string userId, UpdateEmailRequest request);
 
     [Post("/users/{userId}/jwts")]
-    Task<IApiResponse> CreateUserJwt(string userId);
+    Task<IApiResponse<Jwt>> CreateUserJwt(string userId, CreateUserJwtRequest request);
 
     [Put("/users/{userId}/labels")]
-    Task<IApiResponse> UpdateUserLabels(string userId);
+    Task<IApiResponse<User>> UpdateUserLabels(string userId, UpdateUserLabelsRequest request);
 
     [Get("/users/{userId}/logs")]
-    Task<IApiResponse> ListUserLogs(string userId);
+    [QueryUriFormat(System.UriFormat.Unescaped)]
+    Task<IApiResponse<LogsList>> ListUserLogs(string userId, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries);
 
     [Get("/users/{userId}/memberships")]
-    Task<IApiResponse> ListUserMemberships(string userId);
+    Task<IApiResponse<MembershipsList>> ListUserMemberships(string userId);
 
     [Patch("/users/{userId}/mfa")]
-    Task<IApiResponse> UpdateMfa(string userId);
+    Task<IApiResponse<User>> UpdateMfa(string userId, UpdateMfaRequest request);
 
     [Delete("/users/{userId}/mfa/authenticators/{type}")]
-    Task<IApiResponse> DeleteAuthenticator(string userId, string type);
+    Task<IApiResponse<User>> DeleteAuthenticator(string userId, string type);
 
     [Get("/users/{userId}/mfa/factors")]
-    Task<IApiResponse> ListFactors(string userId);
+    Task<IApiResponse<MfaFactors>> ListFactors(string userId);
 
     [Get("/users/{userId}/mfa/recovery-codes")]
-    Task<IApiResponse> GetMfaRecoveryCodes(string userId);
+    Task<IApiResponse<MfaRecoveryCodes>> GetMfaRecoveryCodes(string userId);
 
     [Patch("/users{userId}/mfa/recovery-codes")]
-    Task<IApiResponse> CreateMfaRecoveryCodes(string userId);
+    Task<IApiResponse<MfaRecoveryCodes>> CreateMfaRecoveryCodes(string userId);
 
     [Put("/users/{userId}/mfa/recovery-codes")]
-    Task<IApiResponse> RegenerateMfaRecoveryCodes(string userId);
+    Task<IApiResponse<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes(string userId);
 
     [Patch("/users/{userId}/mame")]
-    Task<IApiResponse> UpdateName(string userId);
+    Task<IApiResponse<User>> UpdateName(string userId, UpdateNameRequest request);
 
     [Patch("/users/{userId}/password")]
-    Task<IApiResponse> UpdatePassword(string userId);
+    Task<IApiResponse<User>> UpdatePassword(string userId, UpdatePasswordRequest request);
 
     [Patch("/users/{userId}/phone")]
-    Task<IApiResponse> UpdatePhone(string userId);
+    Task<IApiResponse<User>> UpdatePhone(string userId, UpdatePhoneRequest request);
 
     [Get("/users/{userId}/prefs")]
-    Task<IApiResponse> GetUserPreferences(string userId);
+    Task<IApiResponse<IReadOnlyDictionary<string, string>>> GetUserPreferences(string userId);
 
     [Patch("/users/{userId}/prefs")]
-    Task<IApiResponse> UpdateUserPreferences(string userId);
+    Task<IApiResponse<IReadOnlyDictionary<string, string>>> UpdateUserPreferences(string userId, UpdateUserPreferencesRequest request);
 
     [Delete("/users/{userId}/sessions")]
     Task<IApiResponse> DeleteUserSessions(string userId);
 
     [Get("/users/{userId}/sessions")]
-    Task<IApiResponse> ListUserSessions(string userId);
+    Task<IApiResponse<SessionsList>> ListUserSessions(string userId);
 
     [Post("/users/{userId}/sessions")]
-    Task<IApiResponse> CreateSession(string userId);
+    Task<IApiResponse<Session>> CreateSession(string userId);
 
     [Delete("/users/{userId}/sessions/{sessionId}")]
     Task<IApiResponse> DeleteUserSession(string userId, string sessionId);
 
     [Patch("/users/{userId}/status")]
-    Task<IApiResponse> UpdateUserStatus(string userId);
+    Task<IApiResponse<User>> UpdateUserStatus(string userId, UpdateUserStatusRequest request);
 
     [Get("/users/{userId}/targets")]
-    Task<IApiResponse> ListUserTargets(string userId);
+    [QueryUriFormat(System.UriFormat.Unescaped)]
+    Task<IApiResponse<TargetList>> ListUserTargets(string userId, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries);
 
     [Post("/users/{userId}/targets")]
-    Task<IApiResponse> CreateUserTarget(string userId);
+    Task<IApiResponse<Target>> CreateUserTarget(string userId, CreateUserTargetRequest request);
 
     [Delete("/users/{userId}/targets/{targetId}")]
     Task<IApiResponse> DeleteUserTarget(string userId, string targetId);
 
     [Get("/users/{userId}/targets/{targetId}")]
-    Task<IApiResponse> GetUserTarget(string userId, string targetId);
+    Task<IApiResponse<Target>> GetUserTarget(string userId, string targetId);
 
     [Patch("/users/{userId}/targets/{targetId}")]
-    Task<IApiResponse> UpdateUserTarget(string userId, string targetId);
+    Task<IApiResponse<Target>> UpdateUserTarget(string userId, string targetId, UpdateUserTargertRequest request);
 
     [Post("/users/{userId}/tokens")]
-    Task<IApiResponse> CreateToken(string userId);
+    Task<IApiResponse<Token>> CreateToken(string userId, CreateTokenRequest request);
 
     [Patch("/users/{userId}/verification")]
-    Task<IApiResponse> UpdateEmailVerification(string userId);
+    Task<IApiResponse<User>> UpdateEmailVerification(string userId, UpdateEmailVerificationRequest request);
 
     [Patch("/users/{userId}/verification/phone")]
-    Task<IApiResponse> UpdatePhoneVerification(string userId);
+    Task<IApiResponse<User>> UpdatePhoneVerification(string userId, UpdatePhoneVerificationRequest request);
 }
