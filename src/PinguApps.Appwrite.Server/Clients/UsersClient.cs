@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Internals;
+using PinguApps.Appwrite.Server.Utils;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests.Users;
 using PinguApps.Appwrite.Shared.Responses;
@@ -20,9 +22,24 @@ public class UsersClient : IUsersClient
         _config = config;
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<UsersList>> ListUsers(ListUsersRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<UsersList>> ListUsers(ListUsersRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var queryStrings = request.Queries?.Select(x => x.GetQueryString()) ?? [];
+
+            var result = await _usersApi.ListUsers(queryStrings, request.Search);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<UsersList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

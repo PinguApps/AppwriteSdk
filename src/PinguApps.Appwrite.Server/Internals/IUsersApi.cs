@@ -9,7 +9,7 @@ internal interface IUsersApi : IBaseApi
 {
     [Get("/users")]
     [QueryUriFormat(System.UriFormat.Unescaped)]
-    Task<IApiResponse<UsersList>> ListUsers([Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries, string search);
+    Task<IApiResponse<UsersList>> ListUsers([Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries, string? search);
 
     [Post("/users")]
     Task<IApiResponse<User>> CreateUser(CreateUserRequest request);
