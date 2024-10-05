@@ -49,7 +49,8 @@ public class UserListTests
         Assert.Equal(registration.ToUniversalTime(), extractedUser.Registration.ToUniversalTime());
         Assert.Equal(status, extractedUser.Status);
         Assert.Equal(labels, extractedUser.Labels);
-        Assert.Equal(passwordUpdate.ToUniversalTime(), extractedUser.PasswordUpdate.ToUniversalTime());
+        Assert.NotNull(extractedUser.PasswordUpdate);
+        Assert.Equal(passwordUpdate.ToUniversalTime(), extractedUser.PasswordUpdate.Value.ToUniversalTime());
         Assert.Equal(email, extractedUser.Email);
         Assert.Equal(phone, extractedUser.Phone);
         Assert.Equal(emailVerification, extractedUser.EmailVerification);
@@ -87,7 +88,8 @@ public class UserListTests
         Assert.True(user.Status);
         Assert.Single(user.Labels);
         Assert.Equal("vip", user.Labels[0]);
-        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.PasswordUpdate.ToUniversalTime());
+        Assert.NotNull(user.PasswordUpdate);
+        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.PasswordUpdate.Value.ToUniversalTime());
         Assert.Equal("john@appwrite.io", user.Email);
         Assert.Equal("+4930901820", user.Phone);
         Assert.True(user.EmailVerification);

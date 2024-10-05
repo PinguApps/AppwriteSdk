@@ -5,12 +5,12 @@ using Refit;
 using RichardSzalay.MockHttp;
 
 namespace PinguApps.Appwrite.Server.Tests.Servers.Account;
-public partial class AccountServerTests
+public partial class AccountClientTests
 {
     private readonly MockHttpMessageHandler _mockHttp;
     private readonly IAppwriteClient _appwriteServer;
 
-    public AccountServerTests()
+    public AccountClientTests()
     {
         _mockHttp = new MockHttpMessageHandler();
         var services = new ServiceCollection();

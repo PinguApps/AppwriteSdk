@@ -76,7 +76,8 @@ public class UserTests
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.Registration.ToUniversalTime());
         Assert.True(user.Status);
         Assert.Contains("vip", user.Labels);
-        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.PasswordUpdate.ToUniversalTime());
+        Assert.NotNull(user.PasswordUpdate);
+        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.PasswordUpdate.Value.ToUniversalTime());
         Assert.Equal("john@appwrite.io", user.Email);
         Assert.Equal("+4930901820", user.Phone);
         Assert.True(user.EmailVerification);

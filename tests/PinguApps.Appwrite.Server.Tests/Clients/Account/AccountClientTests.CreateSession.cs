@@ -4,47 +4,47 @@ using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
 
 namespace PinguApps.Appwrite.Server.Tests.Servers.Account;
-public partial class AccountServerTests
+public partial class AccountClientTests
 {
     [Fact]
-    public async Task CreatePhoneToken_ShouldReturnSuccess_WhenApiCallSucceeds()
+    public async Task CreateSession_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        var request = new CreatePhoneTokenRequest()
+        var request = new CreateSessionRequest()
         {
             UserId = "123456",
-            PhoneNumber = "+16175551212"
+            Secret = "654321"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/phone")
+        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/token")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.TokenResponse);
+            .Respond(Constants.AppJson, Constants.SessionResponse);
 
         // Act
-        var result = await _appwriteServer.Account.CreatePhoneToken(request);
+        var result = await _appwriteServer.Account.CreateSession(request);
 
         // Assert
         Assert.True(result.Success);
     }
 
     [Fact]
-    public async Task CreatePhoneToken_ShouldHandleException_WhenApiCallFails()
+    public async Task CreateSession_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        var request = new CreatePhoneTokenRequest()
+        var request = new CreateSessionRequest()
         {
             UserId = "123456",
-            PhoneNumber = "+16175551212"
+            Secret = "654321"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/phone")
+        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/token")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
 
         // Act
-        var result = await _appwriteServer.Account.CreatePhoneToken(request);
+        var result = await _appwriteServer.Account.CreateSession(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -52,22 +52,22 @@ public partial class AccountServerTests
     }
 
     [Fact]
-    public async Task CreatePhoneToken_ShouldReturnErrorResponse_WhenExceptionOccurs()
+    public async Task CreateSession_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        var request = new CreatePhoneTokenRequest()
+        var request = new CreateSessionRequest()
         {
             UserId = "123456",
-            PhoneNumber = "+16175551212"
+            Secret = "654321"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/phone")
+        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/token")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));
 
         // Act
-        var result = await _appwriteServer.Account.CreatePhoneToken(request);
+        var result = await _appwriteServer.Account.CreateSession(request);
 
         // Assert
         Assert.False(result.Success);

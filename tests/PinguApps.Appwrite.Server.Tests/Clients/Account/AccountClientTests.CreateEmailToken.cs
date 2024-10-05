@@ -4,7 +4,7 @@ using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
 
 namespace PinguApps.Appwrite.Server.Tests.Servers.Account;
-public partial class AccountServerTests
+public partial class AccountClientTests
 {
     [Fact]
     public async Task CreateEmailToken_ShouldReturnSuccess_WhenApiCallSucceeds()

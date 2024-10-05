@@ -4,49 +4,47 @@ using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
 
 namespace PinguApps.Appwrite.Server.Tests.Servers.Account;
-public partial class AccountServerTests
+public partial class AccountClientTests
 {
     [Fact]
-    public async Task Create_ShouldReturnSuccess_WhenApiCallSucceeds()
+    public async Task CreateEmailPasswordSession_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        var request = new CreateAccountRequest()
+        var request = new CreateEmailPasswordSessionRequest()
         {
             Email = "email@example.com",
-            Password = "password",
-            Name = "name"
+            Password = "Password"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account")
+        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/email")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(Constants.AppJson, Constants.SessionResponse);
 
         // Act
-        var result = await _appwriteServer.Account.Create(request);
+        var result = await _appwriteServer.Account.CreateEmailPasswordSession(request);
 
         // Assert
         Assert.True(result.Success);
     }
 
     [Fact]
-    public async Task Create_ShouldHandleException_WhenApiCallFails()
+    public async Task CreateEmailPasswordSession_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        var request = new CreateAccountRequest()
+        var request = new CreateEmailPasswordSessionRequest()
         {
             Email = "email@example.com",
-            Password = "password",
-            Name = "name"
+            Password = "Password"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account")
+        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/email")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
 
         // Act
-        var result = await _appwriteServer.Account.Create(request);
+        var result = await _appwriteServer.Account.CreateEmailPasswordSession(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -54,23 +52,22 @@ public partial class AccountServerTests
     }
 
     [Fact]
-    public async Task Create_ShouldReturnErrorResponse_WhenExceptionOccurs()
+    public async Task CreateEmailPasswordSession_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        var request = new CreateAccountRequest()
+        var request = new CreateEmailPasswordSessionRequest()
         {
             Email = "email@example.com",
-            Password = "password",
-            Name = "name"
+            Password = "Password"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account")
+        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/email")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));
 
         // Act
-        var result = await _appwriteServer.Account.Create(request);
+        var result = await _appwriteServer.Account.CreateEmailPasswordSession(request);
 
         // Assert
         Assert.False(result.Success);
