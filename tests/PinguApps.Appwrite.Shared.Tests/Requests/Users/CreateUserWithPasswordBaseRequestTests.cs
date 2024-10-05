@@ -3,7 +3,7 @@ using PinguApps.Appwrite.Shared.Requests.Users;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Users;
-public abstract class CreateUserWithPasswordBaseRequestTests<TRequest, TValidator> : UserIdBaseRequest<TRequest, TValidator>
+public abstract class CreateUserWithPasswordBaseRequestTests<TRequest, TValidator>
         where TRequest : CreateUserWithPasswordBaseRequest<TRequest, TValidator>
         where TValidator : AbstractValidator<TRequest>, new()
 {
@@ -16,6 +16,7 @@ public abstract class CreateUserWithPasswordBaseRequestTests<TRequest, TValidato
         var request = CreateValidRequest;
 
         // Assert
+        Assert.Equal(string.Empty, request.UserId);
         Assert.Equal(string.Empty, request.Email);
         Assert.Equal(string.Empty, request.Password);
         Assert.Null(request.Name);
@@ -25,30 +26,33 @@ public abstract class CreateUserWithPasswordBaseRequestTests<TRequest, TValidato
     public void CreateUserWithPasswordBase_Properties_CanBeSet()
     {
         // Arrange
+        var userId = IdUtils.GenerateUniqueId();
         var email = "pingu@example.com";
         var password = "MySuperSecretPassword";
         var name = "My Name";
         var request = CreateValidRequest;
 
         // Act
+        request.UserId = userId;
         request.Email = email;
         request.Password = password;
         request.Name = name;
 
         // Assert
+        Assert.Equal(userId, request.UserId);
         Assert.Equal(email, request.Email);
         Assert.Equal(password, request.Password);
         Assert.Equal(name, request.Name);
     }
 
     [Theory]
-    [InlineData("pingu@example.com", "MySuperSecretPassword123!", null)]
-    [InlineData("pingu@example.com", "MySuperSecretPassword123!", "My Name")]
-    public void CreateUserWithPasswordBase_IsValid_WithValidData_ReturnsTrue(string email, string password, string? name)
+    [InlineData("anId", "pingu@example.com", "MySuperSecretPassword123!", null)]
+    [InlineData("with.Some-Symbols_too", "pingu@example.com", "MySuperSecretPassword123!", "My Name")]
+    public void CreateUserWithPasswordBase_IsValid_WithValidData_ReturnsTrue(string userId, string email, string password, string? name)
     {
         // Arrange
         var request = CreateValidRequest;
-        request.UserId = IdUtils.GenerateUniqueId();
+        request.UserId = userId;
         request.Email = email;
         request.Password = password;
         request.Name = name;
@@ -63,22 +67,27 @@ public abstract class CreateUserWithPasswordBaseRequestTests<TRequest, TValidato
     // Need to rework these - as null is not ok for email and password
     public static IEnumerable<object?[]> CreateUserWithPasswordBase_GetInvalidData()
     {
-        yield return new object?[] { null, "MySuperSecretPassword", null };
-        yield return new object?[] { "", "MySuperSecretPassword", null };
-        yield return new object?[] { "not an email", "MySuperSecretPassword", null };
-        yield return new object?[] { "pingu@example.com", null, null };
-        yield return new object?[] { "pingu@example.com", "", null };
-        yield return new object?[] { "pingu@example.com", "MySuperSecretPassword", "" };
-        yield return new object?[] { "pingu@example.com", "MySuperSecretPassword", new string('a', 129) };
+        yield return new object?[] { null, "pingu@example.com", "MySuperSecretPassword", null };
+        yield return new object?[] { "", "pingu@example.com", "MySuperSecretPassword", null };
+        yield return new object?[] { "invalid chars!", "pingu@example.com", "MySuperSecretPassword", null };
+        yield return new object?[] { ".startsWithSymbol", "pingu@example.com", "MySuperSecretPassword", null };
+        yield return new object?[] { new string('a', 37), "pingu@example.com", "MySuperSecretPassword", null };
+        yield return new object?[] { IdUtils.GenerateUniqueId(), null, "MySuperSecretPassword", null };
+        yield return new object?[] { IdUtils.GenerateUniqueId(), "", "MySuperSecretPassword", null };
+        yield return new object?[] { IdUtils.GenerateUniqueId(), "not an email", "MySuperSecretPassword", null };
+        yield return new object?[] { IdUtils.GenerateUniqueId(), "pingu@example.com", null, null };
+        yield return new object?[] { IdUtils.GenerateUniqueId(), "pingu@example.com", "", null };
+        yield return new object?[] { IdUtils.GenerateUniqueId(), "pingu@example.com", "MySuperSecretPassword", "" };
+        yield return new object?[] { IdUtils.GenerateUniqueId(), "pingu@example.com", "MySuperSecretPassword", new string('a', 129) };
     }
 
     [Theory]
     [MemberData(nameof(CreateUserWithPasswordBase_GetInvalidData))]
-    public void CreateUserWithPasswordBase_IsValid_WithInvalidData_ReturnsFalse(string? email, string? password, string? name)
+    public void CreateUserWithPasswordBase_IsValid_WithInvalidData_ReturnsFalse(string? userId, string? email, string? password, string? name)
     {
         // Arrange
         var request = CreateValidRequest;
-        request.UserId = IdUtils.GenerateUniqueId();
+        request.UserId = userId!;
         request.Email = email!;
         request.Password = password!;
         request.Name = name;
