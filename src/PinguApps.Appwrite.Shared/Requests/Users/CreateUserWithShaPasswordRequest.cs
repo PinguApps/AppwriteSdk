@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users;
+
+/// <summary>
+/// The request for creating a user with sha password
+/// </summary>
 public class CreateUserWithShaPasswordRequest : CreateUserWithPasswordBaseRequest<CreateUserWithShaPasswordRequest, CreateUserWithShaPasswordRequestValidator>
 {
     /// <summary>

@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users;
+
+/// <summary>
+/// The request for deleting an authenticator
+/// </summary>
 public class DeleteAuthenticatorRequest : UserIdBaseRequest<DeleteAuthenticatorRequest, DeleteAuthenticatorRequestValidator>
 {
     /// <summary>

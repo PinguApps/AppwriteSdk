@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users;
+
+/// <summary>
+/// The request for creating user's JWT
+/// </summary>
 public class CreateUserJwtRequest : UserIdBaseRequest<CreateUserJwtRequest, CreateUserJwtRequestValidator>
 {
     /// <summary>

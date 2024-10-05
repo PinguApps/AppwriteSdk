@@ -4,6 +4,10 @@ using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users;
+
+/// <summary>
+/// The request for listing a user's targets
+/// </summary>
 public class ListUserTargetsRequest : UserIdBaseRequest<ListUserTargetsRequest, ListUserTargetsRequestValidator>
 {
     /// <summary>

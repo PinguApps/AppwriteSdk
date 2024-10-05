@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users;
+
+/// <summary>
+/// The request for creating a token
+/// </summary>
 public class CreateTokenRequest : UserIdBaseRequest<CreateTokenRequest, CreateTokenRequestValidator>
 {
     /// <summary>

@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users;
+
+/// <summary>
+/// The request for updating a user's name
+/// </summary>
 public class UpdateNameRequest : UserIdBaseRequest<UpdateNameRequest, UpdateNameRequestValidator>
 {
     /// <summary>

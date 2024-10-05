@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users;
+
+/// <summary>
+/// The request for Creating a user
+/// </summary>
 public class CreateUserRequest : UserIdBaseRequest<CreateUserRequest, CreateUserRequestValidator>
 {
     /// <summary>

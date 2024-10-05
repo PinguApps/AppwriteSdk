@@ -4,6 +4,10 @@ using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users;
+
+/// <summary>
+/// The request for listing user's logs
+/// </summary>
 public class ListUserLogsRequest : UserIdBaseRequest<ListUserLogsRequest, ListUserLogsRequestValidator>
 {
     /// <summary>

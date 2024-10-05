@@ -3,6 +3,10 @@ using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users;
+
+/// <summary>
+/// The request for creating a target for a user
+/// </summary>
 public class CreateUserTargetRequest : UserIdBaseRequest<CreateUserTargetRequest, CreateUserTargetRequestValidator>
 {
     /// <summary>

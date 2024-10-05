@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Users;
+
+/// <summary>
+/// The request for creating a user with scrypt password
+/// </summary>
 public class CreateUserWithScryptPasswordRequest : CreateUserWithPasswordBaseRequest<CreateUserWithScryptPasswordRequest, CreateUserWithScryptPasswordRequestValidator>
 {
     /// <summary>
