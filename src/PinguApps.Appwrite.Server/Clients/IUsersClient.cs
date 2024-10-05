@@ -13,8 +13,20 @@ namespace PinguApps.Appwrite.Server.Clients;
 /// </summary>
 public interface IUsersClient
 {
+    /// <summary>
+    /// Get a list of all the project's users. You can use the query params to filter your results.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#list">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The Users List</returns>
     Task<AppwriteResult<UsersList>> ListUsers(ListUsersRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Create a new User
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#create">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> CreateUser(CreateUserRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> CreateUserWithArgon2Password(CreateUserWithArgon2PasswordRequest request);

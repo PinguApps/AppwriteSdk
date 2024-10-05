@@ -30,5 +30,6 @@ public class CreateUserRequest : UserIdBaseRequest<CreateUserRequest, CreateUser
     /// User name. Max length: 128 chars
     /// </summary>
     [JsonPropertyName("name")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Name { get; set; }
 }
