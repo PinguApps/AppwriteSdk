@@ -37,5 +37,4 @@ public class CreateUserWithScryptPasswordRequest : CreateUserWithPasswordBaseReq
     /// </summary>
     [JsonPropertyName("passwordLength")]
     public int PasswordLength { get; set; }
-
 }
