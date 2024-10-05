@@ -1,9 +1,9 @@
 ﻿using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
 
-namespace PinguApps.Appwrite.Server.Tests.Servers.Account;
+namespace PinguApps.Appwrite.Server.Tests.Clients;
 
-public static class AccountTestsExtensions
+public static class ClientTestsExtensions
 {
     public static MockedRequest ExpectedHeaders(this MockedRequest request)
     {

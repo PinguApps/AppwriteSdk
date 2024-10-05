@@ -1,7 +1,7 @@
 ﻿using PinguApps.Appwrite.Shared.Requests.Account;
 
 namespace PinguApps.Appwrite.Server.Tests.Servers.Account;
-public partial class AccountServerTests
+public partial class AccountClientTests
 {
     [Fact]
     public void CreateOauth2Session_ShouldReturnSuccess_WhenApiCallSucceeds()

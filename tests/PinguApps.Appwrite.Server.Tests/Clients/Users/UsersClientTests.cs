@@ -4,13 +4,13 @@ using PinguApps.Appwrite.Shared.Tests;
 using Refit;
 using RichardSzalay.MockHttp;
 
-namespace PinguApps.Appwrite.Server.Tests.Servers.Account;
-public partial class AccountServerTests
+namespace PinguApps.Appwrite.Server.Tests.Clients.Users;
+public partial class UsersClientTests
 {
     private readonly MockHttpMessageHandler _mockHttp;
-    private readonly IAppwriteClient _appwriteServer;
+    private readonly IAppwriteClient _appwriteClient;
 
-    public AccountServerTests()
+    public UsersClientTests()
     {
         _mockHttp = new MockHttpMessageHandler();
         var services = new ServiceCollection();
@@ -22,6 +22,6 @@ public partial class AccountServerTests
 
         var serviceProvider = services.BuildServiceProvider();
 
-        _appwriteServer = serviceProvider.GetRequiredService<IAppwriteClient>();
+        _appwriteClient = serviceProvider.GetRequiredService<IAppwriteClient>();
     }
 }

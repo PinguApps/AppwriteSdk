@@ -13,7 +13,6 @@ namespace PinguApps.Appwrite.Server.Clients;
 /// </summary>
 public interface IUsersClient
 {
-    [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<UsersList>> ListUsers(ListUsersRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> CreateUser(CreateUserRequest request);
