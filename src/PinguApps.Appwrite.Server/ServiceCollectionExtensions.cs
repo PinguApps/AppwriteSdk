@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
+using PinguApps.Appwrite.Server.Clients;
 using PinguApps.Appwrite.Server.Handlers;
 using PinguApps.Appwrite.Server.Internals;
-using PinguApps.Appwrite.Server.Servers;
 using PinguApps.Appwrite.Shared;
 using Refit;
 
@@ -25,7 +25,8 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection, enabling chaining</returns>
     public static IServiceCollection AddAppwriteServer(this IServiceCollection services, string projectId, string apiKey, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
-        services.AddSingleton(sp => new HeaderHandler(projectId, apiKey));
+        services.AddSingleton(new Config(endpoint, projectId, apiKey));
+        services.AddTransient<HeaderHandler>();
 
         services.AddRefitClient<IAccountApi>(refitSettings)
             .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
@@ -38,10 +39,20 @@ public static class ServiceCollectionExtensions
                  }
              });
 
-        services.AddSingleton(new Config(endpoint, projectId));
+        services.AddRefitClient<IUsersApi>(refitSettings)
+            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .ConfigurePrimaryHttpMessageHandler((handler, sp) =>
+            {
+                if (handler is HttpClientHandler clientHandler)
+                {
+                    clientHandler.UseCookies = false;
+                }
+            });
 
-        services.AddSingleton<IAccountServer, AccountServer>();
-        services.AddSingleton<IAppwriteServer, AppwriteServer>();
+        services.AddSingleton<IAccountClient, AccountClient>();
+        services.AddSingleton<IUsersClient, UsersClient>();
+        services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
     }

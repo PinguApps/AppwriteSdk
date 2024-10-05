@@ -7,9 +7,8 @@ using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Client.Utils;
 using PinguApps.Appwrite.Shared;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Responses;
-using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Client;
 
@@ -97,11 +96,13 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<IdentitiesList>> ListIdentities(List<Query>? queries = null)
+    public async Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request)
     {
         try
         {
-            var queryStrings = queries?.Select(x => x.GetQueryString()) ?? [];
+            request.Validate(true);
+
+            var queryStrings = request.Queries?.Select(x => x.GetQueryString()) ?? [];
 
             var result = await _accountApi.ListIdentities(GetCurrentSessionOrThrow(), queryStrings);
 
@@ -146,11 +147,13 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<LogsList>> ListLogs(List<Query>? queries = null)
+    public async Task<AppwriteResult<LogsList>> ListLogs(ListLogsRequest request)
     {
         try
         {
-            var queryStrings = queries?.Select(x => x.GetQueryString()) ?? [];
+            request.Validate(true);
+
+            var queryStrings = request.Queries?.Select(x => x.GetQueryString()) ?? [];
 
             var result = await _accountApi.ListLogs(GetCurrentSessionOrThrow(), queryStrings);
 

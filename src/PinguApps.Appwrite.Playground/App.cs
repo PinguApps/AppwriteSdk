@@ -1,16 +1,14 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PinguApps.Appwrite.Client;
-using PinguApps.Appwrite.Server.Servers;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
 {
-    private readonly IAppwriteClient _client;
-    private readonly IAppwriteServer _server;
+    private readonly Client.IAppwriteClient _client;
+    private readonly Server.Clients.IAppwriteClient _server;
     private readonly string? _session;
 
-    public App(IAppwriteClient client, IAppwriteServer server, IConfiguration config)
+    public App(Client.IAppwriteClient client, Server.Clients.IAppwriteClient server, IConfiguration config)
     {
         _client = client;
         _server = server;
@@ -19,9 +17,6 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        _client.SetSession(_session);
-
-        //var response = await _client.Account.CreatePhoneVerification();
         var response = await _client.Account.UpdatePhoneVerificationConfirmation(new UpdatePhoneVerificationConfirmationRequest
         {
             UserId = "664aac1a00113f82e620",

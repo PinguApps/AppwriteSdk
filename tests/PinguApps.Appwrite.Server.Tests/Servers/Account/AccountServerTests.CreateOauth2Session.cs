@@ -1,4 +1,4 @@
-﻿using PinguApps.Appwrite.Shared.Requests;
+﻿using PinguApps.Appwrite.Shared.Requests.Account;
 
 namespace PinguApps.Appwrite.Server.Tests.Servers.Account;
 public partial class AccountServerTests
