@@ -8,15 +8,20 @@ public class CreateUserWithPasswordBaseRequestValidator<TRequest, TValidator> : 
     public CreateUserWithPasswordBaseRequestValidator()
     {
         RuleFor(x => x.UserId)
-            .NotEmpty().WithMessage("UserId is required.")
-            .Matches("^[a-zA-Z0-9][a-zA-Z0-9._-]{0,35}$").WithMessage("UserId can only contain a-z, A-Z, 0-9, period, hyphen, and underscore, and can't start with a special char. Max length is 36 chars.");
+            .NotEmpty()
+            .WithMessage("UserId is required.")
+            .Matches("^[a-zA-Z0-9][a-zA-Z0-9._-]{0,35}$")
+            .WithMessage("UserId can only contain a-z, A-Z, 0-9, period, hyphen, and underscore, and can't start with a special char. Max length is 36 chars.");
 
         RuleFor(x => x.Email)
-            .NotEmpty().WithMessage("Email is required.")
-            .EmailAddress().WithMessage("Invalid email format.");
+            .NotEmpty()
+            .WithMessage("Email is required.")
+            .EmailAddress()
+            .WithMessage("Invalid email format.");
 
         RuleFor(x => x.Password)
-            .NotEmpty().WithMessage("Password is required.");
+            .NotEmpty()
+            .WithMessage("Password is required.");
 
         RuleFor(x => x.Name)
             .NotEmpty()

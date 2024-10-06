@@ -94,6 +94,7 @@ public class UserTests
         Assert.Equal("259125845563242502", user.Targets[0].ProviderId);
         Assert.Equal(TargetProviderType.Email, user.Targets[0].ProviderType);
         Assert.Equal("token", user.Targets[0].Identifier);
-        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.AccessedAt.ToUniversalTime());
+        Assert.NotNull(user.AccessedAt);
+        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.AccessedAt.Value.ToUniversalTime());
     }
 }
