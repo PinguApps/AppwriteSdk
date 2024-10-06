@@ -35,5 +35,6 @@ public class CreateUserWithPasswordBaseRequest<TRequest, TValidator> : BaseReque
     /// User name. Max length: 128 chars
     /// </summary>
     [JsonPropertyName("name")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Name { get; set; }
 }

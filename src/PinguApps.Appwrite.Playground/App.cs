@@ -18,13 +18,14 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateUserRequest()
+        var request = new CreateUserWithArgon2PasswordRequest()
         {
             UserId = IdUtils.GenerateUniqueId(),
-            Name = "My Name 2"
+            Email = "p@example.com",
+            Password = "$argon2i$v=19$m=16,t=2,p=1$ck5UdVZSeEVEZHFDc1VTZA$Ru/mskiTeTfoBlGqkMcKSA"
         };
 
-        var response = await _server.Users.CreateUser(request);
+        var response = await _server.Users.CreateUserWithArgon2Password(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
