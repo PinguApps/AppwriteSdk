@@ -36,7 +36,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> CreateUserWithArgon2Password(CreateUserWithArgon2PasswordRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Create a new user. Password provided must be hashed with the <see href="https://en.wikipedia.org/wiki/Bcrypt">Bcrypt</see> algorithm. Use <see cref="CreateUser(CreateUserRequest)"/> to create users with a plain text password.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#createBcryptUser">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> CreateUserWithBcryptPassword(CreateUserWithBcryptPasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request);

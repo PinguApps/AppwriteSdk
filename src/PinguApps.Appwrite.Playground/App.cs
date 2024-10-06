@@ -18,14 +18,14 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateUserWithArgon2PasswordRequest()
+        var request = new CreateUserWithBcryptPasswordRequest()
         {
             UserId = IdUtils.GenerateUniqueId(),
-            Email = "p@example.com",
-            Password = "$argon2i$v=19$m=16,t=2,p=1$ck5UdVZSeEVEZHFDc1VTZA$Ru/mskiTeTfoBlGqkMcKSA"
+            Email = "pingu@example.com",
+            Password = "$2y$10$I1A85SWJhLzjIFatLK7/SuFFBDML1J7RQzWzF5/38bMPPOWK/gsqC"
         };
 
-        var response = await _server.Users.CreateUserWithArgon2Password(request);
+        var response = await _server.Users.CreateUserWithBcryptPassword(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
