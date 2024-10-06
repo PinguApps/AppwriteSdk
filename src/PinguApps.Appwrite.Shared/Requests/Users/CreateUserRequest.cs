@@ -9,7 +9,6 @@ namespace PinguApps.Appwrite.Shared.Requests.Users;
 /// </summary>
 public class CreateUserRequest : BaseRequest<CreateUserRequest, CreateUserRequestValidator>
 {
-
     /// <summary>
     /// User ID. Choose a custom ID or generate a random ID with <see cref="Utils.IdUtils.GenerateUniqueId(int)"/>. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
     /// </summary>
