@@ -138,13 +138,10 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![57 / 291](https://progress-bar.dev/57/?scale=291&suffix=%20/%20288&width=500) -->
-![Server & Client - 57 / 291](https://img.shields.io/badge/Server_&_Client-57%20%2F%20291-red?style=for-the-badge)
+![Server & Client - 58 / 291](https://img.shields.io/badge/Server_&_Client-58%20%2F%20291-red?style=for-the-badge)
 
-<!-- ![13 / 201](https://progress-bar.dev/13/?scale=201&suffix=%20/%20201&width=300) -->
-![Server - 13 / 201](https://img.shields.io/badge/Server-13%20%2F%20201-red?style=for-the-badge)
+![Server - 14 / 201](https://img.shields.io/badge/Server-14%20%2F%20201-red?style=for-the-badge)
 
-<!-- ![44 / 93](https://progress-bar.dev/44/?scale=93&suffix=%20/%2093&width=300) -->
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
 ### 🔑 Key
@@ -155,7 +152,6 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![55 / 55](https://progress-bar.dev/55/?scale=55&suffix=%20/%2052&width=120) -->
 ![Account - 55 / 55](https://img.shields.io/badge/Account-55%20%2F%2055-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server | Notes |
@@ -209,14 +205,13 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-<!-- ![2 / 41](https://progress-bar.dev/2/?scale=41&suffix=%20/%2041&width=120) -->
-![Account - 2 / 41](https://img.shields.io/badge/Users-2%20%2F%2041-red?style=for-the-badge)
+![Account - 3 / 41](https://img.shields.io/badge/Users-3%20%2F%2041-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
 | [List Users](https://appwrite.io/docs/references/1.6.x/server-rest/users#list) | ❌ | ✅ |
 | [Create User](https://appwrite.io/docs/references/1.6.x/server-rest/users#create) | ❌ | ✅ |
-| [Create User with Argon2 Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createArgon2User) | ❌ | ⬛ |
+| [Create User with Argon2 Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createArgon2User) | ❌ | ✅ |
 | [Create User with Bcrypt Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createBcryptUser) | ❌ | ⬛ |
 | [List Identities](https://appwrite.io/docs/references/1.6.x/server-rest/users#listIdentities) | ❌ | ⬛ |
 | [Delete Identity](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteIdentity) | ❌ | ⬛ |
