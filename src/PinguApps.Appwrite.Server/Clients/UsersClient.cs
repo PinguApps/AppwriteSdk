@@ -75,9 +75,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<User>> CreateUserWithBcryptPassword(CreateUserWithBcryptPasswordRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<User>> CreateUserWithBcryptPassword(CreateUserWithBcryptPasswordRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.CreateUserWithBcryptPassword(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
