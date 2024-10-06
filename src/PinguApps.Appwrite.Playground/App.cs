@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Shared.Requests.Users;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -17,9 +18,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new ListUsersRequest();
+        var request = new CreateUserRequest()
+        {
+            UserId = IdUtils.GenerateUniqueId(),
+            Name = "My Name 2"
+        };
 
-        var response = await _server.Users.ListUsers(request);
+        var response = await _server.Users.CreateUser(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

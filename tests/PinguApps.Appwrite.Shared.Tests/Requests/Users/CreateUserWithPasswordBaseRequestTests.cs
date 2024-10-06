@@ -16,7 +16,7 @@ public abstract class CreateUserWithPasswordBaseRequestTests<TRequest, TValidato
         var request = CreateValidRequest;
 
         // Assert
-        Assert.Equal(string.Empty, request.UserId);
+        Assert.NotEmpty(request.UserId);
         Assert.Equal(string.Empty, request.Email);
         Assert.Equal(string.Empty, request.Password);
         Assert.Null(request.Name);
@@ -94,6 +94,8 @@ public abstract class CreateUserWithPasswordBaseRequestTests<TRequest, TValidato
 
         // Act
         var isValid = request.IsValid();
+
+        var DELETEME = request.Validate();
 
         // Assert
         Assert.False(isValid);

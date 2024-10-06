@@ -58,7 +58,8 @@ public class UserListTests
         Assert.Equal(mfa, extractedUser.Mfa);
         Assert.Equal(prefs, extractedUser.Prefs);
         Assert.Equal(targets, extractedUser.Targets);
-        Assert.Equal(accessedAt.ToUniversalTime(), extractedUser.AccessedAt.ToUniversalTime());
+        Assert.NotNull(extractedUser.AccessedAt);
+        Assert.Equal(accessedAt.ToUniversalTime(), extractedUser.AccessedAt.Value.ToUniversalTime());
     }
 
     [Fact]
@@ -106,6 +107,7 @@ public class UserListTests
         Assert.Equal("259125845563242502", target.ProviderId);
         Assert.Equal(TargetProviderType.Email, target.ProviderType);
         Assert.Equal("token", target.Identifier);
-        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.AccessedAt.ToUniversalTime());
+        Assert.NotNull(user.AccessedAt);
+        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.AccessedAt.Value.ToUniversalTime());
     }
 }

@@ -1,13 +1,10 @@
 ﻿using FluentValidation;
 using PinguApps.Appwrite.Shared.Requests.Users;
-using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Users;
-public class CreateUserRequestTests : UserIdBaseRequestTests<CreateUserRequest, CreateUserRequestValidator>
+public class CreateUserRequestTests
 {
-    protected override CreateUserRequest CreateValidRequest => new();
-
     [Fact]
     public void Constructor_InitializesWithExpectedValues()
     {
@@ -15,6 +12,7 @@ public class CreateUserRequestTests : UserIdBaseRequestTests<CreateUserRequest, 
         var request = new CreateUserRequest();
 
         // Assert
+        Assert.NotEmpty(request.UserId);
         Assert.Null(request.Email);
         Assert.Null(request.Phone);
         Assert.Null(request.Password);
@@ -24,45 +22,54 @@ public class CreateUserRequestTests : UserIdBaseRequestTests<CreateUserRequest, 
     [Fact]
     public void Properties_CanBeSet()
     {
+        // Arrange
+        var userId = IdUtils.GenerateUniqueId();
         var email = "pingu@example.com";
         var phone = "+4412345678901";
-        var password = "ThisIsMySecretPassword";
-        var name = "Pingu";
+        var password = "MySuperSecretPassword";
+        var name = "My Name";
 
-        // Arrange
         var request = new CreateUserRequest();
 
         // Act
+        request.UserId = userId;
         request.Email = email;
         request.Phone = phone;
         request.Password = password;
         request.Name = name;
 
         // Assert
+        Assert.Equal(userId, request.UserId);
         Assert.Equal(email, request.Email);
         Assert.Equal(phone, request.Phone);
         Assert.Equal(password, request.Password);
         Assert.Equal(name, request.Name);
     }
 
-    [Theory]
-    [InlineData(null, null, null, null)]
-    [InlineData("pingu@example.com", null, null, null)]
-    [InlineData(null, "+4412345678901", null, null)]
-    [InlineData(null, null, "MyPa55w0rd!", null)]
-    [InlineData(null, null, null, "My Name")]
-    public void IsValid_WithValidData_ReturnsTrue(string? email, string? phone, string? password, string? name)
-    {
-        // Arrange
-        var request = new CreateUserRequest
+    public static TheoryData<CreateUserRequest> ValidRequestsData = new()
         {
-            UserId = IdUtils.GenerateUniqueId(),
-            Email = email,
-            Phone = phone,
-            Password = password,
-            Name = name
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = "pingu@example.com",
+                Phone = "+44123456",
+                Password = "SuperSecretPassword",
+                Name = "Valid Name"
+            },
+            new()
+            {
+                UserId = "uses.All_Symbol-s",
+                Email = null,
+                Phone = null,
+                Password = null,
+                Name = null
+            }
         };
 
+    [Theory]
+    [MemberData(nameof(ValidRequestsData))]
+    public void IsValid_WithValidData_ReturnsTrue(CreateUserRequest request)
+    {
         // Act
         var isValid = request.IsValid();
 
@@ -70,35 +77,134 @@ public class CreateUserRequestTests : UserIdBaseRequestTests<CreateUserRequest, 
         Assert.True(isValid);
     }
 
-    public static IEnumerable<object?[]> GetInvalidData()
-    {
-        yield return new object?[] { "", null, null, null };
-        yield return new object?[] { "not an email", null, null, null };
-        yield return new object?[] { null, "", null, null };
-        yield return new object?[] { null, "1234567890", null, null };
-        yield return new object?[] { null, "+456123aaa", null, null };
-        yield return new object?[] { null, "+456123!!!", null, null };
-        yield return new object?[] { null, "+1234567890123456789", null, null };
-        yield return new object?[] { null, null, "", null };
-        yield return new object?[] { null, null, "tooFew", null };
-        yield return new object?[] { null, null, null, "" };
-        yield return new object?[] { null, null, null, new string('a', 129) };
-    }
-
-    [Theory]
-    [MemberData(nameof(GetInvalidData))]
-    public void IsValid_WithInvalidData_ReturnsFalse(string? email, string? phone, string? password, string? name)
-    {
-        // Arrange
-        var request = new CreateUserRequest
+    public static TheoryData<CreateUserRequest> InvalidRequestsData = new()
         {
-            UserId = IdUtils.GenerateUniqueId(),
-            Email = email,
-            Phone = phone,
-            Password = password,
-            Name = name
+            new()
+            {
+                UserId = null!,
+                Email = null,
+                Phone = null,
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = "",
+                Email = null,
+                Phone = null,
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = "invalid chars!",
+                Email = null,
+                Phone = null,
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = ".startsWithSymbol",
+                Email = null,
+                Phone = null,
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = new string('a', 37),
+                Email = null,
+                Phone = null,
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = "",
+                Phone = null,
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = "not an email",
+                Phone = null,
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = null,
+                Phone = "",
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = null,
+                Phone = "1234567890",
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = null,
+                Phone = "+456123aaa",
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = null,
+                Phone = "+456123!!!",
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = null,
+                Phone = "+1234567890123456789",
+                Password = null,
+                Name = null
+            },
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = null,
+                Phone = null,
+                Password = "",
+                Name = null
+            },
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = null,
+                Phone = null,
+                Password = null,
+                Name = ""
+            },
+            new()
+            {
+                UserId = IdUtils.GenerateUniqueId(),
+                Email = null,
+                Phone = null,
+                Password = null,
+                Name = new string('a', 129)
+            }
         };
 
+    [Theory]
+    [MemberData(nameof(InvalidRequestsData))]
+    public void IsValid_WithInvalidData_ReturnsFalse(CreateUserRequest request)
+    {
         // Act
         var isValid = request.IsValid();
 
@@ -113,10 +219,7 @@ public class CreateUserRequestTests : UserIdBaseRequestTests<CreateUserRequest, 
         var request = new CreateUserRequest
         {
             UserId = IdUtils.GenerateUniqueId(),
-            Email = "not an email",
-            Phone = "123",
-            Password = "short",
-            Name = ""
+            Phone = "123"
         };
 
         // Assert
@@ -130,10 +233,7 @@ public class CreateUserRequestTests : UserIdBaseRequestTests<CreateUserRequest, 
         var request = new CreateUserRequest
         {
             UserId = IdUtils.GenerateUniqueId(),
-            Email = "not an email",
-            Phone = "123",
-            Password = "short",
-            Name = ""
+            Phone = "123"
         };
 
         // Act

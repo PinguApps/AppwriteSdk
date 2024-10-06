@@ -47,5 +47,5 @@ public record User(
     [property: JsonPropertyName("mfa")] bool Mfa,
     [property: JsonPropertyName("prefs")] IReadOnlyDictionary<string, string> Prefs,
     [property: JsonPropertyName("targets")] IReadOnlyList<Target> Targets,
-    [property: JsonPropertyName("accessedAt")] DateTime AccessedAt
+    [property: JsonPropertyName("accessedAt"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? AccessedAt
 );
