@@ -17,12 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new DeleteIdentityRequest()
+        var request = new CreateUserWithMd5PasswordRequest()
         {
-            IdentityId = "66b8e4aecc12287deb47"
+            Email = "pingu@example.com",
+            Password = "34819d7beeabb9260a5c854bc85b3e44"
         };
 
-        var response = await _server.Users.DeleteIdentity(request);
+        var response = await _server.Users.CreateUserWithMd5Password(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
