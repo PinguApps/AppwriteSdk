@@ -44,7 +44,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> CreateUserWithBcryptPassword(CreateUserWithBcryptPasswordRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Get identities for all users
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#listIdentities">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The identities list</returns>
     Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request);

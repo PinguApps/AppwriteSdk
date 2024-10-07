@@ -92,9 +92,24 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var queryStrings = request.Queries?.Select(x => x.GetQueryString()) ?? [];
+
+            var result = await _usersApi.ListIdentities(queryStrings, request.Search);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<IdentitiesList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
