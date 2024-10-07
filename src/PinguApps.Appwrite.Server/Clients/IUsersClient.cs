@@ -60,7 +60,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Create a new user. Password provided must be hashed with the <see href="https://en.wikipedia.org/wiki/MD5">MD5</see> algorithm. Use <see cref="CreateUser(CreateUserRequest)"/> to create users with a plain text password.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#createMD5User">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> CreateUserWithMd5Password(CreateUserWithMd5PasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> CreateUserWithPhpassPassword(CreateUserWithPhpassPasswordRequest request);
