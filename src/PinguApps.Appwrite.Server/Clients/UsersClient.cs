@@ -111,9 +111,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.DeleteIdentity(request.IdentityId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
