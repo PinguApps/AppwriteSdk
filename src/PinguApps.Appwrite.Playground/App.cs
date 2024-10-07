@@ -17,13 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateUserWithMd5PasswordRequest()
+        var request = new CreateUserWithPhpassPasswordRequest()
         {
             Email = "pingu@example.com",
-            Password = "34819d7beeabb9260a5c854bc85b3e44"
+            Password = "$P$5ZDzPE45Ci.QxPaPz.03z6TYbakcSQ0"
         };
 
-        var response = await _server.Users.CreateUserWithMd5Password(request);
+        var response = await _server.Users.CreateUserWithPhpassPassword(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
