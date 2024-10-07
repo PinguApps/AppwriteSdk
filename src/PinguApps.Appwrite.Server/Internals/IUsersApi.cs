@@ -22,7 +22,7 @@ internal interface IUsersApi : IBaseApi
 
     [Get("/users/identities")]
     [QueryUriFormat(System.UriFormat.Unescaped)]
-    Task<IApiResponse<IdentitiesList>> ListIdentities([Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries, string search);
+    Task<IApiResponse<IdentitiesList>> ListIdentities([Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries, string? search);
 
     [Delete("/users/identities/{identityId}")]
     Task<IApiResponse> DeleteIdentity(string identityId);

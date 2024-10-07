@@ -138,9 +138,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-![Server & Client - 59 / 291](https://img.shields.io/badge/Server_&_Client-59%20%2F%20291-red?style=for-the-badge)
+![Server & Client - 60 / 291](https://img.shields.io/badge/Server_&_Client-60%20%2F%20291-red?style=for-the-badge)
 
-![Server - 15 / 201](https://img.shields.io/badge/Server-15%20%2F%20201-red?style=for-the-badge)
+![Server - 16 / 201](https://img.shields.io/badge/Server-16%20%2F%20201-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -205,7 +205,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 4 / 41](https://img.shields.io/badge/Users-4%20%2F%2041-red?style=for-the-badge)
+![Account - 5 / 41](https://img.shields.io/badge/Users-5%20%2F%2041-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -213,7 +213,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create User](https://appwrite.io/docs/references/1.6.x/server-rest/users#create) | ❌ | ✅ |
 | [Create User with Argon2 Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createArgon2User) | ❌ | ✅ |
 | [Create User with Bcrypt Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createBcryptUser) | ❌ | ✅ |
-| [List Identities](https://appwrite.io/docs/references/1.6.x/server-rest/users#listIdentities) | ❌ | ⬛ |
+| [List Identities](https://appwrite.io/docs/references/1.6.x/server-rest/users#listIdentities) | ❌ | ✅ |
 | [Delete Identity](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteIdentity) | ❌ | ⬛ |
 | [Create User with MD5 Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createMD5User) | ❌ | ⬛ |
 | [Create User with PHPass Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createPHPassUser) | ❌ | ⬛ |

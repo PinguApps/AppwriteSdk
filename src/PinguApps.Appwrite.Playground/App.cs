@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Shared.Requests.Users;
-using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -18,14 +17,9 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateUserWithBcryptPasswordRequest()
-        {
-            UserId = IdUtils.GenerateUniqueId(),
-            Email = "pingu@example.com",
-            Password = "$2y$10$I1A85SWJhLzjIFatLK7/SuFFBDML1J7RQzWzF5/38bMPPOWK/gsqC"
-        };
+        var request = new ListIdentitiesRequest();
 
-        var response = await _server.Users.CreateUserWithBcryptPassword(request);
+        var response = await _server.Users.ListIdentities(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
