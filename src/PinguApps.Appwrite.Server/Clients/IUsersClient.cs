@@ -52,7 +52,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The identities list</returns>
     Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Delete an identity by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteIdentity">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteIdentity(DeleteIdentityRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> CreateUserWithMd5Password(CreateUserWithMd5PasswordRequest request);

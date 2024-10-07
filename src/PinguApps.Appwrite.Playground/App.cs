@@ -17,9 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new ListIdentitiesRequest();
+        var request = new DeleteIdentityRequest()
+        {
+            IdentityId = "66b8e4aecc12287deb47"
+        };
 
-        var response = await _server.Users.ListIdentities(request);
+        var response = await _server.Users.DeleteIdentity(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
