@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Internals;
@@ -29,9 +28,7 @@ public class UsersClient : IUsersClient
         {
             request.Validate(true);
 
-            var queryStrings = request.Queries?.Select(x => x.GetQueryString()) ?? [];
-
-            var result = await _usersApi.ListUsers(queryStrings, request.Search);
+            var result = await _usersApi.ListUsers(RequestUtils.GetQueryStrings(request.Queries), request.Search);
 
             return result.GetApiResponse();
         }
@@ -99,9 +96,7 @@ public class UsersClient : IUsersClient
         {
             request.Validate(true);
 
-            var queryStrings = request.Queries?.Select(x => x.GetQueryString()) ?? [];
-
-            var result = await _usersApi.ListIdentities(queryStrings, request.Search);
+            var result = await _usersApi.ListIdentities(RequestUtils.GetQueryStrings(request.Queries), request.Search);
 
             return result.GetApiResponse();
         }
@@ -298,9 +293,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<LogsList>> ListUserLogs(ListUserLogsRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<LogsList>> ListUserLogs(ListUserLogsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.ListUserLogs(request.UserId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<LogsList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

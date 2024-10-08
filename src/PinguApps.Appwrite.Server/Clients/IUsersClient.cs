@@ -141,7 +141,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateUserLabels(UpdateUserLabelsRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Get the user activity logs list by its unique ID.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#listLogs">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<LogsList>> ListUserLogs(ListUserLogsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<MembershipsList>> ListUserMemberships(ListUserMembershipsRequest request);
