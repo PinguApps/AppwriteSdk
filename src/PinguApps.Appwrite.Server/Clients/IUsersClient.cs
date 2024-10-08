@@ -116,7 +116,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> GetUser(GetUserRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Update the user email by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmail">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateEmail(UpdateEmailRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<Jwt>> CreateUserJwt(CreateUserJwtRequest request);

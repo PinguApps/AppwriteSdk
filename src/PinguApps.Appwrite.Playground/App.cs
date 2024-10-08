@@ -17,12 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new DeleteUserRequest()
+        var request = new UpdateEmailRequest()
         {
-            UserId = "670565fa00209de81fb0"
+            UserId = "664aac1a00113f82e620",
+            Email = "test@example.com"
         };
 
-        var response = await _server.Users.DeleteUser(request);
+        var response = await _server.Users.UpdateEmail(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
