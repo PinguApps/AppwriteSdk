@@ -17,13 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdateUserLabelsRequest()
+        var request = new CreateUserJwtRequest()
         {
             UserId = "664aac1a00113f82e620",
-            Labels = ["test", "admin"]
+
         };
 
-        var response = await _server.Users.UpdateUserLabels(request);
+        var response = await _server.Users.CreateUserJwt(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

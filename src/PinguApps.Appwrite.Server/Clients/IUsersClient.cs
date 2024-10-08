@@ -124,7 +124,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateEmail(UpdateEmailRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Use this endpoint to create a JSON Web Token for user by its unique ID. You can use the resulting JWT to authenticate on behalf of the user. The JWT secret will become invalid if the session it uses gets deleted.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#createJWT">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The jwt</returns>
     Task<AppwriteResult<Jwt>> CreateUserJwt(CreateUserJwtRequest request);
 
     /// <summary>
