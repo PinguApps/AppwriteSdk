@@ -140,9 +140,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-![Server & Client - 72 / 291](https://img.shields.io/badge/Server_&_Client-72%20%2F%20291-red?style=for-the-badge)
+![Server & Client - 73 / 291](https://img.shields.io/badge/Server_&_Client-73%20%2F%20291-red?style=for-the-badge)
 
-![Server - 28 / 201](https://img.shields.io/badge/Server-28%20%2F%20201-red?style=for-the-badge)
+![Server - 29 / 201](https://img.shields.io/badge/Server-29%20%2F%20201-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -207,7 +207,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 17 / 41](https://img.shields.io/badge/Users-17%20%2F%2041-gold?style=for-the-badge)
+![Account - 18 / 41](https://img.shields.io/badge/Users-18%20%2F%2041-gold?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -228,7 +228,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create User JWT](https://appwrite.io/docs/references/1.6.x/server-rest/users#createJWT) | ❌ | ✅ |
 | [Update User Labels](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateLabels) | ❌ | ✅ |
 | [List User Logs](https://appwrite.io/docs/references/1.6.x/server-rest/users#listLogs) | ❌ | ✅ |
-| [List User Memberships](https://appwrite.io/docs/references/1.6.x/server-rest/users#listMemberships) | ❌ | ⬛ |
+| [List User Memberships](https://appwrite.io/docs/references/1.6.x/server-rest/users#listMemberships) | ❌ | ✅ |
 | [Update MFA](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfa) | ❌ | ⬛ |
 | [Delete Authenticator](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteMfaAuthenticator) | ❌ | ⬛ |
 | [List Factors](https://appwrite.io/docs/references/1.6.x/server-rest/users#listMfaFactors) | ❌ | ⬛ |
