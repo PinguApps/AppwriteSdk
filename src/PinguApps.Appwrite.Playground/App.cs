@@ -17,14 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateUserWithShaPasswordRequest()
+        var request = new GetUserRequest()
         {
-            Email = "pingu@example.com",
-            Password = "89e01536ac207279409d4de1e5253e01f4a1769e696db0d6062ca9b8f56767c8",
-            PasswordVersion = "sha256"
+            UserId = "670565fa00209de81fb0"
         };
 
-        var response = await _server.Users.CreateUserWithShaPassword(request);
+        var response = await _server.Users.GetUser(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

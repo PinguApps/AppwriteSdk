@@ -102,7 +102,13 @@ public interface IUsersClient
     Task<AppwriteResult<User>> CreateUserWithShaPassword(CreateUserWithShaPasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult> DeleteUser(DeleteUserRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Get a user by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#get">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> GetUser(GetUserRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> UpdateEmail(UpdateEmailRequest request);
