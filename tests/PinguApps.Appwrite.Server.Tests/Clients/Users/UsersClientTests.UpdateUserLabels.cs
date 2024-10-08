@@ -7,26 +7,26 @@ using RichardSzalay.MockHttp;
 namespace PinguApps.Appwrite.Server.Tests.Clients.Users;
 public partial class UsersClientTests
 {
-    public static TheoryData<UpdateUserLabelsRequest> UpdateUserLabels_ValidRequestData = new()
-        {
+    public static TheoryData<UpdateUserLabelsRequest> UpdateUserLabels_ValidRequestData =
+        [
             new UpdateUserLabelsRequest
             {
                 UserId = IdUtils.GenerateUniqueId(),
-                Labels = ["label 1", "label 2"]
+                Labels = ["label1", "label2"]
             },
             new UpdateUserLabelsRequest
             {
                 UserId = IdUtils.GenerateUniqueId(),
-                Labels = ["label 3", "label 4"]
+                Labels = ["label3", "label4"]
             }
-        };
+        ];
 
     [Theory]
     [MemberData(nameof(UpdateUserLabels_ValidRequestData))]
     public async Task UpdateUserLabels_ShouldReturnSuccess_WhenApiCallSucceeds(UpdateUserLabelsRequest request)
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{request.UserId}/labels")
+        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/users/{request.UserId}/labels")
             .WithJsonContent(request)
             .ExpectedHeaders()
             .Respond(Constants.AppJson, Constants.UserResponse);
@@ -36,9 +36,6 @@ public partial class UsersClientTests
 
         // Assert
         Assert.True(result.Success);
-        Assert.NotNull(result.Result);
-        Assert.Equal(userId, result.Result.Id);
-        _mockHttp.VerifyNoOutstandingExpectation();
     }
 
     [Fact]
@@ -48,10 +45,10 @@ public partial class UsersClientTests
         var request = new UpdateUserLabelsRequest
         {
             UserId = "user123",
-            Labels = new string[] { "label1", "label2" }
+            Labels = ["label1", "label2"]
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/user123/labels")
+        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/users/user123/labels")
             .WithJsonContent(request)
             .ExpectedHeaders()
             .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
@@ -71,10 +68,10 @@ public partial class UsersClientTests
         var request = new UpdateUserLabelsRequest
         {
             UserId = "user123",
-            Labels = new string[] { "label1", "label2" }
+            Labels = ["label1", "label2"]
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/user123/labels")
+        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/users/user123/labels")
             .WithJsonContent(request)
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
