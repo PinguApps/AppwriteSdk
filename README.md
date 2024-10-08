@@ -140,9 +140,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-![Server & Client - 68 / 291](https://img.shields.io/badge/Server_&_Client-68%20%2F%20291-red?style=for-the-badge)
+![Server & Client - 69 / 291](https://img.shields.io/badge/Server_&_Client-69%20%2F%20291-red?style=for-the-badge)
 
-![Server - 24 / 201](https://img.shields.io/badge/Server-24%20%2F%20201-red?style=for-the-badge)
+![Server - 25 / 201](https://img.shields.io/badge/Server-25%20%2F%20201-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -207,7 +207,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 13 / 41](https://img.shields.io/badge/Users-13%20%2F%2041-red?style=for-the-badge)
+![Account - 14 / 41](https://img.shields.io/badge/Users-14%20%2F%2041-gold?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -224,7 +224,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create User with SHA Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createSHAUser) | ❌ | ✅ |
 | [Get User](https://appwrite.io/docs/references/1.6.x/server-rest/users#get) | ❌ | ✅ |
 | [Delete User](https://appwrite.io/docs/references/1.6.x/server-rest/users#delete) | ❌ | ✅ |
-| [Update Email](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmail) | ❌ | ⬛ |
+| [Update Email](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmail) | ❌ | ✅ |
 | [Create User JWT](https://appwrite.io/docs/references/1.6.x/server-rest/users#createJWT) | ❌ | ⬛ |
 | [Update User Labels](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateLabels) | ❌ | ⬛ |
 | [List User Logs](https://appwrite.io/docs/references/1.6.x/server-rest/users#listLogs) | ❌ | ⬛ |
