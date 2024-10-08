@@ -17,16 +17,14 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateUserWithScryptModifiedPasswordRequest()
+        var request = new CreateUserWithShaPasswordRequest()
         {
             Email = "pingu@example.com",
-            Password = "dbb97714c09bad417bb51288abd2c049c557e5e617839a7bc8c615492db859b57624366de72f04b9d4c3e6452a497a67a36f1afcc481d6d69f6da9e5f03598d7",
-            PasswordSalt = "MySuperSalt",
-            PasswordSaltSeparator = ";",
-            PasswordSignerKey = "MySuperSignerKey"
+            Password = "89e01536ac207279409d4de1e5253e01f4a1769e696db0d6062ca9b8f56767c8",
+            PasswordVersion = "sha256"
         };
 
-        var response = await _server.Users.CreateUserWithScryptModifiedPassword(request);
+        var response = await _server.Users.CreateUserWithShaPassword(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
