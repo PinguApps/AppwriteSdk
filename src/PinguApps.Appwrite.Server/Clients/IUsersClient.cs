@@ -126,7 +126,14 @@ public interface IUsersClient
     Task<AppwriteResult<User>> UpdateEmail(UpdateEmailRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<Jwt>> CreateUserJwt(CreateUserJwtRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// <para>Update the user labels by its unique ID.</para>
+    /// <para>Labels can be used to grant access to resources. While teams are a way for user's to share access to a resource, labels can be defined by the developer to grant access without an invitation. See the <see href="https://appwrite.io/docs/permissions">Permissions docs</see> for more info</para>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#updateLabels">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateUserLabels(UpdateUserLabelsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<LogsList>> ListUserLogs(ListUserLogsRequest request);

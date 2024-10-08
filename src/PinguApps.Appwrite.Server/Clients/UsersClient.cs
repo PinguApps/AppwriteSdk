@@ -268,9 +268,22 @@ public class UsersClient : IUsersClient
     /// <inheritdoc/>
     public Task<AppwriteResult<Jwt>> CreateUserJwt(CreateUserJwtRequest request) => throw new NotImplementedException();
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<User>> UpdateUserLabels(UpdateUserLabelsRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<User>> UpdateUserLabels(UpdateUserLabelsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.UpdateUserLabels(request.UserId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
