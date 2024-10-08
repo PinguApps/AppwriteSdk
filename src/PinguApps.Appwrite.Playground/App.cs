@@ -17,18 +17,16 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateUserWithScryptPasswordRequest()
+        var request = new CreateUserWithScryptModifiedPasswordRequest()
         {
             Email = "pingu@example.com",
             Password = "dbb97714c09bad417bb51288abd2c049c557e5e617839a7bc8c615492db859b57624366de72f04b9d4c3e6452a497a67a36f1afcc481d6d69f6da9e5f03598d7",
             PasswordSalt = "MySuperSalt",
-            PasswordCpu = 16384,
-            PasswordMemory = 8,
-            PasswordParallel = 1,
-            PasswordLength = 64
+            PasswordSaltSeparator = ";",
+            PasswordSignerKey = "MySuperSignerKey"
         };
 
-        var response = await _server.Users.CreateUserWithScryptPassword(request);
+        var response = await _server.Users.CreateUserWithScryptModifiedPassword(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
