@@ -17,12 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateUserJwtRequest()
+        var request = new ListUserLogsRequest()
         {
             UserId = "664aac1a00113f82e620",
         };
 
-        var response = await _server.Users.CreateUserJwt(request);
+        var response = await _server.Users.ListUserLogs(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

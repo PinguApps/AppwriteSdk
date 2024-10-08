@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Clients;
@@ -102,9 +101,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var queryStrings = request.Queries?.Select(x => x.GetQueryString()) ?? [];
-
-            var result = await _accountApi.ListIdentities(GetCurrentSessionOrThrow(), queryStrings);
+            var result = await _accountApi.ListIdentities(GetCurrentSessionOrThrow(), RequestUtils.GetQueryStrings(request.Queries));
 
             return result.GetApiResponse();
         }
@@ -153,9 +150,7 @@ public class AccountClient : IAccountClient, ISessionAware
         {
             request.Validate(true);
 
-            var queryStrings = request.Queries?.Select(x => x.GetQueryString()) ?? [];
-
-            var result = await _accountApi.ListLogs(GetCurrentSessionOrThrow(), queryStrings);
+            var result = await _accountApi.ListLogs(GetCurrentSessionOrThrow(), RequestUtils.GetQueryStrings(request.Queries));
 
             return result.GetApiResponse();
         }
