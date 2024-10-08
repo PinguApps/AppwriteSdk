@@ -344,9 +344,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<User>> DeleteAuthenticator(DeleteAuthenticatorRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<User>> DeleteAuthenticator(DeleteAuthenticatorRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.DeleteAuthenticator(request.UserId, request.Type);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

@@ -165,7 +165,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Delete an authenticator app.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteMfaAuthenticator">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> DeleteAuthenticator(DeleteAuthenticatorRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<MfaFactors>> ListFactors(ListFactorsRequest request);
