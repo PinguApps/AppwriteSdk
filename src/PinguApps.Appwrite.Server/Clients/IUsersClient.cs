@@ -100,7 +100,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> CreateUserWithShaPassword(CreateUserWithShaPasswordRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Delete a user by its unique ID, thereby releasing it's ID. Since ID is released and can be reused, all user-related resources like documents or storage files should be deleted before user deletion. If you want to keep ID reserved, use <see cref="UpdateUserStatus(UpdateUserStatusRequest)"/> instead.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#delete">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteUser(DeleteUserRequest request);
 
     /// <summary>
