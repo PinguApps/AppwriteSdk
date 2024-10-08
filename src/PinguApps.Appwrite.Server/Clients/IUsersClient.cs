@@ -157,7 +157,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The memberships list</returns>
     Task<AppwriteResult<MembershipsList>> ListUserMemberships(ListUserMembershipsRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Enable or disable MFA on a user account.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfa">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> DeleteAuthenticator(DeleteAuthenticatorRequest request);
