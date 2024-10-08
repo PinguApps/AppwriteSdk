@@ -17,12 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new ListUserMembershipsRequest()
+        var request = new UpdateMfaRequest()
         {
             UserId = "664aac1a00113f82e620",
+            Mfa = true
         };
 
-        var response = await _server.Users.ListUserMemberships(request);
+        var response = await _server.Users.UpdateMfa(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

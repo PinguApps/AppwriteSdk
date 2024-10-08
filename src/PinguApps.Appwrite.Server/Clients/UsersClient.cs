@@ -327,9 +327,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.UpdateMfa(request.UserId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
