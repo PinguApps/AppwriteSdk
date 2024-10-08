@@ -17,12 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new ListUserLogsRequest()
+        var request = new ListUserMembershipsRequest()
         {
             UserId = "664aac1a00113f82e620",
         };
 
-        var response = await _server.Users.ListUserLogs(request);
+        var response = await _server.Users.ListUserMemberships(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

@@ -147,9 +147,15 @@ public interface IUsersClient
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#listLogs">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
-    /// <returns>The user</returns>
+    /// <returns>The logs list</returns>
     Task<AppwriteResult<LogsList>> ListUserLogs(ListUserLogsRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Get the user membership list by its unique ID.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#listMemberships">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The memberships list</returns>
     Task<AppwriteResult<MembershipsList>> ListUserMemberships(ListUserMembershipsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> UpdateMfa(UpdateMfaRequest request);

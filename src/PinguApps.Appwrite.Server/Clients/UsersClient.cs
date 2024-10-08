@@ -310,9 +310,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<MembershipsList>> ListUserMemberships(ListUserMembershipsRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<MembershipsList>> ListUserMemberships(ListUserMembershipsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.ListUserMemberships(request.UserId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<MembershipsList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
