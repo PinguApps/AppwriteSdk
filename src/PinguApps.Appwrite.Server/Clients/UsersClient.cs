@@ -217,9 +217,22 @@ public class UsersClient : IUsersClient
     /// <inheritdoc/>
     public Task<AppwriteResult> DeleteUser(DeleteUserRequest request) => throw new NotImplementedException();
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<User>> GetUser(GetUserRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<User>> GetUser(GetUserRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.GetUser(request.UserId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
