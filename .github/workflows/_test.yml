@@ -55,7 +55,7 @@ jobs:
         assemblyfilters: "-PinguApps.Appwrite.Shared.Tests"
 
     - name: Upload Combined Coverage XML
-      uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4
+      uses: actions/upload-artifact@604373da6381bf24206979c74d06a550515601b9 # v4
       with:
         name: coverage
         path: ${{ github.workspace }}/Cobertura.xml
@@ -82,7 +82,7 @@ jobs:
         path: code-coverage-results.md
 
     - name: Upload Test Result Files
-      uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4
+      uses: actions/upload-artifact@604373da6381bf24206979c74d06a550515601b9 # v4
       with:
         name: test-results
         path: ${{ github.workspace }}/**/TestResults/**/*
