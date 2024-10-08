@@ -84,7 +84,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> CreateUserWithScryptPassword(CreateUserWithScryptPasswordRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Create a new user. Password provided must be hashed with the <see href="https://gist.github.com/Meldiron/eecf84a0225eccb5a378d45bb27462cc">Scrypt Modified</see> algorithm. Use <see cref="CreateUser(CreateUserRequest)"/> to create users with a plain text password.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#createScryptUser">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> CreateUserWithScryptModifiedPassword(CreateUserWithScryptModifiedPasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> CreateUserWithShaPassword(CreateUserWithShaPasswordRequest request);

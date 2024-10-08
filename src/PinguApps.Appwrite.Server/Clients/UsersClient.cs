@@ -179,9 +179,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<User>> CreateUserWithScryptModifiedPassword(CreateUserWithScryptModifiedPasswordRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<User>> CreateUserWithScryptModifiedPassword(CreateUserWithScryptModifiedPasswordRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.CreateUserWithScryptModifiedPassword(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
