@@ -140,9 +140,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-![Server & Client - 64 / 291](https://img.shields.io/badge/Server_&_Client-64%20%2F%20291-red?style=for-the-badge)
+![Server & Client - 65 / 291](https://img.shields.io/badge/Server_&_Client-65%20%2F%20291-red?style=for-the-badge)
 
-![Server - 20 / 201](https://img.shields.io/badge/Server-20%20%2F%20201-red?style=for-the-badge)
+![Server - 21 / 201](https://img.shields.io/badge/Server-21%20%2F%20201-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -207,7 +207,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 9 / 41](https://img.shields.io/badge/Users-9%20%2F%2041-red?style=for-the-badge)
+![Account - 10 / 41](https://img.shields.io/badge/Users-10%20%2F%2041-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -220,7 +220,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create User with MD5 Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createMD5User) | ❌ | ✅ |
 | [Create User with PHPass Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createPHPassUser) | ❌ | ✅ |
 | [Create User with Scrypt Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createScryptUser) | ❌ | ✅ |
-| [Create User with Scrypt Modified Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createScryptModifiedUser) | ❌ | ⬛ |
+| [Create User with Scrypt Modified Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createScryptModifiedUser) | ❌ | ✅ |
 | [Create User with SHA Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createSHAUser) | ❌ | ⬛ |
 | [Get User](https://appwrite.io/docs/references/1.6.x/server-rest/users#get) | ❌ | ⬛ |
 | [Delete User](https://appwrite.io/docs/references/1.6.x/server-rest/users#delete) | ❌ | ⬛ |
