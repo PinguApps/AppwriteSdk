@@ -3,6 +3,8 @@ This repository contains the source to both the Client and Server .net impliment
 
 [![Client Version](https://img.shields.io/nuget/v/PinguApps.Appwrite.Client?logo=nuget&style=for-the-badge&label=Client%20Version)](https://www.nuget.org/packages/PinguApps.Appwrite.Client) [![Client Downloads](https://img.shields.io/nuget/dt/PinguApps.Appwrite.Client?style=for-the-badge&logo=nuget&label=Client%20Downloads)](https://www.nuget.org/packages/PinguApps.Appwrite.Client) [![Server Version](https://img.shields.io/nuget/v/PinguApps.Appwrite.Server?logo=nuget&style=for-the-badge&label=Server%20Version)](https://www.nuget.org/packages/PinguApps.Appwrite.Server) [![Server Downloads](https://img.shields.io/nuget/dt/PinguApps.Appwrite.Server?style=for-the-badge&logo=nuget&label=Server%20Downloads)](https://www.nuget.org/packages/PinguApps.Appwrite.Server) [![GitHub Repo stars](https://img.shields.io/github/stars/PinguApps/AppwriteSdk?style=for-the-badge&logo=github)](https://github.com/PinguApps/AppwriteSdk/stargazers) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/PinguApps/AppwriteSdk/main.yml?style=for-the-badge&logo=github)](https://github.com/PinguApps/AppwriteSdk/actions/workflows/main.yml) [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/PinguApps/AppwriteSdk?style=for-the-badge&logo=codefactor)](https://www.codefactor.io/repository/github/pinguapps/AppwriteSdk)
 
+![Repobeats Analytics](https://repobeats.axiom.co/api/embed/1ec2e55e97fb4516682f5e66feba33976870ab32.svg)
+
 ## 🚧 Work in Progress
 This is a work in progress. There are 2 SDK's - one for client and another for server.
 
