@@ -20,7 +20,6 @@ internal class App
         var request = new CreateUserJwtRequest()
         {
             UserId = "664aac1a00113f82e620",
-
         };
 
         var response = await _server.Users.CreateUserJwt(request);
