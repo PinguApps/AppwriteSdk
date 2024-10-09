@@ -361,9 +361,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<MfaFactors>> ListFactors(ListFactorsRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<MfaFactors>> ListFactors(ListFactorsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.ListFactors(request.UserId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<MfaFactors>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

@@ -173,7 +173,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult> DeleteAuthenticator(DeleteAuthenticatorRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// List the factors available on the account to be used as a MFA challange.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#listMfaFactors">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The mfa factors</returns>
     Task<AppwriteResult<MfaFactors>> ListFactors(ListFactorsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes(GetMfaRecoveryCodesRequest request);
