@@ -17,12 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new RegenerateMfaRecoveryCodesRequest()
+        var request = new CreateMfaRecoveryCodesRequest()
         {
-            UserId = "664aac1a00113f82e620"
+            UserId = "66b8e4aead8e4c1fc222"
         };
 
-        var response = await _server.Users.RegenerateMfaRecoveryCodes(request);
+        var response = await _server.Users.CreateMfaRecoveryCodes(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

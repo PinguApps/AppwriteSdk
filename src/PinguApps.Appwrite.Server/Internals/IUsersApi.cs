@@ -76,7 +76,7 @@ internal interface IUsersApi : IBaseApi
     [Get("/users/{userId}/mfa/recovery-codes")]
     Task<IApiResponse<MfaRecoveryCodes>> GetMfaRecoveryCodes(string userId);
 
-    [Patch("/users{userId}/mfa/recovery-codes")]
+    [Patch("/users/{userId}/mfa/recovery-codes")]
     Task<IApiResponse<MfaRecoveryCodes>> CreateMfaRecoveryCodes(string userId);
 
     [Put("/users/{userId}/mfa/recovery-codes")]

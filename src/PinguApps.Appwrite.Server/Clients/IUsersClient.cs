@@ -189,7 +189,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The mfa recovery codes</returns>
     Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes(GetMfaRecoveryCodesRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Generate recovery codes used as backup for MFA flow for User ID. Recovery codes can be used as a MFA verification type in createMfaChallenge method by client SDK.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#createMfaRecoveryCodes">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The mfa recovery codes</returns>
     Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes(CreateMfaRecoveryCodesRequest request);
 
     /// <summary>
