@@ -140,9 +140,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-![Server & Client - 79 / 291](https://img.shields.io/badge/Server_&_Client-79%20%2F%20291-red?style=for-the-badge)
+![Server & Client - 80 / 291](https://img.shields.io/badge/Server_&_Client-80%20%2F%20291-red?style=for-the-badge)
 
-![Server - 35 / 201](https://img.shields.io/badge/Server-35%20%2F%20201-red?style=for-the-badge)
+![Server - 36 / 201](https://img.shields.io/badge/Server-36%20%2F%20201-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -207,7 +207,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 24 / 41](https://img.shields.io/badge/Users-24%20%2F%2041-gold?style=for-the-badge)
+![Account - 25 / 41](https://img.shields.io/badge/Users-25%20%2F%2041-gold?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -235,7 +235,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Get MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#getMfaRecoveryCodes) | ❌ | ✅ |
 | [Regenerate MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfaRecoveryCodes) | ❌ | ✅ |
 | [Create MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#createMfaRecoveryCodes) | ❌ | ✅ |
-| [Update Name](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateName) | ❌ | ⬛ |
+| [Update Name](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateName) | ❌ | ✅ |
 | [Update Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePassword) | ❌ | ⬛ |
 | [Update Phone](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhone) | ❌ | ⬛ |
 | [Get User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#getPrefs) | ❌ | ⬛ |

@@ -429,9 +429,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<User>> UpdateName(UpdateNameRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<User>> UpdateName(UpdateNameRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.UpdateName(request.UserId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
