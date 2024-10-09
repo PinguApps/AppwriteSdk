@@ -191,7 +191,13 @@ public interface IUsersClient
     Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes(GetMfaRecoveryCodesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes(CreateMfaRecoveryCodesRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Regenerate recovery codes that can be used as backup for MFA flow by User ID. Before regenerating codes, they must be first generated using <see cref="CreateMfaRecoveryCodes(CreateMfaRecoveryCodesRequest)"/>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfaRecoveryCodes">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The mfa recovery codes</returns>
     Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes(RegenerateMfaRecoveryCodesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> UpdateName(UpdateNameRequest request);
