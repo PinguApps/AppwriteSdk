@@ -378,9 +378,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes(GetMfaRecoveryCodesRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes(GetMfaRecoveryCodesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.GetMfaRecoveryCodes(request.UserId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<MfaRecoveryCodes>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
