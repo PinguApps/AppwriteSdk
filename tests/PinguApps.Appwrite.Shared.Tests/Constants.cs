@@ -189,6 +189,15 @@ public static class Constants
         }
         """;
 
+    public const string MfaRecoveryCodesResponse = """
+        {
+            "recoveryCodes": [
+                "a3kf0-s0cl2",
+                "s0co1-as98s"
+            ]
+        }
+        """;
+
     public const string SessionsListResponse = """
         {
             "total": 5,

@@ -181,7 +181,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The mfa factors</returns>
     Task<AppwriteResult<MfaFactors>> ListFactors(ListFactorsRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Get recovery codes that can be used as backup for MFA flow by User ID. Before getting codes, they must be generated using <see cref="CreateMfaRecoveryCodes(CreateMfaRecoveryCodesRequest)"/>.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#getMfaRecoveryCodes">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The mfa recovery codes</returns>
     Task<AppwriteResult<MfaRecoveryCodes>> GetMfaRecoveryCodes(GetMfaRecoveryCodesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes(CreateMfaRecoveryCodesRequest request);
