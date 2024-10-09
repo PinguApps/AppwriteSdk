@@ -17,13 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdatePasswordRequest()
+        var request = new UpdatePhoneRequest()
         {
             UserId = "664aac1a00113f82e620",
-            Password = "MySuperPassword"
+            PhoneNumber = "+447501234567"
         };
 
-        var response = await _server.Users.UpdatePassword(request);
+        var response = await _server.Users.UpdatePhone(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

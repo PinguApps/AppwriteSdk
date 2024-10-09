@@ -140,9 +140,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-![Server & Client - 81 / 291](https://img.shields.io/badge/Server_&_Client-81%20%2F%20291-red?style=for-the-badge)
+![Server & Client - 82 / 291](https://img.shields.io/badge/Server_&_Client-82%20%2F%20291-red?style=for-the-badge)
 
-![Server - 37 / 201](https://img.shields.io/badge/Server-37%20%2F%20201-red?style=for-the-badge)
+![Server - 38 / 201](https://img.shields.io/badge/Server-38%20%2F%20201-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -207,7 +207,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 26 / 41](https://img.shields.io/badge/Users-26%20%2F%2041-gold?style=for-the-badge)
+![Account - 27 / 41](https://img.shields.io/badge/Users-27%20%2F%2041-gold?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -237,7 +237,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#createMfaRecoveryCodes) | ❌ | ✅ |
 | [Update Name](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateName) | ❌ | ✅ |
 | [Update Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePassword) | ❌ | ✅ |
-| [Update Phone](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhone) | ❌ | ⬛ |
+| [Update Phone](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhone) | ❌ | ✅ |
 | [Get User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#getPrefs) | ❌ | ⬛ |
 | [Update User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePrefs) | ❌ | ⬛ |
 | [List User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#listSessions) | ❌ | ⬛ |
