@@ -172,7 +172,7 @@ public interface IUsersClient
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
-    Task<AppwriteResult<User>> DeleteAuthenticator(DeleteAuthenticatorRequest request);
+    Task<AppwriteResult> DeleteAuthenticator(DeleteAuthenticatorRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<MfaFactors>> ListFactors(ListFactorsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]

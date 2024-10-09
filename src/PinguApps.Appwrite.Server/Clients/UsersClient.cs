@@ -345,7 +345,7 @@ public class UsersClient : IUsersClient
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<User>> DeleteAuthenticator(DeleteAuthenticatorRequest request)
+    public async Task<AppwriteResult> DeleteAuthenticator(DeleteAuthenticatorRequest request)
     {
         try
         {
@@ -357,7 +357,7 @@ public class UsersClient : IUsersClient
         }
         catch (Exception e)
         {
-            return e.GetExceptionResponse<User>();
+            return e.GetExceptionResponse();
         }
     }
 
