@@ -399,9 +399,22 @@ public class UsersClient : IUsersClient
     /// <inheritdoc/>
     public Task<AppwriteResult<MfaRecoveryCodes>> CreateMfaRecoveryCodes(CreateMfaRecoveryCodesRequest request) => throw new NotImplementedException();
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes(RegenerateMfaRecoveryCodesRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes(RegenerateMfaRecoveryCodesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.RegenerateMfaRecoveryCodes(request.UserId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<MfaRecoveryCodes>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
