@@ -463,9 +463,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<User>> UpdatePhone(UpdatePhoneRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<User>> UpdatePhone(UpdatePhoneRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.UpdatePhone(request.UserId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<User>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
