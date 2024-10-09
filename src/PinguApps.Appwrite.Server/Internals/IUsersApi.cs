@@ -68,7 +68,7 @@ internal interface IUsersApi : IBaseApi
     Task<IApiResponse<User>> UpdateMfa(string userId, UpdateMfaRequest request);
 
     [Delete("/users/{userId}/mfa/authenticators/{type}")]
-    Task<IApiResponse<User>> DeleteAuthenticator(string userId, string type);
+    Task<IApiResponse> DeleteAuthenticator(string userId, string type);
 
     [Get("/users/{userId}/mfa/factors")]
     Task<IApiResponse<MfaFactors>> ListFactors(string userId);

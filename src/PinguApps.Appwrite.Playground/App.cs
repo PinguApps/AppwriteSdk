@@ -17,13 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdateMfaRequest()
+        var request = new DeleteAuthenticatorRequest()
         {
             UserId = "664aac1a00113f82e620",
-            Mfa = true
+            Type = "totp"
         };
 
-        var response = await _server.Users.UpdateMfa(request);
+        var response = await _server.Users.DeleteAuthenticator(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
