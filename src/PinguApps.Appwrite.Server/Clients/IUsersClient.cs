@@ -213,7 +213,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateName(UpdateNameRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Update the user password by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePassword">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdatePassword(UpdatePasswordRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> UpdatePhone(UpdatePhoneRequest request);

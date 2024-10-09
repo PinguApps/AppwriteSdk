@@ -17,13 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdateNameRequest()
+        var request = new UpdatePasswordRequest()
         {
             UserId = "664aac1a00113f82e620",
-            Name = "My Name"
+            Password = "MySuperPassword"
         };
 
-        var response = await _server.Users.UpdateName(request);
+        var response = await _server.Users.UpdatePassword(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
