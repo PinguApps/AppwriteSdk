@@ -205,7 +205,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The mfa recovery codes</returns>
     Task<AppwriteResult<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes(RegenerateMfaRecoveryCodesRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Update the user name by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#updateName">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateName(UpdateNameRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> UpdatePassword(UpdatePasswordRequest request);

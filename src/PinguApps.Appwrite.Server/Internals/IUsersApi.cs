@@ -82,7 +82,7 @@ internal interface IUsersApi : IBaseApi
     [Put("/users/{userId}/mfa/recovery-codes")]
     Task<IApiResponse<MfaRecoveryCodes>> RegenerateMfaRecoveryCodes(string userId);
 
-    [Patch("/users/{userId}/mame")]
+    [Patch("/users/{userId}/name")]
     Task<IApiResponse<User>> UpdateName(string userId, UpdateNameRequest request);
 
     [Patch("/users/{userId}/password")]
