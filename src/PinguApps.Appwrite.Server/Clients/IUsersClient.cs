@@ -171,7 +171,7 @@ public interface IUsersClient
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteMfaAuthenticator">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
-    /// <returns>The user</returns>
+    /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteAuthenticator(DeleteAuthenticatorRequest request);
 
     /// <summary>
@@ -245,7 +245,12 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user preferences</returns>
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> UpdateUserPreferences(UpdateUserPreferencesRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Delete all user's sessions by using the user's unique ID
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteUserSessions(DeleteUserSessionsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<SessionsList>> ListUserSessions(ListUserSessionsRequest request);
