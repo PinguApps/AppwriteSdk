@@ -140,9 +140,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-![Server & Client - 83 / 291](https://img.shields.io/badge/Server_&_Client-32%20%2F%20291-red?style=for-the-badge)
+![Server & Client - 84 / 291](https://img.shields.io/badge/Server_&_Client-84%20%2F%20291-red?style=for-the-badge)
 
-![Server - 39 / 201](https://img.shields.io/badge/Server-39%20%2F%20201-red?style=for-the-badge)
+![Server - 40 / 201](https://img.shields.io/badge/Server-40%20%2F%20201-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -207,7 +207,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 28 / 41](https://img.shields.io/badge/Users-28%20%2F%2041-gold?style=for-the-badge)
+![Account - 29 / 41](https://img.shields.io/badge/Users-29%20%2F%2041-gold?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -239,7 +239,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePassword) | ❌ | ✅ |
 | [Update Phone](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhone) | ❌ | ✅ |
 | [Get User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#getPrefs) | ❌ | ✅ |
-| [Update User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePrefs) | ❌ | ⬛ |
+| [Update User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePrefs) | ❌ | ✅ |
 | [List User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#listSessions) | ❌ | ⬛ |
 | [Create Session](https://appwrite.io/docs/references/1.6.x/server-rest/users#createSession) | ❌ | ⬛ |
 | [Delete User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSessions) | ❌ | ⬛ |

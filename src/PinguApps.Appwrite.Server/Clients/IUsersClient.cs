@@ -237,7 +237,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user preferences</returns>
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetUserPreferences(GetUserPreferencesRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Update the user preferences by its unique ID. The object you pass is stored as is, and replaces any previous value. The maximum allowed prefs size is 64kB and throws error if exceeded
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePrefs">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user preferences</returns>
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> UpdateUserPreferences(UpdateUserPreferencesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult> DeleteUserSessions(DeleteUserSessionsRequest request);
