@@ -17,13 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdatePhoneRequest()
+        var request = new GetUserPreferencesRequest()
         {
-            UserId = "664aac1a00113f82e620",
-            PhoneNumber = "+447501234567"
+            UserId = "664aac1a00113f82e620"
         };
 
-        var response = await _server.Users.UpdatePhone(request);
+        var response = await _server.Users.GetUserPreferences(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
