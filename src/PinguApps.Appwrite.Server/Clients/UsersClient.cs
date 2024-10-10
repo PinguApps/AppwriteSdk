@@ -480,9 +480,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetUserPreferences(GetUserPreferencesRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetUserPreferences(GetUserPreferencesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.GetUserPreferences(request.UserId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<IReadOnlyDictionary<string, string>>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

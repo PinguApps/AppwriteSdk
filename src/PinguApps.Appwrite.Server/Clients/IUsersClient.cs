@@ -229,7 +229,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdatePhone(UpdatePhoneRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Get the user preferences by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#getPrefs">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user preferences</returns>
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetUserPreferences(GetUserPreferencesRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> UpdateUserPreferences(UpdateUserPreferencesRequest request);
