@@ -140,9 +140,10 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-![Server & Client - 84 / 291](https://img.shields.io/badge/Server_&_Client-84%20%2F%20291-red?style=for-the-badge)
+<!-- `red` for first third, `gold` for second third, `forestgreen` for final third -->
+![Server & Client - 85 / 291](https://img.shields.io/badge/Server_&_Client-85%20%2F%20291-red?style=for-the-badge)
 
-![Server - 40 / 201](https://img.shields.io/badge/Server-40%20%2F%20201-red?style=for-the-badge)
+![Server - 41 / 201](https://img.shields.io/badge/Server-41%20%2F%20201-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -207,7 +208,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 29 / 41](https://img.shields.io/badge/Users-29%20%2F%2041-gold?style=for-the-badge)
+![Account - 30 / 41](https://img.shields.io/badge/Users-30%20%2F%2041-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -242,7 +243,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePrefs) | ❌ | ✅ |
 | [List User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#listSessions) | ❌ | ⬛ |
 | [Create Session](https://appwrite.io/docs/references/1.6.x/server-rest/users#createSession) | ❌ | ⬛ |
-| [Delete User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSessions) | ❌ | ⬛ |
+| [Delete User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSessions) | ❌ | ✅ |
 | [Delete User Session](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSession) | ❌ | ⬛ |
 | [Update User Status](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateStatus) | ❌ | ⬛ |
 | [List User Targets](https://appwrite.io/docs/references/1.6.x/server-rest/users#listTargets) | ❌ | ⬛ |
