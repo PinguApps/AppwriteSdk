@@ -17,16 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdateUserPreferencesRequest()
+        var request = new DeleteUserSessionsRequest()
         {
-            UserId = "664aac1a00113f82e620",
-            Preferences = new Dictionary<string, string>()
-            {
-                { "theme", "dark" }
-            }
+            UserId = "664aac1a00113f82e620"
         };
 
-        var response = await _server.Users.UpdateUserPreferences(request);
+        var response = await _server.Users.DeleteUserSessions(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
