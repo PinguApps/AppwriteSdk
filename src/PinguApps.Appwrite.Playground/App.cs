@@ -17,12 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new DeleteUserSessionsRequest()
+        var request = new ListUserSessionsRequest()
         {
             UserId = "664aac1a00113f82e620"
         };
 
-        var response = await _server.Users.DeleteUserSessions(request);
+        var response = await _server.Users.ListUserSessions(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

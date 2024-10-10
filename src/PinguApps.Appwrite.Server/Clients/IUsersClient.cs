@@ -248,11 +248,18 @@ public interface IUsersClient
 
     /// <summary>
     /// Delete all user's sessions by using the user's unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSessions">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteUserSessions(DeleteUserSessionsRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Get the user sessions list by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#listSessions">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The sessions list</returns>
     Task<AppwriteResult<SessionsList>> ListUserSessions(ListUserSessionsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);

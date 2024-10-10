@@ -531,9 +531,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<SessionsList>> ListUserSessions(ListUserSessionsRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<SessionsList>> ListUserSessions(ListUserSessionsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.ListUserSessions(request.UserId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<SessionsList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
