@@ -270,7 +270,12 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The session</returns>
     Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
     Task<AppwriteResult> DeleteUserSession(DeleteUserSessionRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> UpdateUserStatus(UpdateUserStatusRequest request);

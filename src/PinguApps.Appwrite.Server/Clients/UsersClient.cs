@@ -565,9 +565,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteUserSession(DeleteUserSessionRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult> DeleteUserSession(DeleteUserSessionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.DeleteUserSession(request.UserId, request.SessionId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
