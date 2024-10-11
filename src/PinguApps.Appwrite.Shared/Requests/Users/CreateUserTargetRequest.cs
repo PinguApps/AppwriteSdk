@@ -20,6 +20,7 @@ public class CreateUserTargetRequest : UserIdBaseRequest<CreateUserTargetRequest
     /// The target provider type. Can be one of the following: <see cref="TargetProviderType.Email"/>, <see cref="TargetProviderType.Sms"/>, <see cref="TargetProviderType.Push"/>
     /// </summary>
     [JsonPropertyName("providerType")]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public TargetProviderType ProviderType { get; set; }
 
     /// <summary>
