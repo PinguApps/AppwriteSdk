@@ -650,9 +650,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Target>> GetUserTarget(GetUserTargetRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Target>> GetUserTarget(GetUserTargetRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.GetUserTarget(request.UserId, request.TargetId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Target>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

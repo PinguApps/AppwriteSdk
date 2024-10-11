@@ -305,11 +305,18 @@ public interface IUsersClient
 
     /// <summary>
     /// Delete a messaging target
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteTarget">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>204</returns>
     Task<AppwriteResult> DeleteUserTarget(DeleteUserTargetRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Get a user's push notification target by ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#getTarget">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The target</returns>
     Task<AppwriteResult<Target>> GetUserTarget(GetUserTargetRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<Target>> UpdateUserTarget(UpdateUserTargertRequest request);
