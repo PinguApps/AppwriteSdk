@@ -17,12 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new ListUserSessionsRequest()
+        var request = new CreateSessionRequest()
         {
             UserId = "664aac1a00113f82e620"
         };
 
-        var response = await _server.Users.ListUserSessions(request);
+        var response = await _server.Users.CreateSession(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
