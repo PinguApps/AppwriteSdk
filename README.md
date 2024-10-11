@@ -141,9 +141,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third -->
-![Server & Client - 91 / 291](https://img.shields.io/badge/Server_&_Client-91%20%2F%20291-red?style=for-the-badge)
+![Server & Client - 92 / 291](https://img.shields.io/badge/Server_&_Client-92%20%2F%20291-red?style=for-the-badge)
 
-![Server - 47 / 201](https://img.shields.io/badge/Server-47%20%2F%20201-red?style=for-the-badge)
+![Server - 48 / 201](https://img.shields.io/badge/Server-48%20%2F%20201-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -208,7 +208,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 36 / 41](https://img.shields.io/badge/Users-36%20%2F%2041-forestgreen?style=for-the-badge)
+![Account - 37 / 41](https://img.shields.io/badge/Users-37%20%2F%2041-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -250,7 +250,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#createTarget) | ❌ | ✅ |
 | [Get User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#getTarget) | ❌ | ⬛ |
 | [Update User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateTarget) | ❌ | ⬛ |
-| [Delete User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteTarget) | ❌ | ⬛ |
+| [Delete User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteTarget) | ❌ | ✅ |
 | [Create Token](https://appwrite.io/docs/references/1.6.x/server-rest/users#createToken) | ❌ | ⬛ |
 | [Update Email Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmailVerification) | ❌ | ⬛ |
 | [Update Phone Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhoneVerification) | ❌ | ⬛ |
