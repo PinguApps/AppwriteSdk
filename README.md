@@ -141,9 +141,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third -->
-![Server & Client - 87 / 291](https://img.shields.io/badge/Server_&_Client-87%20%2F%20291-red?style=for-the-badge)
+![Server & Client - 88 / 291](https://img.shields.io/badge/Server_&_Client-88%20%2F%20291-red?style=for-the-badge)
 
-![Server - 43 / 201](https://img.shields.io/badge/Server-43%20%2F%20201-red?style=for-the-badge)
+![Server - 44 / 201](https://img.shields.io/badge/Server-44%20%2F%20201-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -208,7 +208,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 32 / 41](https://img.shields.io/badge/Users-32%20%2F%2041-forestgreen?style=for-the-badge)
+![Account - 33 / 41](https://img.shields.io/badge/Users-33%20%2F%2041-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -244,7 +244,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [List User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#listSessions) | ❌ | ✅ |
 | [Create Session](https://appwrite.io/docs/references/1.6.x/server-rest/users#createSession) | ❌ | ✅ |
 | [Delete User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSessions) | ❌ | ✅ |
-| [Delete User Session](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSession) | ❌ | ⬛ |
+| [Delete User Session](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSession) | ❌ | ✅ |
 | [Update User Status](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateStatus) | ❌ | ⬛ |
 | [List User Targets](https://appwrite.io/docs/references/1.6.x/server-rest/users#listTargets) | ❌ | ⬛ |
 | [Create User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#createTarget) | ❌ | ⬛ |
