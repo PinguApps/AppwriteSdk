@@ -261,7 +261,14 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The sessions list</returns>
     Task<AppwriteResult<SessionsList>> ListUserSessions(ListUserSessionsRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// <para>Creates a session for a user. Returns an immediately usable session object.</para>
+    /// <para>If you want to generate a token for a custom authentication flow, use <see cref="CreateToken(CreateTokenRequest)"/>.</para>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#createSession">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The session</returns>
     Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult> DeleteUserSession(DeleteUserSessionRequest request);
