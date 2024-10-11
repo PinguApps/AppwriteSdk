@@ -17,12 +17,14 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new ListUserTargetsRequest()
+        var request = new CreateUserTargetRequest()
         {
-            UserId = "664aac1a00113f82e620"
+            UserId = "664aac1a00113f82e620",
+            ProviderType = Shared.Enums.TargetProviderType.Push,
+            Identifier = "token"
         };
 
-        var response = await _server.Users.ListUserTargets(request);
+        var response = await _server.Users.CreateUserTarget(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
