@@ -18,5 +18,6 @@ public class Create2faChallengeRequest : BaseRequest<Create2faChallengeRequest, 
     /// </list>
     /// </summary>
     [JsonPropertyName("factor")]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public SecondFactor Factor { get; set; }
 }

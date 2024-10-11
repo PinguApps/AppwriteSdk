@@ -21,7 +21,7 @@ public class CreateUserTargetRequestTests : UserIdBaseRequestTests<CreateUserTar
         var request = new CreateUserTargetRequest();
 
         // Assert
-        Assert.Equal(string.Empty, request.TargetId);
+        Assert.NotEmpty(request.TargetId);
         Assert.Equal(TargetProviderType.Email, request.ProviderType);
         Assert.Equal(string.Empty, request.Identifier);
         Assert.Null(request.ProviderId);
