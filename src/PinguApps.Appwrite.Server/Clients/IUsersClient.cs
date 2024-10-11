@@ -272,12 +272,19 @@ public interface IUsersClient
     Task<AppwriteResult<Session>> CreateSession(CreateSessionRequest request);
 
     /// <summary>
-    /// 
+    /// Delete a user sessions by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSession">Appwrite Docs</see></para>
     /// </summary>
-    /// <param name="request"></param>
-    /// <returns></returns>
+    /// <param name="request">The request content</param>
+    /// <returns>204 code</returns>
     Task<AppwriteResult> DeleteUserSession(DeleteUserSessionRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Update the user status by its unique ID. Use this endpoint as an alternative to deleting a user if you want to keep user's ID reserved.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#updateStatus">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateUserStatus(UpdateUserStatusRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<TargetList>> ListUserTargets(ListUserTargetsRequest request);
