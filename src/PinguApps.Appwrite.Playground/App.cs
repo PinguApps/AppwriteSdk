@@ -17,14 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateUserTargetRequest()
+        var request = new DeleteUserTargetRequest()
         {
             UserId = "664aac1a00113f82e620",
-            ProviderType = Shared.Enums.TargetProviderType.Push,
-            Identifier = "token"
+            TargetId = "6709b40700126fe548ec"
         };
 
-        var response = await _server.Users.CreateUserTarget(request);
+        var response = await _server.Users.DeleteUserTarget(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

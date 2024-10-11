@@ -302,7 +302,12 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The target</returns>
     Task<AppwriteResult<Target>> CreateUserTarget(CreateUserTargetRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Delete a messaging target
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204</returns>
     Task<AppwriteResult> DeleteUserTarget(DeleteUserTargetRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<Target>> GetUserTarget(GetUserTargetRequest request);

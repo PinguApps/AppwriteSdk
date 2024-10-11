@@ -633,9 +633,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteUserTarget(DeleteUserTargetRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult> DeleteUserTarget(DeleteUserTargetRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.DeleteUserTarget(request.UserId, request.TargetId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
