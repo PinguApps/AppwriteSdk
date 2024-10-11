@@ -599,9 +599,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<TargetList>> ListUserTargets(ListUserTargetsRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<TargetList>> ListUserTargets(ListUserTargetsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.ListUserTargets(request.UserId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<TargetList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

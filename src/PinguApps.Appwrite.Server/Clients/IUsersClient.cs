@@ -286,7 +286,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdateUserStatus(UpdateUserStatusRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// List the messaging targets that are associated with a user.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#listTargets">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The target list</returns>
     Task<AppwriteResult<TargetList>> ListUserTargets(ListUserTargetsRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<Target>> CreateUserTarget(CreateUserTargetRequest request);
