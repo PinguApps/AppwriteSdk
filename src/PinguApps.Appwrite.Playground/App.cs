@@ -17,13 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new DeleteUserSessionRequest()
+        var request = new UpdateUserStatusRequest()
         {
             UserId = "664aac1a00113f82e620",
-            SessionId = "67087b71e87c00aa1d1e"
+            Status = true
         };
 
-        var response = await _server.Users.DeleteUserSession(request);
+        var response = await _server.Users.UpdateUserStatus(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
