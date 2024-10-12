@@ -318,7 +318,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The target</returns>
     Task<AppwriteResult<Target>> GetUserTarget(GetUserTargetRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Update a messaging target
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#updateTarget">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The target</returns>
     Task<AppwriteResult<Target>> UpdateUserTarget(UpdateUserTargertRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<Token>> CreateToken(CreateTokenRequest request);
