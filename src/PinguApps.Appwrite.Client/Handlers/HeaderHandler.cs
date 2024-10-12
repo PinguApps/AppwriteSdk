@@ -13,14 +13,10 @@ internal class HeaderHandler : DelegatingHandler
         _projectId = config.ProjectId;
     }
 
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         request.Headers.Add("x-appwrite-project", _projectId);
 
-        var content = await request.Content.ReadAsStringAsync();
-
-        var uri = request.RequestUri.ToString();
-
-        return await base.SendAsync(request, cancellationToken);
+        return base.SendAsync(request, cancellationToken);
     }
 }
