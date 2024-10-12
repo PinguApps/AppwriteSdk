@@ -140,7 +140,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- `red` for first third, `gold` for second third, `forestgreen` for final third -->
+<!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
 ![Server & Client - 94 / 291](https://img.shields.io/badge/Server_&_Client-94%20%2F%20291-red?style=for-the-badge)
 
 ![Server - 50 / 201](https://img.shields.io/badge/Server-50%20%2F%20201-red?style=for-the-badge)
@@ -155,7 +155,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-![Account - 55 / 55](https://img.shields.io/badge/Account-55%20%2F%2055-forestgreen?style=for-the-badge)
+![Account - 55 / 55](https://img.shields.io/badge/Account-55%20%2F%2055-blue?style=for-the-badge)
 
 | Endpoint | Client | Server | Notes |
 |:-:|:-:|:-:|:-:|
