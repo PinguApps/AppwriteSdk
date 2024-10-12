@@ -17,12 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateTokenRequest()
+        var request = new UpdateEmailVerificationRequest()
         {
-            UserId = "664aac1a00113f82e620"
+            UserId = "664aac1a00113f82e620",
+            EmailVerification = true
         };
 
-        var response = await _server.Users.CreateToken(request);
+        var response = await _server.Users.UpdateEmailVerification(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
