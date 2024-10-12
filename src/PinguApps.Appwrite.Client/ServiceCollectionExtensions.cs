@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Handlers;
 using PinguApps.Appwrite.Client.Internals;
@@ -28,7 +29,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ClientCookieSessionHandler>();
 
         services.AddRefitClient<IAccountApi>(refitSettings)
-            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
             .AddHttpMessageHandler<ClientCookieSessionHandler>();
 
@@ -53,19 +54,34 @@ public static class ServiceCollectionExtensions
         services.AddTransient<HeaderHandler>();
 
         services.AddRefitClient<IAccountApi>(refitSettings)
-            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
-            .ConfigurePrimaryHttpMessageHandler((handler, sp) =>
-            {
-                if (handler is HttpClientHandler clientHandler)
-                {
-                    clientHandler.UseCookies = false;
-                }
-            });
+            .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
+    }
+
+    private static void ConfigurePrimaryHttpMessageHandler(HttpMessageHandler messageHandler, IServiceProvider serviceProvider)
+    {
+        if (messageHandler is HttpClientHandler clientHandler)
+        {
+            clientHandler.UseCookies = false;
+        }
+    }
+
+    private static void ConfigureHttpClient(HttpClient client, string endpoint)
+    {
+        client.BaseAddress = new Uri(endpoint);
+        client.DefaultRequestHeaders.UserAgent.ParseAdd(BuildUserAgent());
+    }
+
+    public static string BuildUserAgent()
+    {
+        var dotnetVersion = RuntimeInformation.FrameworkDescription.Replace("Microsoft .NET", ".NET").Trim();
+
+        return $"PinguAppsAppwriteDotNetClientSdk/{Constants.Version} (.NET/{dotnetVersion}; {RuntimeInformation.OSDescription.Trim()})";
     }
 }
