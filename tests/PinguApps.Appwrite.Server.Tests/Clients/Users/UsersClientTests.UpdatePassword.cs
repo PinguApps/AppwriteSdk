@@ -17,9 +17,9 @@ public partial class UsersClientTests
             Password = "newPassword"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{request.UserId}/password")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/password")
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
         // Act
         var result = await _appwriteClient.Users.UpdatePassword(request);
@@ -38,9 +38,9 @@ public partial class UsersClientTests
             Password = "newPassword"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{request.UserId}/password")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/password")
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.UpdatePassword(request);
@@ -60,7 +60,7 @@ public partial class UsersClientTests
             Password = "newPassword"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{request.UserId}/password")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/password")
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
 

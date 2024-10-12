@@ -13,11 +13,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new DeleteIdentityRequest { IdentityId = "validIdentityId" };
 
-        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/account/identities/{request.IdentityId}")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/account/identities/{request.IdentityId}")
             .ExpectedHeaders(true)
             .Respond(HttpStatusCode.NoContent);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.DeleteIdentity(request);
@@ -32,12 +32,12 @@ public partial class AccountClientTests
         // Arrange
         var identityId = "myIdentityId";
         var request = new DeleteIdentityRequest { IdentityId = identityId };
-        var requestUri = $"{Constants.Endpoint}/account/identities/{identityId}";
+        var requestUri = $"{TestConstants.Endpoint}/account/identities/{identityId}";
         var mockRequest = _mockHttp.Expect(HttpMethod.Delete, requestUri)
             .ExpectedHeaders(true)
             .Respond(HttpStatusCode.NoContent);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.DeleteIdentity(request);
@@ -69,11 +69,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new DeleteIdentityRequest { IdentityId = "validIdentityId" };
 
-        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/account/identities/{request.IdentityId}")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/account/identities/{request.IdentityId}")
             .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.DeleteIdentity(request);
@@ -89,11 +89,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new DeleteIdentityRequest { IdentityId = "validIdentityId" };
 
-        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/account/identities/{request.IdentityId}")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/account/identities/{request.IdentityId}")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.DeleteIdentity(request);

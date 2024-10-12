@@ -17,10 +17,10 @@ public partial class UsersClientTests
             PasswordSalt = "MySalt"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/scrypt")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/scrypt")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
         // Act
         var result = await _appwriteClient.Users.CreateUserWithScryptPassword(request);
@@ -40,10 +40,10 @@ public partial class UsersClientTests
             PasswordSalt = "MySalt"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/scrypt")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/scrypt")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.CreateUserWithScryptPassword(request);
@@ -64,7 +64,7 @@ public partial class UsersClientTests
             PasswordSalt = "MySalt"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/scrypt")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/scrypt")
             .WithJsonContent(request)
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));

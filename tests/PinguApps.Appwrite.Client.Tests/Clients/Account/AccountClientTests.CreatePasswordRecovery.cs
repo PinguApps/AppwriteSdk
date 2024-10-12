@@ -16,10 +16,10 @@ public partial class AccountClientTests
             Url = "https://localhost:1234/abc"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/recovery")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/recovery")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.TokenResponse);
+            .Respond(TestConstants.AppJson, TestConstants.TokenResponse);
 
         // Act
         var result = await _appwriteClient.Account.CreatePasswordRecovery(request);
@@ -38,10 +38,10 @@ public partial class AccountClientTests
             Url = "https://localhost:1234/abc"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/recovery")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/recovery")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Account.CreatePasswordRecovery(request);
@@ -61,7 +61,7 @@ public partial class AccountClientTests
             Url = "https://localhost:1234/abc"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/recovery")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/recovery")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));

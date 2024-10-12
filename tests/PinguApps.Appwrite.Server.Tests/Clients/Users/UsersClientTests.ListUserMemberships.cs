@@ -16,9 +16,9 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/memberships")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/memberships")
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.MembershipsListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.MembershipsListResponse);
 
         // Act
         var result = await _appwriteClient.Users.ListUserMemberships(request);
@@ -36,9 +36,9 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/memberships")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/memberships")
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.ListUserMemberships(request);
@@ -57,7 +57,7 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/memberships")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/memberships")
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
 

@@ -17,7 +17,7 @@ public partial class UsersClientTests
             SessionId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/users/{request.UserId}/sessions/{request.SessionId}")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/users/{request.UserId}/sessions/{request.SessionId}")
             .ExpectedHeaders()
             .Respond(HttpStatusCode.NoContent);
 
@@ -38,9 +38,9 @@ public partial class UsersClientTests
             SessionId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/users/{request.UserId}/sessions/{request.SessionId}")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/users/{request.UserId}/sessions/{request.SessionId}")
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.DeleteUserSession(request);
@@ -60,7 +60,7 @@ public partial class UsersClientTests
             SessionId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/users/{request.UserId}/sessions/{request.SessionId}")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/users/{request.UserId}/sessions/{request.SessionId}")
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
 

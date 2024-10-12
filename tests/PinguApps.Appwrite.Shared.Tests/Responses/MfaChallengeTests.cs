@@ -27,7 +27,7 @@ public class MfaChallengeTests
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var mfaType = JsonSerializer.Deserialize<MfaChallenge>(Constants.MfaChallengeResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var mfaType = JsonSerializer.Deserialize<MfaChallenge>(TestConstants.MfaChallengeResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
         Assert.NotNull(mfaType);

@@ -17,9 +17,9 @@ public partial class UsersClientTests
             Name = "New Name"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{request.UserId}/name")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/name")
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
         // Act
         var result = await _appwriteClient.Users.UpdateName(request);
@@ -38,9 +38,9 @@ public partial class UsersClientTests
             Name = "New Name"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{request.UserId}/name")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/name")
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.UpdateName(request);
@@ -60,7 +60,7 @@ public partial class UsersClientTests
             Name = "New Name"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{request.UserId}/name")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/name")
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
 

@@ -10,11 +10,11 @@ public partial class AccountClientTests
     public async Task CreateJwt_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/jwt")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/jwt")
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.JwtResponse);
+            .Respond(TestConstants.AppJson, TestConstants.JwtResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.CreateJwt();
@@ -39,11 +39,11 @@ public partial class AccountClientTests
     public async Task CreateJwt_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/jwt")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/jwt")
             .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.CreateJwt();
@@ -57,11 +57,11 @@ public partial class AccountClientTests
     public async Task CreateJwt_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/jwt")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/jwt")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.CreateJwt();

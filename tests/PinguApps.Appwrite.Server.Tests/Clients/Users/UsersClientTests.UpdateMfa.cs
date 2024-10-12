@@ -17,10 +17,10 @@ public partial class UsersClientTests
             Mfa = true
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{request.UserId}/mfa")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/mfa")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
         // Act
         var result = await _appwriteClient.Users.UpdateMfa(request);
@@ -39,10 +39,10 @@ public partial class UsersClientTests
             Mfa = true
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{request.UserId}/mfa")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/mfa")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.UpdateMfa(request);
@@ -62,7 +62,7 @@ public partial class UsersClientTests
             Mfa = true
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{request.UserId}/mfa")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/mfa")
             .WithJsonContent(request)
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));

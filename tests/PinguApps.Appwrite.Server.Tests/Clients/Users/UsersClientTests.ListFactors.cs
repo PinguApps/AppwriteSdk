@@ -16,9 +16,9 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/mfa/factors")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/mfa/factors")
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.MfaFactorsResponse);
+            .Respond(TestConstants.AppJson, TestConstants.MfaFactorsResponse);
 
         // Act
         var result = await _appwriteClient.Users.ListFactors(request);
@@ -36,9 +36,9 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/mfa/factors")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/mfa/factors")
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.ListFactors(request);
@@ -57,7 +57,7 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/mfa/factors")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/mfa/factors")
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
 

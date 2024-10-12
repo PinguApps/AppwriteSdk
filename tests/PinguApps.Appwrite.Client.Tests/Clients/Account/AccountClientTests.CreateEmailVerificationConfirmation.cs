@@ -16,10 +16,10 @@ public partial class AccountClientTests
             Secret = "654321"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/verification")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/verification")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.TokenResponse);
+            .Respond(TestConstants.AppJson, TestConstants.TokenResponse);
 
         // Act
         var result = await _appwriteClient.Account.CreateEmailVerificationConfirmation(request);
@@ -38,10 +38,10 @@ public partial class AccountClientTests
             Secret = "654321"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/verification")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/verification")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Account.CreateEmailVerificationConfirmation(request);
@@ -61,7 +61,7 @@ public partial class AccountClientTests
             Secret = "654321"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/verification")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/verification")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));

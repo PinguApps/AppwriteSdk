@@ -42,7 +42,7 @@ public class TargetListTests
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var targetList = JsonSerializer.Deserialize<TargetList>(Constants.TargetListResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var targetList = JsonSerializer.Deserialize<TargetList>(TestConstants.TargetListResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
         Assert.NotNull(targetList);

@@ -15,12 +15,12 @@ public partial class AccountClientTests
         {
             Otp = "123456"
         };
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
             .WithJsonContent(request)
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.VerifyAuthenticator(request);
@@ -34,7 +34,7 @@ public partial class AccountClientTests
     {
         // Arrange
         var type = "newAuth";
-        var requestUri = $"{Constants.Endpoint}/account/mfa/authenticators/{type}";
+        var requestUri = $"{TestConstants.Endpoint}/account/mfa/authenticators/{type}";
         var requestBody = new VerifyAuthenticatorRequest
         {
             Otp = "123456",
@@ -43,9 +43,9 @@ public partial class AccountClientTests
         var request = _mockHttp.Expect(HttpMethod.Put, requestUri)
             .WithJsonContent(requestBody)
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.VerifyAuthenticator(requestBody);
@@ -82,12 +82,12 @@ public partial class AccountClientTests
         {
             Otp = "123456"
         };
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
             .WithJsonContent(request)
             .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.VerifyAuthenticator(request);
@@ -105,12 +105,12 @@ public partial class AccountClientTests
         {
             Otp = "123456"
         };
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
             .WithJsonContent(request)
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.VerifyAuthenticator(request);

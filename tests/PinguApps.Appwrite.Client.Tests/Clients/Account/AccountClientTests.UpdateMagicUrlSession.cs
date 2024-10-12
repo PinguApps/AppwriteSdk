@@ -16,10 +16,10 @@ public partial class AccountClientTests
             Secret = "validSecret"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/sessions/magic-url")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/sessions/magic-url")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.SessionResponse);
+            .Respond(TestConstants.AppJson, TestConstants.SessionResponse);
 
         // Act
         var result = await _appwriteClient.Account.UpdateMagicUrlSession(request);
@@ -38,10 +38,10 @@ public partial class AccountClientTests
             Secret = "validSecret"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/sessions/magic-url")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/sessions/magic-url")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Account.UpdateMagicUrlSession(request);
@@ -61,7 +61,7 @@ public partial class AccountClientTests
             Secret = "validSecret"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/sessions/magic-url")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/sessions/magic-url")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));

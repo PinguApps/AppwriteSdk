@@ -13,11 +13,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new AddAuthenticatorRequest();
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.MfaTypeResponse);
+            .Respond(TestConstants.AppJson, TestConstants.MfaTypeResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.AddAuthenticator(request);
@@ -35,12 +35,12 @@ public partial class AccountClientTests
         {
             Type = type
         };
-        var requestUri = $"{Constants.Endpoint}/account/mfa/authenticators/{type}";
+        var requestUri = $"{TestConstants.Endpoint}/account/mfa/authenticators/{type}";
         var mockRequest = _mockHttp.Expect(HttpMethod.Post, requestUri)
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.MfaTypeResponse);
+            .Respond(TestConstants.AppJson, TestConstants.MfaTypeResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.AddAuthenticator(request);
@@ -72,11 +72,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new AddAuthenticatorRequest();
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.AddAuthenticator(request);
@@ -92,11 +92,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new AddAuthenticatorRequest();
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.AddAuthenticator(request);

@@ -56,7 +56,7 @@ public class UserTests
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var user = JsonSerializer.Deserialize<User>(Constants.UserResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var user = JsonSerializer.Deserialize<User>(TestConstants.UserResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
         Assert.NotNull(user);

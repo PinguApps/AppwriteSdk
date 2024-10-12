@@ -16,10 +16,10 @@ public partial class UsersClientTests
             Password = "password123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/phpass")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/phpass")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
         // Act
         var result = await _appwriteClient.Users.CreateUserWithPhpassPassword(request);
@@ -38,10 +38,10 @@ public partial class UsersClientTests
             Password = "password123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/phpass")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/phpass")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.CreateUserWithPhpassPassword(request);
@@ -61,7 +61,7 @@ public partial class UsersClientTests
             Password = "password123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/phpass")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/phpass")
             .WithJsonContent(request)
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));

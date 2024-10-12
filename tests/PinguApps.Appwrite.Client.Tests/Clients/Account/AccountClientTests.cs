@@ -18,7 +18,7 @@ public partial class AccountClientTests
         _mockHttp = new MockHttpMessageHandler();
         var services = new ServiceCollection();
 
-        services.AddAppwriteClientForServer("PROJECT_ID", Constants.Endpoint, new RefitSettings
+        services.AddAppwriteClientForServer("PROJECT_ID", TestConstants.Endpoint, new RefitSettings
         {
             HttpMessageHandlerFactory = () => _mockHttp
         });
@@ -36,13 +36,13 @@ public partial class AccountClientTests
         var mockAccountApi = new Mock<IAccountApi>();
         sc.AddSingleton(mockAccountApi.Object);
         var sp = sc.BuildServiceProvider();
-        var accountClient = new AccountClient(sp, new Config(Constants.Endpoint, Constants.ProjectId));
+        var accountClient = new AccountClient(sp, new Config(TestConstants.Endpoint, TestConstants.ProjectId));
         var sessionAware = accountClient as ISessionAware;
 
         // Act
-        sessionAware.UpdateSession(Constants.Session);
+        sessionAware.UpdateSession(TestConstants.Session);
 
         // Assert
-        Assert.Equal(Constants.Session, accountClient.Session);
+        Assert.Equal(TestConstants.Session, accountClient.Session);
     }
 }

@@ -21,7 +21,7 @@ public class HeaderHandlerTests
             .ReturnsAsync(new HttpResponseMessage())
             .Verifiable();
 
-        var config = new Config(Constants.Endpoint, Constants.ProjectId);
+        var config = new Config(TestConstants.Endpoint, TestConstants.ProjectId);
 
         var headerHandler = new HeaderHandler(config)
         {
@@ -38,7 +38,7 @@ public class HeaderHandlerTests
             Times.Once(),
             ItExpr.Is<HttpRequestMessage>(req =>
                 req.Headers.Contains("x-appwrite-project") &&
-                req.Headers.GetValues("x-appwrite-project").Contains(Constants.ProjectId)),
+                req.Headers.GetValues("x-appwrite-project").Contains(TestConstants.ProjectId)),
             ItExpr.IsAny<CancellationToken>()
         );
     }

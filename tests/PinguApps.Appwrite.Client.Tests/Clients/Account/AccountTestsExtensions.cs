@@ -8,12 +8,12 @@ public static class AccountTestsExtensions
     public static MockedRequest ExpectedHeaders(this MockedRequest request, bool addSessionHeaders = false)
     {
         var req = request
-            .WithHeaders("x-appwrite-project", Constants.ProjectId)
-            .WithHeaders("x-sdk-name", Constants.SdkName)
+            .WithHeaders("x-appwrite-project", TestConstants.ProjectId)
+            .WithHeaders("x-sdk-name", TestConstants.SdkName)
             .WithHeaders("x-sdk-platform", "client")
-            .WithHeaders("x-sdk-language", Constants.SdkLanguage)
-            .WithHeaders("x-sdk-version", Constants.SdkVersion)
-            .WithHeaders("x-appwrite-response-format", Constants.AppwriteResponseFormat);
+            .WithHeaders("x-sdk-language", TestConstants.SdkLanguage)
+            .WithHeaders("x-sdk-version", TestConstants.SdkVersion)
+            .WithHeaders("x-appwrite-response-format", TestConstants.AppwriteResponseFormat);
 
         if (addSessionHeaders)
             return req.ExpectSessionHeaders();
@@ -24,6 +24,6 @@ public static class AccountTestsExtensions
     public static MockedRequest ExpectSessionHeaders(this MockedRequest request)
     {
         return request
-            .WithHeaders("x-appwrite-session", Constants.Session);
+            .WithHeaders("x-appwrite-session", TestConstants.Session);
     }
 }

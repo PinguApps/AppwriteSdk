@@ -14,11 +14,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new ListLogsRequest();
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/logs")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/logs")
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.LogsListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.LogsListResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListLogs(request);
@@ -37,12 +37,12 @@ public partial class AccountClientTests
             Queries = [query]
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/logs")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/logs")
             .ExpectedHeaders(true)
             .WithQueryString($"queries[]={query.GetQueryString()}")
-            .Respond(Constants.AppJson, Constants.LogsListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.LogsListResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListLogs(request);
@@ -73,11 +73,11 @@ public partial class AccountClientTests
         var request = new ListLogsRequest();
 
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/logs")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/logs")
             .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListLogs(request);
@@ -94,11 +94,11 @@ public partial class AccountClientTests
         var request = new ListLogsRequest();
 
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/logs")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/logs")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListLogs(request);

@@ -1,6 +1,6 @@
 ﻿namespace PinguApps.Appwrite.Shared.Tests;
 
-public static class Constants
+public static class TestConstants
 {
     public const string Endpoint = "https://localhost:12345/v1";
 

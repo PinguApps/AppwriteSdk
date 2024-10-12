@@ -10,11 +10,11 @@ public partial class AccountClientTests
     public async Task GetMfaRecoveryCodes_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/mfa/recovery-codes")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/mfa/recovery-codes")
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.JwtResponse);
+            .Respond(TestConstants.AppJson, TestConstants.JwtResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.GetMfaRecoveryCodes();
@@ -39,11 +39,11 @@ public partial class AccountClientTests
     public async Task GetMfaRecoveryCodes_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/mfa/recovery-codes")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/mfa/recovery-codes")
             .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.GetMfaRecoveryCodes();
@@ -57,11 +57,11 @@ public partial class AccountClientTests
     public async Task GetMfaRecoveryCodes_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/mfa/recovery-codes")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/mfa/recovery-codes")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.GetMfaRecoveryCodes();

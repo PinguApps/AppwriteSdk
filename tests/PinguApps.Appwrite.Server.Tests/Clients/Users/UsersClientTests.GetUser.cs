@@ -17,9 +17,9 @@ public partial class UsersClientTests
             UserId = userId
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{userId}")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{userId}")
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
         // Act
         var result = await _appwriteClient.Users.GetUser(request);
@@ -37,9 +37,9 @@ public partial class UsersClientTests
             UserId = "user123"
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/user123")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/user123")
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.GetUser(request);
@@ -58,7 +58,7 @@ public partial class UsersClientTests
             UserId = "user123"
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/user123")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/user123")
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
 

@@ -17,10 +17,10 @@ public partial class AccountClientTests
             PhoneNumber = "+16175551212"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/phone")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/phone")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.TokenResponse);
+            .Respond(TestConstants.AppJson, TestConstants.TokenResponse);
 
         // Act
         var result = await _appwriteServer.Account.CreatePhoneToken(request);
@@ -39,10 +39,10 @@ public partial class AccountClientTests
             PhoneNumber = "+16175551212"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/phone")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/phone")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteServer.Account.CreatePhoneToken(request);
@@ -62,7 +62,7 @@ public partial class AccountClientTests
             PhoneNumber = "+16175551212"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/phone")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/phone")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));

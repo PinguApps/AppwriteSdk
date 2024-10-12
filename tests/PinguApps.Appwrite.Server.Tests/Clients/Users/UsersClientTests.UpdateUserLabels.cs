@@ -26,10 +26,10 @@ public partial class UsersClientTests
     public async Task UpdateUserLabels_ShouldReturnSuccess_WhenApiCallSucceeds(UpdateUserLabelsRequest request)
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/users/{request.UserId}/labels")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/users/{request.UserId}/labels")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
         // Act
         var result = await _appwriteClient.Users.UpdateUserLabels(request);
@@ -48,10 +48,10 @@ public partial class UsersClientTests
             Labels = ["label1", "label2"]
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/users/user123/labels")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/users/user123/labels")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.UpdateUserLabels(request);
@@ -71,7 +71,7 @@ public partial class UsersClientTests
             Labels = ["label1", "label2"]
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/users/user123/labels")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/users/user123/labels")
             .WithJsonContent(request)
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
