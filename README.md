@@ -141,9 +141,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 95 / 292](https://img.shields.io/badge/Server_&_Client-95%20%2F%20292-red?style=for-the-badge)
+![Server & Client - 96 / 292](https://img.shields.io/badge/Server_&_Client-96%20%2F%20292-red?style=for-the-badge)
 
-![Server - 51 / 202](https://img.shields.io/badge/Server-51%20%2F%20202-red?style=for-the-badge)
+![Server - 52 / 202](https://img.shields.io/badge/Server-52%20%2F%20202-red?style=for-the-badge)
 
 ![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
 
@@ -208,7 +208,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
 
 ### Users
-![Account - 40 / 42](https://img.shields.io/badge/Users-40%20%2F%2042-forestgreen?style=for-the-badge)
+![Account - 41 / 42](https://img.shields.io/badge/Users-40%20%2F%2042-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -252,7 +252,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateTarget) | ❌ | ✅ |
 | [Delete User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteTarget) | ❌ | ✅ |
 | [Create Token](https://appwrite.io/docs/references/1.6.x/server-rest/users#createToken) | ❌ | ✅ |
-| [Update Email Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmailVerification) | ❌ | ⬛ |
+| [Update Email Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmailVerification) | ❌ | ✅ |
 | [Update Phone Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhoneVerification) | ❌ | ⬛ |
 
 ### Teams
