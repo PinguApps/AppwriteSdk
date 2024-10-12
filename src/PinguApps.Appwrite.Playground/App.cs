@@ -17,13 +17,15 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateSessionRequest()
+        _client.SetSession(_session);
+
+        var request = new CreateAccountRequest()
         {
-            UserId = "664aac1a00113f82e620",
-            Secret = "80af6605407a3918cd9bb1796b6bfdc5d4b2dc57dad4677432d902e8bef9ba6f"
+            Email = "pingu@example.com",
+            Password = "MyCoolPassword"
         };
 
-        var response = await _client.Account.CreateSession(request);
+        var response = await _client.Account.Create(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

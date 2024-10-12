@@ -10,15 +10,29 @@ public class IgnoreUnderscorePropertiesConverterFactory : JsonConverterFactory
 {
     public override bool CanConvert(Type typeToConvert)
     {
-        // Apply to all non-abstract classes
+        // Exclude primitive types, enums, strings, and object
+        if (typeToConvert.IsPrimitive ||
+            typeToConvert.IsEnum ||
+            typeToConvert == typeof(string) ||
+            typeToConvert == typeof(decimal) ||
+            typeToConvert == typeof(DateTime) ||
+            typeToConvert == typeof(DateTimeOffset) ||
+            typeToConvert == typeof(TimeSpan) ||
+            typeToConvert == typeof(Guid) ||
+            typeToConvert == typeof(object))
+        {
+            return false;
+        }
+
+        // Apply to all other non-abstract classes
         return typeToConvert.IsClass && !typeToConvert.IsAbstract;
     }
 
-    public override JsonConverter CreateConverter(Type type, JsonSerializerOptions options)
+    public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
     {
-        // Create a generic converter for the specific type
-        var converterType = typeof(IgnoreUnderscorePropertiesConverter<>).MakeGenericType(type);
-        return (JsonConverter)Activator.CreateInstance(converterType);
+        var converterType = typeof(IgnoreUnderscorePropertiesConverter<>).MakeGenericType(typeToConvert);
+
+        return (JsonConverter)Activator.CreateInstance(converterType)!;
     }
 
     private class IgnoreUnderscorePropertiesConverter<T> : JsonConverter<T> where T : class
@@ -39,16 +53,13 @@ public class IgnoreUnderscorePropertiesConverterFactory : JsonConverterFactory
 
             writer.WriteStartObject();
 
-            // Retrieve all public instance properties
             var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .Where(prop => prop.CanRead && prop.GetMethod != null);
+                                      .Where(prop => prop.CanRead && prop.GetMethod != null);
 
             foreach (var prop in properties)
             {
-                // Determine the JSON property name
-                var jsonPropertyName = prop.GetCustomAttribute<JsonPropertyNameAttribute>()?.Name
-                    ?? options.PropertyNamingPolicy?.ConvertName(prop.Name)
-                    ?? prop.Name;
+                var jsonPropertyName = prop.GetCustomAttribute<JsonPropertyNameAttribute>()?.Name ??
+                    (options.PropertyNamingPolicy?.ConvertName(prop.Name) ?? prop.Name);
 
                 // Skip properties with JSON names starting with '_'
                 if (jsonPropertyName.StartsWith("_"))
@@ -56,8 +67,7 @@ public class IgnoreUnderscorePropertiesConverterFactory : JsonConverterFactory
 
                 var propValue = prop.GetValue(value);
 
-                // Respect the DefaultIgnoreCondition
-                if (propValue == null && options.DefaultIgnoreCondition == JsonIgnoreCondition.WhenWritingNull)
+                if (propValue is null && options.DefaultIgnoreCondition == JsonIgnoreCondition.WhenWritingNull)
                     continue;
 
                 writer.WritePropertyName(jsonPropertyName);
