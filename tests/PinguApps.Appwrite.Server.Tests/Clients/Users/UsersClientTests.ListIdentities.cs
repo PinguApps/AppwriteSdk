@@ -13,9 +13,9 @@ public partial class UsersClientTests
         // Arrange
         var request = new ListIdentitiesRequest();
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/identities")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/identities")
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.IdentitiesListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.IdentitiesListResponse);
 
         // Act
         var result = await _appwriteClient.Users.ListIdentities(request);
@@ -34,10 +34,10 @@ public partial class UsersClientTests
             Queries = [query]
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/identities")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/identities")
             .ExpectedHeaders()
             .WithQueryString($"queries[]={query.GetQueryString()}")
-            .Respond(Constants.AppJson, Constants.IdentitiesListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.IdentitiesListResponse);
 
         // Act
         var result = await _appwriteClient.Users.ListIdentities(request);
@@ -55,10 +55,10 @@ public partial class UsersClientTests
             Search = "SearchQuery"
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/identities")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/identities")
             .ExpectedHeaders()
             .WithQueryString("search=SearchQuery")
-            .Respond(Constants.AppJson, Constants.IdentitiesListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.IdentitiesListResponse);
 
         // Act
         var result = await _appwriteClient.Users.ListIdentities(request);
@@ -78,11 +78,11 @@ public partial class UsersClientTests
             Search = "SearchQuery"
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/identities")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/identities")
             .ExpectedHeaders()
             .WithQueryString($"queries[]={query.GetQueryString()}")
             .WithQueryString("search=SearchQuery")
-            .Respond(Constants.AppJson, Constants.IdentitiesListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.IdentitiesListResponse);
 
         // Act
         var result = await _appwriteClient.Users.ListIdentities(request);
@@ -97,9 +97,9 @@ public partial class UsersClientTests
         // Arrange
         var request = new ListIdentitiesRequest();
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/identities")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/identities")
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.ListIdentities(request);
@@ -115,7 +115,7 @@ public partial class UsersClientTests
         // Arrange
         var request = new ListIdentitiesRequest();
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/identities")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/identities")
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
 

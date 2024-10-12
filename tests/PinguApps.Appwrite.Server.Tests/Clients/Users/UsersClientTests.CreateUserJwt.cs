@@ -26,10 +26,10 @@ public partial class UsersClientTests
     public async Task CreateUserJwt_ShouldReturnSuccess_WhenApiCallSucceeds(CreateUserJwtRequest request)
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/{request.UserId}/jwts")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/{request.UserId}/jwts")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.JwtResponse);
+            .Respond(TestConstants.AppJson, TestConstants.JwtResponse);
 
         // Act
         var result = await _appwriteClient.Users.CreateUserJwt(request);
@@ -47,10 +47,10 @@ public partial class UsersClientTests
             UserId = "user123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/{request.UserId}/jwts")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/{request.UserId}/jwts")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.CreateUserJwt(request);
@@ -69,7 +69,7 @@ public partial class UsersClientTests
             UserId = "user123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/{request.UserId}/jwts")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/{request.UserId}/jwts")
             .WithJsonContent(request)
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));

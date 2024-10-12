@@ -23,7 +23,7 @@ public class MfaTypeTests
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var mfaType = JsonSerializer.Deserialize<MfaType>(Constants.MfaTypeResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var mfaType = JsonSerializer.Deserialize<MfaType>(TestConstants.MfaTypeResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
         Assert.NotNull(mfaType);

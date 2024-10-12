@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PinguApps.Appwrite.Shared.Requests.Users;
+using PinguApps.Appwrite.Shared.Requests.Account;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -17,13 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdatePhoneVerificationRequest()
+        var request = new CreateSessionRequest()
         {
             UserId = "664aac1a00113f82e620",
-            PhoneVerification = true
+            Secret = "80af6605407a3918cd9bb1796b6bfdc5d4b2dc57dad4677432d902e8bef9ba6f"
         };
 
-        var response = await _server.Users.UpdatePhoneVerification(request);
+        var response = await _client.Account.CreateSession(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

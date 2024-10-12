@@ -16,10 +16,10 @@ public partial class AccountClientTests
             Email = "email@example.com"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/email")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/email")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.TokenResponse);
+            .Respond(TestConstants.AppJson, TestConstants.TokenResponse);
 
         // Act
         var result = await _appwriteClient.Account.CreateEmailToken(request);
@@ -38,10 +38,10 @@ public partial class AccountClientTests
             Email = "email@example.com"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/email")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/email")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Account.CreateEmailToken(request);
@@ -61,7 +61,7 @@ public partial class AccountClientTests
             Email = "email@example.com"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/email")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/email")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));

@@ -17,12 +17,12 @@ public partial class AccountClientTests
             NewPassword = "newPassword"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/password")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/account/password")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.UpdatePassword(request);
@@ -60,12 +60,12 @@ public partial class AccountClientTests
             NewPassword = "newPassword"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/password")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/account/password")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.UpdatePassword(request);
@@ -85,12 +85,12 @@ public partial class AccountClientTests
             NewPassword = "newPassword"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/password")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/account/password")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.UpdatePassword(request);

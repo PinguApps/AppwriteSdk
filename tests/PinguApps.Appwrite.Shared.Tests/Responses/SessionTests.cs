@@ -80,7 +80,7 @@ public class SessionTests
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var session = JsonSerializer.Deserialize<Session>(Constants.SessionResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var session = JsonSerializer.Deserialize<Session>(TestConstants.SessionResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
         Assert.NotNull(session);

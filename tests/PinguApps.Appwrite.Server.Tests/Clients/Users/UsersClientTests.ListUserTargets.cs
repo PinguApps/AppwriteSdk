@@ -25,9 +25,9 @@ public partial class UsersClientTests
     public async Task ListUserTargets_ShouldReturnSuccess_WhenApiCallSucceeds(ListUserTargetsRequest request)
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/targets")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/targets")
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.TargetListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.TargetListResponse);
 
         // Act
         var result = await _appwriteClient.Users.ListUserTargets(request);
@@ -47,10 +47,10 @@ public partial class UsersClientTests
             Queries = [query]
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/targets")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/targets")
             .ExpectedHeaders()
             .WithQueryString($"queries[]={query.GetQueryString()}")
-            .Respond(Constants.AppJson, Constants.TargetListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.TargetListResponse);
 
         // Act
         var result = await _appwriteClient.Users.ListUserTargets(request);
@@ -68,9 +68,9 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/targets")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/targets")
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.ListUserTargets(request);
@@ -89,7 +89,7 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/targets")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/targets")
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
 

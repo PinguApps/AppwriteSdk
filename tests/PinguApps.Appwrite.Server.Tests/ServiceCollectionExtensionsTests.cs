@@ -14,7 +14,7 @@ public class ServiceCollectionExtensionsTests
         var services = new ServiceCollection();
 
         // Act
-        services.AddAppwriteServer(Constants.ProjectId, Constants.ApiKey, Constants.Endpoint);
+        services.AddAppwriteServer(TestConstants.ProjectId, TestConstants.ApiKey, TestConstants.Endpoint);
 
         // Assert
         var provider = services.BuildServiceProvider();

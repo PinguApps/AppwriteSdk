@@ -18,12 +18,12 @@ public partial class AccountClientTests
         var options = new JsonSerializerOptions();
         options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, false));
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/challenge")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/mfa/challenge")
             .ExpectedHeaders(true)
             .WithJsonContent(request, options)
-            .Respond(Constants.AppJson, Constants.MfaTypeResponse);
+            .Respond(TestConstants.AppJson, TestConstants.MfaTypeResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.Create2faChallenge(request);
@@ -56,12 +56,12 @@ public partial class AccountClientTests
         var options = new JsonSerializerOptions();
         options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, false));
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/challenge")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/mfa/challenge")
             .ExpectedHeaders(true)
             .WithJsonContent(request, options)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.Create2faChallenge(request);
@@ -80,12 +80,12 @@ public partial class AccountClientTests
         var options = new JsonSerializerOptions();
         options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, false));
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/mfa/challenge")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/mfa/challenge")
             .ExpectedHeaders(true)
             .WithJsonContent(request, options)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.Create2faChallenge(request);

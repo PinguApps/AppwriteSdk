@@ -25,7 +25,7 @@ public class ResponseUtilsTests
     {
         var response = new HttpResponseMessage(HttpStatusCode.InternalServerError)
         {
-            Content = new StringContent(Constants.AppwriteError)
+            Content = new StringContent(TestConstants.AppwriteError)
         };
         var exception = await ApiException.Create(new HttpRequestMessage(), HttpMethod.Get, response, new RefitSettings());
 
@@ -93,7 +93,7 @@ public class ResponseUtilsTests
     {
         var response = new HttpResponseMessage(HttpStatusCode.InternalServerError)
         {
-            Content = new StringContent(Constants.AppwriteError)
+            Content = new StringContent(TestConstants.AppwriteError)
         };
         var exception = await ApiException.Create(new HttpRequestMessage(), HttpMethod.Get, response, new RefitSettings());
 

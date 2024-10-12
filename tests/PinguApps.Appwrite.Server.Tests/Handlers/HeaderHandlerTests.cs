@@ -21,7 +21,7 @@ public class HeaderHandlerTests
             .ReturnsAsync(new HttpResponseMessage())
             .Verifiable();
 
-        var config = new Config(Constants.Endpoint, Constants.ProjectId, Constants.ApiKey);
+        var config = new Config(TestConstants.Endpoint, TestConstants.ProjectId, TestConstants.ApiKey);
 
         var headerHandler = new HeaderHandler(config)
         {
@@ -38,9 +38,9 @@ public class HeaderHandlerTests
             Times.Once(),
             ItExpr.Is<HttpRequestMessage>(req =>
                 req.Headers.Contains("x-appwrite-project") &&
-                req.Headers.GetValues("x-appwrite-project").Contains(Constants.ProjectId) &&
+                req.Headers.GetValues("x-appwrite-project").Contains(TestConstants.ProjectId) &&
                 req.Headers.Contains("x-appwrite-key") &&
-                req.Headers.GetValues("x-appwrite-key").Contains(Constants.ApiKey)),
+                req.Headers.GetValues("x-appwrite-key").Contains(TestConstants.ApiKey)),
             ItExpr.IsAny<CancellationToken>()
         );
     }
@@ -49,7 +49,7 @@ public class HeaderHandlerTests
     public void Constructor_ShouldThrowArgumentNullException_WhenApiKeyIsNull()
     {
         // Arrange
-        var config = new Config(Constants.Endpoint, Constants.ProjectId, null);
+        var config = new Config(TestConstants.Endpoint, TestConstants.ProjectId, null);
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() => new HeaderHandler(config));

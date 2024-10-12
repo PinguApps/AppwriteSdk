@@ -18,10 +18,10 @@ public partial class UsersClientTests
             Email = newEmail
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/{userId}/email")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{userId}/email")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
         // Act
         var result = await _appwriteClient.Users.UpdateEmail(request);
@@ -40,10 +40,10 @@ public partial class UsersClientTests
             Email = "newemail@example.com"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/user123/email")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/user123/email")
             .WithJsonContent(request)
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.UpdateEmail(request);
@@ -63,7 +63,7 @@ public partial class UsersClientTests
             Email = "newemail@example.com"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/users/user123/email")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/user123/email")
             .WithJsonContent(request)
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));

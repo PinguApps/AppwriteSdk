@@ -17,10 +17,10 @@ public partial class UsersClientTests
             Name = "Pingu"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/argon2")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/argon2")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
         // Act
         var result = await _appwriteClient.Users.CreateUserWithArgon2Password(request);
@@ -40,10 +40,10 @@ public partial class UsersClientTests
             Name = "Pingu"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/argon2")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/argon2")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.CreateUserWithArgon2Password(request);
@@ -64,7 +64,7 @@ public partial class UsersClientTests
             Name = "Pingu"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/users/argon2")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/users/argon2")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));

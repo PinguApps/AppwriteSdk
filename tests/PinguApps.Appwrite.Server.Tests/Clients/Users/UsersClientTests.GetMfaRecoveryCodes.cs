@@ -16,9 +16,9 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/mfa/recovery-codes")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/mfa/recovery-codes")
             .ExpectedHeaders()
-            .Respond(Constants.AppJson, Constants.MfaRecoveryCodesResponse);
+            .Respond(TestConstants.AppJson, TestConstants.MfaRecoveryCodesResponse);
 
         // Act
         var result = await _appwriteClient.Users.GetMfaRecoveryCodes(request);
@@ -36,9 +36,9 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/mfa/recovery-codes")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/mfa/recovery-codes")
             .ExpectedHeaders()
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Users.GetMfaRecoveryCodes(request);
@@ -57,7 +57,7 @@ public partial class UsersClientTests
             UserId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/users/{request.UserId}/mfa/recovery-codes")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/users/{request.UserId}/mfa/recovery-codes")
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
 

@@ -41,10 +41,10 @@ public class AppwriteClientTests
         var appwriteClient = new AppwriteClient(mockAccountClient.Object);
 
         // Act
-        appwriteClient.SetSession(Constants.Session);
+        appwriteClient.SetSession(TestConstants.Session);
 
         // Assert
-        Assert.Equal(Constants.Session, appwriteClient.Session);
+        Assert.Equal(TestConstants.Session, appwriteClient.Session);
     }
 
     [Fact]
@@ -56,9 +56,9 @@ public class AppwriteClientTests
         var appwriteClient = new AppwriteClient(mockAccountClient.Object);
 
         // Act
-        appwriteClient.SetSession(Constants.Session);
+        appwriteClient.SetSession(TestConstants.Session);
 
         // Assert
-        mockAccountClient.As<ISessionAware>().Verify(a => a.UpdateSession(Constants.Session), Times.Once);
+        mockAccountClient.As<ISessionAware>().Verify(a => a.UpdateSession(TestConstants.Session), Times.Once);
     }
 }

@@ -9,9 +9,9 @@ public partial class AccountClientTests
     public async Task CreateAnonymousSession_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/anonymous")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/sessions/anonymous")
             .ExpectedHeaders(false)
-            .Respond(Constants.AppJson, Constants.SessionResponse);
+            .Respond(TestConstants.AppJson, TestConstants.SessionResponse);
 
         // Act
         var result = await _appwriteClient.Account.CreateAnonymousSession();
@@ -24,9 +24,9 @@ public partial class AccountClientTests
     public async Task CreateAnonymousSession_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/anonymous")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/sessions/anonymous")
             .ExpectedHeaders(false)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Account.CreateAnonymousSession();
@@ -40,7 +40,7 @@ public partial class AccountClientTests
     public async Task CreateAnonymousSession_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/anonymous")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/sessions/anonymous")
             .ExpectedHeaders(false)
             .Throw(new HttpRequestException("An error occurred"));
 

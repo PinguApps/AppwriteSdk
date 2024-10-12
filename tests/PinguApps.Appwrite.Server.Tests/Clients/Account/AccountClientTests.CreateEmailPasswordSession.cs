@@ -17,10 +17,10 @@ public partial class AccountClientTests
             Password = "Password"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/email")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/sessions/email")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.SessionResponse);
+            .Respond(TestConstants.AppJson, TestConstants.SessionResponse);
 
         // Act
         var result = await _appwriteServer.Account.CreateEmailPasswordSession(request);
@@ -39,10 +39,10 @@ public partial class AccountClientTests
             Password = "Password"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/email")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/sessions/email")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteServer.Account.CreateEmailPasswordSession(request);
@@ -62,7 +62,7 @@ public partial class AccountClientTests
             Password = "Password"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/sessions/email")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/sessions/email")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));

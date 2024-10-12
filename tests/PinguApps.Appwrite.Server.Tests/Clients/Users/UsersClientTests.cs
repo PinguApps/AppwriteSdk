@@ -15,7 +15,7 @@ public partial class UsersClientTests
         _mockHttp = new MockHttpMessageHandler();
         var services = new ServiceCollection();
 
-        services.AddAppwriteServer(Constants.ProjectId, Constants.ApiKey, Constants.Endpoint, new RefitSettings
+        services.AddAppwriteServer(TestConstants.ProjectId, TestConstants.ApiKey, TestConstants.Endpoint, new RefitSettings
         {
             HttpMessageHandlerFactory = () => _mockHttp
         });

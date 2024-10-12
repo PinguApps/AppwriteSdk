@@ -18,12 +18,12 @@ public partial class AccountClientTests
             Otp = "123456"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/mfa/challenge")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/challenge")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
             .Respond(HttpStatusCode.NoContent);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.Create2faChallengeConfirmation(request);
@@ -61,12 +61,12 @@ public partial class AccountClientTests
             Otp = "123456"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/mfa/challenge")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/challenge")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.Create2faChallengeConfirmation(request);
@@ -86,12 +86,12 @@ public partial class AccountClientTests
             Otp = "123456"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/mfa/challenge")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/challenge")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.Create2faChallengeConfirmation(request);

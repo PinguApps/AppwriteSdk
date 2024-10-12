@@ -10,11 +10,11 @@ public partial class AccountClientTests
     public async Task CreatePhoneVerification_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/verification/phone")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/verification/phone")
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.TokenResponse);
+            .Respond(TestConstants.AppJson, TestConstants.TokenResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.CreatePhoneVerification();
@@ -39,11 +39,11 @@ public partial class AccountClientTests
     public async Task CreatePhoneVerification_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/verification/phone")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/verification/phone")
             .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.CreatePhoneVerification();
@@ -57,11 +57,11 @@ public partial class AccountClientTests
     public async Task CreatePhoneVerification_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/verification/phone")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/verification/phone")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.CreatePhoneVerification();

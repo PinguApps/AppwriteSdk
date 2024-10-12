@@ -16,12 +16,12 @@ public partial class AccountClientTests
             Url = "https://localhost:5001/abc123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/verification")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/verification")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.TokenResponse);
+            .Respond(TestConstants.AppJson, TestConstants.TokenResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.CreateEmailVerification(request);
@@ -57,12 +57,12 @@ public partial class AccountClientTests
             Url = "https://localhost:5001/abc123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/verification")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/verification")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.CreateEmailVerification(request);
@@ -81,12 +81,12 @@ public partial class AccountClientTests
             Url = "https://localhost:5001/abc123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/verification")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/verification")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.CreateEmailVerification(request);

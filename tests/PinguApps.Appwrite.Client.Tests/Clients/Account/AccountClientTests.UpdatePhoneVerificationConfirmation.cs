@@ -17,12 +17,12 @@ public partial class AccountClientTests
             Secret = "654321"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/verification/phone")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/verification/phone")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.TokenResponse);
+            .Respond(TestConstants.AppJson, TestConstants.TokenResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.UpdatePhoneVerificationConfirmation(request);
@@ -60,12 +60,12 @@ public partial class AccountClientTests
             Secret = "654321"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/verification/phone")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/verification/phone")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.UpdatePhoneVerificationConfirmation(request);
@@ -85,12 +85,12 @@ public partial class AccountClientTests
             Secret = "654321"
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{Constants.Endpoint}/account/verification/phone")
+        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/verification/phone")
             .ExpectedHeaders(true)
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.UpdatePhoneVerificationConfirmation(request);

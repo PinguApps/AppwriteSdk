@@ -18,10 +18,10 @@ public partial class AccountClientTests
             Url = "https://localhost:5001/abc123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/magic-url")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/magic-url")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.TokenResponse);
+            .Respond(TestConstants.AppJson, TestConstants.TokenResponse);
 
         // Act
         var result = await _appwriteServer.Account.CreateMagicUrlToken(request);
@@ -41,10 +41,10 @@ public partial class AccountClientTests
             Url = "https://localhost:5001/abc123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/magic-url")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/magic-url")
             .ExpectedHeaders()
             .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteServer.Account.CreateMagicUrlToken(request);
@@ -65,7 +65,7 @@ public partial class AccountClientTests
             Url = "https://localhost:5001/abc123"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/magic-url")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/magic-url")
             .ExpectedHeaders()
             .WithJsonContent(request)
             .Throw(new HttpRequestException("An error occurred"));

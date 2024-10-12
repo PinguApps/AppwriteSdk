@@ -1,6 +1,6 @@
 ﻿namespace PinguApps.Appwrite.Shared.Tests;
 
-public static class Constants
+public static class TestConstants
 {
     public const string Endpoint = "https://localhost:12345/v1";
 
@@ -15,8 +15,6 @@ public static class Constants
     public const string SdkName = ".NET";
 
     public const string SdkLanguage = "dotnet";
-
-    public const string SdkVersion = "0.0.1";
 
     public const string AppwriteResponseFormat = "1.6.0";
 

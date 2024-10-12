@@ -14,11 +14,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new ListIdentitiesRequest();
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/identities")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/identities")
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.IdentitiesListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.IdentitiesListResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListIdentities(request);
@@ -37,12 +37,12 @@ public partial class AccountClientTests
             Queries = [query]
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/identities")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/identities")
             .ExpectedHeaders(true)
             .WithQueryString($"queries[]={query.GetQueryString()}")
-            .Respond(Constants.AppJson, Constants.IdentitiesListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.IdentitiesListResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListIdentities(request);
@@ -72,11 +72,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new ListIdentitiesRequest();
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/identities")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/identities")
             .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListIdentities(request);
@@ -92,11 +92,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new ListIdentitiesRequest();
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/identities")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/identities")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListIdentities(request);
