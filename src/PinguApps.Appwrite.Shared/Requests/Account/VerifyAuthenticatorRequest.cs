@@ -17,6 +17,6 @@ public class VerifyAuthenticatorRequest : BaseRequest<VerifyAuthenticatorRequest
     /// <summary>
     /// Type of authenticator
     /// </summary>
-    [JsonIgnore]
+    [JsonPropertyName("_type")]
     public string Type { get; set; } = "totp";
 }

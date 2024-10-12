@@ -11,6 +11,6 @@ public class DeleteIdentityRequest : BaseRequest<DeleteIdentityRequest, DeleteId
     /// <summary>
     /// Identity ID
     /// </summary>
-    [JsonPropertyName("identityId")]
+    [JsonPropertyName("_identityId")]
     public string IdentityId { get; set; } = string.Empty;
 }

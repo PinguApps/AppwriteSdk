@@ -11,6 +11,6 @@ public class DeleteSessionRequest : BaseRequest<DeleteSessionRequest, DeleteSess
     /// <summary>
     /// Session ID. Use the string 'current' to delete the current device session.
     /// </summary>
-    [JsonPropertyName("sessionId")]
+    [JsonPropertyName("_sessionId")]
     public string SessionId { get; set; } = "current";
 }

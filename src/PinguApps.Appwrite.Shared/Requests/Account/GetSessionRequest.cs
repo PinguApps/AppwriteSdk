@@ -11,6 +11,6 @@ public class GetSessionRequest : BaseRequest<GetSessionRequest, GetSessionReques
     /// <summary>
     /// Session ID. Use the string 'current' to get the current device session
     /// </summary>
-    [JsonPropertyName("sessionId")]
+    [JsonPropertyName("_sessionId")]
     public string SessionId { get; set; } = "current";
 }

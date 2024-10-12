@@ -11,7 +11,7 @@ public class DeleteAuthenticatorRequest : BaseRequest<DeleteAuthenticatorRequest
     /// <summary>
     /// Type of authenticator
     /// </summary>
-    [JsonIgnore]
+    [JsonPropertyName("_type")]
     public string Type { get; set; } = "totp";
 
     /// <summary>

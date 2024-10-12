@@ -11,6 +11,6 @@ public class AddAuthenticatorRequest : BaseRequest<AddAuthenticatorRequest, AddA
     /// <summary>
     /// Type of authenticator. Must be `totp`
     /// </summary>
-    [JsonIgnore]
+    [JsonPropertyName("_type")]
     public string Type { get; set; } = "totp";
 }
