@@ -17,13 +17,14 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new GetUserTargetRequest()
+        var request = new UpdateUserTargertRequest()
         {
             UserId = "664aac1a00113f82e620",
-            TargetId = "def"
+            TargetId = "def",
+            Name = "New Name"
         };
 
-        var response = await _server.Users.GetUserTarget(request);
+        var response = await _server.Users.UpdateUserTarget(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

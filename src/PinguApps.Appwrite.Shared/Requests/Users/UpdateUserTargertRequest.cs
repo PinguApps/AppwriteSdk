@@ -18,17 +18,20 @@ public class UpdateUserTargertRequest : UserIdBaseRequest<UpdateUserTargertReque
     /// The target identifier (token, email, phone etc.)
     /// </summary>
     [JsonPropertyName("identifier")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Identifier { get; set; }
 
     /// <summary>
     /// Provider ID. Message will be sent to this target from the specified provider ID. If no provider ID is set the first setup provider will be used
     /// </summary>
     [JsonPropertyName("providerId")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? ProviderId { get; set; }
 
     /// <summary>
     /// Target name. Max length: 128 chars. For example: My Awesome App Galaxy S23.
     /// </summary>
     [JsonPropertyName("name")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Name { get; set; }
 }
