@@ -684,9 +684,22 @@ public class UsersClient : IUsersClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Token>> CreateToken(CreateTokenRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Token>> CreateToken(CreateTokenRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _usersApi.CreateToken(request.UserId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Token>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

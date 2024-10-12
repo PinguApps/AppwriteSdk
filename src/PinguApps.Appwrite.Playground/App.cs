@@ -17,14 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdateUserTargertRequest()
+        var request = new CreateTokenRequest()
         {
-            UserId = "664aac1a00113f82e620",
-            TargetId = "def",
-            Name = "New Name"
+            UserId = "664aac1a00113f82e620"
         };
 
-        var response = await _server.Users.UpdateUserTarget(request);
+        var response = await _server.Users.CreateToken(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

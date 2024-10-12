@@ -326,7 +326,13 @@ public interface IUsersClient
     /// <param name="request">The request content</param>
     /// <returns>The target</returns>
     Task<AppwriteResult<Target>> UpdateUserTarget(UpdateUserTargertRequest request);
-    [Obsolete("This method hasn't yet been implemented.", true)]
+
+    /// <summary>
+    /// Returns a token with a secret key for creating a session. Use the user ID and secret and submit a request to the PUT /account/sessions/token endpoint to complete the login process
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users#createToken">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The token</returns>
     Task<AppwriteResult<Token>> CreateToken(CreateTokenRequest request);
     [Obsolete("This method hasn't yet been implemented.", true)]
     Task<AppwriteResult<User>> UpdateEmailVerification(UpdateEmailVerificationRequest request);
