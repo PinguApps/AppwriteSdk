@@ -12,11 +12,13 @@ public class CreateTokenRequest : UserIdBaseRequest<CreateTokenRequest, CreateTo
     /// Token length in characters. The default length is 6 characters
     /// </summary>
     [JsonPropertyName("length")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? Length { get; set; }
 
     /// <summary>
     /// Token expiration period in seconds. The default expiration is 15 minutes
     /// </summary>
     [JsonPropertyName("expire")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? Expire { get; set; }
 }
