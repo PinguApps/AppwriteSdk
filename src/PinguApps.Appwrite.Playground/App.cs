@@ -17,13 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdateEmailVerificationRequest()
+        var request = new UpdatePhoneVerificationRequest()
         {
             UserId = "664aac1a00113f82e620",
-            EmailVerification = true
+            PhoneVerification = true
         };
 
-        var response = await _server.Users.UpdateEmailVerification(request);
+        var response = await _server.Users.UpdatePhoneVerification(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
