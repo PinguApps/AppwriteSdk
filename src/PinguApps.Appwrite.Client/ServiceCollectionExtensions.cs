@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Handlers;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Shared;
+using PinguApps.Appwrite.Shared.Converters;
 using Refit;
 
 namespace PinguApps.Appwrite.Client;
@@ -24,11 +27,13 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection, enabling chaining</returns>
     public static IServiceCollection AddAppwriteClient(this IServiceCollection services, string projectId, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
+        var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
+
         services.AddSingleton(new Config(endpoint, projectId));
         services.AddTransient<HeaderHandler>();
         services.AddTransient<ClientCookieSessionHandler>();
 
-        services.AddRefitClient<IAccountApi>(refitSettings)
+        services.AddRefitClient<IAccountApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
             .AddHttpMessageHandler<ClientCookieSessionHandler>();
@@ -50,10 +55,12 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection, enabling chaining</returns>
     public static IServiceCollection AddAppwriteClientForServer(this IServiceCollection services, string projectId, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
+        var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
+
         services.AddSingleton(new Config(endpoint, projectId));
         services.AddTransient<HeaderHandler>();
 
-        services.AddRefitClient<IAccountApi>(refitSettings)
+        services.AddRefitClient<IAccountApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
@@ -76,6 +83,23 @@ public static class ServiceCollectionExtensions
     {
         client.BaseAddress = new Uri(endpoint);
         client.DefaultRequestHeaders.UserAgent.ParseAdd(BuildUserAgent());
+    }
+
+    private static RefitSettings AddSerializationConfigToRefitSettings(RefitSettings? refitSettings)
+    {
+        var settings = refitSettings ?? new RefitSettings();
+
+        var options = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+
+        options.Converters.Add(new IgnoreSdkExcludedPropertiesConverterFactory());
+
+        settings.ContentSerializer = new SystemTextJsonContentSerializer(options);
+
+        return settings;
     }
 
     public static string BuildUserAgent()

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Attributes;
 using PinguApps.Appwrite.Shared.Requests.Account.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Account;
@@ -12,5 +13,6 @@ public class DeleteIdentityRequest : BaseRequest<DeleteIdentityRequest, DeleteId
     /// Identity ID
     /// </summary>
     [JsonPropertyName("identityId")]
+    [SdkExclude]
     public string IdentityId { get; set; } = string.Empty;
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Attributes;
 using PinguApps.Appwrite.Shared.Requests.Account.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Account;
@@ -12,5 +13,6 @@ public class DeleteSessionRequest : BaseRequest<DeleteSessionRequest, DeleteSess
     /// Session ID. Use the string 'current' to delete the current device session.
     /// </summary>
     [JsonPropertyName("sessionId")]
+    [SdkExclude]
     public string SessionId { get; set; } = "current";
 }

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Clients;
 using PinguApps.Appwrite.Server.Handlers;
 using PinguApps.Appwrite.Server.Internals;
 using PinguApps.Appwrite.Shared;
+using PinguApps.Appwrite.Shared.Converters;
 using Refit;
 
 namespace PinguApps.Appwrite.Server;
@@ -26,15 +29,17 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection, enabling chaining</returns>
     public static IServiceCollection AddAppwriteServer(this IServiceCollection services, string projectId, string apiKey, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
+        var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
+
         services.AddSingleton(new Config(endpoint, projectId, apiKey));
         services.AddTransient<HeaderHandler>();
 
-        services.AddRefitClient<IAccountApi>(refitSettings)
+        services.AddRefitClient<IAccountApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
-        services.AddRefitClient<IUsersApi>(refitSettings)
+        services.AddRefitClient<IUsersApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
@@ -58,6 +63,23 @@ public static class ServiceCollectionExtensions
     {
         client.BaseAddress = new Uri(endpoint);
         client.DefaultRequestHeaders.UserAgent.ParseAdd(BuildUserAgent());
+    }
+
+    private static RefitSettings AddSerializationConfigToRefitSettings(RefitSettings? refitSettings)
+    {
+        var settings = refitSettings ?? new RefitSettings();
+
+        var options = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+
+        options.Converters.Add(new IgnoreSdkExcludedPropertiesConverterFactory());
+
+        settings.ContentSerializer = new SystemTextJsonContentSerializer(options);
+
+        return settings;
     }
 
     public static string BuildUserAgent()

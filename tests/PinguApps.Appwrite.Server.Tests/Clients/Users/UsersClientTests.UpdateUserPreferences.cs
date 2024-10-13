@@ -22,7 +22,7 @@ public partial class UsersClientTests
         };
 
         _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/prefs")
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .ExpectedHeaders()
             .Respond(TestConstants.AppJson, TestConstants.PreferencesResponse);
 
@@ -48,7 +48,7 @@ public partial class UsersClientTests
         };
 
         _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/prefs")
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .ExpectedHeaders()
             .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
@@ -75,7 +75,7 @@ public partial class UsersClientTests
         };
 
         _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/users/{request.UserId}/prefs")
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .ExpectedHeaders()
             .Throw(new HttpRequestException("An error occurred"));
 

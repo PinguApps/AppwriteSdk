@@ -18,7 +18,7 @@ public partial class AccountClientTests
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/sessions/token")
             .ExpectedHeaders()
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Respond(TestConstants.AppJson, TestConstants.SessionResponse);
 
         // Act
@@ -40,7 +40,7 @@ public partial class AccountClientTests
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/sessions/token")
             .ExpectedHeaders()
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
@@ -63,7 +63,7 @@ public partial class AccountClientTests
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/sessions/token")
             .ExpectedHeaders()
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Throw(new HttpRequestException("An error occurred"));
 
         // Act

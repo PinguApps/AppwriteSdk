@@ -20,7 +20,7 @@ public partial class AccountClientTests
 
         _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/challenge")
             .ExpectedHeaders(true)
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Respond(HttpStatusCode.NoContent);
 
         _appwriteClient.SetSession(TestConstants.Session);
@@ -63,7 +63,7 @@ public partial class AccountClientTests
 
         _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/challenge")
             .ExpectedHeaders(true)
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         _appwriteClient.SetSession(TestConstants.Session);
@@ -88,7 +88,7 @@ public partial class AccountClientTests
 
         _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/challenge")
             .ExpectedHeaders(true)
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Throw(new HttpRequestException("An error occurred"));
 
         _appwriteClient.SetSession(TestConstants.Session);
