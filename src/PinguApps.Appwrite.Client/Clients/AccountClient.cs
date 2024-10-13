@@ -653,6 +653,23 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
+    public async Task<AppwriteResult<Target>> CreatePushTarget(CreatePushTargetRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.CreatePushTarget(GetCurrentSessionOrThrow(), request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Target>();
+        }
+    }
+
+    /// <inheritdoc/>
     public async Task<AppwriteResult<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request)
     {
         try

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Shared.Requests.Account;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -19,13 +20,14 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new CreateAccountRequest()
+        var request = new CreatePushTargetRequest()
         {
-            Email = "pingu@example.com",
-            Password = "MyCoolPassword"
+            TargetId = IdUtils.GenerateUniqueId(),
+            Identifier = "token",
+            ProviderId = "abcdef"
         };
 
-        var response = await _client.Account.Create(request);
+        var response = await _client.Account.CreatePushTarget(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
