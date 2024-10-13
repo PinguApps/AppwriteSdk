@@ -670,6 +670,23 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
+    public async Task<AppwriteResult> DeletePushTarget(DeletePushTargetRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.DeletePushTarget(GetCurrentSessionOrThrow(), request.TargetId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
+
+    /// <inheritdoc/>
     public async Task<AppwriteResult<Target>> UpdatePushTarget(UpdatePushTargetRequest request)
     {
         try
