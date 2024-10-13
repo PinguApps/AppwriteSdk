@@ -121,6 +121,9 @@ internal interface IAccountApi : IBaseApi
     [Post("/account/targets/push")]
     Task<IApiResponse<Target>> CreatePushTarget([Header("x-appwrite-session")] string session, CreatePushTargetRequest request);
 
+    [Delete("/account/targets/{targetId}/push")]
+    Task<IApiResponse> DeletePushTarget([Header("x-appwrite-session")] string session, string targetId);
+
     [Put("/account/targets/{targetId}/push")]
     Task<IApiResponse<Target>> UpdatePushTarget([Header("x-appwrite-session")] string session, string targetId, UpdatePushTargetRequest request);
 

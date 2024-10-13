@@ -313,6 +313,13 @@ public interface IAccountClient
     Task<AppwriteResult<Target>> CreatePushTarget(CreatePushTargetRequest request);
 
     /// <summary>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#deletePushTarget">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
+    Task<AppwriteResult> DeletePushTarget(DeletePushTargetRequest request);
+
+    /// <summary>
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePushTarget">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>

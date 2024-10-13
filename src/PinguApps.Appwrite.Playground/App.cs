@@ -19,13 +19,12 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new UpdatePushTargetRequest()
+        var request = new DeletePushTargetRequest()
         {
-            TargetId = "670be3330025c0f23b93",
-            Identifier = "token"
+            TargetId = "670be3330025c0f23b93"
         };
 
-        var response = await _client.Account.UpdatePushTarget(request);
+        var response = await _client.Account.DeletePushTarget(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
