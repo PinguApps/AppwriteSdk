@@ -1,0 +1,9 @@
+name: Task
+description: A task to be completed
+title: "[Task] "
+labels: enhancement
+body:
+  - type: textarea
+    attributes:
+      label: "Task Details"
+      description: "Additional details for the task"
