@@ -16,7 +16,7 @@ public partial class AccountClientTests
             Otp = "123456"
         };
         _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .ExpectedHeaders(true)
             .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
@@ -41,7 +41,7 @@ public partial class AccountClientTests
             Type = type
         };
         var request = _mockHttp.Expect(HttpMethod.Put, requestUri)
-            .WithJsonContent(requestBody)
+            .WithJsonContent(requestBody, _jsonSerializerOptions)
             .ExpectedHeaders(true)
             .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
@@ -83,7 +83,7 @@ public partial class AccountClientTests
             Otp = "123456"
         };
         _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .ExpectedHeaders(true)
             .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
@@ -106,7 +106,7 @@ public partial class AccountClientTests
             Otp = "123456"
         };
         _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 

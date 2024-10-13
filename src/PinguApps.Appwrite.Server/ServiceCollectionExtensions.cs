@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Clients;
 using PinguApps.Appwrite.Server.Handlers;
@@ -67,7 +69,15 @@ public static class ServiceCollectionExtensions
     {
         var settings = refitSettings ?? new RefitSettings();
 
-        settings.ContentSerializer = new CustomContentSerializer();
+        var options = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+
+        options.Converters.Add(new IgnoreSdkExcludedPropertiesConverterFactory());
+
+        settings.ContentSerializer = new SystemTextJsonContentSerializer(options);
 
         return settings;
     }

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Attributes;
 using PinguApps.Appwrite.Shared.Requests.Account.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Account;
@@ -17,6 +18,7 @@ public class VerifyAuthenticatorRequest : BaseRequest<VerifyAuthenticatorRequest
     /// <summary>
     /// Type of authenticator
     /// </summary>
-    [JsonPropertyName("_type")]
+    [JsonPropertyName("type")]
+    [SdkExclude]
     public string Type { get; set; } = "totp";
 }
