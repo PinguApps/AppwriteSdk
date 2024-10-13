@@ -141,11 +141,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 99 / 295](https://img.shields.io/badge/Server_&_Client-99%20%2F%20295-gold?style=for-the-badge)
+![Server & Client - 100 / 295](https://img.shields.io/badge/Server_&_Client-100%20%2F%20295-gold?style=for-the-badge)
 
 ![Server - 53 / 202](https://img.shields.io/badge/Server-53%20%2F%20202-red?style=for-the-badge)
 
-![Client - 46 / 93](https://img.shields.io/badge/Client-46%20%2F%2093-gold?style=for-the-badge)
+![Client - 47 / 93](https://img.shields.io/badge/Client-47%20%2F%2093-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,7 +155,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-![Account - 57 / 58](https://img.shields.io/badge/Account-57%20%2F%2058-forestgreen?style=for-the-badge)
+![Account - 58 / 58](https://img.shields.io/badge/Account-58%20%2F%2058-blue?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -197,7 +197,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Status](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateStatus) | ✅ | ❌ |
 | [Create Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPushTarget) | ✅ | ❌ |
 | [Update Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePushTarget) | ✅ | ❌ |
-| [Delete Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#deletePushTarget) | ⬛ | ❌ |
+| [Delete Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#deletePushTarget) | ✅ | ❌ |
 | [Create Email Token (OTP)](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailToken) | ✅ | ✅ |
 | [Create Magic URL Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMagicURLToken) | ✅ | ✅ |
 | [Create OAuth2 Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Token) | ✅| ✅ |
