@@ -95,10 +95,7 @@ public class IgnoreSdkExcludedPropertiesConverterFactory : JsonConverterFactory
                 if (jsonConverterAttr is not null && jsonConverterAttr.ConverterType is not null)
                 {
                     // Instantiate the specified converter
-                    var converterInstance = (JsonConverter?)Activator.CreateInstance(jsonConverterAttr.ConverterType);
-
-                    if (converterInstance is null)
-                        throw new InvalidOperationException($"Cannot create an instance of converter type {jsonConverterAttr.ConverterType.FullName}.");
+                    var converterInstance = (JsonConverter?)Activator.CreateInstance(jsonConverterAttr.ConverterType)!;
 
                     // Create a new JsonSerializerOptions instance without the custom converter factory to prevent recursion
                     var newOptions = new JsonSerializerOptions(options);
