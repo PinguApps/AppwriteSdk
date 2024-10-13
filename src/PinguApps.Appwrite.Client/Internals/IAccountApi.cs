@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Responses;
 using Refit;
 
@@ -117,6 +117,15 @@ internal interface IAccountApi : IBaseApi
 
     [Patch("/account/status")]
     Task<IApiResponse<User>> UpdateStatus([Header("x-appwrite-session")] string session);
+
+    [Post("/account/targets/push")]
+    Task<IApiResponse<Target>> CreatePushTarget([Header("x-appwrite-session")] string session, CreatePushTargetRequest request);
+
+    [Delete("/account/targets/{targetId}/push")]
+    Task<IApiResponse> DeletePushTarget([Header("x-appwrite-session")] string session, string targetId);
+
+    [Put("/account/targets/{targetId}/push")]
+    Task<IApiResponse<Target>> UpdatePushTarget([Header("x-appwrite-session")] string session, string targetId, UpdatePushTargetRequest request);
 
     [Post("/account/tokens/magic-url")]
     Task<IApiResponse<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request);

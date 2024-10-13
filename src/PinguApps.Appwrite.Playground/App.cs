@@ -1,16 +1,14 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PinguApps.Appwrite.Client;
-using PinguApps.Appwrite.Server.Servers;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
 {
-    private readonly IAppwriteClient _client;
-    private readonly IAppwriteServer _server;
+    private readonly Client.IAppwriteClient _client;
+    private readonly Server.Clients.IAppwriteClient _server;
     private readonly string? _session;
 
-    public App(IAppwriteClient client, IAppwriteServer server, IConfiguration config)
+    public App(Client.IAppwriteClient client, Server.Clients.IAppwriteClient server, IConfiguration config)
     {
         _client = client;
         _server = server;
@@ -21,15 +19,15 @@ internal class App
     {
         _client.SetSession(_session);
 
-        //var response = await _client.Account.CreatePhoneVerification();
-        var response = await _client.Account.UpdatePhoneVerificationConfirmation(new UpdatePhoneVerificationConfirmationRequest
+        var request = new DeletePushTargetRequest()
         {
-            UserId = "664aac1a00113f82e620",
-            Secret = "325437"
-        });
+            TargetId = "670be3330025c0f23b93"
+        };
+
+        var response = await _client.Account.DeletePushTarget(request);
 
         Console.WriteLine(response.Result.Match(
-            account => account.ToString(),
+            result => result.ToString(),
             appwriteError => appwriteError.Message,
             internalError => internalError.Message));
     }

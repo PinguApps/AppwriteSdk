@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using PinguApps.Appwrite.Client.Clients;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
 
@@ -17,12 +17,12 @@ public partial class AccountClientTests
             Password = "password"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/email")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/account/email")
             .ExpectedHeaders(true)
-            .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .WithJsonContent(request, _jsonSerializerOptions)
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.UpdateEmail(request);
@@ -60,12 +60,12 @@ public partial class AccountClientTests
             Password = "password"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/email")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/account/email")
             .ExpectedHeaders(true)
-            .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .WithJsonContent(request, _jsonSerializerOptions)
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.UpdateEmail(request);
@@ -85,12 +85,12 @@ public partial class AccountClientTests
             Password = "password"
         };
 
-        _mockHttp.Expect(HttpMethod.Patch, $"{Constants.Endpoint}/account/email")
+        _mockHttp.Expect(HttpMethod.Patch, $"{TestConstants.Endpoint}/account/email")
             .ExpectedHeaders(true)
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.UpdateEmail(request);

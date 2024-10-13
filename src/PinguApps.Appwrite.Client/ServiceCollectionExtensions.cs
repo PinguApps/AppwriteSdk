@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Net.Http;
+using System.Runtime.InteropServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Handlers;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Shared;
+using PinguApps.Appwrite.Shared.Converters;
 using Refit;
 
 namespace PinguApps.Appwrite.Client;
@@ -23,15 +27,16 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection, enabling chaining</returns>
     public static IServiceCollection AddAppwriteClient(this IServiceCollection services, string projectId, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
-        services.AddSingleton(x => new HeaderHandler(projectId));
-        services.AddSingleton<ClientCookieSessionHandler>();
-
-        services.AddRefitClient<IAccountApi>(refitSettings)
-            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
-            .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler<ClientCookieSessionHandler>();
+        var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
 
         services.AddSingleton(new Config(endpoint, projectId));
+        services.AddTransient<HeaderHandler>();
+        services.AddTransient<ClientCookieSessionHandler>();
+
+        services.AddRefitClient<IAccountApi>(customRefitSettings)
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .AddHttpMessageHandler<ClientCookieSessionHandler>();
 
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
@@ -50,24 +55,57 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection, enabling chaining</returns>
     public static IServiceCollection AddAppwriteClientForServer(this IServiceCollection services, string projectId, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
     {
-        services.AddSingleton(sp => new HeaderHandler(projectId));
-
-        services.AddRefitClient<IAccountApi>(refitSettings)
-            .ConfigureHttpClient(x => x.BaseAddress = new Uri(endpoint))
-            .AddHttpMessageHandler<HeaderHandler>()
-            .ConfigurePrimaryHttpMessageHandler((handler, sp) =>
-            {
-                if (handler is HttpClientHandler clientHandler)
-                {
-                    clientHandler.UseCookies = false;
-                }
-            });
+        var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
 
         services.AddSingleton(new Config(endpoint, projectId));
+        services.AddTransient<HeaderHandler>();
+
+        services.AddRefitClient<IAccountApi>(customRefitSettings)
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
+    }
+
+    private static void ConfigurePrimaryHttpMessageHandler(HttpMessageHandler messageHandler, IServiceProvider serviceProvider)
+    {
+        if (messageHandler is HttpClientHandler clientHandler)
+        {
+            clientHandler.UseCookies = false;
+        }
+    }
+
+    private static void ConfigureHttpClient(HttpClient client, string endpoint)
+    {
+        client.BaseAddress = new Uri(endpoint);
+        client.DefaultRequestHeaders.UserAgent.ParseAdd(BuildUserAgent());
+    }
+
+    private static RefitSettings AddSerializationConfigToRefitSettings(RefitSettings? refitSettings)
+    {
+        var settings = refitSettings ?? new RefitSettings();
+
+        var options = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+
+        options.Converters.Add(new IgnoreSdkExcludedPropertiesConverterFactory());
+
+        settings.ContentSerializer = new SystemTextJsonContentSerializer(options);
+
+        return settings;
+    }
+
+    public static string BuildUserAgent()
+    {
+        var dotnetVersion = RuntimeInformation.FrameworkDescription.Replace("Microsoft .NET", ".NET").Trim();
+
+        return $"PinguAppsAppwriteDotNetClientSdk/{Constants.Version} (.NET/{dotnetVersion}; {RuntimeInformation.OSDescription.Trim()})";
     }
 }

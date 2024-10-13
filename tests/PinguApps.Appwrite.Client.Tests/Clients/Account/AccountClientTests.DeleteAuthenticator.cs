@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using PinguApps.Appwrite.Client.Clients;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
 
@@ -16,12 +16,12 @@ public partial class AccountClientTests
             Otp = "123456"
         };
 
-        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
-            .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.MfaTypeResponse);
+            .WithJsonContent(request, _jsonSerializerOptions)
+            .Respond(TestConstants.AppJson, TestConstants.MfaTypeResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.DeleteAuthenticator(request);
@@ -40,13 +40,13 @@ public partial class AccountClientTests
             Type = type,
             Otp = "123456"
         };
-        var requestUri = $"{Constants.Endpoint}/account/mfa/authenticators/{type}";
+        var requestUri = $"{TestConstants.Endpoint}/account/mfa/authenticators/{type}";
         var mockRequest = _mockHttp.Expect(HttpMethod.Delete, requestUri)
             .ExpectedHeaders(true)
-            .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.MfaTypeResponse);
+            .WithJsonContent(request, _jsonSerializerOptions)
+            .Respond(TestConstants.AppJson, TestConstants.MfaTypeResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.DeleteAuthenticator(request);
@@ -84,12 +84,12 @@ public partial class AccountClientTests
             Otp = "123456"
         };
 
-        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
-            .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .WithJsonContent(request, _jsonSerializerOptions)
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.DeleteAuthenticator(request);
@@ -108,12 +108,12 @@ public partial class AccountClientTests
             Otp = "123456"
         };
 
-        _mockHttp.Expect(HttpMethod.Delete, $"{Constants.Endpoint}/account/mfa/authenticators/totp")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/account/mfa/authenticators/totp")
             .ExpectedHeaders(true)
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.DeleteAuthenticator(request);

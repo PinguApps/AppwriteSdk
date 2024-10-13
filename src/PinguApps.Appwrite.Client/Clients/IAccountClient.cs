@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Responses;
-using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Client;
 
@@ -44,7 +43,7 @@ public interface IAccountClient
     /// </summary>
     /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: <c>userId</c>, <c>provider</c>, <c>providerUid</c>, <c>providerEmail</c>, <c>providerAccessTokenExpiry</c></param>
     /// <returns>The Identities List</returns>
-    Task<AppwriteResult<IdentitiesList>> ListIdentities(List<Query>? queries = null);
+    Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request);
 
     /// <summary>
     /// Delete an identity by its unique ID
@@ -67,7 +66,7 @@ public interface IAccountClient
     /// </summary>
     /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Only supported methods are limit and offset</param>
     /// <returns>The Logs List</returns>
-    Task<AppwriteResult<LogsList>> ListLogs(List<Query>? queries = null);
+    Task<AppwriteResult<LogsList>> ListLogs(ListLogsRequest request);
 
     /// <summary>
     /// Enable or disable MFA on an account
@@ -305,6 +304,27 @@ public interface IAccountClient
     /// </summary>
     /// <returns>The User</returns>
     Task<AppwriteResult<User>> UpdateStatus();
+
+    /// <summary>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createPushTarget">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The target</returns>
+    Task<AppwriteResult<Target>> CreatePushTarget(CreatePushTargetRequest request);
+
+    /// <summary>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#deletePushTarget">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
+    Task<AppwriteResult> DeletePushTarget(DeletePushTargetRequest request);
+
+    /// <summary>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePushTarget">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The target</returns>
+    Task<AppwriteResult<Target>> UpdatePushTarget(UpdatePushTargetRequest request);
 
     /// <summary>
     /// <para>Sends the user an email with a secret key for creating a session. If the provided user ID has not been registered, a new user will be created. When the user clicks the link in the email, the user is redirected back to the URL you provided with the secret key and userId values attached to the URL query string. Use the query string parameters to submit a request to the <see cref="CreateSession(CreateSessionRequest)"/> endpoint to complete the login process. The link sent to the user's email address is valid for 1 hour. If you are on a mobile device you can leave the URL parameter empty, so that the login completion will be handled by your Appwrite instance by default.</para>

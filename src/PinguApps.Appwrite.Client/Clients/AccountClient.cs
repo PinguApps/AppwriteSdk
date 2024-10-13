@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Client.Utils;
 using PinguApps.Appwrite.Shared;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Responses;
-using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Client;
 
@@ -97,13 +95,13 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<IdentitiesList>> ListIdentities(List<Query>? queries = null)
+    public async Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request)
     {
         try
         {
-            var queryStrings = queries?.Select(x => x.GetQueryString()) ?? [];
+            request.Validate(true);
 
-            var result = await _accountApi.ListIdentities(GetCurrentSessionOrThrow(), queryStrings);
+            var result = await _accountApi.ListIdentities(GetCurrentSessionOrThrow(), RequestUtils.GetQueryStrings(request.Queries));
 
             return result.GetApiResponse();
         }
@@ -146,13 +144,13 @@ public class AccountClient : IAccountClient, ISessionAware
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<LogsList>> ListLogs(List<Query>? queries = null)
+    public async Task<AppwriteResult<LogsList>> ListLogs(ListLogsRequest request)
     {
         try
         {
-            var queryStrings = queries?.Select(x => x.GetQueryString()) ?? [];
+            request.Validate(true);
 
-            var result = await _accountApi.ListLogs(GetCurrentSessionOrThrow(), queryStrings);
+            var result = await _accountApi.ListLogs(GetCurrentSessionOrThrow(), RequestUtils.GetQueryStrings(request.Queries));
 
             return result.GetApiResponse();
         }
@@ -651,6 +649,57 @@ public class AccountClient : IAccountClient, ISessionAware
         catch (Exception e)
         {
             return e.GetExceptionResponse<User>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Target>> CreatePushTarget(CreatePushTargetRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.CreatePushTarget(GetCurrentSessionOrThrow(), request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Target>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult> DeletePushTarget(DeletePushTargetRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.DeletePushTarget(GetCurrentSessionOrThrow(), request.TargetId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Target>> UpdatePushTarget(UpdatePushTargetRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _accountApi.UpdatePushTarget(GetCurrentSessionOrThrow(), request.TargetId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Target>();
         }
     }
 

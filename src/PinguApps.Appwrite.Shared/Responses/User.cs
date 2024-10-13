@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -38,7 +39,7 @@ public record User(
     [property: JsonPropertyName("registration")] DateTime Registration,
     [property: JsonPropertyName("status")] bool Status,
     [property: JsonPropertyName("labels")] IReadOnlyList<string> Labels,
-    [property: JsonPropertyName("passwordUpdate")] DateTime PasswordUpdate,
+    [property: JsonPropertyName("passwordUpdate"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? PasswordUpdate,
     [property: JsonPropertyName("email")] string Email,
     [property: JsonPropertyName("phone")] string Phone,
     [property: JsonPropertyName("emailVerification")] bool EmailVerification,
@@ -46,5 +47,5 @@ public record User(
     [property: JsonPropertyName("mfa")] bool Mfa,
     [property: JsonPropertyName("prefs")] IReadOnlyDictionary<string, string> Prefs,
     [property: JsonPropertyName("targets")] IReadOnlyList<Target> Targets,
-    [property: JsonPropertyName("accessedAt")] DateTime AccessedAt
+    [property: JsonPropertyName("accessedAt"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? AccessedAt
 );

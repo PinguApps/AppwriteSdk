@@ -10,11 +10,11 @@ public partial class AccountClientTests
     public async Task ListSessions_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/sessions")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/sessions")
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.SessionsListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.SessionsListResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListSessions();
@@ -39,11 +39,11 @@ public partial class AccountClientTests
     public async Task ListSessions_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/sessions")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/sessions")
             .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListSessions();
@@ -57,11 +57,11 @@ public partial class AccountClientTests
     public async Task ListSessions_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/sessions")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/sessions")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.ListSessions();

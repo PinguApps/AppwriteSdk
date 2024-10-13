@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Responses;
 using Refit;
 

@@ -21,7 +21,7 @@ public class JwtTests
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var jwt = JsonSerializer.Deserialize<Jwt>(Constants.JwtResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var jwt = JsonSerializer.Deserialize<Jwt>(TestConstants.JwtResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
         Assert.NotNull(jwt);

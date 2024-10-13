@@ -13,7 +13,7 @@ public class ServiceCollectionExtensionsTests
         var services = new ServiceCollection();
 
         // Act
-        services.AddAppwriteClient(Constants.ProjectId, Constants.Endpoint);
+        services.AddAppwriteClient(TestConstants.ProjectId, TestConstants.Endpoint);
 
         // Assert
         var provider = services.BuildServiceProvider();
@@ -43,7 +43,7 @@ public class ServiceCollectionExtensionsTests
         var services = new ServiceCollection();
 
         // Act
-        services.AddAppwriteClientForServer(Constants.ProjectId, Constants.Endpoint);
+        services.AddAppwriteClientForServer(TestConstants.ProjectId, TestConstants.Endpoint);
 
         // Assert
         var provider = services.BuildServiceProvider();

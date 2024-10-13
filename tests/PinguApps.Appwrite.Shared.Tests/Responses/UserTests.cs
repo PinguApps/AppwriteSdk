@@ -56,7 +56,7 @@ public class UserTests
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var user = JsonSerializer.Deserialize<User>(Constants.UserResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var user = JsonSerializer.Deserialize<User>(TestConstants.UserResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
         Assert.NotNull(user);
@@ -76,7 +76,8 @@ public class UserTests
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.Registration.ToUniversalTime());
         Assert.True(user.Status);
         Assert.Contains("vip", user.Labels);
-        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.PasswordUpdate.ToUniversalTime());
+        Assert.NotNull(user.PasswordUpdate);
+        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.PasswordUpdate.Value.ToUniversalTime());
         Assert.Equal("john@appwrite.io", user.Email);
         Assert.Equal("+4930901820", user.Phone);
         Assert.True(user.EmailVerification);
@@ -93,6 +94,7 @@ public class UserTests
         Assert.Equal("259125845563242502", user.Targets[0].ProviderId);
         Assert.Equal(TargetProviderType.Email, user.Targets[0].ProviderType);
         Assert.Equal("token", user.Targets[0].Identifier);
-        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.AccessedAt.ToUniversalTime());
+        Assert.NotNull(user.AccessedAt);
+        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), user.AccessedAt.Value.ToUniversalTime());
     }
 }

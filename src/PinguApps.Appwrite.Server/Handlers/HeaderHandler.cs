@@ -1,6 +1,8 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using PinguApps.Appwrite.Shared;
 
 namespace PinguApps.Appwrite.Server.Handlers;
 internal class HeaderHandler : DelegatingHandler
@@ -8,10 +10,13 @@ internal class HeaderHandler : DelegatingHandler
     private readonly string _projectId;
     private readonly string _apiKey;
 
-    public HeaderHandler(string projectId, string apiKey)
+    public HeaderHandler(Config config)
     {
-        _projectId = projectId;
-        _apiKey = apiKey;
+        if (config.ApiKey is null)
+            throw new ArgumentNullException("config.ApiKey");
+
+        _projectId = config.ProjectId;
+        _apiKey = config.ApiKey;
     }
 
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)

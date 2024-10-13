@@ -31,7 +31,7 @@ public class TokenTests
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var token = JsonSerializer.Deserialize<Token>(Constants.TokenResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var token = JsonSerializer.Deserialize<Token>(TestConstants.TokenResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
         Assert.NotNull(token);

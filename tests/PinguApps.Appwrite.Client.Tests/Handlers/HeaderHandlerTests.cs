@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Moq.Protected;
 using PinguApps.Appwrite.Client.Handlers;
+using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Tests;
 
 namespace PinguApps.Appwrite.Client.Tests.Handlers;
@@ -20,7 +21,9 @@ public class HeaderHandlerTests
             .ReturnsAsync(new HttpResponseMessage())
             .Verifiable();
 
-        var headerHandler = new HeaderHandler(Constants.ProjectId)
+        var config = new Config(TestConstants.Endpoint, TestConstants.ProjectId);
+
+        var headerHandler = new HeaderHandler(config)
         {
             InnerHandler = mockInnerHandler.Object
         };
@@ -35,7 +38,7 @@ public class HeaderHandlerTests
             Times.Once(),
             ItExpr.Is<HttpRequestMessage>(req =>
                 req.Headers.Contains("x-appwrite-project") &&
-                req.Headers.GetValues("x-appwrite-project").Contains(Constants.ProjectId)),
+                req.Headers.GetValues("x-appwrite-project").Contains(TestConstants.ProjectId)),
             ItExpr.IsAny<CancellationToken>()
         );
     }

@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
 
@@ -16,10 +16,10 @@ public partial class AccountClientTests
             Email = "email@example.com"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/email")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/email")
             .ExpectedHeaders()
-            .WithJsonContent(request)
-            .Respond(Constants.AppJson, Constants.TokenResponse);
+            .WithJsonContent(request, _jsonSerializerOptions)
+            .Respond(TestConstants.AppJson, TestConstants.TokenResponse);
 
         // Act
         var result = await _appwriteClient.Account.CreateEmailToken(request);
@@ -38,10 +38,10 @@ public partial class AccountClientTests
             Email = "email@example.com"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/email")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/email")
             .ExpectedHeaders()
-            .WithJsonContent(request)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .WithJsonContent(request, _jsonSerializerOptions)
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
         var result = await _appwriteClient.Account.CreateEmailToken(request);
@@ -61,9 +61,9 @@ public partial class AccountClientTests
             Email = "email@example.com"
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{Constants.Endpoint}/account/tokens/email")
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/account/tokens/email")
             .ExpectedHeaders()
-            .WithJsonContent(request)
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Throw(new HttpRequestException("An error occurred"));
 
         // Act

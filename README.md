@@ -3,6 +3,8 @@ This repository contains the source to both the Client and Server .net impliment
 
 [![Client Version](https://img.shields.io/nuget/v/PinguApps.Appwrite.Client?logo=nuget&style=for-the-badge&label=Client%20Version)](https://www.nuget.org/packages/PinguApps.Appwrite.Client) [![Client Downloads](https://img.shields.io/nuget/dt/PinguApps.Appwrite.Client?style=for-the-badge&logo=nuget&label=Client%20Downloads)](https://www.nuget.org/packages/PinguApps.Appwrite.Client) [![Server Version](https://img.shields.io/nuget/v/PinguApps.Appwrite.Server?logo=nuget&style=for-the-badge&label=Server%20Version)](https://www.nuget.org/packages/PinguApps.Appwrite.Server) [![Server Downloads](https://img.shields.io/nuget/dt/PinguApps.Appwrite.Server?style=for-the-badge&logo=nuget&label=Server%20Downloads)](https://www.nuget.org/packages/PinguApps.Appwrite.Server) [![GitHub Repo stars](https://img.shields.io/github/stars/PinguApps/AppwriteSdk?style=for-the-badge&logo=github)](https://github.com/PinguApps/AppwriteSdk/stargazers) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/PinguApps/AppwriteSdk/main.yml?style=for-the-badge&logo=github)](https://github.com/PinguApps/AppwriteSdk/actions/workflows/main.yml) [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/PinguApps/AppwriteSdk?style=for-the-badge&logo=codefactor)](https://www.codefactor.io/repository/github/pinguapps/AppwriteSdk)
 
+![Repobeats Analytics](https://repobeats.axiom.co/api/embed/1ec2e55e97fb4516682f5e66feba33976870ab32.svg)
+
 ## 🚧 Work in Progress
 This is a work in progress. There are 2 SDK's - one for client and another for server.
 
@@ -11,14 +13,14 @@ It is recommended to install just the client SDK into client-side projects, and 
 
 ### Client SDK
 ```sh
-Install-Package PinguApps.Appwrite.Client -AllowPrereleaseVersions
+Install-Package PinguApps.Appwrite.Client
 ```
 or in the Nuget package manager, search for `PinguApps.Appwrite.Client` (ensure you are searching for prerelease versions)
 ### Server SDK
 ```sh
-Install-Package PinguApps.Appwrite.Server -AllowPrereleaseVersions
+Install-Package PinguApps.Appwrite.Server
 ```
-or in the Nuget package manager, search for `PinguApps.Appwrite.Server` (ensure you are searching for prerelease versions)
+or in the Nuget package manager, search for `PinguApps.Appwrite.Server`
 
 ## 🚀 Usage
 Once the package(s) are installed, you will need to add everything to your DI container. Thankfully, there's an extension method making this simple.
@@ -138,14 +140,12 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 ```
 
 ## ⌛ Progress
-<!-- ![55 / 291](https://progress-bar.dev/55/?scale=291&suffix=%20/%20288&width=500) -->
-![Server & Client - 55 / 291](https://img.shields.io/badge/Server_&_Client-55%20%2F%20291-red?style=for-the-badge)
+<!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
+![Server & Client - 100 / 295](https://img.shields.io/badge/Server_&_Client-100%20%2F%20295-gold?style=for-the-badge)
 
-<!-- ![11 / 201](https://progress-bar.dev/11/?scale=201&suffix=%20/%20201&width=300) -->
-![Server - 11 / 201](https://img.shields.io/badge/Server-11%20%2F%20201-red?style=for-the-badge)
+![Server - 53 / 202](https://img.shields.io/badge/Server-53%20%2F%20202-red?style=for-the-badge)
 
-<!-- ![44 / 93](https://progress-bar.dev/44/?scale=93&suffix=%20/%2093&width=300) -->
-![Client - 44 / 90](https://img.shields.io/badge/Client-44%20%2F%2090-gold?style=for-the-badge)
+![Client - 47 / 93](https://img.shields.io/badge/Client-47%20%2F%2093-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -155,106 +155,105 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | ❌ | There is currently no intention to implement the endpoint for the given SDK type (client or server) |
 
 ### Account
-<!-- ![55 / 55](https://progress-bar.dev/55/?scale=55&suffix=%20/%2052&width=120) -->
-![Account - 55 / 55](https://img.shields.io/badge/Account-55%20%2F%2055-forestgreen?style=for-the-badge)
-
-| Endpoint | Client | Server | Notes |
-|:-:|:-:|:-:|:-:|
-| [Get Account](https://appwrite.io/docs/references/1.6.x/client-rest/account#get) | ✅ | ❌ |  |
-| [Create Account](https://appwrite.io/docs/references/1.6.x/client-rest/account#create) | ✅ | ✅ |  |
-| [Update Email](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateEmail) | ✅ | ❌ |  |
-| [List Identities](https://appwrite.io/docs/references/1.6.x/client-rest/account#listIdentities) | ✅ | ❌ |  |
-| [Delete Identity](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteIdentity) | ✅ | ❌ |  |
-| [Create JWT](https://appwrite.io/docs/references/1.6.x/client-rest/account#createJWT) | ✅ | ❌ |  |
-| [List Logs](https://appwrite.io/docs/references/1.6.x/client-rest/account#listLogs) | ✅ | ❌ |  |
-| [Update MFA](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMFA) | ✅ | ❌ |  |
-| [Add Authenticator](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaAuthenticator) | ✅ | ❌ |  |
-| [Verify Authenticator](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaAuthenticator) | ✅ | ❌ |  |
-| [Delete Authenticator](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteMfaAuthenticator) | ✅ | ❌ |  |
-| [Create 2FA Challenge](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaChallenge) | ✅ | ❌ |  |
-| [Create MFA Challenge (confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaChallenge) | ✅ | ❌ |  |
-| [List Factors](https://appwrite.io/docs/references/1.6.x/client-rest/account#listMfaFactors) | ✅ | ❌ |  |
-| [Get MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/client-rest/account#getMfaRecoveryCodes) | ✅ | ❌ |  |
-| [Create MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaRecoveryCodes) | ✅ | ❌ |  |
-| [Regenerate MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaRecoveryCodes) | ✅ | ❌ |  |
-| [Update Name](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateName) | ✅ | ❌ |  |
-| [Update Password](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePassword) | ✅ | ❌ |  |
-| [Update Phone](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhone) | ✅ | ❌ |  |
-| [Get Account Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/account#getPrefs) | ✅ | ❌ |  |
-| [Update Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePrefs) | ✅ | ❌ |  |
-| [Create Password Recovery](https://appwrite.io/docs/references/1.6.x/client-rest/account#createRecovery) | ✅ | ❌ |  |
-| [Create Password Recovery (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateRecovery) | ✅ | ❌ |  |
-| [List Sessions](https://appwrite.io/docs/references/1.6.x/client-rest/account#listSessions) | ✅ | ❌ |  |
-| [Delete Sessions](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteSessions) | ✅ | ❌ |  |
-| [Create Anonymous Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createAnonymousSession) | ✅ | ✅ |  |
-| [Create Email Password Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailPasswordSession) | ✅ | ✅ |  |
-| [Update Magic URL Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMagicURLSession) | ✅ | ✅ |  |
-| [Create OAuth2 Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Session) | ✅ | ✅ |  |
-| [Update Phone Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneSession) | ✅ | ✅ |  |
-| [Create Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createSession) | ✅ | ✅ |  |
-| [Get Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#getSession) | ✅ | ❌ |  |
-| [Update Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateSession) | ✅ | ❌ |  |
-| [Delete Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteSession) | ✅ | ❌ |  |
-| [Update Status](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateStatus) | ✅ | ❌ |  |
-| [Create Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPushTarget) | ❌ | ❌ | Appwrite functionality broken - Use Users API instead. |
-| [Update Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePushTarget) | ❌ | ❌ | Appwrite functionality broken - Use Users API instead. |
-| [Delete Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#deletePushTarget) | ❌ | ❌ | Appwrite functionality broken - Use Users API instead. |
-| [Create Email Token (OTP)](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailToken) | ✅ | ✅ |  |
-| [Create Magic URL Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMagicURLToken) | ✅ | ✅ |  |
-| [Create OAuth2 Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Token) | ✅| ✅ |  |
-| [Create Phone Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneToken) | ✅ | ✅ |  |
-| [Create Email Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createVerification) | ✅ | ❌ |  |
-| [Create Email Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateVerification) | ✅ | ❌ |  |
-| [Create Phone Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneVerification) | ✅ | ❌ |  |
-| [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |  |
-
-### Users
-<!-- ![0 / 41](https://progress-bar.dev/0/?scale=41&suffix=%20/%2041&width=120) -->
-![Account - 0 / 41](https://img.shields.io/badge/Users-0%20%2F%2041-red?style=for-the-badge)
+![Account - 58 / 58](https://img.shields.io/badge/Account-58%20%2F%2058-blue?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
-| [List Users](https://appwrite.io/docs/references/1.6.x/server-rest/users#list) | ❌ | ⬛ |
-| [Create User](https://appwrite.io/docs/references/1.6.x/server-rest/users#create) | ❌ | ⬛ |
-| [Create User with Argon2 Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createArgon2User) | ❌ | ⬛ |
-| [Create User with Bcrypt Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createBcryptUser) | ❌ | ⬛ |
-| [List Identities](https://appwrite.io/docs/references/1.6.x/server-rest/users#listIdentities) | ❌ | ⬛ |
-| [Delete Identity](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteIdentity) | ❌ | ⬛ |
-| [Create User with MD5 Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createMD5User) | ❌ | ⬛ |
-| [Create User with PHPass Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createPHPassUser) | ❌ | ⬛ |
-| [Create User with Scrypt Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createScryptUser) | ❌ | ⬛ |
-| [Create User with Scrypt Modified Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createScryptModifiedUser) | ❌ | ⬛ |
-| [Create User with SHA Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createSHAUser) | ❌ | ⬛ |
-| [Get User](https://appwrite.io/docs/references/1.6.x/server-rest/users#get) | ❌ | ⬛ |
-| [Delete User](https://appwrite.io/docs/references/1.6.x/server-rest/users#delete) | ❌ | ⬛ |
-| [Update Email](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmail) | ❌ | ⬛ |
-| [Update User Labels](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateLabels) | ❌ | ⬛ |
-| [List User Logs](https://appwrite.io/docs/references/1.6.x/server-rest/users#listLogs) | ❌ | ⬛ |
-| [List User Memberships](https://appwrite.io/docs/references/1.6.x/server-rest/users#listMemberships) | ❌ | ⬛ |
-| [Update MFA](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfa) | ❌ | ⬛ |
-| [Delete Authenticator](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteMfaAuthenticator) | ❌ | ⬛ |
-| [List Factors](https://appwrite.io/docs/references/1.6.x/server-rest/users#listMfaFactors) | ❌ | ⬛ |
-| [Get MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#getMfaRecoveryCodes) | ❌ | ⬛ |
-| [Regenerator MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfaRecoveryCodes) | ❌ | ⬛ |
-| [Create MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#createMfaRecoveryCodes) | ❌ | ⬛ |
-| [Update Name](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateName) | ❌ | ⬛ |
-| [Update Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePassword) | ❌ | ⬛ |
-| [Update Phone](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhone) | ❌ | ⬛ |
-| [Get User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#getPrefs) | ❌ | ⬛ |
-| [Update User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePrefs) | ❌ | ⬛ |
-| [List User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#listSessions) | ❌ | ⬛ |
-| [Create Session](https://appwrite.io/docs/references/1.6.x/server-rest/users#createSession) | ❌ | ⬛ |
-| [Delete User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSessions) | ❌ | ⬛ |
-| [Delete User Session](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSession) | ❌ | ⬛ |
-| [Update User Status](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateStatus) | ❌ | ⬛ |
-| [List User Targets](https://appwrite.io/docs/references/1.6.x/server-rest/users#listTargets) | ❌ | ⬛ |
-| [Create User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#createTarget) | ❌ | ⬛ |
-| [Get User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#getTarget) | ❌ | ⬛ |
-| [Update User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateTarget) | ❌ | ⬛ |
-| [Delete User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteTarget) | ❌ | ⬛ |
-| [Create Token](https://appwrite.io/docs/references/1.6.x/server-rest/users#createToken) | ❌ | ⬛ |
-| [Update Email Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmailVerification) | ❌ | ⬛ |
-| [Update Phone Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhoneVerification) | ❌ | ⬛ |
+| [Get Account](https://appwrite.io/docs/references/1.6.x/client-rest/account#get) | ✅ | ❌ |
+| [Create Account](https://appwrite.io/docs/references/1.6.x/client-rest/account#create) | ✅ | ✅ |
+| [Update Email](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateEmail) | ✅ | ❌ |
+| [List Identities](https://appwrite.io/docs/references/1.6.x/client-rest/account#listIdentities) | ✅ | ❌ |
+| [Delete Identity](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteIdentity) | ✅ | ❌ |
+| [Create JWT](https://appwrite.io/docs/references/1.6.x/client-rest/account#createJWT) | ✅ | ❌ |
+| [List Logs](https://appwrite.io/docs/references/1.6.x/client-rest/account#listLogs) | ✅ | ❌ |
+| [Update MFA](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMFA) | ✅ | ❌ |
+| [Add Authenticator](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaAuthenticator) | ✅ | ❌ |
+| [Verify Authenticator](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaAuthenticator) | ✅ | ❌ |
+| [Delete Authenticator](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteMfaAuthenticator) | ✅ | ❌ |
+| [Create 2FA Challenge](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaChallenge) | ✅ | ❌ |
+| [Create MFA Challenge (confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaChallenge) | ✅ | ❌ |
+| [List Factors](https://appwrite.io/docs/references/1.6.x/client-rest/account#listMfaFactors) | ✅ | ❌ |
+| [Get MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/client-rest/account#getMfaRecoveryCodes) | ✅ | ❌ |
+| [Create MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaRecoveryCodes) | ✅ | ❌ |
+| [Regenerate MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaRecoveryCodes) | ✅ | ❌ |
+| [Update Name](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateName) | ✅ | ❌ |
+| [Update Password](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePassword) | ✅ | ❌ |
+| [Update Phone](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhone) | ✅ | ❌ |
+| [Get Account Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/account#getPrefs) | ✅ | ❌ |
+| [Update Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePrefs) | ✅ | ❌ |
+| [Create Password Recovery](https://appwrite.io/docs/references/1.6.x/client-rest/account#createRecovery) | ✅ | ❌ |
+| [Create Password Recovery (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateRecovery) | ✅ | ❌ |
+| [List Sessions](https://appwrite.io/docs/references/1.6.x/client-rest/account#listSessions) | ✅ | ❌ |
+| [Delete Sessions](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteSessions) | ✅ | ❌ |
+| [Create Anonymous Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createAnonymousSession) | ✅ | ✅ |
+| [Create Email Password Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailPasswordSession) | ✅ | ✅ |
+| [Update Magic URL Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMagicURLSession) | ✅ | ✅ |
+| [Create OAuth2 Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Session) | ✅ | ✅ |
+| [Update Phone Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneSession) | ✅ | ✅ |
+| [Create Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#createSession) | ✅ | ✅ |
+| [Get Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#getSession) | ✅ | ❌ |
+| [Update Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateSession) | ✅ | ❌ |
+| [Delete Session](https://appwrite.io/docs/references/1.6.x/client-rest/account#deleteSession) | ✅ | ❌ |
+| [Update Status](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateStatus) | ✅ | ❌ |
+| [Create Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPushTarget) | ✅ | ❌ |
+| [Update Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePushTarget) | ✅ | ❌ |
+| [Delete Push Target](https://appwrite.io/docs/references/1.6.x/client-rest/account#deletePushTarget) | ✅ | ❌ |
+| [Create Email Token (OTP)](https://appwrite.io/docs/references/1.6.x/client-rest/account#createEmailToken) | ✅ | ✅ |
+| [Create Magic URL Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createMagicURLToken) | ✅ | ✅ |
+| [Create OAuth2 Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createOAuth2Token) | ✅| ✅ |
+| [Create Phone Token](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneToken) | ✅ | ✅ |
+| [Create Email Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createVerification) | ✅ | ❌ |
+| [Create Email Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updateVerification) | ✅ | ❌ |
+| [Create Phone Verification](https://appwrite.io/docs/references/1.6.x/client-rest/account#createPhoneVerification) | ✅ | ❌ |
+| [Create Phone Verification (Confirmation)](https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePhoneVerification) | ✅ | ❌ |
+
+### Users
+![Account - 42 / 42](https://img.shields.io/badge/Users-42%20%2F%2042-blue?style=for-the-badge)
+
+| Endpoint | Client | Server |
+|:-:|:-:|:-:|
+| [List Users](https://appwrite.io/docs/references/1.6.x/server-rest/users#list) | ❌ | ✅ |
+| [Create User](https://appwrite.io/docs/references/1.6.x/server-rest/users#create) | ❌ | ✅ |
+| [Create User with Argon2 Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createArgon2User) | ❌ | ✅ |
+| [Create User with Bcrypt Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createBcryptUser) | ❌ | ✅ |
+| [List Identities](https://appwrite.io/docs/references/1.6.x/server-rest/users#listIdentities) | ❌ | ✅ |
+| [Delete Identity](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteIdentity) | ❌ | ✅ |
+| [Create User with MD5 Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createMD5User) | ❌ | ✅ |
+| [Create User with PHPass Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createPHPassUser) | ❌ | ✅ |
+| [Create User with Scrypt Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createScryptUser) | ❌ | ✅ |
+| [Create User with Scrypt Modified Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createScryptModifiedUser) | ❌ | ✅ |
+| [Create User with SHA Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#createSHAUser) | ❌ | ✅ |
+| [Get User](https://appwrite.io/docs/references/1.6.x/server-rest/users#get) | ❌ | ✅ |
+| [Delete User](https://appwrite.io/docs/references/1.6.x/server-rest/users#delete) | ❌ | ✅ |
+| [Update Email](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmail) | ❌ | ✅ |
+| [Create User JWT](https://appwrite.io/docs/references/1.6.x/server-rest/users#createJWT) | ❌ | ✅ |
+| [Update User Labels](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateLabels) | ❌ | ✅ |
+| [List User Logs](https://appwrite.io/docs/references/1.6.x/server-rest/users#listLogs) | ❌ | ✅ |
+| [List User Memberships](https://appwrite.io/docs/references/1.6.x/server-rest/users#listMemberships) | ❌ | ✅ |
+| [Update MFA](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfa) | ❌ | ✅ |
+| [Delete Authenticator](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteMfaAuthenticator) | ❌ | ✅ |
+| [List Factors](https://appwrite.io/docs/references/1.6.x/server-rest/users#listMfaFactors) | ❌ | ✅ |
+| [Get MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#getMfaRecoveryCodes) | ❌ | ✅ |
+| [Regenerate MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateMfaRecoveryCodes) | ❌ | ✅ |
+| [Create MFA Recovery Codes](https://appwrite.io/docs/references/1.6.x/server-rest/users#createMfaRecoveryCodes) | ❌ | ✅ |
+| [Update Name](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateName) | ❌ | ✅ |
+| [Update Password](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePassword) | ❌ | ✅ |
+| [Update Phone](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhone) | ❌ | ✅ |
+| [Get User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#getPrefs) | ❌ | ✅ |
+| [Update User Preferences](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePrefs) | ❌ | ✅ |
+| [List User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#listSessions) | ❌ | ✅ |
+| [Create Session](https://appwrite.io/docs/references/1.6.x/server-rest/users#createSession) | ❌ | ✅ |
+| [Delete User Sessions](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSessions) | ❌ | ✅ |
+| [Delete User Session](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteSession) | ❌ | ✅ |
+| [Update User Status](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateStatus) | ❌ | ✅ |
+| [List User Targets](https://appwrite.io/docs/references/1.6.x/server-rest/users#listTargets) | ❌ | ✅ |
+| [Create User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#createTarget) | ❌ | ✅ |
+| [Get User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#getTarget) | ❌ | ✅ |
+| [Update User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateTarget) | ❌ | ✅ |
+| [Delete User Target](https://appwrite.io/docs/references/1.6.x/server-rest/users#deleteTarget) | ❌ | ✅ |
+| [Create Token](https://appwrite.io/docs/references/1.6.x/server-rest/users#createToken) | ❌ | ✅ |
+| [Update Email Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updateEmailVerification) | ❌ | ✅ |
+| [Update Phone Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhoneVerification) | ❌ | ✅ |
 
 ### Teams
 <!-- ![0 / 26](https://progress-bar.dev/0/?scale=26&suffix=%20/%2026&width=120) -->

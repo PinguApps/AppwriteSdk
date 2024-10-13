@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using PinguApps.Appwrite.Client.Clients;
-using PinguApps.Appwrite.Shared.Requests;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Tests;
 using RichardSzalay.MockHttp;
 
@@ -13,11 +13,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new GetSessionRequest();
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/sessions/current")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/sessions/current")
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.GetSession(request);
@@ -35,11 +35,11 @@ public partial class AccountClientTests
             SessionId = "123456"
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/sessions/{request.SessionId}")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/sessions/{request.SessionId}")
             .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.UserResponse);
+            .Respond(TestConstants.AppJson, TestConstants.UserResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.GetSession(request);
@@ -69,11 +69,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new GetSessionRequest();
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/sessions/current")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/sessions/current")
             .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.GetSession(request);
@@ -89,11 +89,11 @@ public partial class AccountClientTests
         // Arrange
         var request = new GetSessionRequest();
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/sessions/current")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/sessions/current")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
         var result = await _appwriteClient.Account.GetSession(request);

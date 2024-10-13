@@ -23,7 +23,7 @@ public class MfaFactorsTests
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var mfaFactors = JsonSerializer.Deserialize<MfaFactors>(Constants.MfaFactorsResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var mfaFactors = JsonSerializer.Deserialize<MfaFactors>(TestConstants.MfaFactorsResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
         Assert.NotNull(mfaFactors);

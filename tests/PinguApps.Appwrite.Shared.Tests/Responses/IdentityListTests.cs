@@ -44,7 +44,7 @@ public class IdentityListTests
     public void CanBeDeserialized_FromJson()
     {
         // Act
-        var identitiesList = JsonSerializer.Deserialize<IdentitiesList>(Constants.IdentitiesListResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        var identitiesList = JsonSerializer.Deserialize<IdentitiesList>(TestConstants.IdentitiesListResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         // Assert
         Assert.NotNull(identitiesList);

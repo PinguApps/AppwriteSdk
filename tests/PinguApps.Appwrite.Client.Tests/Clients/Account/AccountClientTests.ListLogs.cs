@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using PinguApps.Appwrite.Client.Clients;
+using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Tests;
 using PinguApps.Appwrite.Shared.Utils;
 using RichardSzalay.MockHttp;
@@ -11,14 +12,16 @@ public partial class AccountClientTests
     public async Task ListLogs_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/logs")
-            .ExpectedHeaders(true)
-            .Respond(Constants.AppJson, Constants.LogsListResponse);
+        var request = new ListLogsRequest();
 
-        _appwriteClient.SetSession(Constants.Session);
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/logs")
+            .ExpectedHeaders(true)
+            .Respond(TestConstants.AppJson, TestConstants.LogsListResponse);
+
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.ListLogs();
+        var result = await _appwriteClient.Account.ListLogs(request);
 
         // Assert
         Assert.True(result.Success);
@@ -29,16 +32,20 @@ public partial class AccountClientTests
     {
         // Arrange
         var query = Query.Limit(5);
+        var request = new ListLogsRequest
+        {
+            Queries = [query]
+        };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/logs")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/logs")
             .ExpectedHeaders(true)
             .WithQueryString($"queries[]={query.GetQueryString()}")
-            .Respond(Constants.AppJson, Constants.LogsListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.LogsListResponse);
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.ListLogs([query]);
+        var result = await _appwriteClient.Account.ListLogs(request);
 
         // Assert
         Assert.True(result.Success);
@@ -47,8 +54,11 @@ public partial class AccountClientTests
     [Fact]
     public async Task ListLogs_ShouldReturnError_WhenSessionIsNull()
     {
+        // Arrange
+        var request = new ListLogsRequest();
+
         // Act
-        var result = await _appwriteClient.Account.ListLogs();
+        var result = await _appwriteClient.Account.ListLogs(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -60,14 +70,17 @@ public partial class AccountClientTests
     public async Task ListLogs_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/logs")
-            .ExpectedHeaders(true)
-            .Respond(HttpStatusCode.BadRequest, Constants.AppJson, Constants.AppwriteError);
+        var request = new ListLogsRequest();
 
-        _appwriteClient.SetSession(Constants.Session);
+        // Arrange
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/logs")
+            .ExpectedHeaders(true)
+            .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
+
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.ListLogs();
+        var result = await _appwriteClient.Account.ListLogs(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -78,14 +91,17 @@ public partial class AccountClientTests
     public async Task ListLogs_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        _mockHttp.Expect(HttpMethod.Get, $"{Constants.Endpoint}/account/logs")
+        var request = new ListLogsRequest();
+
+        // Arrange
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/account/logs")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
-        _appwriteClient.SetSession(Constants.Session);
+        _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Account.ListLogs();
+        var result = await _appwriteClient.Account.ListLogs(request);
 
         // Assert
         Assert.False(result.Success);
