@@ -121,6 +121,9 @@ internal interface IAccountApi : IBaseApi
     [Post("/account/targets/push")]
     Task<IApiResponse<Target>> CreatePushTarget([Header("x-appwrite-session")] string session, CreatePushTargetRequest request);
 
+    [Put("/account/targets/{targetId}/push")]
+    Task<IApiResponse<Target>> UpdatePushTarget([Header("x-appwrite-session")] string session, string targetId, UpdatePushTargetRequest request);
+
     [Post("/account/tokens/magic-url")]
     Task<IApiResponse<Token>> CreateMagicUrlToken(CreateMagicUrlTokenRequest request);
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Shared.Requests.Account;
-using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -20,14 +19,13 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new CreatePushTargetRequest()
+        var request = new UpdatePushTargetRequest()
         {
-            TargetId = IdUtils.GenerateUniqueId(),
-            Identifier = "token",
-            ProviderId = "abcdef"
+            TargetId = "670be3330025c0f23b93",
+            Identifier = "token"
         };
 
-        var response = await _client.Account.CreatePushTarget(request);
+        var response = await _client.Account.UpdatePushTarget(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
