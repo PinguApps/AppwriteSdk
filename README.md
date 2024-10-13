@@ -264,7 +264,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [List Teams](https://appwrite.io/docs/references/1.6.x/client-rest/teams#list) | ⬛ | ⬛ |
 | [Create Team](https://appwrite.io/docs/references/1.6.x/client-rest/teams#create) | ⬛ | ⬛ |
 | [Get Team](https://appwrite.io/docs/references/1.6.x/client-rest/teams#get) | ⬛ | ⬛ |
-| [Updatet Name](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updateName) | ⬛ | ⬛ |
+| [Update Name](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updateName) | ⬛ | ⬛ |
 | [Delete Team](https://appwrite.io/docs/references/1.6.x/client-rest/teams#delete) | ⬛ | ⬛ |
 | [List Team Memberships](https://appwrite.io/docs/references/1.6.x/client-rest/teams#listMemberships) | ⬛ | ⬛ |
 | [Create Team Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#createMembership) | ⬛ | ⬛ |
