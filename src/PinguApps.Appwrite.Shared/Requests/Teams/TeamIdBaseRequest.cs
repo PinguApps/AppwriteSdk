@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using FluentValidation;
+using PinguApps.Appwrite.Shared.Attributes;
 
 namespace PinguApps.Appwrite.Shared.Requests.Teams;
 
@@ -16,5 +17,6 @@ public abstract class TeamIdBaseRequest<TRequest, TValidator> : BaseRequest<TReq
     /// Team ID. Choose a custom ID or generate a random ID with <see cref="Utils.IdUtils.GenerateUniqueId(int)"/>. Valid chars are a-z, A-Z, 0-9, period, hyphen, and underscore. Can't start with a special char. Max length is 36 chars.
     /// </summary>
     [JsonPropertyName("teamId")]
+    [SdkExclude]
     public string TeamId { get; set; } = string.Empty;
 }
