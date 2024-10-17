@@ -359,4 +359,31 @@ public static class TestConstants
             "identifier": "token"
         }
         """;
+
+    public const string TeamResponse = """
+        {
+            "$id": "5e5ea5c16897e",
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "name": "VIP",
+            "total": 7,
+            "prefs": {}
+        }
+        """;
+
+    public const string TeamsListResponse = """
+        {
+            "total": 5,
+            "teams": [
+                {
+                    "$id": "5e5ea5c16897e",
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "name": "VIP",
+                    "total": 7,
+                    "prefs": {}
+                }
+            ]
+        }
+        """;
 }
