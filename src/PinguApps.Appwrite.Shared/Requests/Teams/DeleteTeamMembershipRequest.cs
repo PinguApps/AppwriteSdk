@@ -1,7 +1,6 @@
-﻿using PinguApps.Appwrite.Shared.Requests.Teams;
-using PinguApps.Appwrite.Shared.Requests.Teams.Validators;
+﻿using PinguApps.Appwrite.Shared.Requests.Teams.Validators;
 
-namespace PinguApps.Appwrite.Shared.Reqests.Teams;
+namespace PinguApps.Appwrite.Shared.Requests.Teams;
 
 /// <summary>
 /// The reuqest for removing a user from a team
