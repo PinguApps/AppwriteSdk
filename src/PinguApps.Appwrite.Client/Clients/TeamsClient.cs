@@ -9,6 +9,8 @@ using PinguApps.Appwrite.Shared.Requests.Teams;
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Client.Clients;
+
+/// <inheritdoc/>
 public class TeamsClient : ITeamsClient
 {
     private readonly ITeamsApi _teamsApi;

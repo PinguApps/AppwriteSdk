@@ -9,6 +9,8 @@ using PinguApps.Appwrite.Shared.Requests.Users;
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Server.Clients;
+
+/// <inheritdoc/>
 public class UsersClient : IUsersClient
 {
     private readonly IUsersApi _usersApi;

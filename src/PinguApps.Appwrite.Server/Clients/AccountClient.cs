@@ -8,6 +8,8 @@ using PinguApps.Appwrite.Shared.Requests.Account;
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Server.Clients;
+
+/// <inheritdoc/>
 public class AccountClient : IAccountClient
 {
     private readonly IAccountApi _accountApi;

@@ -1,4 +1,6 @@
 ﻿namespace PinguApps.Appwrite.Server.Clients;
+
+/// <inheritdoc/>
 public class AppwriteClient : IAppwriteClient
 {
     public IAccountClient Account { get; }

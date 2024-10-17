@@ -1,6 +1,8 @@
 ﻿using PinguApps.Appwrite.Client.Clients;
 
 namespace PinguApps.Appwrite.Client;
+
+/// <inheritdoc/>
 public class AppwriteClient : IAppwriteClient, ISessionAware
 {
     /// <inheritdoc/>

@@ -11,6 +11,7 @@ using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Client;
 
+/// <inheritdoc/>
 public class AccountClient : IAccountClient, ISessionAware
 {
     private readonly IAccountApi _accountApi;

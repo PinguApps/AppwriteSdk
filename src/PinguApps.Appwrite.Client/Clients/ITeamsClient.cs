@@ -6,6 +6,8 @@ using PinguApps.Appwrite.Shared.Requests.Teams;
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Client.Clients;
+
+/// <inheritdoc/>
 public interface ITeamsClient
 {
     [Obsolete("This method hasn't yet been implemented!")]
