@@ -17,6 +17,7 @@ public class AppwriteClientTests
 
         // Assert
         Assert.Equal(mockAccountClient.Object, appwriteClient.Account);
+        Assert.Equal(mockTeamsClient.Object, appwriteClient.Teams);
     }
 
     [Fact]
