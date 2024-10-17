@@ -35,6 +35,7 @@ public abstract class TeamMembershipIdBaseRequestTests<TRequest, TValidator> : T
     {
         // Arrange
         var request = CreateValidRequest;
+        request.TeamId = "valid_Team-Id.";
         request.MembershipId = "valid_-Id.";
 
         // Act
