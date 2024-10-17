@@ -3,6 +3,10 @@ using PinguApps.Appwrite.Shared.Attributes;
 using PinguApps.Appwrite.Shared.Requests.Teams.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Teams;
+
+/// <summary>
+/// The request for listing users that are members of a team
+/// </summary>
 public class ListTeamMembershipsRequest : QuerySearchBaseRequest<ListTeamMembershipsRequest, ListTeamMembershipsRequestValidator>
 {
     /// <summary>
