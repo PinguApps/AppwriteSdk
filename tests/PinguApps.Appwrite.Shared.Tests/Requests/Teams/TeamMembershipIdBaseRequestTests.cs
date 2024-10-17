@@ -1,16 +1,29 @@
 ﻿using FluentValidation;
 using PinguApps.Appwrite.Shared.Requests.Teams;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Teams;
 public abstract class TeamMembershipIdBaseRequestTests<TRequest, TValidator> : TeamIdBaseRequestTests<TRequest, TValidator>
         where TRequest : TeamMembershipIdBaseRequest<TRequest, TValidator>
         where TValidator : AbstractValidator<TRequest>, new()
 {
+    protected sealed override TRequest CreateValidRequest
+    {
+        get
+        {
+            var request = CreateValidTeamMembershipIdRequest;
+            request.MembershipId = IdUtils.GenerateUniqueId();
+            return request;
+        }
+    }
+
+    protected abstract TRequest CreateValidTeamMembershipIdRequest { get; }
+
     [Fact]
     public void TeamMembershipIdBase_Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
-        var request = CreateValidRequest;
+        var request = CreateValidTeamMembershipIdRequest;
 
         // Assert
         Assert.Equal(string.Empty, request.MembershipId);
@@ -21,7 +34,7 @@ public abstract class TeamMembershipIdBaseRequestTests<TRequest, TValidator> : T
     {
         // Arrange
         var membershipIdValue = "validId";
-        var request = CreateValidRequest;
+        var request = CreateValidTeamMembershipIdRequest;
 
         // Act
         request.MembershipId = membershipIdValue;
@@ -34,7 +47,7 @@ public abstract class TeamMembershipIdBaseRequestTests<TRequest, TValidator> : T
     public void TeamMembershipIdBase_IsValid_WithValidTeamId_ReturnsTrue()
     {
         // Arrange
-        var request = CreateValidRequest;
+        var request = CreateValidTeamMembershipIdRequest;
         request.TeamId = "valid_Team-Id.";
         request.MembershipId = "valid_-Id.";
 
@@ -54,7 +67,7 @@ public abstract class TeamMembershipIdBaseRequestTests<TRequest, TValidator> : T
     public void TeamMembershipIdBase_IsValid_WithInvalidData_ReturnsFalse(string? membershipId)
     {
         // Arrange
-        var request = CreateValidRequest;
+        var request = CreateValidTeamMembershipIdRequest;
         request.MembershipId = membershipId!;
 
         // Act
@@ -68,7 +81,7 @@ public abstract class TeamMembershipIdBaseRequestTests<TRequest, TValidator> : T
     public void TeamMembershipIdBase_Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = CreateValidRequest;
+        var request = CreateValidTeamMembershipIdRequest;
         request.MembershipId = string.Empty; // Invalid MembershipId
 
         // Assert
@@ -79,7 +92,7 @@ public abstract class TeamMembershipIdBaseRequestTests<TRequest, TValidator> : T
     public void TeamMembershipIdBase_Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = CreateValidRequest;
+        var request = CreateValidTeamMembershipIdRequest;
         request.MembershipId = string.Empty; // Invalid MembershipId
 
         // Act

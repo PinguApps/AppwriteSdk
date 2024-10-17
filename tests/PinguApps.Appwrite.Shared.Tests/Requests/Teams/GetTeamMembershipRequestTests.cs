@@ -4,5 +4,5 @@ using PinguApps.Appwrite.Shared.Requests.Teams.Validators;
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Teams;
 public class GetTeamMembershipRequestTests : TeamMembershipIdBaseRequestTests<GetTeamMembershipRequest, GetTeamMembershipRequestValidator>
 {
-    protected override GetTeamMembershipRequest CreateValidRequest => new();
+    protected override GetTeamMembershipRequest CreateValidTeamMembershipIdRequest => new();
 }
