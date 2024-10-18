@@ -35,5 +35,6 @@ public class AppwriteClient : IAppwriteClient, ISessionAware
     {
         (this as ISessionAware).UpdateSession(session);
         (Account as ISessionAware)!.UpdateSession(session);
+        (Teams as ISessionAware)!.UpdateSession(session);
     }
 }

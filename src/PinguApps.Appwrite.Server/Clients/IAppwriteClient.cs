@@ -18,4 +18,5 @@ public interface IAppwriteClient
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users">Appwrite Docs</see></para>
     /// </summary>
     IUsersClient Users { get; }
+    ITeamsClient Teams { get; }
 }

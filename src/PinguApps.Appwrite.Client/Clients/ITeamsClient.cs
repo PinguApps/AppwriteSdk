@@ -13,7 +13,12 @@ namespace PinguApps.Appwrite.Client.Clients;
 /// </summary>
 public interface ITeamsClient
 {
-    [Obsolete("This method hasn't yet been implemented!")]
+    /// <summary>
+    /// Get a list of all the teams in which the current user is a member. You can use the parameters to filter your results.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams#list">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The teams list</returns>
     Task<AppwriteResult<TeamsList>> ListTeams(ListTeamsRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult<Team>> CreateTeam(CreateTeamRequest request);

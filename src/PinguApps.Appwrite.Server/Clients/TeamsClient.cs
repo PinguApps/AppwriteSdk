@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Internals;
+using PinguApps.Appwrite.Server.Utils;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests.Teams;
 using PinguApps.Appwrite.Shared.Responses;
@@ -22,8 +23,22 @@ public class TeamsClient : ITeamsClient
         _config = config;
     }
 
-    [ExcludeFromCodeCoverage]
-    public Task<AppwriteResult<TeamsList>> ListTeams(ListTeamsRequest request) => throw new NotImplementedException();
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<TeamsList>> ListTeams(ListTeamsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _teamsApi.ListTeams(RequestUtils.GetQueryStrings(request.Queries), request.Search);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<TeamsList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
