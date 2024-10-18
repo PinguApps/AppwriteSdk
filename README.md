@@ -448,7 +448,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Get QR Code](https://appwrite.io/docs/references/1.6.x/client-rest/avatars#getQR) | ⬛ | ⬛ |
 
 ### Health
-![Health - 0 / 23](https://img.shields.io/badge/Avatars-0%20%2F%2023-red?style=for-the-badge)
+![Health - 0 / 23](https://img.shields.io/badge/Health-0%20%2F%2023-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
