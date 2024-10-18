@@ -141,9 +141,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 102 / 295](https://img.shields.io/badge/Server_&_Client-102%20%2F%20295-gold?style=for-the-badge)
+![Server & Client - 102 / 318](https://img.shields.io/badge/Server_&_Client-102%20%2F%20318-red?style=for-the-badge)
 
-![Server - 54 / 202](https://img.shields.io/badge/Server-54%20%2F%20202-red?style=for-the-badge)
+![Server - 54 / 225](https://img.shields.io/badge/Server-54%20%2F%20225-red?style=for-the-badge)
 
 ![Client - 48 / 93](https://img.shields.io/badge/Client-48%20%2F%2093-gold?style=for-the-badge)
 
@@ -275,7 +275,6 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updatePrefs) | ⬛ | ⬛ |
 
 ### Databases
-<!-- ![0 / 47](https://progress-bar.dev/0/?scale=47&suffix=%20/%2047&width=120) -->
 ![Databases - 0 / 47](https://img.shields.io/badge/Databases-0%20%2F%2047-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
@@ -324,7 +323,6 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Index](https://appwrite.io/docs/references/1.6.x/server-rest/databases#deleteIndex) | ❌ | ⬛ |
 
 ### Storage
-<!-- ![0 / 21](https://progress-bar.dev/0/?scale=21&suffix=%20/%2021&width=120) -->
 ![storage - 0 / 21](https://img.shields.io/badge/Storage-0%20%2F%2021-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
@@ -344,7 +342,6 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Get File For View](https://appwrite.io/docs/references/1.6.x/client-rest/storage#getFileView) | ⬛ | ⬛ |
 
 ### Functions
-<!-- ![0 / 24](https://progress-bar.dev/0/?scale=24&suffix=%20/%2024&width=120) -->
 ![Functions - 0 / 24](https://img.shields.io/badge/Functions-0%20%2F%2024-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
@@ -372,7 +369,6 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Variable](https://appwrite.io/docs/references/1.6.x/server-rest/functions#deleteVariable) | ❌ | ⬛ |
 
 ### Messaging
-<!-- ![0 / 48](https://progress-bar.dev/0/?scale=48&suffix=%20/%2048&width=120) -->
 ![Messaging - 0 / 48](https://img.shields.io/badge/Messaging-0%20%2F%2048-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
@@ -425,7 +421,6 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Delete Subscriber](https://appwrite.io/docs/references/1.6.x/client-rest/messaging#deleteSubscriber) | ⬛ | ⬛ |
 
 ### Locale
-<!-- ![0 / 15](https://progress-bar.dev/0/?scale=15&suffix=%20/%2015&width=120) -->
 ![Locale - 0 / 15](https://img.shields.io/badge/Locale-0%20%2F%2015-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
@@ -440,7 +435,6 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [List Languages](https://appwrite.io/docs/references/1.6.x/client-rest/locale#listLanguages) | ⬛ | ⬛ |
 
 ### Avatars
-<!-- ![0 / 14](https://progress-bar.dev/0/?scale=14&suffix=%20/%2014&width=120) -->
 ![Avatars - 0 / 14](https://img.shields.io/badge/Avatars-0%20%2F%2014-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
@@ -452,3 +446,32 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Get Image From Url](https://appwrite.io/docs/references/1.6.x/client-rest/avatars#getImage) | ⬛ | ⬛ |
 | [Get Initials](https://appwrite.io/docs/references/1.6.x/client-rest/avatars#getInitials) | ⬛ | ⬛ |
 | [Get QR Code](https://appwrite.io/docs/references/1.6.x/client-rest/avatars#getQR) | ⬛ | ⬛ |
+
+### Health
+![Health - 0 / 23](https://img.shields.io/badge/Health-0%20%2F%2023-red?style=for-the-badge)
+
+| Endpoint | Client | Server |
+|:-:|:-:|:-:|
+| [Get HTTP](https://appwrite.io/docs/references/1.6.x/server-rest/health#get) | ❌ | ⬛ |
+| [Get Antivirus](https://appwrite.io/docs/references/1.6.x/server-rest/health#getAntivirus) | ❌ | ⬛ |
+| [Get Cache](https://appwrite.io/docs/references/1.6.x/server-rest/health#getCache) | ❌ | ⬛ |
+| [Get the SSL certificate for a domain](https://appwrite.io/docs/references/1.6.x/server-rest/health#getCertificate) | ❌ | ⬛ |
+| [Get DB](https://appwrite.io/docs/references/1.6.x/server-rest/health#getDB) | ❌ | ⬛ |
+| [Get PubSub](https://appwrite.io/docs/references/1.6.x/server-rest/health#getPubSub) | ❌ | ⬛ |
+| [Get Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueue) | ❌ | ⬛ |
+| [Get Builds Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueBuilds) | ❌ | ⬛ |
+| [Get Certificates Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueCertificates) | ❌ | ⬛ |
+| [Get Databases Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueDatabases) | ❌ | ⬛ |
+| [Get Deletes Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueDeletes) | ❌ | ⬛ |
+| [Get Number of Failed Jobs](https://appwrite.io/docs/references/1.6.x/server-rest/health#getFailedJobs) | ❌ | ⬛ |
+| [Get Functions Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueFunctions) | ❌ | ⬛ |
+| [Get Logs Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueLogs) | ❌ | ⬛ |
+| [Get Mails Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueMails) | ❌ | ⬛ |
+| [Get Messaging Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueMessaging) | ❌ | ⬛ |
+| [Get Migrations Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueMigrations) | ❌ | ⬛ |
+| [Get Usage Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueUsage) | ❌ | ⬛ |
+| [Get Usage Dump Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueUsageDump) | ❌ | ⬛ |
+| [Get Webhooks Queue](https://appwrite.io/docs/references/1.6.x/server-rest/health#getQueueWebhooks) | ❌ | ⬛ |
+| [Get Storage](https://appwrite.io/docs/references/1.6.x/server-rest/health#getStorage) | ❌ | ⬛ |
+| [Get Local Storage](https://appwrite.io/docs/references/1.6.x/server-rest/health#getStorageLocal) | ❌ | ⬛ |
+| [Get Time](https://appwrite.io/docs/references/1.6.x/server-rest/health#getTime) | ❌ | ⬛ |
