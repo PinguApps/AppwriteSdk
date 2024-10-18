@@ -42,6 +42,7 @@ public class AppwriteClientTests
         var mockAccountClient = new Mock<IAccountClient>();
         var mockTeamsClient = new Mock<ITeamsClient>();
         mockAccountClient.As<ISessionAware>();
+        mockTeamsClient.As<ISessionAware>();
         var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object);
 
         // Act
@@ -58,6 +59,7 @@ public class AppwriteClientTests
         var mockAccountClient = new Mock<IAccountClient>();
         var mockTeamsClient = new Mock<ITeamsClient>();
         mockAccountClient.As<ISessionAware>();
+        mockTeamsClient.As<ISessionAware>();
         var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object);
 
         // Act

@@ -1,4 +1,6 @@
-﻿namespace PinguApps.Appwrite.Client;
+﻿using PinguApps.Appwrite.Client.Clients;
+
+namespace PinguApps.Appwrite.Client;
 
 /// <summary>
 /// The root of the Client SDK. Access all API sections from here
@@ -23,4 +25,5 @@ public interface IAppwriteClient
     /// The sessio of the currently logged in user
     /// </summary>
     string? Session { get; }
+    ITeamsClient Teams { get; }
 }
