@@ -1,5 +1,6 @@
 # Changes
-<!-- Enter a description of what your changes are here -->
+<!-- Leave this as is, and coderabbitai will summarise your changes for you. -->
+@coderabbitai summary
 
 ## Issue
 <!-- Enter the ticket number and link to the issue you are completing, if appropriate -->
