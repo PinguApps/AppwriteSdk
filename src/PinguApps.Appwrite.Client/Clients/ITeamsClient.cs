@@ -28,7 +28,13 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>The team</returns>
     Task<AppwriteResult<Team>> CreateTeam(CreateTeamRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// Delete a team using its ID. Only team members with the owner role can delete the team.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams#delete">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteTeam(DeleteTeamRequest request);
 
     /// <summary>

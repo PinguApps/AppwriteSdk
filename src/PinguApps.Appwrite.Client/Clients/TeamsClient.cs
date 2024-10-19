@@ -57,9 +57,22 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteTeam(DeleteTeamRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult> DeleteTeam(DeleteTeamRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _teamsApi.DeleteTeam(GetCurrentSessionOrThrow(), request.TeamId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
 
     /// <inheritdoc/>
     public async Task<AppwriteResult<Team>> GetTeam(GetTeamRequest request)
