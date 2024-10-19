@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Shared.Requests.Teams;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -19,11 +20,13 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new ListTeamsRequest()
+        var request = new CreateTeamRequest()
         {
+            Name = "Client Team",
+            Roles = ["clients"]
         };
 
-        var clientResponse = await _client.Teams.ListTeams(request);
+        var clientResponse = await _client.Teams.CreateTeam(request);
 
         Console.WriteLine(clientResponse.Result.Match(
             result => result.ToString(),
@@ -32,7 +35,11 @@ internal class App
 
         Console.WriteLine("############################################################################");
 
-        var serverResponse = await _server.Teams.ListTeams(request);
+        request.TeamId = IdUtils.GenerateUniqueId();
+        request.Name = "Server Team";
+        request.Roles = [];
+
+        var serverResponse = await _server.Teams.CreateTeam(request);
 
         Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),

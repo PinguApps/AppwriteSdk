@@ -20,7 +20,13 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>The teams list</returns>
     Task<AppwriteResult<TeamsList>> ListTeams(ListTeamsRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// Create a new team. The user who creates the team will automatically be assigned as the owner of the team. Only the users with the owner role can invite new members, add new owners and delete or update the team.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams#create">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The team</returns>
     Task<AppwriteResult<Team>> CreateTeam(CreateTeamRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult> DeleteTeam(DeleteTeamRequest request);

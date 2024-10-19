@@ -40,9 +40,22 @@ public class TeamsClient : ITeamsClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Team>> CreateTeam(CreateTeamRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Team>> CreateTeam(CreateTeamRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _teamsApi.CreateTeam(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Team>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
