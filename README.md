@@ -141,11 +141,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 108 / 318](https://img.shields.io/badge/Server_&_Client-108%20%2F%20318-gold?style=for-the-badge)
+![Server & Client - 110 / 318](https://img.shields.io/badge/Server_&_Client-110%20%2F%20318-gold?style=for-the-badge)
 
-![Server - 57 / 225](https://img.shields.io/badge/Server-57%20%2F%20225-red?style=for-the-badge)
+![Server - 58 / 225](https://img.shields.io/badge/Server-58%20%2F%20225-red?style=for-the-badge)
 
-![Client - 51 / 93](https://img.shields.io/badge/Client-51%20%2F%2093-gold?style=for-the-badge)
+![Client - 52 / 93](https://img.shields.io/badge/Client-52%20%2F%2093-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -256,7 +256,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Phone Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhoneVerification) | ❌ | ✅ |
 
 ### Teams
-![Teams - 8 / 26](https://img.shields.io/badge/Teams-8%20%2F%2026-red?style=for-the-badge)
+![Teams - 10 / 26](https://img.shields.io/badge/Teams-10%20%2F%2026-gold?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
