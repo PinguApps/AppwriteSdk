@@ -30,7 +30,13 @@ public interface ITeamsClient
     Task<AppwriteResult<Team>> CreateTeam(CreateTeamRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult> DeleteTeam(DeleteTeamRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// Get a team by its ID. All team members have read access for this resource.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams#get">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The team</returns>
     Task<AppwriteResult<Team>> GetTeam(GetTeamRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult<Team>> UpdateName(UpdateNameRequest request);
