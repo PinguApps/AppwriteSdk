@@ -52,7 +52,13 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>The team</returns>
     Task<AppwriteResult<Team>> UpdateName(UpdateNameRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// Use this endpoint to list a team's members using the team's ID. All team members have read access to this endpoint.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams#listMemberships">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The memberships list</returns>
     Task<AppwriteResult<MembershipsList>> ListTeamMemberships(ListTeamMembershipsRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult<Membership>> CreateTeamMembership(CreateTeamMembershipRequest request);

@@ -9,32 +9,36 @@ namespace PinguApps.Appwrite.Client.Tests.Clients.Teams;
 public partial class TeamsClientTests
 {
     [Fact]
-    public async Task ListTeams_ShouldReturnSuccess_WhenApiCallSucceeds()
+    public async Task ListTeamMemberships_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        var request = new ListTeamsRequest();
+        var request = new ListTeamMembershipsRequest
+        {
+            TeamId = IdUtils.GenerateUniqueId()
+        };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships")
             .ExpectedHeaders(true)
-            .Respond(TestConstants.AppJson, TestConstants.TeamsListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.MembershipsListResponse);
 
         _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Teams.ListTeams(request);
+        var result = await _appwriteClient.Teams.ListTeamMemberships(request);
 
         // Assert
         Assert.True(result.Success);
     }
 
     [Fact]
-    public async Task ListTeams_ShouldProvideQueryParamss_WhenQueriesAndSearchProvided()
+    public async Task ListTeamMemberships_ShouldProvideQueryParams_WhenQueriesAndSearchProvided()
     {
         // Arrange
         var query = Query.Limit(5);
         var search = "SearchString";
-        var request = new ListTeamsRequest
+        var request = new ListTeamMembershipsRequest
         {
+            TeamId = IdUtils.GenerateUniqueId(),
             Queries = [query],
             Search = search
         };
@@ -45,28 +49,31 @@ public partial class TeamsClientTests
             { "search", search }
         };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships")
             .ExpectedHeaders(true)
             .WithQueryString($"queries[]={query.GetQueryString()}&search={search}")
-            .Respond(TestConstants.AppJson, TestConstants.TeamsListResponse);
+            .Respond(TestConstants.AppJson, TestConstants.LogsListResponse);
 
         _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Teams.ListTeams(request);
+        var result = await _appwriteClient.Teams.ListTeamMemberships(request);
 
         // Assert
         Assert.True(result.Success);
     }
 
     [Fact]
-    public async Task ListTeams_ShouldReturnError_WhenSessionIsNull()
+    public async Task ListTeamMemberships_ShouldReturnError_WhenSessionIsNull()
     {
         // Arrange
-        var request = new ListTeamsRequest();
+        var request = new ListTeamMembershipsRequest
+        {
+            TeamId = IdUtils.GenerateUniqueId()
+        };
 
         // Act
-        var result = await _appwriteClient.Teams.ListTeams(request);
+        var result = await _appwriteClient.Teams.ListTeamMemberships(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -75,19 +82,22 @@ public partial class TeamsClientTests
     }
 
     [Fact]
-    public async Task ListTeams_ShouldHandleException_WhenApiCallFails()
+    public async Task ListTeamMemberships_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        var request = new ListTeamsRequest();
+        var request = new ListTeamMembershipsRequest
+        {
+            TeamId = IdUtils.GenerateUniqueId()
+        };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships")
             .ExpectedHeaders(true)
             .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Teams.ListTeams(request);
+        var result = await _appwriteClient.Teams.ListTeamMemberships(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -95,19 +105,22 @@ public partial class TeamsClientTests
     }
 
     [Fact]
-    public async Task ListTeams_ShouldReturnErrorResponse_WhenExceptionOccurs()
+    public async Task ListTeamMemberships_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        var request = new ListTeamsRequest();
+        var request = new ListTeamMembershipsRequest
+        {
+            TeamId = IdUtils.GenerateUniqueId()
+        };
 
-        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships")
             .ExpectedHeaders(true)
             .Throw(new HttpRequestException("An error occurred"));
 
         _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Teams.ListTeams(request);
+        var result = await _appwriteClient.Teams.ListTeamMemberships(request);
 
         // Assert
         Assert.False(result.Success);

@@ -108,9 +108,22 @@ public class TeamsClient : ITeamsClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<MembershipsList>> ListTeamMemberships(ListTeamMembershipsRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<MembershipsList>> ListTeamMemberships(ListTeamMembershipsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _teamsApi.ListTeamMemberships(request.TeamId, RequestUtils.GetQueryStrings(request.Queries), request.Search);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<MembershipsList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

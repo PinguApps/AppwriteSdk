@@ -10,5 +10,5 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Memberships">List of memberships. Can be one of: <see cref="Membership"/></param>
 public record MembershipsList(
     [property: JsonPropertyName("total")] int Total,
-    [property: JsonPropertyName("memberships")] List<Membership> Memberships
+    [property: JsonPropertyName("memberships")] IReadOnlyList<Membership> Memberships
 );
