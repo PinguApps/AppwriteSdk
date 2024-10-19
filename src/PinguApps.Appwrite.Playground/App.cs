@@ -19,22 +19,21 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new UpdateNameRequest()
+        var request = new ListTeamMembershipsRequest()
         {
-            TeamId = "67142b78001c379958cb",
-            Name = "a good team name"
+            TeamId = "67142b78001c379958cb"
         };
 
-        //var clientResponse = await _client.Teams.UpdateName(request);
+        var clientResponse = await _client.Teams.ListTeamMemberships(request);
 
-        //Console.WriteLine(clientResponse.Result.Match(
-        //    result => result.ToString(),
-        //    appwriteError => appwriteError.Message,
-        //    internalError => internalError.Message));
+        Console.WriteLine(clientResponse.Result.Match(
+            result => result.ToString(),
+            appwriteError => appwriteError.Message,
+            internalError => internalError.Message));
 
         Console.WriteLine("############################################################################");
 
-        var serverResponse = await _server.Teams.UpdateName(request);
+        var serverResponse = await _server.Teams.ListTeamMemberships(request);
 
         Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),
