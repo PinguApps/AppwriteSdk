@@ -141,11 +141,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 112 / 318](https://img.shields.io/badge/Server_&_Client-112%20%2F%20318-gold?style=for-the-badge)
+![Server & Client - 114 / 318](https://img.shields.io/badge/Server_&_Client-114%20%2F%20318-gold?style=for-the-badge)
 
-![Server - 59 / 225](https://img.shields.io/badge/Server-59%20%2F%20225-red?style=for-the-badge)
+![Server - 60 / 225](https://img.shields.io/badge/Server-60%20%2F%20225-red?style=for-the-badge)
 
-![Client - 53 / 93](https://img.shields.io/badge/Client-53%20%2F%2093-gold?style=for-the-badge)
+![Client - 54 / 93](https://img.shields.io/badge/Client-54%20%2F%2093-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -256,7 +256,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Phone Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhoneVerification) | ❌ | ✅ |
 
 ### Teams
-![Teams - 12 / 26](https://img.shields.io/badge/Teams-12%20%2F%2026-gold?style=for-the-badge)
+![Teams - 14 / 26](https://img.shields.io/badge/Teams-14%20%2F%2026-gold?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -266,7 +266,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Name](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updateName) | ✅ | ✅ |
 | [Delete Team](https://appwrite.io/docs/references/1.6.x/client-rest/teams#delete) | ✅ | ✅ |
 | [List Team Memberships](https://appwrite.io/docs/references/1.6.x/client-rest/teams#listMemberships) | ✅ | ✅ |
-| [Create Team Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#createMembership) | ⬛ | ⬛ |
+| [Create Team Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#createMembership) | ✅ | ✅ |
 | [Get Team Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#getMembership) | ⬛ | ⬛ |
 | [Update Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updateMembership) | ⬛ | ⬛ |
 | [Delete Team Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#deleteMembership) | ⬛ | ⬛ |
