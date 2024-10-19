@@ -91,9 +91,22 @@ public class TeamsClient : ITeamsClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Team>> UpdateName(UpdateNameRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Team>> UpdateName(UpdateNameRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _teamsApi.UpdateName(request.TeamId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Team>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

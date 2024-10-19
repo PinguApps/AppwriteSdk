@@ -44,7 +44,13 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>The team</returns>
     Task<AppwriteResult<Team>> GetTeam(GetTeamRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// Update the team's name by its unique ID
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams#updateName">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The team</returns>
     Task<AppwriteResult<Team>> UpdateName(UpdateNameRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult<MembershipsList>> ListTeamMemberships(ListTeamMembershipsRequest request);

@@ -19,21 +19,22 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new DeleteTeamRequest()
+        var request = new UpdateNameRequest()
         {
-            TeamId = "6712ee0b0010484ea4fd"
+            TeamId = "67142b78001c379958cb",
+            Name = "a good team name"
         };
 
-        var clientResponse = await _client.Teams.DeleteTeam(request);
+        //var clientResponse = await _client.Teams.UpdateName(request);
 
-        Console.WriteLine(clientResponse.Result.Match(
-            result => result.ToString(),
-            appwriteError => appwriteError.Message,
-            internalError => internalError.Message));
+        //Console.WriteLine(clientResponse.Result.Match(
+        //    result => result.ToString(),
+        //    appwriteError => appwriteError.Message,
+        //    internalError => internalError.Message));
 
         Console.WriteLine("############################################################################");
 
-        var serverResponse = await _server.Teams.DeleteTeam(request);
+        var serverResponse = await _server.Teams.UpdateName(request);
 
         Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),
