@@ -19,12 +19,12 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new GetTeamRequest()
+        var request = new DeleteTeamRequest()
         {
-            TeamId = "6712ee0a003799f2c2ed"
+            TeamId = "6712ee0b0010484ea4fd"
         };
 
-        var clientResponse = await _client.Teams.GetTeam(request);
+        var clientResponse = await _client.Teams.DeleteTeam(request);
 
         Console.WriteLine(clientResponse.Result.Match(
             result => result.ToString(),
@@ -33,7 +33,7 @@ internal class App
 
         Console.WriteLine("############################################################################");
 
-        var serverResponse = await _server.Teams.GetTeam(request);
+        var serverResponse = await _server.Teams.DeleteTeam(request);
 
         Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),
