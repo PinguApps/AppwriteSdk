@@ -1,5 +1,7 @@
-﻿using FluentValidation;
+﻿using System.Text.Json.Serialization;
+using FluentValidation;
 using FluentValidation.Results;
+using PinguApps.Appwrite.Shared.Attributes;
 using PinguApps.Appwrite.Shared.Enums;
 
 namespace PinguApps.Appwrite.Shared.Requests;
@@ -16,6 +18,8 @@ public abstract class BaseRequest<TRequest, TValidator>
     /// <summary>
     /// A flag to determine whether we are validating from the server or the client. Often not needed.
     /// </summary>
+    [JsonIgnore]
+    [SdkExclude]
     public ValidationContext ValidationContext { get; set; } = ValidationContext.None;
 
     /// <summary>

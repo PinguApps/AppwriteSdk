@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Teams;
 using PinguApps.Appwrite.Shared.Requests.Teams.Validators;
 using PinguApps.Appwrite.Shared.Utils;
@@ -71,7 +72,15 @@ public class CreateTeamMembershipRequestTests : TeamIdBaseRequestTests<CreateTea
         new()
         {
             TeamId = IdUtils.GenerateUniqueId(),
-            UserId = IdUtils.GenerateUniqueId()
+            UserId = IdUtils.GenerateUniqueId(),
+            ValidationContext = ValidationContext.Server
+        },
+        new()
+        {
+            TeamId = IdUtils.GenerateUniqueId(),
+            UserId = IdUtils.GenerateUniqueId(),
+            Url = "https://example.com",
+            ValidationContext = ValidationContext.Client
         }
     ];
 
@@ -147,6 +156,12 @@ public class CreateTeamMembershipRequestTests : TeamIdBaseRequestTests<CreateTea
         new()
         {
             TeamId = IdUtils.GenerateUniqueId()
+        },
+        new()
+        {
+            TeamId = IdUtils.GenerateUniqueId(),
+            UserId = IdUtils.GenerateUniqueId(),
+            ValidationContext = ValidationContext.Client
         }
     };
 

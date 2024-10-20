@@ -16,7 +16,8 @@ public partial class TeamsClientTests
         {
             TeamId = IdUtils.GenerateUniqueId(),
             Email = "test@example.com",
-            Roles = ["role1", "role2"]
+            Roles = ["role1", "role2"],
+            Url = "https://localhost:1234"
         };
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships")
@@ -41,7 +42,8 @@ public partial class TeamsClientTests
         {
             TeamId = IdUtils.GenerateUniqueId(),
             Email = "test@example.com",
-            Roles = ["role1", "role2"]
+            Roles = ["role1", "role2"],
+            Url = "https://localhost:1234"
         };
 
         // Act
@@ -61,7 +63,8 @@ public partial class TeamsClientTests
         {
             TeamId = IdUtils.GenerateUniqueId(),
             Email = "test@example.com",
-            Roles = ["role1", "role2"]
+            Roles = ["role1", "role2"],
+            Url = "https://localhost:1234"
         };
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships")
@@ -87,7 +90,8 @@ public partial class TeamsClientTests
         {
             TeamId = IdUtils.GenerateUniqueId(),
             Email = "test@example.com",
-            Roles = ["role1", "role2"]
+            Roles = ["role1", "role2"],
+            Url = "https://localhost:1234"
         };
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships")
