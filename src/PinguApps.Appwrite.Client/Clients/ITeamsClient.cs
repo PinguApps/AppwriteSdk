@@ -104,7 +104,13 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>The membership</returns>
     Task<AppwriteResult<Membership>> UpdateTeamMembershipStatus(UpdateTeamMembershipStatusRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// Get the team's shared preferences by its unique ID. If a preference doesn't need to be shared by all team members, prefer storing them in <see href="https://appwrite.io/docs/references/cloud/client-web/account#getPrefs">user preferences</see>.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams#getPrefs">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The preferences</returns>
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetTeamPreferences(GetTeamPreferencesRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> UpdatePreferences(UpdatePreferencesRequest request);
