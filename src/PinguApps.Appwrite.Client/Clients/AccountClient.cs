@@ -11,7 +11,8 @@ using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Client;
 
-public class AccountClient : IAccountClient, ISessionAware
+/// <inheritdoc/>
+public class AccountClient : SessionAwareClientBase, IAccountClient
 {
     private readonly IAccountApi _accountApi;
     private readonly Config _config;
@@ -20,29 +21,6 @@ public class AccountClient : IAccountClient, ISessionAware
     {
         _accountApi = services.GetRequiredService<IAccountApi>();
         _config = config;
-    }
-
-    string? ISessionAware.Session { get; set; }
-
-    ISessionAware? _sessionAware;
-    /// <summary>
-    /// Get the current session
-    /// </summary>
-    public string? Session => GetCurrentSession();
-
-    private string? GetCurrentSession()
-    {
-        if (_sessionAware is null)
-        {
-            _sessionAware = this;
-        }
-
-        return _sessionAware.Session;
-    }
-
-    private string GetCurrentSessionOrThrow()
-    {
-        return GetCurrentSession() ?? throw new Exception(ISessionAware.SessionExceptionMessage);
     }
 
     /// <inheritdoc/>

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PinguApps.Appwrite.Shared.Requests.Account;
+using PinguApps.Appwrite.Shared.Requests.Teams;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -19,14 +19,27 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new DeletePushTargetRequest()
+        var request = new UpdatePreferencesRequest()
         {
-            TargetId = "670be3330025c0f23b93"
+            TeamId = "67142b78001c379958cb",
+            Preferences = new Dictionary<string, string>()
+            {
+                {"key", "value"}
+            }
         };
 
-        var response = await _client.Account.DeletePushTarget(request);
+        //var clientResponse = await _client.Teams.UpdatePreferences(request);
 
-        Console.WriteLine(response.Result.Match(
+        //Console.WriteLine(clientResponse.Result.Match(
+        //    result => result.ToString(),
+        //    appwriteError => appwriteError.Message,
+        //    internalError => internalError.Message));
+
+        Console.WriteLine("############################################################################");
+
+        var serverResponse = await _server.Teams.UpdatePreferences(request);
+
+        Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),
             appwriteError => appwriteError.Message,
             internalError => internalError.Message));

@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
+using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Handlers;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Shared;
@@ -38,7 +39,13 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<HeaderHandler>()
             .AddHttpMessageHandler<ClientCookieSessionHandler>();
 
+        services.AddRefitClient<ITeamsApi>(customRefitSettings)
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .AddHttpMessageHandler<ClientCookieSessionHandler>();
+
         services.AddSingleton<IAccountClient, AccountClient>();
+        services.AddSingleton<ITeamsClient, TeamsClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
         services.AddSingleton(x => new Lazy<IAppwriteClient>(() => x.GetRequiredService<IAppwriteClient>()));
 
@@ -65,7 +72,13 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<HeaderHandler>()
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
+        services.AddRefitClient<ITeamsApi>(customRefitSettings)
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
+
         services.AddSingleton<IAccountClient, AccountClient>();
+        services.AddSingleton<ITeamsClient, TeamsClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
@@ -102,7 +115,7 @@ public static class ServiceCollectionExtensions
         return settings;
     }
 
-    public static string BuildUserAgent()
+    private static string BuildUserAgent()
     {
         var dotnetVersion = RuntimeInformation.FrameworkDescription.Replace("Microsoft .NET", ".NET").Trim();
 

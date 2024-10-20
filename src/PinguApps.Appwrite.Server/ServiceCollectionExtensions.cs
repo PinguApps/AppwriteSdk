@@ -44,8 +44,14 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<HeaderHandler>()
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
+        services.AddRefitClient<ITeamsApi>(customRefitSettings)
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
+
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IUsersClient, UsersClient>();
+        services.AddSingleton<ITeamsClient, TeamsClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
@@ -82,7 +88,7 @@ public static class ServiceCollectionExtensions
         return settings;
     }
 
-    public static string BuildUserAgent()
+    private static string BuildUserAgent()
     {
         var dotnetVersion = RuntimeInformation.FrameworkDescription.Replace("Microsoft .NET", ".NET").Trim();
 

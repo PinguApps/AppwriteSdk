@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -30,7 +31,7 @@ public record Membership(
     [property: JsonPropertyName("teamId")] string TeamId,
     [property: JsonPropertyName("teamName")] string TeamName,
     [property: JsonPropertyName("invited")] DateTime Invited,
-    [property: JsonPropertyName("joined")] DateTime Joined,
+    [property: JsonPropertyName("joined"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? Joined,
     [property: JsonPropertyName("confirm")] bool Confirm,
     [property: JsonPropertyName("mfa")] bool Mfa,
     [property: JsonPropertyName("roles")] List<string> Roles

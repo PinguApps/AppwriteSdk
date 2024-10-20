@@ -68,7 +68,8 @@ public class MembershipListTests
         Assert.Equal("5e5ea5c16897e", membership.TeamId);
         Assert.Equal("VIP", membership.TeamName);
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), membership.Invited.ToUniversalTime());
-        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), membership.Joined.ToUniversalTime());
+        Assert.NotNull(membership.Joined);
+        Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), membership.Joined.Value.ToUniversalTime());
         Assert.False(membership.Confirm);
         Assert.False(membership.Mfa);
         Assert.Single(membership.Roles);

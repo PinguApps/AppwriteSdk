@@ -10,12 +10,14 @@ public class AppwriteClientTests
     {
         // Arrange
         var mockAccountClient = new Mock<IAccountClient>();
+        var mockTeamsClient = new Mock<ITeamsClient>();
 
         // Act
-        var appwriteClient = new AppwriteClient(mockAccountClient.Object);
+        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object);
 
         // Assert
         Assert.Equal(mockAccountClient.Object, appwriteClient.Account);
+        Assert.Equal(mockTeamsClient.Object, appwriteClient.Teams);
     }
 
     [Fact]
@@ -23,7 +25,8 @@ public class AppwriteClientTests
     {
         // Arrange
         var mockAccountClient = new Mock<IAccountClient>();
-        var appwriteClient = new AppwriteClient(mockAccountClient.Object);
+        var mockTeamsClient = new Mock<ITeamsClient>();
+        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object);
 
         // Act
         var session = appwriteClient.Session;
@@ -37,8 +40,10 @@ public class AppwriteClientTests
     {
         // Arrange
         var mockAccountClient = new Mock<IAccountClient>();
+        var mockTeamsClient = new Mock<ITeamsClient>();
         mockAccountClient.As<ISessionAware>();
-        var appwriteClient = new AppwriteClient(mockAccountClient.Object);
+        mockTeamsClient.As<ISessionAware>();
+        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object);
 
         // Act
         appwriteClient.SetSession(TestConstants.Session);
@@ -52,8 +57,10 @@ public class AppwriteClientTests
     {
         // Arrange
         var mockAccountClient = new Mock<IAccountClient>();
+        var mockTeamsClient = new Mock<ITeamsClient>();
         mockAccountClient.As<ISessionAware>();
-        var appwriteClient = new AppwriteClient(mockAccountClient.Object);
+        mockTeamsClient.As<ISessionAware>();
+        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object);
 
         // Act
         appwriteClient.SetSession(TestConstants.Session);

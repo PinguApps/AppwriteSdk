@@ -22,7 +22,7 @@ public partial class AccountClientTests
         _mockHttp = new MockHttpMessageHandler();
         var services = new ServiceCollection();
 
-        services.AddAppwriteClientForServer("PROJECT_ID", TestConstants.Endpoint, new RefitSettings
+        services.AddAppwriteClientForServer(TestConstants.ProjectId, TestConstants.Endpoint, new RefitSettings
         {
             HttpMessageHandlerFactory = () => _mockHttp
         });
