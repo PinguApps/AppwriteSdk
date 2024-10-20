@@ -79,7 +79,13 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteTeamMembership(DeleteTeamMembershipRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// Get a team member by the membership unique id. All team members have read access for this resource.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/teams#getMembership">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The membership</returns>
     Task<AppwriteResult<Membership>> GetTeamMembership(GetTeamMembershipRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult<Membership>> UpdateMembership(UpdateMembershipRequest request);

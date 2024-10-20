@@ -9,45 +9,40 @@ namespace PinguApps.Appwrite.Client.Tests.Clients.Teams;
 public partial class TeamsClientTests
 {
     [Fact]
-    public async Task CreateTeamMembership_ShouldReturnSuccess_WhenApiCallSucceeds()
+    public async Task GetTeamMembership_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        var request = new CreateTeamMembershipRequest
+        var request = new GetTeamMembershipRequest
         {
             TeamId = IdUtils.GenerateUniqueId(),
-            Email = "test@example.com",
-            Roles = ["role1", "role2"],
-            Url = "https://localhost:1234"
+            MembershipId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships/{request.MembershipId}")
             .ExpectedHeaders(true)
-            .WithJsonContent(request, _jsonSerializerOptions)
             .Respond(TestConstants.AppJson, TestConstants.MembershipResponse);
 
         _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Teams.CreateTeamMembership(request);
+        var result = await _appwriteClient.Teams.GetTeamMembership(request);
 
         // Assert
         Assert.True(result.Success);
     }
 
     [Fact]
-    public async Task CreateTeamMembership_ShouldReturnError_WhenSessionIsNull()
+    public async Task GetTeamMembership_ShouldReturnError_WhenSessionIsNull()
     {
         // Arrange
-        var request = new CreateTeamMembershipRequest
+        var request = new GetTeamMembershipRequest
         {
             TeamId = IdUtils.GenerateUniqueId(),
-            Email = "test@example.com",
-            Roles = ["role1", "role2"],
-            Url = "https://localhost:1234"
+            MembershipId = IdUtils.GenerateUniqueId()
         };
 
         // Act
-        var result = await _appwriteClient.Teams.CreateTeamMembership(request);
+        var result = await _appwriteClient.Teams.GetTeamMembership(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -56,26 +51,23 @@ public partial class TeamsClientTests
     }
 
     [Fact]
-    public async Task CreateTeamMembership_ShouldHandleException_WhenApiCallFails()
+    public async Task GetTeamMembership_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        var request = new CreateTeamMembershipRequest
+        var request = new GetTeamMembershipRequest
         {
             TeamId = IdUtils.GenerateUniqueId(),
-            Email = "test@example.com",
-            Roles = ["role1", "role2"],
-            Url = "https://localhost:1234"
+            MembershipId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships/{request.MembershipId}")
             .ExpectedHeaders(true)
-            .WithJsonContent(request, _jsonSerializerOptions)
             .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Teams.CreateTeamMembership(request);
+        var result = await _appwriteClient.Teams.GetTeamMembership(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -83,26 +75,23 @@ public partial class TeamsClientTests
     }
 
     [Fact]
-    public async Task CreateTeamMembership_ShouldReturnErrorResponse_WhenExceptionOccurs()
+    public async Task GetTeamMembership_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        var request = new CreateTeamMembershipRequest
+        var request = new GetTeamMembershipRequest
         {
             TeamId = IdUtils.GenerateUniqueId(),
-            Email = "test@example.com",
-            Roles = ["role1", "role2"],
-            Url = "https://localhost:1234"
+            MembershipId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships")
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/teams/{request.TeamId}/memberships/{request.MembershipId}")
             .ExpectedHeaders(true)
-            .WithJsonContent(request, _jsonSerializerOptions)
             .Throw(new HttpRequestException("An error occurred"));
 
         _appwriteClient.SetSession(TestConstants.Session);
 
         // Act
-        var result = await _appwriteClient.Teams.CreateTeamMembership(request);
+        var result = await _appwriteClient.Teams.GetTeamMembership(request);
 
         // Assert
         Assert.False(result.Success);

@@ -19,22 +19,23 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new DeleteTeamMembershipRequest()
+        var request = new CreateTeamMembershipRequest()
         {
             TeamId = "67142b78001c379958cb",
-            MembershipId = "671448a87af3cd4babc7"
+            Email = "pingu@example.com",
+            Name = "Pingu"
         };
 
-        //var clientResponse = await _client.Teams.CreateTeamMembership(request);
+        var clientResponse = await _client.Teams.CreateTeamMembership(request);
 
-        //Console.WriteLine(clientResponse.Result.Match(
-        //    result => result.ToString(),
-        //    appwriteError => appwriteError.Message,
-        //    internalError => internalError.Message));
+        Console.WriteLine(clientResponse.Result.Match(
+            result => result.ToString(),
+            appwriteError => appwriteError.Message,
+            internalError => internalError.Message));
 
         Console.WriteLine("############################################################################");
 
-        var serverResponse = await _server.Teams.DeleteTeamMembership(request);
+        var serverResponse = await _server.Teams.CreateTeamMembership(request);
 
         Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),

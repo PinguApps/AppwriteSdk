@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Internals;
 using PinguApps.Appwrite.Server.Utils;
 using PinguApps.Appwrite.Shared;
+using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Teams;
 using PinguApps.Appwrite.Shared.Responses;
 
@@ -130,6 +131,7 @@ public class TeamsClient : ITeamsClient
     {
         try
         {
+            request.ValidationContext = ValidationContext.Server;
             request.Validate(true);
 
             var result = await _teamsApi.CreateTeamMembership(request.TeamId, request);
@@ -159,9 +161,22 @@ public class TeamsClient : ITeamsClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Membership>> GetTeamMembership(GetTeamMembershipRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Membership>> GetTeamMembership(GetTeamMembershipRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _teamsApi.GetTeamMembership(request.TeamId, request.MembershipId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Membership>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
