@@ -159,9 +159,22 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Membership>> GetTeamMembership(GetTeamMembershipRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Membership>> GetTeamMembership(GetTeamMembershipRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _teamsApi.GetTeamMembership(GetCurrentSessionOrThrow(), request.TeamId, request.MembershipId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Membership>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
