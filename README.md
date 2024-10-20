@@ -141,11 +141,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 122 / 318](https://img.shields.io/badge/Server_&_Client-122%20%2F%20318-gold?style=for-the-badge)
+![Server & Client - 124 / 318](https://img.shields.io/badge/Server_&_Client-124%20%2F%20318-gold?style=for-the-badge)
 
-![Server - 64 / 225](https://img.shields.io/badge/Server-64%20%2F%20225-red?style=for-the-badge)
+![Server - 65 / 225](https://img.shields.io/badge/Server-65%20%2F%20225-red?style=for-the-badge)
 
-![Client - 58 / 93](https://img.shields.io/badge/Client-58%20%2F%2093-gold?style=for-the-badge)
+![Client - 59 / 93](https://img.shields.io/badge/Client-59%20%2F%2093-gold?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -256,7 +256,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Phone Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhoneVerification) | ❌ | ✅ |
 
 ### Teams
-![Teams - 22 / 26](https://img.shields.io/badge/Teams-22%20%2F%2026-gold?style=for-the-badge)
+![Teams - 24 / 26](https://img.shields.io/badge/Teams-24%20%2F%2026-forestgreen?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -271,7 +271,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updateMembership) | ✅ | ✅ |
 | [Delete Team Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#deleteMembership) | ✅ | ✅ |
 | [Update Team Membership Status](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updateMembershipStatus) | ✅ | ✅ |
-| [Get Team Memberships](https://appwrite.io/docs/references/1.6.x/client-rest/teams#getPrefs) | ⬛ | ⬛ |
+| [Get Team Memberships](https://appwrite.io/docs/references/1.6.x/client-rest/teams#getPrefs) | ✅ | ✅ |
 | [Update Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updatePrefs) | ⬛ | ⬛ |
 
 ### Databases
