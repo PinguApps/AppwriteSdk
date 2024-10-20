@@ -141,9 +141,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 126 / 318](https://img.shields.io/badge/Server_&_Client-126%20%2F%20318-gold?style=for-the-badge)
+![Server & Client - 125 / 317](https://img.shields.io/badge/Server_&_Client-125%20%2F%20317-gold?style=for-the-badge)
 
-![Server - 66 / 225](https://img.shields.io/badge/Server-66%20%2F%20225-red?style=for-the-badge)
+![Server - 65 / 224](https://img.shields.io/badge/Server-65%20%2F%20224-red?style=for-the-badge)
 
 ![Client - 60 / 93](https://img.shields.io/badge/Client-60%20%2F%2093-gold?style=for-the-badge)
 
@@ -256,7 +256,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Phone Verification](https://appwrite.io/docs/references/1.6.x/server-rest/users#updatePhoneVerification) | ❌ | ✅ |
 
 ### Teams
-![Teams - 26 / 26](https://img.shields.io/badge/Teams-24%20%2F%2026-blue?style=for-the-badge)
+![Teams - 25 / 25](https://img.shields.io/badge/Teams-25%20%2F%2025-blue?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -270,7 +270,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Get Team Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#getMembership) | ✅ | ✅ |
 | [Update Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updateMembership) | ✅ | ✅ |
 | [Delete Team Membership](https://appwrite.io/docs/references/1.6.x/client-rest/teams#deleteMembership) | ✅ | ✅ |
-| [Update Team Membership Status](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updateMembershipStatus) | ✅ | ✅ |
+| [Update Team Membership Status](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updateMembershipStatus) | ✅ | ❌ |
 | [Get Team Memberships](https://appwrite.io/docs/references/1.6.x/client-rest/teams#getPrefs) | ✅ | ✅ |
 | [Update Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updatePrefs) | ✅ | ✅ |
 
