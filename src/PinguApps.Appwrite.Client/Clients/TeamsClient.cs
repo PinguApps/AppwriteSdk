@@ -212,9 +212,22 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetTeamPreferences(GetTeamPreferencesRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetTeamPreferences(GetTeamPreferencesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _teamsApi.GetTeamPreferences(GetCurrentSessionOrThrow(), request.TeamId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<IReadOnlyDictionary<string, string>>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
