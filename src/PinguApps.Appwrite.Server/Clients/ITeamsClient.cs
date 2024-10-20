@@ -113,6 +113,12 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>The preferences</returns>
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetTeamPreferences(GetTeamPreferencesRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// Update the team's preferences by its unique ID. The object you pass is stored as is and replaces any previous value. The maximum allowed prefs size is 64kB and throws an error if exceeded.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/teams#updatePrefs">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The preferences</returns>
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> UpdatePreferences(UpdatePreferencesRequest request);
 }

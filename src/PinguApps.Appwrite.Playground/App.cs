@@ -19,21 +19,25 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new GetTeamPreferencesRequest()
+        var request = new UpdatePreferencesRequest()
         {
-            TeamId = "67142b78001c379958cb"
+            TeamId = "67142b78001c379958cb",
+            Preferences = new Dictionary<string, string>()
+            {
+                {"key", "value"}
+            }
         };
 
-        var clientResponse = await _client.Teams.GetTeamPreferences(request);
+        //var clientResponse = await _client.Teams.UpdatePreferences(request);
 
-        Console.WriteLine(clientResponse.Result.Match(
-            result => result.ToString(),
-            appwriteError => appwriteError.Message,
-            internalError => internalError.Message));
+        //Console.WriteLine(clientResponse.Result.Match(
+        //    result => result.ToString(),
+        //    appwriteError => appwriteError.Message,
+        //    internalError => internalError.Message));
 
         Console.WriteLine("############################################################################");
 
-        var serverResponse = await _server.Teams.GetTeamPreferences(request);
+        var serverResponse = await _server.Teams.UpdatePreferences(request);
 
         Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),
