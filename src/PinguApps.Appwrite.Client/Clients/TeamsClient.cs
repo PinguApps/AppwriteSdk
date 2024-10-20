@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Client.Utils;
 using PinguApps.Appwrite.Shared;
+using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Teams;
 using PinguApps.Appwrite.Shared.Responses;
 
@@ -130,6 +131,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
     {
         try
         {
+            request.ValidationContext = ValidationContext.Client;
             request.Validate(true);
 
             var result = await _teamsApi.CreateTeamMembership(GetCurrentSessionOrThrow(), request.TeamId, request);

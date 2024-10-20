@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentValidation;
+using PinguApps.Appwrite.Shared.Enums;
 
 namespace PinguApps.Appwrite.Shared.Requests.Teams.Validators;
 public class CreateTeamMembershipRequestValidator : AbstractValidator<CreateTeamMembershipRequest>
@@ -35,6 +36,11 @@ public class CreateTeamMembershipRequestValidator : AbstractValidator<CreateTeam
             .Must(x => Uri.TryCreate(x, UriKind.Absolute, out _))
             .When(x => x.Url is not null)
             .WithMessage("Invalid URL format.");
+
+        RuleFor(x => x.Url)
+            .NotEmpty()
+            .When(x => x.ValidationContext == ValidationContext.Client)
+            .WithMessage("Url is required.");
 
         RuleFor(x => x.Name)
             .NotEmpty()

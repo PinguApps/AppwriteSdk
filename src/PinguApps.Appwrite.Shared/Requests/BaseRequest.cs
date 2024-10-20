@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using PinguApps.Appwrite.Shared.Enums;
 
 namespace PinguApps.Appwrite.Shared.Requests;
 
@@ -12,6 +13,11 @@ public abstract class BaseRequest<TRequest, TValidator>
     where TRequest : class
     where TValidator : IValidator<TRequest>, new()
 {
+    /// <summary>
+    /// A flag to determine whether we are validating from the server or the client. Often not needed.
+    /// </summary>
+    public ValidationContext ValidationContext { get; set; } = ValidationContext.None;
+
     /// <summary>
     /// True if the request object passes all validation
     /// </summary>

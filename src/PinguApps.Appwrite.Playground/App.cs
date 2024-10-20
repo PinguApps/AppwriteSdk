@@ -19,13 +19,14 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new GetTeamMembershipRequest()
+        var request = new CreateTeamMembershipRequest()
         {
             TeamId = "67142b78001c379958cb",
-            MembershipId = "671515e5bf4d9b8849c8"
+            Email = "pingu@example.com",
+            Name = "Pingu"
         };
 
-        var clientResponse = await _client.Teams.GetTeamMembership(request);
+        var clientResponse = await _client.Teams.CreateTeamMembership(request);
 
         Console.WriteLine(clientResponse.Result.Match(
             result => result.ToString(),
@@ -34,7 +35,7 @@ internal class App
 
         Console.WriteLine("############################################################################");
 
-        var serverResponse = await _server.Teams.GetTeamMembership(request);
+        var serverResponse = await _server.Teams.CreateTeamMembership(request);
 
         Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),
