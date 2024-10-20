@@ -142,9 +142,22 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteTeamMembership(DeleteTeamMembershipRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult> DeleteTeamMembership(DeleteTeamMembershipRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _teamsApi.DeleteTeamMembership(GetCurrentSessionOrThrow(), request.TeamId, request.MembershipId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
