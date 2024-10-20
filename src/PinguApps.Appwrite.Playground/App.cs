@@ -19,12 +19,10 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new CreateTeamMembershipRequest()
+        var request = new DeleteTeamMembershipRequest()
         {
             TeamId = "67142b78001c379958cb",
-            Email = "pingu@example.com",
-            Url = "https://localhost:1234/acceptTeamInvite",
-            Name = "Your Name"
+            MembershipId = "671448a87af3cd4babc7"
         };
 
         //var clientResponse = await _client.Teams.CreateTeamMembership(request);
@@ -36,7 +34,7 @@ internal class App
 
         Console.WriteLine("############################################################################");
 
-        var serverResponse = await _server.Teams.CreateTeamMembership(request);
+        var serverResponse = await _server.Teams.DeleteTeamMembership(request);
 
         Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),

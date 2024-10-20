@@ -71,7 +71,13 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>The membership</returns>
     Task<AppwriteResult<Membership>> CreateTeamMembership(CreateTeamMembershipRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// This endpoint allows a user to leave a team or for a team owner to delete the membership of any other team member. You can also use this endpoint to delete a user membership even if it is not accepted.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams#deleteMembership">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteTeamMembership(DeleteTeamMembershipRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult<Membership>> GetTeamMembership(GetTeamMembershipRequest request);
