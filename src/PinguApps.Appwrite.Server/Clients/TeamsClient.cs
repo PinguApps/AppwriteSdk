@@ -195,23 +195,6 @@ public class TeamsClient : ITeamsClient
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<Membership>> UpdateTeamMembershipStatus(UpdateTeamMembershipStatusRequest request)
-    {
-        try
-        {
-            request.Validate(true);
-
-            var result = await _teamsApi.UpdateTeamMembershipStatus(request.TeamId, request.MembershipId, request);
-
-            return result.GetApiResponse();
-        }
-        catch (Exception e)
-        {
-            return e.GetExceptionResponse<Membership>();
-        }
-    }
-
-    /// <inheritdoc/>
     public async Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetTeamPreferences(GetTeamPreferencesRequest request)
     {
         try

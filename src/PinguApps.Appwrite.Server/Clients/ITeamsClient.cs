@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests.Teams;
@@ -95,16 +94,6 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>The membership</returns>
     Task<AppwriteResult<Membership>> UpdateMembership(UpdateMembershipRequest request);
-
-    /// <summary>
-    /// <para>Use this endpoint to allow a user to accept an invitation to join a team after being redirected back to your app from the invitation email received by the user.</para>
-    /// <para>If the request is successful, a session for the user is automatically created.</para>
-    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/teams#updateMembershipStatus">Appwrite Docs</see></para>
-    /// </summary>
-    /// <param name="request">The request content</param>
-    /// <returns>The membership</returns>
-    [Obsolete("This method on the server SDK currently will not work. You can track this bug on the Appwrite Github: https://github.com/appwrite/appwrite/issues/8828", false)]
-    Task<AppwriteResult<Membership>> UpdateTeamMembershipStatus(UpdateTeamMembershipStatusRequest request);
 
     /// <summary>
     /// Get the team's shared preferences by its unique ID. If a preference doesn't need to be shared by all team members, prefer storing them in <see href="https://appwrite.io/docs/references/cloud/client-web/account#getPrefs">user preferences</see>.
