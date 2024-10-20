@@ -406,4 +406,14 @@ public static class TestConstants
             ]
         }
         """;
+
+    public const string DatabaseResponse = """
+        {
+            "$id": "5e5ea5c16897e",
+            "name": "My Database",
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "enabled": false
+        }
+        """;
 }
