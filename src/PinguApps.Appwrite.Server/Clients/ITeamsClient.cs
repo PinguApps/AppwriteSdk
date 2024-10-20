@@ -87,7 +87,13 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>The membership</returns>
     Task<AppwriteResult<Membership>> GetTeamMembership(GetTeamMembershipRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// Modify the roles of a team member. Only team members with the owner role have access to this endpoint. Learn more about <see href="https://appwrite.io/docs/permissions">roles and permissions</see>.
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/teams#updateMembership">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The membership</returns>
     Task<AppwriteResult<Membership>> UpdateMembership(UpdateMembershipRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult<Membership>> UpdateTeamMembershipStatus(UpdateTeamMembershipStatusRequest request);

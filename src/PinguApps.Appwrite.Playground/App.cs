@@ -19,23 +19,23 @@ internal class App
     {
         _client.SetSession(_session);
 
-        var request = new CreateTeamMembershipRequest()
+        var request = new UpdateMembershipRequest()
         {
             TeamId = "67142b78001c379958cb",
-            Email = "pingu@example.com",
-            Name = "Pingu"
+            MembershipId = "671515e5bf4d9b8849c8",
+            Roles = ["server"]
         };
 
-        var clientResponse = await _client.Teams.CreateTeamMembership(request);
+        //var clientResponse = await _client.Teams.UpdateMembership(request);
 
-        Console.WriteLine(clientResponse.Result.Match(
-            result => result.ToString(),
-            appwriteError => appwriteError.Message,
-            internalError => internalError.Message));
+        //Console.WriteLine(clientResponse.Result.Match(
+        //    result => result.ToString(),
+        //    appwriteError => appwriteError.Message,
+        //    internalError => internalError.Message));
 
         Console.WriteLine("############################################################################");
 
-        var serverResponse = await _server.Teams.CreateTeamMembership(request);
+        var serverResponse = await _server.Teams.UpdateMembership(request);
 
         Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),
