@@ -95,7 +95,15 @@ public interface ITeamsClient
     /// <param name="request">The request content</param>
     /// <returns>The membership</returns>
     Task<AppwriteResult<Membership>> UpdateMembership(UpdateMembershipRequest request);
-    [Obsolete("This method hasn't yet been implemented!")]
+
+    /// <summary>
+    /// <para>Use this endpoint to allow a user to accept an invitation to join a team after being redirected back to your app from the invitation email received by the user.</para>
+    /// <para>If the request is successful, a session for the user is automatically created.</para>
+    /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/teams#updateMembershipStatus">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The membership</returns>
+    [Obsolete("This method on the server SDK currently will not work. You can track this bug on the Appwrite Github: https://github.com/appwrite/appwrite/issues/8828", false)]
     Task<AppwriteResult<Membership>> UpdateTeamMembershipStatus(UpdateTeamMembershipStatusRequest request);
     [Obsolete("This method hasn't yet been implemented!")]
     Task<AppwriteResult<IReadOnlyDictionary<string, string>>> GetTeamPreferences(GetTeamPreferencesRequest request);

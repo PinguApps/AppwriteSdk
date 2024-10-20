@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 using FluentValidation;
 using FluentValidation.Results;
 using PinguApps.Appwrite.Shared.Attributes;
@@ -20,6 +21,7 @@ public abstract class BaseRequest<TRequest, TValidator>
     /// </summary>
     [JsonIgnore]
     [SdkExclude]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public ValidationContext ValidationContext { get; set; } = ValidationContext.None;
 
     /// <summary>

@@ -41,7 +41,7 @@ internal interface ITeamsApi : IBaseApi
     Task<IApiResponse<Membership>> UpdateMembership([Header("x-appwrite-session")] string session, string teamId, string membershipId, UpdateMembershipRequest request);
 
     [Patch("/teams/{teamId}/memberships/{membershipId}/status")]
-    Task<IApiResponse<Membership>> UpdateTeamMembershipStatus([Header("x-appwrite-session")] string session, string teamId, string membershipId, UpdateTeamMembershipStatusRequest request);
+    Task<IApiResponse<Membership>> UpdateTeamMembershipStatus(string teamId, string membershipId, UpdateTeamMembershipStatusRequest request);
 
     [Get("/teams/{teamId}/prefs")]
     Task<IApiResponse<IReadOnlyDictionary<string, string>>> GetTeamPreferences([Header("x-appwrite-session")] string session, string teamId);
