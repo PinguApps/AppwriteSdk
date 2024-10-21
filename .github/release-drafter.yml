@@ -18,7 +18,10 @@ categories:
       - "documentation"
   - title: "🔗 Dependencies"
     labels:
-      - "3Adependencies"
+      - "dependencies"
+  - title: "🌀 Meta"
+    labels:
+      - "meta"
 version-resolver:
   major:
     labels:

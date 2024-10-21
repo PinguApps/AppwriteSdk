@@ -9,6 +9,7 @@
 - [ ] `feature`
 - [ ] `bug`
 - [ ] `docs`
+- [ ] `meta`
 
 - [ ] `patch`
 - [ ] `minor`
