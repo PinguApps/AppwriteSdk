@@ -9,7 +9,7 @@ on:
 jobs:
   labelling:
     name: Labelling
-    runs-on: ubuntu-linux
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         name: Checkout
@@ -17,4 +17,4 @@ jobs:
       - uses: harupy/auto-labeling@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          label-pattern: '- \[(.*?)\] ?`(.+?)`' # matches '- [x] `label`'
+          label-pattern: '- \[(.*?)\] ?(.+?)' # matches '- [x] `label`'
