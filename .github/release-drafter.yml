@@ -16,6 +16,12 @@ categories:
     labels:
       - "docs"
       - "documentation"
+  - title: "🔗 Dependencies"
+    labels:
+      - "dependencies"
+  - title: "🌀 Meta"
+    labels:
+      - "meta"
 version-resolver:
   major:
     labels:
