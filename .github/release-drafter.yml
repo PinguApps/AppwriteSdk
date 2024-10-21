@@ -16,6 +16,9 @@ categories:
     labels:
       - "docs"
       - "documentation"
+  - title: "🔗 Dependencies"
+    labels:
+      - "3Adependencies"
 version-resolver:
   major:
     labels:
