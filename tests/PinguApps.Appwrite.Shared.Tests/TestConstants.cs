@@ -431,4 +431,23 @@ public static class TestConstants
             ]
         }
         """;
+
+    public const string AttributesListResponse = """
+        {
+            "total": 5,
+            "attributes": [
+                {
+                    "key": "isEnabled",
+                    "type": "boolean",
+                    "status": "available",
+                    "error": "string",
+                    "required": true,
+                    "array": false,
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "default": false
+                }
+            ]
+        }
+        """;
 }
