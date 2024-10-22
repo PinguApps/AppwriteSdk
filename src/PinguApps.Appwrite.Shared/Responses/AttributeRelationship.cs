@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Responses.Interfaces;
 
@@ -33,11 +34,11 @@ public record AttributeRelationship(
     DateTime UpdatedAt,
 
     [property: JsonPropertyName("relatedCollection")] string RelatedCollection,
-    [property: JsonPropertyName("relationType"), JsonConverter(typeof(JsonStringEnumConverter))] RelationType RelationType,
+    [property: JsonPropertyName("relationType"), JsonConverter(typeof(CamelCaseEnumConverter))] RelationType RelationType,
     [property: JsonPropertyName("twoWay")] bool TwoWay,
     [property: JsonPropertyName("twoWayKey")] string TwoWayKey,
-    [property: JsonPropertyName("onDelete"), JsonConverter(typeof(JsonStringEnumConverter))] OnDelete OnDelete,
-    [property: JsonPropertyName("side"), JsonConverter(typeof(JsonStringEnumConverter))] RelationshipSide Side
+    [property: JsonPropertyName("onDelete"), JsonConverter(typeof(CamelCaseEnumConverter))] OnDelete OnDelete,
+    [property: JsonPropertyName("side"), JsonConverter(typeof(CamelCaseEnumConverter))] RelationshipSide Side
 ) : Attribute(Key, Type, Status, Error, Required, Array, CreatedAt, UpdatedAt)
 {
     /// <inheritdoc/>

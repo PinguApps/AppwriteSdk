@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Account.Validators;
 
@@ -18,6 +19,6 @@ public class Create2faChallengeRequest : BaseRequest<Create2faChallengeRequest, 
     /// </list>
     /// </summary>
     [JsonPropertyName("factor")]
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    [JsonConverter(typeof(CamelCaseEnumConverter))]
     public SecondFactor Factor { get; set; }
 }

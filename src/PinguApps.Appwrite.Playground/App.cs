@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.Extensions.Configuration;
+using PinguApps.Appwrite.Shared.Converters;
 using PinguApps.Appwrite.Shared.Responses;
 using PinguApps.Appwrite.Shared.Responses.Interfaces;
 using Attribute = PinguApps.Appwrite.Shared.Responses.Attribute;
@@ -39,6 +42,18 @@ internal class App
         {
             attribute.Accept(visitor);
         }
+
+        var options = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+
+        options.Converters.Add(new IgnoreSdkExcludedPropertiesConverterFactory());
+
+        var json = JsonSerializer.Serialize(attributes[0]);
+
+        Console.WriteLine(json);
     }
 }
 
