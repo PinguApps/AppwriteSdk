@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Enums;
+using PinguApps.Appwrite.Shared.Responses.Interfaces;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -24,4 +25,19 @@ public abstract record Attribute(
     [property: JsonPropertyName("array")] bool Array,
     [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
     [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt
-);
+)
+{
+    /// <summary>
+    /// Useful for iterating a mixed list of Attributes using the <see href="https://en.wikipedia.org/wiki/Visitor_pattern">Visitor pattern</see>
+    /// </summary>
+    /// <param name="visitor">Your own implementation of <see cref="IAttributeVisitor"/></param>
+    public abstract void Accept(IAttributeVisitor visitor);
+
+    /// <summary>
+    /// Useful for iterating a mixed list of Attributes using the <see href="https://en.wikipedia.org/wiki/Visitor_pattern">Visitor pattern</see>
+    /// </summary>
+    /// <typeparam name="T">The return type</typeparam>
+    /// <param name="visitor">Your own implementation of <see cref="IAttributeVisitor{T}"/></param>
+    /// <returns>T</returns>
+    public abstract T Accept<T>(IAttributeVisitor<T> visitor);
+}

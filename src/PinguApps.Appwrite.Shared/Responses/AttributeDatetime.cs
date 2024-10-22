@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Converters;
 using PinguApps.Appwrite.Shared.Enums;
+using PinguApps.Appwrite.Shared.Responses.Interfaces;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -30,4 +31,17 @@ public record AttributeDatetime(
 
     [property: JsonPropertyName("format")] string Format,
     [property: JsonPropertyName("default"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? Default
-) : Attribute(Key, Type, Status, Error, Required, Array, CreatedAt, UpdatedAt);
+) : Attribute(Key, Type, Status, Error, Required, Array, CreatedAt, UpdatedAt)
+{
+    /// <inheritdoc/>
+    public override void Accept(IAttributeVisitor visitor)
+    {
+        visitor.Visit(this);
+    }
+
+    /// <inheritdoc/>
+    public override T Accept<T>(IAttributeVisitor<T> visitor)
+    {
+        return visitor.Visit(this);
+    }
+}
