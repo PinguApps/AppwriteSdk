@@ -11,7 +11,7 @@ namespace PinguApps.Appwrite.Shared.Converters;
 public class MultiFormatDateTimeConverter : JsonConverter<DateTime>
 {
     private readonly string[] _formats = [
-        "yyyy-MM-ddTHH:mm:ss.fffK",
+        "yyyy-MM-ddTHH:mm:ss.fffzzz",
         "yyyy-MM-dd HH:mm:ss.fff"
     ];
 

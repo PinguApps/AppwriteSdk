@@ -24,8 +24,8 @@ public abstract record Attribute(
     [property: JsonPropertyName("error")] string? Error,
     [property: JsonPropertyName("required")] bool Required,
     [property: JsonPropertyName("array")] bool Array,
-    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
-    [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
+    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt
 )
 {
     /// <summary>

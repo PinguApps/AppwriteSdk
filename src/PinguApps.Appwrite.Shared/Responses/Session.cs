@@ -39,8 +39,8 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="MfaUpdatedAt">Most recent date in ISO 8601 format when the session successfully passed MFA challenge</param>
 public record Session(
     [property: JsonPropertyName("$id")] string Id,
-    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
-    [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt,
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
+    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
     [property: JsonPropertyName("userId")] string UserId,
     [property: JsonPropertyName("expire"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime ExpiresAt,
     [property: JsonPropertyName("provider")] string Provider,

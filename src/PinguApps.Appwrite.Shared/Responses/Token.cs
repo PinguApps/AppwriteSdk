@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -14,9 +15,9 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Phrase">Security phrase of a token. Empty if security phrase was not requested when creating a token. It includes randomly generated phrase which is also sent in the external resource such as email</param>
 public record Token(
     [property: JsonPropertyName("$id")] string Id,
-    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
     [property: JsonPropertyName("userId")] string UserId,
     [property: JsonPropertyName("secret")] string Secret,
-    [property: JsonPropertyName("expire")] DateTime ExpiresAt,
+    [property: JsonPropertyName("expire"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime ExpiresAt,
     [property: JsonPropertyName("phrase")] string Phrase
 );

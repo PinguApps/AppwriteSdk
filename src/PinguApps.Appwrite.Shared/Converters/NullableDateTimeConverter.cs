@@ -3,8 +3,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace PinguApps.Appwrite.Shared.Converters;
-internal class NullableDateTimeConverter : JsonConverter<DateTime?>
+public class NullableDateTimeConverter : JsonConverter<DateTime?>
 {
+    private readonly MultiFormatDateTimeConverter _dateTimeConverter = new();
+
     public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         if (reader.TokenType == JsonTokenType.String)
@@ -15,12 +17,7 @@ internal class NullableDateTimeConverter : JsonConverter<DateTime?>
                 return null;
             }
 
-            if (DateTime.TryParse(stringValue, out var dateTime))
-            {
-                return dateTime;
-            }
-
-            throw new JsonException($"Unable to parse '{stringValue}' to DateTime.");
+            return _dateTimeConverter.Read(ref reader, typeof(DateTime), options);
         }
 
         throw new JsonException("Unexpected token type.");
@@ -30,7 +27,7 @@ internal class NullableDateTimeConverter : JsonConverter<DateTime?>
     {
         if (value.HasValue)
         {
-            writer.WriteStringValue(value.Value.ToString("o"));
+            _dateTimeConverter.Write(writer, value.Value, options);
         }
     }
 }

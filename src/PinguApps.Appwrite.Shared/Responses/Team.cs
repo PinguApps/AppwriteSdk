@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -15,8 +16,8 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Prefs">Team preferences as a key-value object</param>
 public record Team(
     [property: JsonPropertyName("$id")] string Id,
-    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
-    [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt,
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
+    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
     [property: JsonPropertyName("name")] string Name,
     [property: JsonPropertyName("total")] int Total,
     [property: JsonPropertyName("prefs")] IReadOnlyDictionary<string, string> Prefs

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -14,7 +15,7 @@ namespace PinguApps.Appwrite.Shared.Responses;
 public record Database(
     [property: JsonPropertyName("$id")] string Id,
     [property: JsonPropertyName("name")] string Name,
-    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
-    [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt,
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
+    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
     [property: JsonPropertyName("enabled")] bool Enabled
 );

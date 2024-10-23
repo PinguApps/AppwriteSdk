@@ -13,6 +13,7 @@ public class AttributeJsonConverterTests
     {
         _options = new JsonSerializerOptions
         {
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             Converters = { new AttributeJsonConverter() }
         };
     }
@@ -121,7 +122,8 @@ public class AttributeJsonConverterTests
     [Fact]
     public void Write_ShouldSerializeAttribute()
     {
-        var attribute = new AttributeBoolean("a", "boolean", AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null);
+        var fixedDate = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        var attribute = new AttributeBoolean("a", "boolean", AttributeStatus.Available, null, false, false, fixedDate, fixedDate, null);
         var converter = new AttributeJsonConverter();
 
         using var stream = new MemoryStream();
@@ -136,7 +138,7 @@ public class AttributeJsonConverterTests
         Assert.Contains("\"status\":\"available\"", json);
         Assert.Contains("\"required\":false", json);
         Assert.Contains("\"array\":false", json);
-        Assert.Contains($"\"$createdAt\":\"{attribute.CreatedAt:O}\"", json);
-        Assert.Contains($"\"$updatedAt\":\"{attribute.UpdatedAt:O}\"", json);
+        Assert.Contains($"\"$createdAt\":\"{fixedDate:yyyy-MM-ddTHH:mm:ss.fff}", json);
+        Assert.Contains($"\"$updatedAt\":\"{fixedDate:yyyy-MM-ddTHH:mm:ss.fff}", json);
     }
 }

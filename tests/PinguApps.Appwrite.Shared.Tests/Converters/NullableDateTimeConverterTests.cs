@@ -10,14 +10,18 @@ public class NullableDateTimeConverterTests
 
     public NullableDateTimeConverterTests()
     {
-        _options = new JsonSerializerOptions();
+        _options = new JsonSerializerOptions()
+        {
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        };
+
         _options.Converters.Add(new NullableDateTimeConverter());
     }
 
     [Fact]
     public void Read_ValidDateString_ReturnsDateTime()
     {
-        var json = "\"2023-01-01T00:00:00\"";
+        var json = "\"2023-01-01T00:00:00.000+00:00\"";
         var result = JsonSerializer.Deserialize<DateTime?>(json, _options);
         Assert.NotNull(result);
         Assert.Equal(new DateTime(2023, 1, 1), result.Value);
@@ -72,9 +76,9 @@ public class NullableDateTimeConverterTests
     [Fact]
     public void Write_NonNullDateTime_WritesExpectedString()
     {
-        var dateTime = new DateTime(2023, 1, 1);
+        var dateTime = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         var json = JsonSerializer.Serialize<DateTime?>(dateTime, _options);
-        Assert.Equal("\"2023-01-01T00:00:00.0000000\"", json);
+        Assert.Equal("\"2023-01-01T00:00:00.000+00:00\"", json);
     }
 
     [Fact]

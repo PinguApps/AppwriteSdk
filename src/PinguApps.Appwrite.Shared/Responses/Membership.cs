@@ -23,14 +23,14 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Roles">User list of roles</param>
 public record Membership(
     [property: JsonPropertyName("$id")] string Id,
-    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
-    [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt,
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
+    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
     [property: JsonPropertyName("userId")] string UserId,
     [property: JsonPropertyName("userName")] string UserName,
     [property: JsonPropertyName("userEmail")] string UserEmail,
     [property: JsonPropertyName("teamId")] string TeamId,
     [property: JsonPropertyName("teamName")] string TeamName,
-    [property: JsonPropertyName("invited")] DateTime Invited,
+    [property: JsonPropertyName("invited"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime Invited,
     [property: JsonPropertyName("joined"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? Joined,
     [property: JsonPropertyName("confirm")] bool Confirm,
     [property: JsonPropertyName("mfa")] bool Mfa,
