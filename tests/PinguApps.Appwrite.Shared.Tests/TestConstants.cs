@@ -559,4 +559,23 @@ public static class TestConstants
             "default": "192.0.2.0"
         }
         """;
+
+    public const string AttributeRelationshipResponse = """
+        {
+            "key": "fullName",
+            "type": "string",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "relatedCollection": "collection",
+            "relationType": "manyToOne",
+            "twoWay": false,
+            "twoWayKey": "string",
+            "onDelete": "cascade",
+            "side": "child"
+        }
+        """;
 }
