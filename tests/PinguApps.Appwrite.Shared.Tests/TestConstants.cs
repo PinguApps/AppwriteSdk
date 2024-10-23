@@ -494,4 +494,38 @@ public static class TestConstants
             "default": "default@example.com"
         }
         """;
+
+    public const string AttributeEnumResponse = """
+        {
+            "key": "status",
+            "type": "string",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "elements": [
+                "element"
+            ],
+            "format": "enum",
+            "default": "element"
+        }
+        """;
+
+    public const string AttributeFloatResponse = """
+        {
+            "key": "percentageCompleted",
+            "type": "double",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "min": 1.5,
+            "max": 10.5,
+            "default": 2.5
+        }
+        """;
 }
