@@ -464,4 +464,19 @@ public static class TestConstants
             "default": false
         }
         """;
+
+    public const string AttributeDatetimeResponse = """
+        {
+            "key": "birthDay",
+            "type": "datetime",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "format": "datetime",
+            "default": "2020-10-15T06:38:00.000+00:00"
+        }
+        """;
 }
