@@ -544,4 +544,19 @@ public static class TestConstants
             "default": 10
         }
         """;
+
+    public const string AttributeIpResponse = """
+        {
+            "key": "ipAddress",
+            "type": "string",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "format": "ip",
+            "default": "192.0.2.0"
+        }
+        """;
 }
