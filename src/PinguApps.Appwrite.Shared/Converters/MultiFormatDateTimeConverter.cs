@@ -35,6 +35,6 @@ public class MultiFormatDateTimeConverter : JsonConverter<DateTime>
 
     public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
     {
-        writer.WriteStringValue(value.ToString(_formats[0])); // Use the first format for serialization
+        writer.WriteStringValue(value.ToUniversalTime().ToString(_formats[0])); // Use the first format for serialization
     }
 }

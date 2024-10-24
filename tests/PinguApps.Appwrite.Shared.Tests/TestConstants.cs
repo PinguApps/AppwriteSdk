@@ -724,4 +724,27 @@ public static class TestConstants
             ]
         }
         """;
+
+    public const string DocumentResponse = """
+        {
+            "$id": "5e5ea5c16897e",
+            "$collectionId": "5e5ea5c15117e",
+            "$databaseId": "5e5ea5c15117e",
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+        	"str": "a string prop",
+        	"dt": "2020-10-15T06:38:00.000+00:00",
+        	"num": 5,
+        	"num2": 6.7,
+        	"boo": true,
+        	"lis": [
+        		"one",
+        		"two",
+        		"three"
+        	]
+        }
+        """;
 }
