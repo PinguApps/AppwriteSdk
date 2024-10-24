@@ -31,17 +31,7 @@ public class DocumentConverter : JsonConverter<Document>
                 break;
             }
 
-            if (reader.TokenType is not JsonTokenType.PropertyName)
-            {
-                throw new JsonException("Expected PropertyName token");
-            }
-
-            var propertyName = reader.GetString();
-
-            if (propertyName is null)
-            {
-                throw new NullReferenceException("PropertyName was null");
-            }
+            var propertyName = reader.GetString()!;
 
             reader.Read();
 
@@ -105,7 +95,7 @@ public class DocumentConverter : JsonConverter<Document>
         return new Document(id, collectionId, databaseId, createdAt.Value, updatedAt.Value, permissions, data);
     }
 
-    private object? ReadValue(ref Utf8JsonReader reader, JsonSerializerOptions options)
+    internal object? ReadValue(ref Utf8JsonReader reader, JsonSerializerOptions options)
     {
         switch (reader.TokenType)
         {
@@ -172,17 +162,7 @@ public class DocumentConverter : JsonConverter<Document>
                 break;
             }
 
-            if (reader.TokenType is not JsonTokenType.PropertyName)
-            {
-                throw new JsonException("Expected PropertyName token");
-            }
-
-            var propertyName = reader.GetString();
-
-            if (propertyName is null)
-            {
-                throw new NullReferenceException("PropertyName was null");
-            }
+            var propertyName = reader.GetString()!;
 
             reader.Read();
 
