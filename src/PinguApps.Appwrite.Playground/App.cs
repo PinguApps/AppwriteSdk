@@ -54,12 +54,6 @@ internal class App
         var json = JsonSerializer.Serialize(attributes[0]);
 
         Console.WriteLine(json);
-
-        var x = new Shared.Responses.Index("Key", Shared.Enums.IndexType.Fulltext);
-
-        var j = JsonSerializer.Serialize(x, options);
-
-        Console.WriteLine(j);
     }
 }
 

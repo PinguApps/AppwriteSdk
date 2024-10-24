@@ -608,4 +608,17 @@ public static class TestConstants
             "default": "http://example.com"
         }
         """;
+
+    public const string IndexResponse = """
+        {
+            "key": "index1",
+            "type": "unique",
+            "status": "available",
+            "error": "string",
+            "attributes": [],
+            "orders": [],
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00"
+        }
+        """;
 }
