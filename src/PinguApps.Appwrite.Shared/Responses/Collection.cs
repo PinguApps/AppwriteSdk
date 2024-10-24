@@ -27,6 +27,6 @@ public record Collection(
     [property: JsonPropertyName("name")] string Name,
     [property: JsonPropertyName("enabled")] bool Enabled,
     [property: JsonPropertyName("documentSecurity")] bool DocumentSecurity,
-    [property: JsonPropertyName("attributes"), JsonConverter(typeof(AttributeListJsonConverter))] List<Attribute> Attributes,
-    [property: JsonPropertyName("indexes")] List<Index> Indexes
+    [property: JsonPropertyName("attributes"), JsonConverter(typeof(AttributeListJsonConverter))] IReadOnlyList<Attribute> Attributes,
+    [property: JsonPropertyName("indexes")] IReadOnlyList<Index> Indexes
 );

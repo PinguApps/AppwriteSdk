@@ -621,4 +621,44 @@ public static class TestConstants
             "$updatedAt": "2020-10-15T06:38:00.000+00:00"
         }
         """;
+
+    public const string CollectionResponse = """
+        {
+            "$id": "5e5ea5c16897e",
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "5e5ea5c16897e",
+            "name": "My Collection",
+            "enabled": false,
+            "documentSecurity": true,
+            "attributes": [
+                {
+                    "key": "isEnabled",
+                    "type": "boolean",
+                    "status": "available",
+                    "error": "string",
+                    "required": true,
+                    "array": false,
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "default": false
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "index1",
+                    "type": "unique",
+                    "status": "available",
+                    "error": "string",
+                    "attributes": [],
+                    "orders": [],
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00"
+                }
+            ]
+        }
+        """;
 }
