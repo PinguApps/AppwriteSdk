@@ -13,7 +13,7 @@ public class AttributeEnumTests
         var attribute = new AttributeEnum(
             "a",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -34,7 +34,7 @@ public class AttributeEnumTests
         var attribute = new AttributeEnum(
             "a",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -55,7 +55,7 @@ public class AttributeEnumTests
         var attribute = new AttributeEnum(
             "a",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -76,7 +76,7 @@ public class AttributeEnumTests
         var attribute = new AttributeEnum(
             "a",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -99,7 +99,7 @@ public class AttributeEnumTests
         var attribute = new AttributeEnum(
             "a",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -129,7 +129,7 @@ public class AttributeEnumTests
         Assert.NotNull(attribute);
         Assert.Equal("status", attribute.Key);
         Assert.Equal("string", attribute.Type);
-        Assert.Equal(AttributeStatus.Available, attribute.Status);
+        Assert.Equal(DatabaseElementStatus.Available, attribute.Status);
         Assert.Equal("string", attribute.Error);
         Assert.True(attribute.Required);
         Assert.False(attribute.Array);

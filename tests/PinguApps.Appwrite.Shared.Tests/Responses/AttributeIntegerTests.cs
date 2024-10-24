@@ -13,7 +13,7 @@ public class AttributeIntegerTests
         var attribute = new AttributeInteger(
             "count",
             "integer",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -34,7 +34,7 @@ public class AttributeIntegerTests
         var attribute = new AttributeInteger(
             "count",
             "integer",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -55,7 +55,7 @@ public class AttributeIntegerTests
         var attribute = new AttributeInteger(
             "count",
             "integer",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -76,7 +76,7 @@ public class AttributeIntegerTests
         var attribute = new AttributeInteger(
             "count",
             "integer",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -99,7 +99,7 @@ public class AttributeIntegerTests
         var attribute = new AttributeInteger(
             "count",
             "integer",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -129,7 +129,7 @@ public class AttributeIntegerTests
         Assert.NotNull(attribute);
         Assert.Equal("count", attribute.Key);
         Assert.Equal("integer", attribute.Type);
-        Assert.Equal(AttributeStatus.Available, attribute.Status);
+        Assert.Equal(DatabaseElementStatus.Available, attribute.Status);
         Assert.Equal("string", attribute.Error);
         Assert.True(attribute.Required);
         Assert.False(attribute.Array);

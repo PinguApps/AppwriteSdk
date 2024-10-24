@@ -13,7 +13,7 @@ public class AttributeBooleanTests
         var attribute = new AttributeBoolean(
             "a",
             "boolean",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -32,7 +32,7 @@ public class AttributeBooleanTests
         var attribute = new AttributeBoolean(
             "a",
             "boolean",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -53,7 +53,7 @@ public class AttributeBooleanTests
         var attribute = new AttributeBoolean(
             "a",
             "boolean",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -81,7 +81,7 @@ public class AttributeBooleanTests
         Assert.NotNull(attribute);
         Assert.Equal("isEnabled", attribute.Key);
         Assert.Equal("boolean", attribute.Type);
-        Assert.Equal(AttributeStatus.Available, attribute.Status);
+        Assert.Equal(DatabaseElementStatus.Available, attribute.Status);
         Assert.Equal("string", attribute.Error);
         Assert.True(attribute.Required);
         Assert.False(attribute.Array);

@@ -20,7 +20,7 @@ namespace PinguApps.Appwrite.Shared.Responses;
 public record AttributeBoolean(
     string Key,
     string Type,
-    AttributeStatus Status,
+    DatabaseElementStatus Status,
     string? Error,
     bool Required,
     bool Array,

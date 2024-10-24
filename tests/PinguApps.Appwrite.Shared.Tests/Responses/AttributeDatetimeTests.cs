@@ -13,7 +13,7 @@ public class AttributeDatetimeTests
         var attribute = new AttributeDatetime(
             "a",
             "datetime",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -33,7 +33,7 @@ public class AttributeDatetimeTests
         var attribute = new AttributeDatetime(
             "a",
             "datetime",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -53,7 +53,7 @@ public class AttributeDatetimeTests
         var attribute = new AttributeDatetime(
             "a",
             "datetime",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -75,7 +75,7 @@ public class AttributeDatetimeTests
         var attribute = new AttributeDatetime(
             "a",
             "datetime",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             false,
             false,
@@ -104,7 +104,7 @@ public class AttributeDatetimeTests
         Assert.NotNull(attribute);
         Assert.Equal("birthDay", attribute.Key);
         Assert.Equal("datetime", attribute.Type);
-        Assert.Equal(AttributeStatus.Available, attribute.Status);
+        Assert.Equal(DatabaseElementStatus.Available, attribute.Status);
         Assert.Equal("string", attribute.Error);
         Assert.True(attribute.Required);
         Assert.False(attribute.Array);

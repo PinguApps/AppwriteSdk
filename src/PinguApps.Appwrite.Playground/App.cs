@@ -24,16 +24,16 @@ internal class App
     {
         var attributes = new List<Attribute>
         {
-            new AttributeBoolean("a", "boolean", Shared.Enums.AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null),
-            new AttributeDatetime("b", "datetime", Shared.Enums.AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, "datetime", null),
-            new AttributeEmail("c", "string", Shared.Enums.AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, "email", null),
-            new AttributeEnum("d", "string", Shared.Enums.AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, ["some", "elements"], "enum", null),
-            new AttributeFloat("e", "float", Shared.Enums.AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null, null, null),
-            new AttributeInteger("f", "integer", Shared.Enums.AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null, null, null),
-            new AttributeIp("g", "string", Shared.Enums.AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, "ip", null),
-            new AttributeRelationship("h", "string", Shared.Enums.AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, "collection", Shared.Enums.RelationType.OneToMany, false, "a string", Shared.Enums.OnDelete.Restrict, Shared.Enums.RelationshipSide.Parent),
-            new AttributeString("i", "string", Shared.Enums.AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, 128, null),
-            new AttributeUrl("j", "string", Shared.Enums.AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, "url", null)
+            new AttributeBoolean("a", "boolean", Shared.Enums.DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null),
+            new AttributeDatetime("b", "datetime", Shared.Enums.DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, "datetime", null),
+            new AttributeEmail("c", "string", Shared.Enums.DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, "email", null),
+            new AttributeEnum("d", "string", Shared.Enums.DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, ["some", "elements"], "enum", null),
+            new AttributeFloat("e", "float", Shared.Enums.DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null, null, null),
+            new AttributeInteger("f", "integer", Shared.Enums.DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null, null, null),
+            new AttributeIp("g", "string", Shared.Enums.DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, "ip", null),
+            new AttributeRelationship("h", "string", Shared.Enums.DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, "collection", Shared.Enums.RelationType.OneToMany, false, "a string", Shared.Enums.OnDelete.Restrict, Shared.Enums.RelationshipSide.Parent),
+            new AttributeString("i", "string", Shared.Enums.DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, 128, null),
+            new AttributeUrl("j", "string", Shared.Enums.DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, "url", null)
         };
 
         var visitor = new AttributeVisitor();
@@ -54,6 +54,12 @@ internal class App
         var json = JsonSerializer.Serialize(attributes[0]);
 
         Console.WriteLine(json);
+
+        var x = new Shared.Responses.Index("Key", Shared.Enums.IndexType.Fulltext);
+
+        var j = JsonSerializer.Serialize(x, options);
+
+        Console.WriteLine(j);
     }
 }
 

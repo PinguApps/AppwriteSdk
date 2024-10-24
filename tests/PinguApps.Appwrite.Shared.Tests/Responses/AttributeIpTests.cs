@@ -13,7 +13,7 @@ public class AttributeIpTests
         var attribute = new AttributeIp(
             "ipAddress",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -33,7 +33,7 @@ public class AttributeIpTests
         var attribute = new AttributeIp(
             "ipAddress",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -53,7 +53,7 @@ public class AttributeIpTests
         var attribute = new AttributeIp(
             "ipAddress",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -75,7 +75,7 @@ public class AttributeIpTests
         var attribute = new AttributeIp(
             "ipAddress",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -104,7 +104,7 @@ public class AttributeIpTests
         Assert.NotNull(attribute);
         Assert.Equal("ipAddress", attribute.Key);
         Assert.Equal("string", attribute.Type);
-        Assert.Equal(AttributeStatus.Available, attribute.Status);
+        Assert.Equal(DatabaseElementStatus.Available, attribute.Status);
         Assert.Equal("string", attribute.Error);
         Assert.True(attribute.Required);
         Assert.False(attribute.Array);

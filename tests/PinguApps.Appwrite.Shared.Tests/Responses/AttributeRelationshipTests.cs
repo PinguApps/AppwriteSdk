@@ -13,7 +13,7 @@ public class AttributeRelationshipTests
         var attribute = new AttributeRelationship(
             "fullName",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -37,7 +37,7 @@ public class AttributeRelationshipTests
         var attribute = new AttributeRelationship(
             "fullName",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -61,7 +61,7 @@ public class AttributeRelationshipTests
         var attribute = new AttributeRelationship(
             "fullName",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -85,7 +85,7 @@ public class AttributeRelationshipTests
         var attribute = new AttributeRelationship(
             "fullName",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -109,7 +109,7 @@ public class AttributeRelationshipTests
         var attribute = new AttributeRelationship(
             "fullName",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -133,7 +133,7 @@ public class AttributeRelationshipTests
         var attribute = new AttributeRelationship(
             "fullName",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -157,7 +157,7 @@ public class AttributeRelationshipTests
         var attribute = new AttributeRelationship(
             "fullName",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -183,7 +183,7 @@ public class AttributeRelationshipTests
         var attribute = new AttributeRelationship(
             "fullName",
             "string",
-            AttributeStatus.Available,
+            DatabaseElementStatus.Available,
             null,
             true,
             false,
@@ -216,7 +216,7 @@ public class AttributeRelationshipTests
         Assert.NotNull(attribute);
         Assert.Equal("fullName", attribute.Key);
         Assert.Equal("string", attribute.Type);
-        Assert.Equal(AttributeStatus.Available, attribute.Status);
+        Assert.Equal(DatabaseElementStatus.Available, attribute.Status);
         Assert.Equal("string", attribute.Error);
         Assert.True(attribute.Required);
         Assert.False(attribute.Array);

@@ -123,7 +123,7 @@ public class AttributeJsonConverterTests
     public void Write_ShouldSerializeAttribute()
     {
         var fixedDate = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        var attribute = new AttributeBoolean("a", "boolean", AttributeStatus.Available, null, false, false, fixedDate, fixedDate, null);
+        var attribute = new AttributeBoolean("a", "boolean", DatabaseElementStatus.Available, null, false, false, fixedDate, fixedDate, null);
         var converter = new AttributeJsonConverter();
 
         using var stream = new MemoryStream();

@@ -21,7 +21,7 @@ namespace PinguApps.Appwrite.Shared.Responses;
 public record AttributeEmail(
     string Key,
     string Type,
-    AttributeStatus Status,
+    DatabaseElementStatus Status,
     string? Error,
     bool Required,
     bool Array,

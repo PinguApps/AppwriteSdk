@@ -42,8 +42,8 @@ public class AttributeListJsonConverterTests
     {
         var attributes = new List<Attribute>
             {
-                new AttributeBoolean("a", "boolean", AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null),
-                new AttributeInteger("b", "integer", AttributeStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null, null, null)
+                new AttributeBoolean("a", "boolean", DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null),
+                new AttributeInteger("b", "integer", DatabaseElementStatus.Available, null, false, false, DateTime.UtcNow, DateTime.UtcNow, null, null, null)
             };
 
         var json = JsonSerializer.Serialize((IReadOnlyList<Attribute>)attributes, _options);

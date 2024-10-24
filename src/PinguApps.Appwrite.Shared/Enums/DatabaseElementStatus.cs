@@ -5,7 +5,7 @@ namespace PinguApps.Appwrite.Shared.Enums;
 /// <summary>
 /// An Appwrite Status of an Attribute
 /// </summary>
-public enum AttributeStatus
+public enum DatabaseElementStatus
 {
     /// <summary>
     /// Available

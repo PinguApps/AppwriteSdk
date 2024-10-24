@@ -13,7 +13,7 @@ public class AttributesListTests
         var total = 5;
         var attributes = new List<Attribute>
             {
-                new AttributeBoolean("isEnabled", "boolean", AttributeStatus.Available, "string", true,
+                new AttributeBoolean("isEnabled", "boolean", DatabaseElementStatus.Available, "string", true,
                 false, DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(),
                 DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), false)
             };
@@ -42,7 +42,7 @@ public class AttributesListTests
         var attributeBoolean = (AttributeBoolean)attribute;
         Assert.Equal("isEnabled", attributeBoolean.Key);
         Assert.Equal("boolean", attributeBoolean.Type);
-        Assert.Equal(AttributeStatus.Available, attributeBoolean.Status);
+        Assert.Equal(DatabaseElementStatus.Available, attributeBoolean.Status);
         Assert.Equal("string", attributeBoolean.Error);
         Assert.True(attributeBoolean.Required);
         Assert.False(attributeBoolean.Array);

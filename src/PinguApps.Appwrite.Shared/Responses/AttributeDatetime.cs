@@ -22,7 +22,7 @@ namespace PinguApps.Appwrite.Shared.Responses;
 public record AttributeDatetime(
     string Key,
     string Type,
-    AttributeStatus Status,
+    DatabaseElementStatus Status,
     string? Error,
     bool Required,
     bool Array,

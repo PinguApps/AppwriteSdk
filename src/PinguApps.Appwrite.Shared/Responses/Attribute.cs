@@ -20,7 +20,7 @@ namespace PinguApps.Appwrite.Shared.Responses;
 public abstract record Attribute(
     [property: JsonPropertyName("key")] string Key,
     [property: JsonPropertyName("type")] string Type,
-    [property: JsonPropertyName("status"), JsonConverter(typeof(CamelCaseEnumConverter))] AttributeStatus Status,
+    [property: JsonPropertyName("status"), JsonConverter(typeof(CamelCaseEnumConverter))] DatabaseElementStatus Status,
     [property: JsonPropertyName("error")] string? Error,
     [property: JsonPropertyName("required")] bool Required,
     [property: JsonPropertyName("array")] bool Array,
