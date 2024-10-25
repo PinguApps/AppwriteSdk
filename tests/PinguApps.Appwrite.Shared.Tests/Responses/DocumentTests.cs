@@ -113,6 +113,58 @@ public class DocumentTests
     }
 
     [Fact]
+    public void TryGetValue_ReturnsTrue_WhenKeyExistsAndTypeMatches()
+    {
+        // Arrange
+        var data = new Dictionary<string, object?>
+            {
+                { "key1", "value1" },
+                { "key2", 123 }
+            };
+        var document = new Document("id", "collectionId", "databaseId", DateTime.UtcNow, DateTime.UtcNow, [], data);
+
+        // Act
+        var result = document.TryGetValue("key1", out string? value);
+
+        // Assert
+        Assert.True(result);
+        Assert.Equal("value1", value);
+    }
+
+    [Fact]
+    public void TryGetValue_ReturnsFalse_WhenKeyDoesNotExist()
+    {
+        // Arrange
+        var data = new Dictionary<string, object?>();
+        var document = new Document("id", "collectionId", "databaseId", DateTime.UtcNow, DateTime.UtcNow, [], data);
+
+        // Act
+        var result = document.TryGetValue("nonexistentKey", out string? value);
+
+        // Assert
+        Assert.False(result);
+        Assert.Null(value);
+    }
+
+    [Fact]
+    public void TryGetValue_ReturnsFalse_WhenTypeDoesNotMatch()
+    {
+        // Arrange
+        var data = new Dictionary<string, object?>
+            {
+                { "key1", "value1" }
+            };
+        var document = new Document("id", "collectionId", "databaseId", DateTime.UtcNow, DateTime.UtcNow, [], data);
+
+        // Act
+        var result = document.TryGetValue("key1", out int? value);
+
+        // Assert
+        Assert.False(result);
+        Assert.Null(value);
+    }
+
+    [Fact]
     public void Document_ShouldContainUnmatchedProperties()
     {
         var document = JsonSerializer.Deserialize<Document>(TestConstants.DocumentResponse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
