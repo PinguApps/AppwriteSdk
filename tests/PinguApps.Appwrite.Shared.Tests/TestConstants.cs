@@ -747,4 +747,22 @@ public static class TestConstants
         	]
         }
         """;
+
+    public const string DocumentsListResponse = """
+        {
+            "total": 5,
+            "documents": [
+                {
+                    "$id": "5e5ea5c16897e",
+                    "$collectionId": "5e5ea5c15117e",
+                    "$databaseId": "5e5ea5c15117e",
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "$permissions": [
+                        "read(\"any\")"
+                    ]
+                }
+            ]
+        }
+        """;
 }
