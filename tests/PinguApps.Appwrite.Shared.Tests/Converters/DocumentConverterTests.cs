@@ -2,7 +2,9 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using PinguApps.Appwrite.Shared.Converters;
+using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Responses;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Converters;
 public class DocumentConverterTests
@@ -28,7 +30,7 @@ public class DocumentConverterTests
                 ""$databaseId"": ""db1"",
                 ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
                 ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read"", ""write""],
+                ""$permissions"": [""read(\""any\"")""],
                 ""customField"": ""customValue""
             }";
 
@@ -40,7 +42,9 @@ public class DocumentConverterTests
         Assert.Equal("db1", document.DatabaseId);
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00"), document.CreatedAt);
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00"), document.UpdatedAt);
-        Assert.Equal(new List<string> { "read", "write" }, document.Permissions);
+        Assert.Single(document.Permissions);
+        Assert.Equal(PermissionType.Read, document.Permissions[0].PermissionType);
+        Assert.Equal(RoleType.Any, document.Permissions[0].Role.RoleType);
         Assert.Equal("customValue", document["customField"]);
     }
 
@@ -54,7 +58,7 @@ public class DocumentConverterTests
                 ""$databaseId"": ""db1"",
                 ""$createdAt"": ""invalid-date"",
                 ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read"", ""write""]
+                ""$permissions"": [""read(\""any\"")""],
             }";
 
         Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document>(json, _options));
@@ -69,7 +73,7 @@ public class DocumentConverterTests
                 ""$collectionId"": ""col1"",
                 ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
                 ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read"", ""write""]
+                ""$permissions"": [""read(\""any\"")""],
             }";
 
         Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document>(json, _options));
@@ -84,7 +88,7 @@ public class DocumentConverterTests
             "db1",
             DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
             DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
-            ["read", "write"],
+            [Permission.Read(Role.Any())],
             new Dictionary<string, object?> { { "customField", "customValue" } }
         );
 
@@ -97,7 +101,7 @@ public class DocumentConverterTests
                 ""$databaseId"": ""db1"",
                 ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
                 ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read"", ""write""],
+                ""$permissions"": [""read(\""any\"")""],
                 ""customField"": ""customValue""
             }".ReplaceLineEndings("").Replace(" ", "");
 
@@ -113,7 +117,7 @@ public class DocumentConverterTests
             "db1",
             DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
             DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
-            ["read", "write"],
+            [Permission.Read(Role.Any())],
             new Dictionary<string, object?> { { "customField", null } }
         );
 
@@ -126,7 +130,7 @@ public class DocumentConverterTests
                 ""$databaseId"": ""db1"",
                 ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
                 ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read"", ""write""],
+                ""$permissions"": [""read(\""any\"")""],
                 ""customField"": null
             }".ReplaceLineEndings("").Replace(" ", "");
 
@@ -154,7 +158,7 @@ public class DocumentConverterTests
                 ""$databaseId"": ""db1"",
                 ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
                 ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read"", ""write""],
+                ""$permissions"": [""read(\""any\"")""],
                 ""arrayField"": [""value1"", ""value2""]
             }";
 
@@ -177,7 +181,7 @@ public class DocumentConverterTests
                 ""$databaseId"": ""db1"",
                 ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
                 ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read"", ""write""],
+                ""$permissions"": [""read(\""any\"")""],
                 ""objectField"": { ""key1"": ""value1"", ""key2"": ""value2"" }
             }";
 
@@ -201,7 +205,7 @@ public class DocumentConverterTests
                 ""$databaseId"": ""db1"",
                 ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
                 ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read"", ""write""],
+                ""$permissions"": [""read(\""any\"")""],
                 ""customField"": ""customValue""
             }
         ]";
@@ -218,7 +222,7 @@ public class DocumentConverterTests
             ""$databaseId"": ""db1"",
             ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
             ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-            ""$permissions"": [""read"", ""write""]
+            ""$permissions"": [""read(\""any\"")""]
         }";
 
         Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document>(json, _options));
@@ -233,7 +237,7 @@ public class DocumentConverterTests
             ""$collectionId"": ""col1"",
             ""$databaseId"": ""db1"",
             ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-            ""$permissions"": [""read"", ""write""]
+            ""$permissions"": [""read(\""any\"")""]
         }";
 
         Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document>(json, _options));
@@ -248,7 +252,7 @@ public class DocumentConverterTests
             ""$collectionId"": ""col1"",
             ""$databaseId"": ""db1"",
             ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
-            ""$permissions"": [""read"", ""write""]
+            ""$permissions"": [""read(\""any\"")""]
         }";
 
         Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document>(json, _options));
@@ -279,7 +283,7 @@ public class DocumentConverterTests
             ""$databaseId"": ""db1"",
             ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
             ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-            ""$permissions"": [""read"", ""write""],
+            ""$permissions"": [""read(\""any\"")""],
             ""customField"": null
         }";
 
@@ -312,7 +316,7 @@ public class DocumentConverterTests
     [Fact]
     public void Write_IntValue_SerializesCorrectly()
     {
-        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, ["read", "write"], new Dictionary<string, object?>
+        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, [], new Dictionary<string, object?>
         {
             { "intField", 123 }
         });
@@ -325,7 +329,7 @@ public class DocumentConverterTests
     [Fact]
     public void Write_LongValue_SerializesCorrectly()
     {
-        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, ["read", "write"], new Dictionary<string, object?>
+        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, [], new Dictionary<string, object?>
         {
             { "longField", 12345L }
         });
@@ -338,7 +342,7 @@ public class DocumentConverterTests
     [Fact]
     public void Write_FloatValue_SerializesCorrectly()
     {
-        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, ["read", "write"], new Dictionary<string, object?>
+        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, [], new Dictionary<string, object?>
         {
             { "floatField", 1.23f }
         });
@@ -351,7 +355,7 @@ public class DocumentConverterTests
     [Fact]
     public void Write_DoubleValue_SerializesCorrectly()
     {
-        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, ["read", "write"], new Dictionary<string, object?>
+        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, [], new Dictionary<string, object?>
         {
             { "doubleField", 1.23d }
         });
@@ -364,7 +368,7 @@ public class DocumentConverterTests
     [Fact]
     public void Write_DecimalValue_SerializesCorrectly()
     {
-        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, ["read", "write"], new Dictionary<string, object?>
+        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, [], new Dictionary<string, object?>
         {
             { "decimalField", 1.23m }
         });
@@ -377,7 +381,7 @@ public class DocumentConverterTests
     [Fact]
     public void Write_BoolValue_SerializesCorrectly()
     {
-        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, ["read", "write"], new Dictionary<string, object?>
+        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, [], new Dictionary<string, object?>
         {
             { "boolField", true }
         });
@@ -390,7 +394,7 @@ public class DocumentConverterTests
     [Fact]
     public void Write_DateTimeValue_SerializesCorrectly()
     {
-        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, ["read", "write"], new Dictionary<string, object?>
+        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, [], new Dictionary<string, object?>
         {
             { "datetimeField", DateTime.Parse("2020-10-15T06:38:00.000+00:00") }
         });
@@ -403,7 +407,7 @@ public class DocumentConverterTests
     [Fact]
     public void Write_ListValue_SerializesCorrectly()
     {
-        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, ["read", "write"], new Dictionary<string, object?>
+        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, [], new Dictionary<string, object?>
         {
             { "listField", new List<string>() { "val1","val2" } }
         });
@@ -416,7 +420,7 @@ public class DocumentConverterTests
     [Fact]
     public void Write_DictValue_SerializesCorrectly()
     {
-        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, ["read", "write"], new Dictionary<string, object?>
+        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, [], new Dictionary<string, object?>
         {
             { "dictField", new Dictionary<string, object?> {
                     { "key", "val" }
@@ -431,7 +435,7 @@ public class DocumentConverterTests
     [Fact]
     public void Write_ObjectValue_SerializesCorrectly()
     {
-        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, ["read", "write"], new Dictionary<string, object?>
+        var document = new Document("1", "col1", "db1", DateTime.UtcNow, DateTime.UtcNow, [], new Dictionary<string, object?>
         {
             { "objectField", new { } }
         });

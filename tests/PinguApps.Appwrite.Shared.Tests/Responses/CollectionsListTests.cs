@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Responses;
-using Attribute = PinguApps.Appwrite.Shared.Responses.Attribute;
+using PinguApps.Appwrite.Shared.Utils;
 using Index = PinguApps.Appwrite.Shared.Responses.Index;
 
 namespace PinguApps.Appwrite.Shared.Tests.Responses;
@@ -18,19 +18,17 @@ public class CollectionsListTests
                     "5e5ea5c16897e",
                     DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(),
                     DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(),
-                    new List<string> { "read(\"any\")" },
+                    [Permission.Read(Role.Any())],
                     "5e5ea5c16897e",
                     "My Collection",
                     false,
                     true,
-                    new List<Attribute>
-                    {
+                    [
                         new AttributeBoolean("isEnabled", "boolean", DatabaseElementStatus.Available, "string", true, false, DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), false)
-                    },
-                    new List<Index>
-                    {
+                    ],
+                    [
                         new Index("index1", IndexType.Unique, DatabaseElementStatus.Available, "string", new List<string>(), new List<string>(), DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime())
-                    }
+                    ]
                 )
             };
 
@@ -56,7 +54,9 @@ public class CollectionsListTests
         Assert.Equal("5e5ea5c16897e", collection.Id);
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), collection.CreatedAt.ToUniversalTime());
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), collection.UpdatedAt.ToUniversalTime());
-        Assert.Contains("read(\"any\")", collection.Permissions);
+        Assert.Single(collection.Permissions);
+        Assert.Equal(PermissionType.Read, collection.Permissions[0].PermissionType);
+        Assert.Equal(RoleType.Any, collection.Permissions[0].Role.RoleType);
         Assert.Equal("5e5ea5c16897e", collection.DatabaseId);
         Assert.Equal("My Collection", collection.Name);
         Assert.False(collection.Enabled);

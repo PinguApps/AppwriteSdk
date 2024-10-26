@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Shared.Tests.Responses;
@@ -15,7 +16,9 @@ public class DocumentTests
         Assert.Equal("5e5ea5c15117e", document.DatabaseId);
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), document.CreatedAt.ToUniversalTime());
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), document.UpdatedAt.ToUniversalTime());
-        Assert.Contains("read(\"any\")", document.Permissions);
+        Assert.Single(document.Permissions);
+        Assert.Equal(PermissionType.Read, document.Permissions[0].PermissionType);
+        Assert.Equal(RoleType.Any, document.Permissions[0].Role.RoleType);
         Assert.Equal("a string prop", document.Data["str"]);
         var dt = (DateTime?)document.Data["dt"];
         Assert.NotNull(dt);
@@ -43,7 +46,7 @@ public class DocumentTests
             "databaseId",
             DateTime.UtcNow,
             DateTime.UtcNow,
-            new List<string>(),
+            [],
             data
         );
 
@@ -67,7 +70,7 @@ public class DocumentTests
             "databaseId",
             DateTime.UtcNow,
             DateTime.UtcNow,
-            new List<string>(),
+            [],
             data
         );
 
@@ -84,7 +87,7 @@ public class DocumentTests
             "databaseId",
             DateTime.UtcNow,
             DateTime.UtcNow,
-            new List<string>(),
+            [],
             new Dictionary<string, object?>()
         );
 
@@ -105,7 +108,7 @@ public class DocumentTests
             "databaseId",
             DateTime.UtcNow,
             DateTime.UtcNow,
-            new List<string>(),
+            [],
             data
         );
 

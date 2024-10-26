@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Responses;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Converters;
 public class DocumentConverter : JsonConverter<Document>
@@ -14,10 +15,11 @@ public class DocumentConverter : JsonConverter<Document>
         string? databaseId = null;
         DateTime? createdAt = null;
         DateTime? updatedAt = null;
-        List<string>? permissions = null;
+        List<Permission>? permissions = null;
         var data = new Dictionary<string, object?>();
 
         var dateTimeConverter = new MultiFormatDateTimeConverter();
+        var permissionListConverter = new PermissionListConverter();
 
         if (reader.TokenType is not JsonTokenType.StartObject)
         {
@@ -53,7 +55,7 @@ public class DocumentConverter : JsonConverter<Document>
                     updatedAt = dateTimeConverter.Read(ref reader, typeof(DateTime), options);
                     break;
                 case "$permissions":
-                    permissions = JsonSerializer.Deserialize<List<string>>(ref reader, options);
+                    permissions = permissionListConverter.Read(ref reader, typeof(List<Permission>), options);
                     break;
                 default:
                     var value = ReadValue(ref reader, options);

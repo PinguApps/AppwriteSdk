@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Responses;
+using PinguApps.Appwrite.Shared.Utils;
 using Attribute = PinguApps.Appwrite.Shared.Responses.Attribute;
 using Index = PinguApps.Appwrite.Shared.Responses.Index;
 
@@ -14,7 +15,7 @@ public class CollectionTests
         var id = "5e5ea5c16897e";
         var createdAt = DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime();
         var updatedAt = DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime();
-        var permissions = new List<string> { "read(\"any\")" };
+        var permissions = new List<Permission> { Permission.Read(Role.Any()) };
         var databaseId = "5e5ea5c16897e";
         var name = "My Collection";
         var enabled = false;
@@ -25,7 +26,7 @@ public class CollectionTests
             };
         var indexes = new List<Index>
             {
-                new Index("index1", IndexType.Unique, DatabaseElementStatus.Available, "string", new List<string>(), new List<string>(), createdAt, updatedAt)
+                new("index1", IndexType.Unique, DatabaseElementStatus.Available, "string", [], [], createdAt, updatedAt)
             };
 
         // Act
@@ -55,7 +56,9 @@ public class CollectionTests
         Assert.Equal("5e5ea5c16897e", collection.Id);
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), collection.CreatedAt.ToUniversalTime());
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), collection.UpdatedAt.ToUniversalTime());
-        Assert.Contains("read(\"any\")", collection.Permissions);
+        Assert.Single(collection.Permissions);
+        Assert.Equal(PermissionType.Read, collection.Permissions[0].PermissionType);
+        Assert.Equal(RoleType.Any, collection.Permissions[0].Role.RoleType);
         Assert.Equal("5e5ea5c16897e", collection.DatabaseId);
         Assert.Equal("My Collection", collection.Name);
         Assert.False(collection.Enabled);

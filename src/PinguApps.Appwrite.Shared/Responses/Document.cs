@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Converters;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -23,7 +24,7 @@ public record Document(
     [property: JsonPropertyName("$databaseId")] string DatabaseId,
     [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
     [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
-    [property: JsonPropertyName("$permissions")] IReadOnlyList<string> Permissions,
+    [property: JsonPropertyName("$permissions")] IReadOnlyList<Permission> Permissions,
     [property: JsonExtensionData] Dictionary<string, object?> Data
 )
 {

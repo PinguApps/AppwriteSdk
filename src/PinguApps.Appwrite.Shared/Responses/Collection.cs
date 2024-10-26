@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Converters;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -22,7 +23,7 @@ public record Collection(
     [property: JsonPropertyName("$id")] string Id,
     [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
     [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
-    [property: JsonPropertyName("$permissions")] IReadOnlyList<string> Permissions,
+    [property: JsonPropertyName("$permissions")] IReadOnlyList<Permission> Permissions,
     [property: JsonPropertyName("databaseId")] string DatabaseId,
     [property: JsonPropertyName("name")] string Name,
     [property: JsonPropertyName("enabled")] bool Enabled,

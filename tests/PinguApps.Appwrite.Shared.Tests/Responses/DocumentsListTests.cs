@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
+using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Responses;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Responses;
 public class DocumentsListTests
@@ -13,7 +15,7 @@ public class DocumentsListTests
         {
             new("5e5ea5c16897e", "5e5ea5c15117e", "5e5ea5c15117e",
                 DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(),
-                DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), ["read(\"any\")"],
+                DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), [Permission.Read(Role.Any())],
                 [])
         };
 
@@ -42,6 +44,8 @@ public class DocumentsListTests
         Assert.Equal("5e5ea5c15117e", document.DatabaseId);
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), document.CreatedAt.ToUniversalTime());
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), document.UpdatedAt.ToUniversalTime());
-        Assert.Contains("read(\"any\")", document.Permissions);
+        Assert.Single(document.Permissions);
+        Assert.Equal(PermissionType.Read, document.Permissions[0].PermissionType);
+        Assert.Equal(RoleType.Any, document.Permissions[0].Role.RoleType);
     }
 }
