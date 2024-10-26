@@ -23,7 +23,7 @@ public record Collection(
     [property: JsonPropertyName("$id")] string Id,
     [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
     [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
-    [property: JsonPropertyName("$permissions")] IReadOnlyList<Permission> Permissions,
+    [property: JsonPropertyName("$permissions"), JsonConverter(typeof(PermissionReadOnlyListConverter))] IReadOnlyList<Permission> Permissions,
     [property: JsonPropertyName("databaseId")] string DatabaseId,
     [property: JsonPropertyName("name")] string Name,
     [property: JsonPropertyName("enabled")] bool Enabled,

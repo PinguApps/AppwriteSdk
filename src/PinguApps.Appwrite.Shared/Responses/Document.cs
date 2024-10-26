@@ -24,7 +24,7 @@ public record Document(
     [property: JsonPropertyName("$databaseId")] string DatabaseId,
     [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
     [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
-    [property: JsonPropertyName("$permissions")] IReadOnlyList<Permission> Permissions,
+    [property: JsonPropertyName("$permissions"), JsonConverter(typeof(PermissionReadOnlyListConverter))] IReadOnlyList<Permission> Permissions,
     [property: JsonExtensionData] Dictionary<string, object?> Data
 )
 {
