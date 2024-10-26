@@ -229,6 +229,21 @@ public class DocumentConverterTests
     }
 
     [Fact]
+    public void Read_MissingDatabaseId_ThrowsJsonException()
+    {
+        var json = @"
+        {
+            ""$id"": ""1"",
+            ""$collectionId"": ""col1"",
+            ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
+            ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
+            ""$permissions"": [""read(\""any\"")""]
+        }";
+
+        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document>(json, _options));
+    }
+
+    [Fact]
     public void Read_MissingCreatedAt_ThrowsJsonException()
     {
         var json = @"
