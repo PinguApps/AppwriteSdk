@@ -9,7 +9,7 @@ public abstract class DatabaseIdBaseRequestTests<TRequest, TValidator>
     protected abstract TRequest CreateValidRequest { get; }
 
     [Fact]
-    public void TeamIdBase_Constructor_InitializesWithExpectedValues()
+    public void DatabaseIdBase_Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
         var request = CreateValidRequest;
@@ -19,7 +19,7 @@ public abstract class DatabaseIdBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void TeamIdBase_Properties_CanBeSet()
+    public void DatabaseIdBase_Properties_CanBeSet()
     {
         // Arrange
         var teamIdValue = "validId";
@@ -33,7 +33,7 @@ public abstract class DatabaseIdBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void TeamIdBase_IsValid_WithValidTeamId_ReturnsTrue()
+    public void DatabaseIdBase_IsValid_WithValidTeamId_ReturnsTrue()
     {
         // Arrange
         var request = CreateValidRequest;
@@ -49,7 +49,7 @@ public abstract class DatabaseIdBaseRequestTests<TRequest, TValidator>
     [Theory]
     [InlineData(null)]
     [InlineData("")]
-    public void TeamIdBase_IsValid_WithInvalidData_ReturnsFalse(string? id)
+    public void DatabaseIdBase_IsValid_WithInvalidData_ReturnsFalse(string? id)
     {
         // Arrange
         var request = CreateValidRequest;
@@ -63,7 +63,7 @@ public abstract class DatabaseIdBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void TeamIdBase_Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
+    public void DatabaseIdBase_Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
         var request = CreateValidRequest;
@@ -74,7 +74,7 @@ public abstract class DatabaseIdBaseRequestTests<TRequest, TValidator>
     }
 
     [Fact]
-    public void TeamIdBase_Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
+    public void DatabaseIdBase_Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
         var request = CreateValidRequest;
