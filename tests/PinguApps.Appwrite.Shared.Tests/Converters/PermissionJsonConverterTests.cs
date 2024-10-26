@@ -1,4 +1,5 @@
-﻿using System.Text.Encodings.Web;
+﻿using System.Reflection;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using PinguApps.Appwrite.Shared.Converters;
 using PinguApps.Appwrite.Shared.Enums;
@@ -8,59 +9,138 @@ namespace PinguApps.Appwrite.Shared.Tests.Converters;
 public class PermissionJsonConverterTests
 {
     private readonly JsonSerializerOptions _options;
-    private readonly PermissionJsonConverter _converter;
 
     public PermissionJsonConverterTests()
     {
-        _converter = new PermissionJsonConverter();
         _options = new JsonSerializerOptions
         {
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            Converters = { _converter, new RoleJsonConverter() }
+            Converters = { new PermissionJsonConverter() }
         };
-    }
-
-    [Theory]
-    [InlineData(PermissionType.Read, "read")]
-    [InlineData(PermissionType.Write, "write")]
-    [InlineData(PermissionType.Create, "create")]
-    [InlineData(PermissionType.Update, "update")]
-    [InlineData(PermissionType.Delete, "delete")]
-    public void Write_AllPermissionTypes_SerializeCorrectly(PermissionType permissionType, string expectedPrefix)
-    {
-        // Arrange
-        var permission = permissionType switch
-        {
-            PermissionType.Read => Permission.Read(Role.Any()),
-            PermissionType.Write => Permission.Write(Role.Any()),
-            PermissionType.Create => Permission.Create(Role.Any()),
-            PermissionType.Update => Permission.Update(Role.Any()),
-            PermissionType.Delete => Permission.Delete(Role.Any()),
-            _ => throw new ArgumentException("Invalid permission type")
-        };
-
-        // Act
-        var json = JsonSerializer.Serialize(permission, _options);
-
-        // Assert
-        Assert.Equal($"\"{expectedPrefix}(\\\"any\\\")\"", json);
     }
 
     [Theory]
     [InlineData("read(\\\"any\\\")", PermissionType.Read, RoleType.Any)]
-    [InlineData("write(\\\"user:123\\\")", PermissionType.Write, RoleType.User)]
-    [InlineData("create(\\\"team:456/admin\\\")", PermissionType.Create, RoleType.Team)]
-    [InlineData("update(\\\"users/verified\\\")", PermissionType.Update, RoleType.Users)]
-    [InlineData("delete(\\\"label:test\\\")", PermissionType.Delete, RoleType.Label)]
-    public void Read_ValidPermissions_DeserializeCorrectly(string json, PermissionType expectedPermissionType, RoleType expectedRoleType)
+    [InlineData("write(\\\"any\\\")", PermissionType.Write, RoleType.Any)]
+    [InlineData("create(\\\"any\\\")", PermissionType.Create, RoleType.Any)]
+    [InlineData("update(\\\"any\\\")", PermissionType.Update, RoleType.Any)]
+    [InlineData("delete(\\\"any\\\")", PermissionType.Delete, RoleType.Any)]
+    public void Read_SimplePermissions_DeserializeCorrectly(string json, PermissionType expectedPermType, RoleType expectedRoleType)
     {
         // Act
         var permission = JsonSerializer.Deserialize<Permission>($"\"{json}\"", _options);
 
         // Assert
         Assert.NotNull(permission);
-        Assert.Equal(expectedPermissionType, permission.PermissionType);
-        Assert.Equal(expectedRoleType, permission.Role.RoleType);
+        Assert.Equal(expectedPermType, permission.PermissionType);
+        Assert.Equal(expectedRoleType, permission.RoleType);
+    }
+
+    [Theory]
+    [InlineData("user:123", "123", null)]
+    [InlineData("user:123/verified", "123", RoleStatus.Verified)]
+    [InlineData("user:456/unverified", "456", RoleStatus.Unverified)]
+    public void Read_UserPermissions_DeserializeCorrectly(string roleStr, string expectedId, RoleStatus? expectedStatus)
+    {
+        // Arrange
+        var json = $"\"read(\\\"{roleStr}\\\")\"";
+
+        // Act
+        var permission = JsonSerializer.Deserialize<Permission>(json, _options);
+
+        // Assert
+        Assert.NotNull(permission);
+        Assert.Equal(PermissionType.Read, permission.PermissionType);
+        Assert.Equal(RoleType.User, permission.RoleType);
+        Assert.Equal(expectedId, permission.Id);
+        Assert.Equal(expectedStatus, permission.Status);
+    }
+
+    [Fact]
+    public void Read_Guests_DeserializeCorrectly()
+    {
+        // Arrange
+        var json = $"\"read(\\\"guests\\\")\"";
+
+        // Act
+        var permission = JsonSerializer.Deserialize<Permission>(json, _options);
+
+        // Assert
+        Assert.NotNull(permission);
+        Assert.Equal(PermissionType.Read, permission.PermissionType);
+        Assert.Equal(RoleType.Guests, permission.RoleType);
+    }
+
+    [Theory]
+    [InlineData("users")]
+    [InlineData("users/verified")]
+    [InlineData("users/unverified")]
+    public void Read_UsersPermissions_DeserializeCorrectly(string roleStr)
+    {
+        // Arrange
+        var json = $"\"read(\\\"{roleStr}\\\")\"";
+
+        // Act
+        var permission = JsonSerializer.Deserialize<Permission>(json, _options);
+
+        // Assert
+        Assert.NotNull(permission);
+        Assert.Equal(PermissionType.Read, permission.PermissionType);
+        Assert.Equal(RoleType.Users, permission.RoleType);
+
+        if (roleStr.Contains('/'))
+        {
+            Assert.Equal(
+                Enum.Parse<RoleStatus>(roleStr.Split('/')[1], true),
+                permission.Status);
+        }
+    }
+
+    [Theory]
+    [InlineData("team:123", "123", null)]
+    [InlineData("team:456/admin", "456", "admin")]
+    [InlineData("team:789/member", "789", "member")]
+    public void Read_TeamPermissions_DeserializeCorrectly(string roleStr, string expectedId, string? expectedRole)
+    {
+        // Arrange
+        var json = $"\"write(\\\"{roleStr}\\\")\"";
+
+        // Act
+        var permission = JsonSerializer.Deserialize<Permission>(json, _options);
+
+        // Assert
+        Assert.NotNull(permission);
+        Assert.Equal(PermissionType.Write, permission.PermissionType);
+        Assert.Equal(RoleType.Team, permission.RoleType);
+        Assert.Equal(expectedId, permission.Id);
+        Assert.Equal(expectedRole, permission.TeamRole);
+    }
+
+    [Theory]
+    [InlineData("member:123")]
+    [InlineData("label:testLabel")]
+    public void Read_MemberAndLabelPermissions_DeserializeCorrectly(string roleStr)
+    {
+        // Arrange
+        var json = $"\"read(\\\"{roleStr}\\\")\"";
+
+        // Act
+        var permission = JsonSerializer.Deserialize<Permission>(json, _options);
+
+        // Assert
+        Assert.NotNull(permission);
+        Assert.Equal(PermissionType.Read, permission.PermissionType);
+
+        if (roleStr.StartsWith("member:"))
+        {
+            Assert.Equal(RoleType.Member, permission.RoleType);
+            Assert.Equal(roleStr[7..], permission.Id);
+        }
+        else
+        {
+            Assert.Equal(RoleType.Label, permission.RoleType);
+            Assert.Equal(roleStr[6..], permission.Label);
+        }
     }
 
     [Theory]
@@ -81,9 +161,9 @@ public class PermissionJsonConverterTests
     [InlineData("invalid")]
     [InlineData("read")]
     [InlineData("read(any)")]
-    [InlineData("read\"any\")")]
-    [InlineData("read(\"any\"")]
-    [InlineData("unknown(\"any\")")]
+    [InlineData("read\\\"any\\\")")]
+    [InlineData("read(\\\"any\\\"")]
+    [InlineData("unknown(\\\"any\\\")")]
     public void Read_InvalidFormat_ThrowsJsonException(string invalidJson)
     {
         // Act & Assert
@@ -92,47 +172,143 @@ public class PermissionJsonConverterTests
     }
 
     [Fact]
-    public void Write_ComplexPermission_SerializesCorrectly()
+    public void Write_Any_SerializesCorrectly()
     {
         // Arrange
-        var role = Role.Team("123", "admin");
-        var permission = Permission.Write(role);
+        var permission = Permission.Read().Any();
 
         // Act
         var json = JsonSerializer.Serialize(permission, _options);
 
         // Assert
-        Assert.Equal("\"write(\\\"team:123/admin\\\")\"", json);
+        Assert.Equal("\"read(\\\"any\\\")\"", json);
     }
 
-    [Fact]
-    public void Read_ComplexPermission_DeserializesCorrectly()
+    [Theory]
+    [InlineData(null, "users")]
+    [InlineData(RoleStatus.Verified, "users/verified")]
+    [InlineData(RoleStatus.Unverified, "users/unverified")]
+    public void Write_Users_SerializesCorrectly(RoleStatus? status, string expectedRole)
     {
         // Arrange
-        var json = "\"write(\\\"team:123/admin\\\")\"";
+        var permission = status.HasValue
+            ? Permission.Read().Users(status.Value)
+            : Permission.Read().Users();
 
         // Act
-        var permission = JsonSerializer.Deserialize<Permission>(json, _options);
+        var json = JsonSerializer.Serialize(permission, _options);
 
         // Assert
-        Assert.NotNull(permission);
-        Assert.Equal(PermissionType.Write, permission.PermissionType);
-        Assert.Equal(RoleType.Team, permission.Role.RoleType);
-        Assert.Equal("123", permission.Role.Id);
-        Assert.Equal("admin", permission.Role.TeamRole);
+        Assert.Equal($"\"read(\\\"{expectedRole}\\\")\"", json);
     }
 
     [Fact]
-    public void Read_ThrowsJsonException_ForUnknownPermissionType()
+    public void Write_Guests_SerializesCorrectly()
     {
         // Arrange
-        var json = "\"invalidPermissionType(\\\"any\\\")\"";
+        var permission = Permission.Read().Guests();
+
+        // Act
+        var json = JsonSerializer.Serialize(permission, _options);
+
+        // Assert
+        Assert.Equal("\"read(\\\"guests\\\")\"", json);
+    }
+
+    [Theory]
+    [InlineData(null, "user:123")]
+    [InlineData(RoleStatus.Verified, "user:123/verified")]
+    [InlineData(RoleStatus.Unverified, "user:123/unverified")]
+    public void Write_User_SerializesCorrectly(RoleStatus? status, string expectedRole)
+    {
+        // Arrange
+        var permission = status.HasValue
+            ? Permission.Write().User("123", status.Value)
+            : Permission.Write().User("123");
+
+        // Act
+        var json = JsonSerializer.Serialize(permission, _options);
+
+        // Assert
+        Assert.Equal($"\"write(\\\"{expectedRole}\\\")\"", json);
+    }
+
+    [Theory]
+    [InlineData(null, "team:123")]
+    [InlineData("admin", "team:123/admin")]
+    public void Write_Team_SerializesCorrectly(string? teamRole, string expectedRole)
+    {
+        // Arrange
+        var permission = teamRole != null
+            ? Permission.Create().Team("123", teamRole)
+            : Permission.Create().Team("123");
+
+        // Act
+        var json = JsonSerializer.Serialize(permission, _options);
+
+        // Assert
+        Assert.Equal($"\"create(\\\"{expectedRole}\\\")\"", json);
+    }
+
+    [Fact]
+    public void Write_Member_SerializesCorrectly()
+    {
+        // Arrange
+        var permission = Permission.Create().Member("123");
+
+        // Act
+        var json = JsonSerializer.Serialize(permission, _options);
+
+        // Assert
+        Assert.Equal("\"create(\\\"member:123\\\")\"", json);
+    }
+
+    [Fact]
+    public void Write_Label_SerializesCorrectly()
+    {
+        // Arrange
+        var permission = Permission.Write().Label("writer");
+
+        // Act
+        var json = JsonSerializer.Serialize(permission, _options);
+
+        // Assert
+        Assert.Equal("\"write(\\\"label:writer\\\")\"", json);
+    }
+
+    [Fact]
+    public void Write_ThrowsJsonException_ForUnknownRoleType()
+    {
+        // Arrange
+        var invalidRoleType = (RoleType)999;
+
+        var permission = CreatePermissionWithCustomProperties(PermissionType.Create, invalidRoleType, null, null, null, null);
 
         // Act & Assert
         var exception = Assert.Throws<JsonException>(() =>
-            JsonSerializer.Deserialize<Permission>(json, _options)
+            JsonSerializer.Serialize(permission, _options)
         );
 
-        Assert.Equal("Unknown permission type: invalidpermissiontype", exception.Message);
+        Assert.Equal("Unknown role type: 999", exception.Message);
+    }
+
+    private Permission CreatePermissionWithCustomProperties(PermissionType permissionType, RoleType roleType, string? id, RoleStatus? status, string? teamRole, string? label)
+    {
+        // Use reflection to create an instance of Permission
+        var permissionT = typeof(Permission);
+        var constructor = permissionT.GetConstructor(
+            BindingFlags.Instance | BindingFlags.NonPublic,
+        null,
+            [typeof(PermissionType), typeof(RoleType), typeof(string), typeof(RoleStatus?), typeof(string), typeof(string)],
+            null
+        );
+
+        if (constructor == null)
+        {
+            throw new InvalidOperationException("Permission constructor not found.");
+        }
+
+        var permission = (Permission)constructor.Invoke([permissionType, roleType, id, status, teamRole, label]);
+        return permission;
     }
 }

@@ -18,7 +18,7 @@ public class DocumentTests
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), document.UpdatedAt.ToUniversalTime());
         Assert.Single(document.Permissions);
         Assert.Equal(PermissionType.Read, document.Permissions[0].PermissionType);
-        Assert.Equal(RoleType.Any, document.Permissions[0].Role.RoleType);
+        Assert.Equal(RoleType.Any, document.Permissions[0].RoleType);
         Assert.Equal("a string prop", document.Data["str"]);
         var dt = (DateTime?)document.Data["dt"];
         Assert.NotNull(dt);

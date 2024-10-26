@@ -15,7 +15,7 @@ public class DocumentsListTests
         {
             new("5e5ea5c16897e", "5e5ea5c15117e", "5e5ea5c15117e",
                 DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(),
-                DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), [Permission.Read(Role.Any())],
+                DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), [Permission.Read().Any()],
                 [])
         };
 
@@ -46,6 +46,6 @@ public class DocumentsListTests
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), document.UpdatedAt.ToUniversalTime());
         Assert.Single(document.Permissions);
         Assert.Equal(PermissionType.Read, document.Permissions[0].PermissionType);
-        Assert.Equal(RoleType.Any, document.Permissions[0].Role.RoleType);
+        Assert.Equal(RoleType.Any, document.Permissions[0].RoleType);
     }
 }

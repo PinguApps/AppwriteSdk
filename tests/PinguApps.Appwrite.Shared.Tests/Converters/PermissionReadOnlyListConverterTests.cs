@@ -17,7 +17,6 @@ public class PermissionReadOnlyListConverterTests
             Converters =
             {
                 new PermissionReadOnlyListConverter(),
-                new RoleJsonConverter(),
                 new PermissionJsonConverter()
             }
         };
@@ -51,7 +50,7 @@ public class PermissionReadOnlyListConverterTests
         Assert.NotNull(result);
         Assert.Single(result);
         Assert.Equal(PermissionType.Read, result[0].PermissionType);
-        Assert.Equal(RoleType.Any, result[0].Role.RoleType);
+        Assert.Equal(RoleType.Any, result[0].RoleType);
         Assert.IsAssignableFrom<IReadOnlyList<Permission>>(result);
     }
 
@@ -76,17 +75,17 @@ public class PermissionReadOnlyListConverterTests
         Assert.IsAssignableFrom<IReadOnlyList<Permission>>(result);
 
         Assert.Equal(PermissionType.Read, result[0].PermissionType);
-        Assert.Equal(RoleType.Any, result[0].Role.RoleType);
+        Assert.Equal(RoleType.Any, result[0].RoleType);
 
         Assert.Equal(PermissionType.Write, result[1].PermissionType);
-        Assert.Equal(RoleType.User, result[1].Role.RoleType);
-        Assert.Equal("123", result[1].Role.Id);
-        Assert.Equal(RoleStatus.Verified, result[1].Role.Status);
+        Assert.Equal(RoleType.User, result[1].RoleType);
+        Assert.Equal("123", result[1].Id);
+        Assert.Equal(RoleStatus.Verified, result[1].Status);
 
         Assert.Equal(PermissionType.Create, result[2].PermissionType);
-        Assert.Equal(RoleType.Team, result[2].Role.RoleType);
-        Assert.Equal("456", result[2].Role.Id);
-        Assert.Equal("admin", result[2].Role.TeamRole);
+        Assert.Equal(RoleType.Team, result[2].RoleType);
+        Assert.Equal("456", result[2].Id);
+        Assert.Equal("admin", result[2].TeamRole);
     }
 
     [Theory]
@@ -132,7 +131,7 @@ public class PermissionReadOnlyListConverterTests
         // Arrange
         IReadOnlyList<Permission> permissions = new List<Permission>
         {
-            Permission.Read(Role.Any())
+            Permission.Read().Any()
         }.AsReadOnly();
 
         // Act
@@ -148,9 +147,9 @@ public class PermissionReadOnlyListConverterTests
         // Arrange
         IReadOnlyList<Permission> permissions = new List<Permission>
         {
-            Permission.Read(Role.Any()),
-            Permission.Write(Role.User("123", RoleStatus.Verified)),
-            Permission.Create(Role.Team("456", "admin"))
+            Permission.Read().Any(),
+            Permission.Write().User("123", RoleStatus.Verified),
+            Permission.Create().Team("456", "admin")
         }.AsReadOnly();
 
         // Act
@@ -177,7 +176,7 @@ public class PermissionReadOnlyListConverterTests
         Assert.Throws<NotSupportedException>(() =>
         {
             var list = result as System.Collections.IList;
-            list?.Add(Permission.Read(Role.Any()));
+            list?.Add(Permission.Read().Any());
         });
     }
 }

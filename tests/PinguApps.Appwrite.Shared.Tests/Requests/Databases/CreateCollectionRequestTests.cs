@@ -32,7 +32,7 @@ public class CreateCollectionRequestTests : DatabaseIdBaseRequestTests<CreateCol
         // Arrange
         var collectionId = IdUtils.GenerateUniqueId();
         var name = "My Collection";
-        var permissions = new List<Permission> { Permission.Read(Role.Any()) };
+        var permissions = new List<Permission> { Permission.Read().Any() };
         var documentSecurity = true;
         var enabled = true;
 
@@ -60,7 +60,7 @@ public class CreateCollectionRequestTests : DatabaseIdBaseRequestTests<CreateCol
                 DatabaseId = IdUtils.GenerateUniqueId(),
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Name = "Valid Collection Name",
-                Permissions = [Permission.Read(Role.Any())],
+                Permissions = [Permission.Read().Any()],
                 DocumentSecurity = true,
                 Enabled = true
             },

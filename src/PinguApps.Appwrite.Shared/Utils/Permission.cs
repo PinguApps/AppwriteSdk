@@ -16,48 +16,125 @@ public class Permission
     public PermissionType PermissionType { get; private set; }
 
     /// <summary>
-    /// The role(s) to grant the permissions to
+    /// The type of role
     /// </summary>
-    public Role Role { get; private set; }
+    public RoleType RoleType { get; private set; }
 
-    private Permission(PermissionType permissionType, Role role)
+    /// <summary>
+    /// The Id of the team, user or member
+    /// </summary>
+    public string? Id { get; private set; }
+
+    /// <summary>
+    /// The verification status of a user group
+    /// </summary>
+    public RoleStatus? Status { get; private set; }
+
+    /// <summary>
+    /// The role of team members
+    /// </summary>
+    public string? TeamRole { get; private set; }
+
+    /// <summary>
+    /// The user label
+    /// </summary>
+    public string? Label { get; private set; }
+
+    // Private constructor - can only be created through the builder
+    private Permission(PermissionType permissionType, RoleType roleType, string? id = null, RoleStatus? status = null,
+        string? teamRole = null, string? label = null)
     {
         PermissionType = permissionType;
-        Role = role;
+        RoleType = roleType;
+        Id = id;
+        Status = status;
+        TeamRole = teamRole;
+        Label = label;
     }
 
     /// <summary>
-    /// Creates Read pemission for the given role
+    /// Access to read a resource
     /// </summary>
-    /// <param name="role">The role to grant this permission level to</param>
-    /// <returns>The permission</returns>
-    public static Permission Read(Role role) => new(PermissionType.Read, role);
+    public static PermissionBuilder Read() => new(PermissionType.Read);
 
     /// <summary>
-    /// Creates Write pemission for the given role
+    /// Alias to grant create, update, and delete access for collections and buckets and update and delete access for documents and files
     /// </summary>
-    /// <param name="role">The role to grant this permission level to</param>
-    /// <returns>The permission</returns>
-    public static Permission Write(Role role) => new(PermissionType.Write, role);
+    public static PermissionBuilder Write() => new(PermissionType.Write);
 
     /// <summary>
-    /// Creates Create pemission for the given role
+    /// Access to create new resources. Does not apply to files or documents. Applying this type of access to files or documents results in an error
     /// </summary>
-    /// <param name="role">The role to grant this permission level to</param>
-    /// <returns>The permission</returns>
-    public static Permission Create(Role role) => new(PermissionType.Create, role);
+    public static PermissionBuilder Create() => new(PermissionType.Create);
 
     /// <summary>
-    /// Creates Udpate pemission for the given role
+    /// Access to change a resource, but not remove or create new resources. Does not apply to functions
     /// </summary>
-    /// <param name="role">The role to grant this permission level to</param>
-    /// <returns>The permission</returns>
-    public static Permission Update(Role role) => new(PermissionType.Update, role);
+    public static PermissionBuilder Update() => new(PermissionType.Update);
 
     /// <summary>
-    /// Creates Delete pemission for the given role
+    /// Access to remove a resource. Does not apply to functions
     /// </summary>
-    /// <param name="role">The role to grant this permission level to</param>
-    /// <returns>The permission</returns>
-    public static Permission Delete(Role role) => new(PermissionType.Delete, role);
+    public static PermissionBuilder Delete() => new(PermissionType.Delete);
+
+    public class PermissionBuilder
+    {
+        private readonly PermissionType _permissionType;
+
+        internal PermissionBuilder(PermissionType permissionType)
+        {
+            _permissionType = permissionType;
+        }
+
+        /// <summary>
+        /// Grants access to anyone
+        /// </summary>
+        public Permission Any() => new(_permissionType, RoleType.Any);
+
+        /// <summary>
+        /// Grants access to any authenticated or anonymous user
+        /// </summary>
+        public Permission Users() => new(_permissionType, RoleType.Users);
+
+        /// <summary>
+        /// Grants access to any authenticated or anonymous user. You can optionally pass the verified or unverified string to target specific types of users
+        /// </summary>
+        public Permission Users(RoleStatus status) => new(_permissionType, RoleType.Users, status: status);
+
+        /// <summary>
+        /// Grants access to a specific user by user ID
+        /// </summary>
+        public Permission User(string userId) => new(_permissionType, RoleType.User, id: userId);
+
+        /// <summary>
+        /// Grants access to a specific user by user ID. You can optionally pass the verified or unverified string to target specific types of users
+        /// </summary>
+        public Permission User(string userId, RoleStatus status) => new(_permissionType, RoleType.User, id: userId, status: status);
+
+        /// <summary>
+        /// Grants access to any guest user without a session. Authenticated users don't have access to this role
+        /// </summary>
+        public Permission Guests() => new(_permissionType, RoleType.Guests);
+
+        /// <summary>
+        /// Grants access to any member of the specific team. To gain access to this permission, the user must be the team creator (owner), or receive and accept an invitation to join this team
+        /// </summary>
+        public Permission Team(string teamId) => new(_permissionType, RoleType.Team, id: teamId);
+
+        /// <summary>
+        /// Grants access to any member who possesses a specific role in a team. To gain access to this permission, the user must be a member of the specific team and have the given role assigned to them. Team roles can be assigned when inviting a user to become a team member
+        /// </summary>
+        public Permission Team(string teamId, string teamRole) => new(_permissionType, RoleType.Team, id: teamId, teamRole: teamRole);
+
+        /// <summary>
+        /// Grants access to a specific member of a team. When the member is removed from the team, they will no longer have access
+        /// </summary>
+        public Permission Member(string memberId) => new(_permissionType, RoleType.Member, id: memberId);
+
+        /// <summary>
+        /// Grants access to all accounts with a specific label ID. Once the label is removed from the user, they will no longer have access. <see href="https://appwrite.io/docs/products/auth/labels">Learn more about labels</see>.
+        /// </summary>
+        public Permission Label(string label) => new(_permissionType, RoleType.Label, label: label);
+    }
+
 }

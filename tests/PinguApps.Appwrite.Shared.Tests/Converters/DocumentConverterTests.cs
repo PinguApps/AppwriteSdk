@@ -44,7 +44,7 @@ public class DocumentConverterTests
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00"), document.UpdatedAt);
         Assert.Single(document.Permissions);
         Assert.Equal(PermissionType.Read, document.Permissions[0].PermissionType);
-        Assert.Equal(RoleType.Any, document.Permissions[0].Role.RoleType);
+        Assert.Equal(RoleType.Any, document.Permissions[0].RoleType);
         Assert.Equal("customValue", document["customField"]);
     }
 
@@ -88,7 +88,7 @@ public class DocumentConverterTests
             "db1",
             DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
             DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
-            [Permission.Read(Role.Any())],
+            [Permission.Read().Any()],
             new Dictionary<string, object?> { { "customField", "customValue" } }
         );
 
@@ -117,7 +117,7 @@ public class DocumentConverterTests
             "db1",
             DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
             DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
-            [Permission.Read(Role.Any())],
+            [Permission.Read().Any()],
             new Dictionary<string, object?> { { "customField", null } }
         );
 

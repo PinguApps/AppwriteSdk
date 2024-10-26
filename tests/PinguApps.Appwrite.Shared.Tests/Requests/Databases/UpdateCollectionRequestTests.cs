@@ -29,7 +29,7 @@ public class UpdateCollectionRequestTests : DatabaseCollectionIdBaseRequestTests
     {
         // Arrange
         var name = "Updated Collection";
-        var permissions = new List<Permission> { Permission.Read(Role.Any()) };
+        var permissions = new List<Permission> { Permission.Read().Any() };
         var documentSecurity = true;
         var enabled = true;
 
@@ -55,7 +55,7 @@ public class UpdateCollectionRequestTests : DatabaseCollectionIdBaseRequestTests
                 DatabaseId = IdUtils.GenerateUniqueId(),
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Name = "Valid Collection Name",
-                Permissions = [Permission.Read(Role.Any())],
+                Permissions = [Permission.Read().Any()],
                 DocumentSecurity = true,
                 Enabled = true
             },

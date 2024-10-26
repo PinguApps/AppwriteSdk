@@ -18,7 +18,7 @@ public class CollectionsListTests
                     "5e5ea5c16897e",
                     DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(),
                     DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(),
-                    [Permission.Read(Role.Any())],
+                    [Permission.Read().Any()],
                     "5e5ea5c16897e",
                     "My Collection",
                     false,
@@ -56,7 +56,7 @@ public class CollectionsListTests
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00").ToUniversalTime(), collection.UpdatedAt.ToUniversalTime());
         Assert.Single(collection.Permissions);
         Assert.Equal(PermissionType.Read, collection.Permissions[0].PermissionType);
-        Assert.Equal(RoleType.Any, collection.Permissions[0].Role.RoleType);
+        Assert.Equal(RoleType.Any, collection.Permissions[0].RoleType);
         Assert.Equal("5e5ea5c16897e", collection.DatabaseId);
         Assert.Equal("My Collection", collection.Name);
         Assert.False(collection.Enabled);
