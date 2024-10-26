@@ -3,6 +3,10 @@ using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases;
+
+/// <summary>
+/// The request to create a database
+/// </summary>
 public class CreateDatabaseRequest : BaseRequest<CreateDatabaseRequest, CreateDatabaseRequestValidator>
 {
     /// <summary>
