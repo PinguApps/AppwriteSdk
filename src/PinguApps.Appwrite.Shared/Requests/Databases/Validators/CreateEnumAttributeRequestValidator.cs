@@ -10,6 +10,8 @@ public class CreateEnumAttributeRequestValidator : AbstractValidator<CreateEnumA
         RuleFor(x => x.Elements)
             .NotNull()
             .WithMessage("Elements is required.")
+            .Must(x => x.Count > 0)
+            .WithMessage("At least one element must be specified.")
             .Must(x => x.Count <= 100)
             .WithMessage("A maximum of 100 elements are allowed.")
             .ForEach(x =>
