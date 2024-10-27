@@ -7,6 +7,8 @@ public class UpdateEmailAttributeRequestTests : UpdateStringAttributeBaseRequest
 {
     protected override UpdateEmailAttributeRequest CreateValidUpdateStringAttributeBaseRequest => new();
 
+    protected override string ValidDefaultValue => "pingu@example.com";
+
     public static TheoryData<string> ValidDefaultValues =>
         [
             "pingu@example.com",
