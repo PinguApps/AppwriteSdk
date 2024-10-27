@@ -32,8 +32,8 @@ public class CreateBooleanAttributeRequestTests : CreateAttributeBaseRequestTest
         Assert.Equal(defaultValue, request.Default);
     }
 
-    public static TheoryData<CreateBooleanAttributeRequest> ValidRequestsData = new()
-        {
+    public static TheoryData<CreateBooleanAttributeRequest> ValidRequestsData =>
+        [
             new()
             {
                 DatabaseId = IdUtils.GenerateUniqueId(),
@@ -58,7 +58,7 @@ public class CreateBooleanAttributeRequestTests : CreateAttributeBaseRequestTest
                 Default = false,
                 Required = false
             }
-        };
+        ];
 
     [Theory]
     [MemberData(nameof(ValidRequestsData))]
