@@ -14,11 +14,11 @@ public class CreateAttributeBaseRequestValidator<TRequest, TValidator> : Abstrac
             .WithMessage("Key is required.");
 
         RuleFor(x => x.Required)
-            .NotEmpty()
+            .NotNull()
             .WithMessage("Required is required.");
 
         RuleFor(x => x.Array)
-            .NotEmpty()
+            .NotNull()
             .WithMessage("Array is required.");
     }
 }
