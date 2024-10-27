@@ -11,6 +11,8 @@ public abstract class CreateStringAttributeBaseRequestTests<TRequest, TValidator
 
     protected abstract TRequest CreateValidCreateStringAttributeBaseRequest { get; }
 
+    protected abstract string ValidDefaultValue { get; }
+
     [Fact]
     public void CreateStringAttributeBase_Constructor_InitializesWithExpectedValues()
     {
@@ -25,7 +27,7 @@ public abstract class CreateStringAttributeBaseRequestTests<TRequest, TValidator
     public void CreateStringAttributeBase_Properties_CanBeSet()
     {
         // Arrange
-        var defaultValue = "validKey";
+        var defaultValue = ValidDefaultValue;
         var request = CreateValidCreateStringAttributeBaseRequest;
 
         // Act
@@ -61,7 +63,7 @@ public abstract class CreateStringAttributeBaseRequestTests<TRequest, TValidator
         request.CollectionId = IdUtils.GenerateUniqueId();
         request.Key = "validKey";
         request.Required = true;
-        request.Default = "";
+        request.Default = ValidDefaultValue;
 
         // Act
         var isValid = request.IsValid();
@@ -79,7 +81,7 @@ public abstract class CreateStringAttributeBaseRequestTests<TRequest, TValidator
         request.CollectionId = IdUtils.GenerateUniqueId();
         request.Key = "validKey";
         request.Required = true;
-        request.Default = "";
+        request.Default = ValidDefaultValue;
 
         // Assert
         Assert.Throws<ValidationException>(() => request.Validate(true));
@@ -94,7 +96,7 @@ public abstract class CreateStringAttributeBaseRequestTests<TRequest, TValidator
         request.CollectionId = IdUtils.GenerateUniqueId();
         request.Key = "validKey";
         request.Required = true;
-        request.Default = "";
+        request.Default = ValidDefaultValue;
 
         // Act
         var result = request.Validate(false);
