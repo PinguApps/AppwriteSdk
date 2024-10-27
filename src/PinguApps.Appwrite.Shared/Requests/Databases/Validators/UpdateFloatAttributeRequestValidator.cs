@@ -5,7 +5,7 @@ public class UpdateFloatAttributeRequestValidator : AbstractValidator<UpdateFloa
 {
     public UpdateFloatAttributeRequestValidator()
     {
-        Include(new UpdateAttributeBaseRequestValidator<UpdateFloatAttributeRequest, UpdateFloatAttributeRequestValidator>);
+        Include(new UpdateAttributeBaseRequestValidator<UpdateFloatAttributeRequest, UpdateFloatAttributeRequestValidator>());
 
         RuleFor(x => x.Default)
             .Must((request, defaultValue) => !request.Required || defaultValue is null)

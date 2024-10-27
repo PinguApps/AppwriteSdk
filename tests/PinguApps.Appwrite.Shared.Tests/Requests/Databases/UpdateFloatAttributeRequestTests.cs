@@ -4,15 +4,15 @@ using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Databases;
-public class CreateFloatAttributeRequestTests : CreateAttributeBaseRequestTests<CreateFloatAttributeRequest, CreateFloatAttributeRequestValidator>
+public class UpdateFloatAttributeRequestTests : UpdateAttributeBaseRequestTests<UpdateFloatAttributeRequest, UpdateFloatAttributeRequestValidator>
 {
-    protected override CreateFloatAttributeRequest CreateValidCreateAttributeBaseRequest => new();
+    protected override UpdateFloatAttributeRequest CreateValidUpdateAttributeBaseRequest => new();
 
     [Fact]
     public void Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
-        var request = new CreateFloatAttributeRequest();
+        var request = new UpdateFloatAttributeRequest();
 
         // Assert
         Assert.Null(request.Default);
@@ -28,7 +28,7 @@ public class CreateFloatAttributeRequestTests : CreateAttributeBaseRequestTests<
         var defaultValue = 5f;
         var max = 10f;
 
-        var request = new CreateFloatAttributeRequest();
+        var request = new UpdateFloatAttributeRequest();
 
         // Act
         request.Min = min;
@@ -41,7 +41,7 @@ public class CreateFloatAttributeRequestTests : CreateAttributeBaseRequestTests<
         Assert.Equal(max, request.Max);
     }
 
-    public static TheoryData<CreateFloatAttributeRequest> ValidRequestsData =>
+    public static TheoryData<UpdateFloatAttributeRequest> ValidRequestsData =>
         [
             new()
             {
@@ -77,7 +77,7 @@ public class CreateFloatAttributeRequestTests : CreateAttributeBaseRequestTests<
 
     [Theory]
     [MemberData(nameof(ValidRequestsData))]
-    public void IsValid_WithValidData_ReturnsTrue(CreateFloatAttributeRequest request)
+    public void IsValid_WithValidData_ReturnsTrue(UpdateFloatAttributeRequest request)
     {
         // Act
         var isValid = request.IsValid();
@@ -86,7 +86,7 @@ public class CreateFloatAttributeRequestTests : CreateAttributeBaseRequestTests<
         Assert.True(isValid);
     }
 
-    public static TheoryData<CreateFloatAttributeRequest> InvalidRequestsData =>
+    public static TheoryData<UpdateFloatAttributeRequest> InvalidRequestsData =>
         [
             new()
             {
@@ -129,7 +129,7 @@ public class CreateFloatAttributeRequestTests : CreateAttributeBaseRequestTests<
 
     [Theory]
     [MemberData(nameof(InvalidRequestsData))]
-    public void IsValid_WithInvalidData_ReturnsFalse(CreateFloatAttributeRequest request)
+    public void IsValid_WithInvalidData_ReturnsFalse(UpdateFloatAttributeRequest request)
     {
         // Act
         var isValid = request.IsValid();
@@ -142,7 +142,7 @@ public class CreateFloatAttributeRequestTests : CreateAttributeBaseRequestTests<
     public void Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = new CreateFloatAttributeRequest
+        var request = new UpdateFloatAttributeRequest
         {
             Default = 5f,
             Required = true,
@@ -158,7 +158,7 @@ public class CreateFloatAttributeRequestTests : CreateAttributeBaseRequestTests<
     public void Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = new CreateFloatAttributeRequest
+        var request = new UpdateFloatAttributeRequest
         {
             Default = 5f,
             Required = true,
