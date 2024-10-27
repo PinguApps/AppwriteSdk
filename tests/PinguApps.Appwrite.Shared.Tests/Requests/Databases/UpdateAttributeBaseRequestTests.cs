@@ -7,7 +7,7 @@ public abstract class UpdateAttributeBaseRequestTests<TRequest, TValidator> : Da
         where TRequest : UpdateAttributeBaseRequest<TRequest, TValidator>
         where TValidator : AbstractValidator<TRequest>, new()
 {
-    protected override TRequest CreateValidDatabaseCollectionIdAttributeKeyRequest => CreateValidDatabaseCollectionIdAttributeKeyRequest;
+    protected override TRequest CreateValidDatabaseCollectionIdAttributeKeyRequest => CreateValidUpdateAttributeBaseRequest;
 
     protected abstract TRequest CreateValidUpdateAttributeBaseRequest { get; }
 
