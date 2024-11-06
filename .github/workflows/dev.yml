@@ -18,6 +18,38 @@ jobs:
       issues: read
       checks: write
 
+  todos:
+    name: Convert Todos to Issues
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push'
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: "TODO to Issue"
+        uses: "alstr/todo-to-issue-action@53d8a86de9f2224b24c6a9009a8a1f56d4e1324d" # v5
+        with:
+          INSERT_ISSUE_URLS: true
+          AUTO_ASSIGN: true
+          CLOSE_ISSUES: true
+      - name: Set Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Commit and Push Changes
+        run: |
+          git add -A
+          if [[ `git status --porcelain` ]]; then
+            git commit -m "Automatically added GitHub issue links to TODOs"
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi
+
+
   release:
     name: Push to main
     runs-on: ubuntu-latest
@@ -28,7 +60,7 @@ jobs:
       pull-requests: write
     steps:
     - name: Checkout
-      uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       with:
         ref: dev
 
