@@ -12,7 +12,7 @@ public class ResponseUtilsTests
     public void GetApiResponse_Success_ReturnsContent()
     {
         var mockApiResponse = new Mock<IApiResponse>();
-        mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(true);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.IsSuccessStatusCode).Returns(true);
 
         var result = mockApiResponse.Object.GetApiResponse();
 
@@ -30,8 +30,8 @@ public class ResponseUtilsTests
         var exception = await ApiException.Create(new HttpRequestMessage(), HttpMethod.Get, response, new RefitSettings());
 
         var mockApiResponse = new Mock<IApiResponse>();
-        mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(false);
-        mockApiResponse.SetupGet(x => x.Error).Returns(exception);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.IsSuccessStatusCode).Returns(false);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.Error).Returns(exception);
 
         var result = mockApiResponse.Object.GetApiResponse();
 
@@ -46,8 +46,8 @@ public class ResponseUtilsTests
         var exception = await ApiException.Create(new HttpRequestMessage(), HttpMethod.Get, new HttpResponseMessage(HttpStatusCode.InternalServerError), new RefitSettings());
 
         var mockApiResponse = new Mock<IApiResponse>();
-        mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(false);
-        mockApiResponse.SetupGet(x => x.Error).Returns(exception);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.IsSuccessStatusCode).Returns(false);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.Error).Returns(exception);
 
         Assert.Throws<Exception>(() => mockApiResponse.Object.GetApiResponse());
     }
@@ -56,8 +56,8 @@ public class ResponseUtilsTests
     public void GetApiResponse_FailureButNullError_ThrowsException()
     {
         var mockApiResponse = new Mock<IApiResponse>();
-        mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(false);
-        mockApiResponse.SetupGet(x => x.Error).Returns((ApiException)null!);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.IsSuccessStatusCode).Returns(false);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.Error).Returns((ApiException)null!);
 
         Assert.Throws<Exception>(() => mockApiResponse.Object.GetApiResponse());
     }
@@ -66,8 +66,8 @@ public class ResponseUtilsTests
     public void GenericGetApiResponse_Success_ReturnsContent()
     {
         var mockApiResponse = new Mock<IApiResponse<string>>();
-        mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(true);
-        mockApiResponse.SetupGet(r => r.Content).Returns("Success");
+        mockApiResponse.As<IApiResponse>().Setup(x => x.IsSuccessStatusCode).Returns(true);
+        mockApiResponse.Setup(x => x.Content).Returns("Success");
 
         var result = mockApiResponse.Object.GetApiResponse();
 
@@ -79,8 +79,8 @@ public class ResponseUtilsTests
     public void GenericGetApiResponse_SuccessButNullContent_ReturnsInternalError()
     {
         var mockApiResponse = new Mock<IApiResponse<string>>();
-        mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(true);
-        mockApiResponse.SetupGet(r => r.Content).Returns((string?)null);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.IsSuccessStatusCode).Returns(true);
+        mockApiResponse.Setup(r => r.Content).Returns((string?)null);
 
         var result = mockApiResponse.Object.GetApiResponse();
 
@@ -98,8 +98,8 @@ public class ResponseUtilsTests
         var exception = await ApiException.Create(new HttpRequestMessage(), HttpMethod.Get, response, new RefitSettings());
 
         var mockApiResponse = new Mock<IApiResponse<string>>();
-        mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(false);
-        mockApiResponse.SetupGet(x => x.Error).Returns(exception);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.IsSuccessStatusCode).Returns(false);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.Error).Returns(exception);
 
         var result = mockApiResponse.Object.GetApiResponse();
 
@@ -114,8 +114,8 @@ public class ResponseUtilsTests
         var exception = await ApiException.Create(new HttpRequestMessage(), HttpMethod.Get, new HttpResponseMessage(HttpStatusCode.InternalServerError), new RefitSettings());
 
         var mockApiResponse = new Mock<IApiResponse<string>>();
-        mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(false);
-        mockApiResponse.SetupGet(x => x.Error).Returns(exception);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.IsSuccessStatusCode).Returns(false);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.Error).Returns(exception);
 
         Assert.Throws<Exception>(() => mockApiResponse.Object.GetApiResponse());
     }
@@ -124,8 +124,8 @@ public class ResponseUtilsTests
     public void GenericGetApiResponse_FailureButNullError_ThrowsException()
     {
         var mockApiResponse = new Mock<IApiResponse<string>>();
-        mockApiResponse.SetupGet(r => r.IsSuccessStatusCode).Returns(false);
-        mockApiResponse.SetupGet(x => x.Error).Returns((ApiException)null!);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.IsSuccessStatusCode).Returns(false);
+        mockApiResponse.As<IApiResponse>().Setup(x => x.Error).Returns((ApiException)null!);
 
         Assert.Throws<Exception>(() => mockApiResponse.Object.GetApiResponse());
     }
