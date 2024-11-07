@@ -16,5 +16,10 @@ public class CreateStringAttributeRequestValidator : AbstractValidator<CreateStr
         RuleFor(x => x.Encrypt)
             .NotNull()
             .WithMessage("Encrypt should not be null");
+
+        RuleFor(x => x.Default)
+            .Length(x => 0, x => x.Size)
+            .When(x => x.Default is not null)
+            .WithMessage("Default should be between {MinLength} and {MaxLength} characters long");
     }
 }
