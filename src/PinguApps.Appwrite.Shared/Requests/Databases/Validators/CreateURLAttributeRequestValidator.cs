@@ -10,6 +10,7 @@ public class CreateURLAttributeRequestValidator : AbstractValidator<CreateURLAtt
 
         RuleFor(x => x.Default)
             .Must(x => Uri.TryCreate(x, UriKind.Absolute, out _))
-            .WithMessage("Default should be formatted as a URL");
+            .WithMessage("Default should be formatted as a URL")
+            .When(x => x.Default is not null);
     }
 }
