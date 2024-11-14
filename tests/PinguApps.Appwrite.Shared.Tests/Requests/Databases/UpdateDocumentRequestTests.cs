@@ -1,195 +1,185 @@
 ﻿using PinguApps.Appwrite.Shared.Requests.Databases;
+using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Databases;
-public class UpdateDocumentRequestTests
+public class UpdateDocumentRequestTests : DatabaseCollectionDocumentIdBaseRequestTests<UpdateDocumentRequest, UpdateDocumentRequestValidator>
 {
-    [Fact]
-    public void CreateBuilder_ReturnsNewBuilderInstance()
+    protected override UpdateDocumentRequest CreateValidDatabaseCollectionDocumentIdRequest => new()
     {
-        // Act
-        var builder = UpdateDocumentRequest.CreateBuilder();
+        Data = new Dictionary<string, object?>
+        {
+            { "name", "Pingu" },
+            { "age", 25 }
+        }
+    };
+
+    [Fact]
+    public void Constructor_InitializesWithExpectedValues()
+    {
+        // Arrange & Act
+        var request = new UpdateDocumentRequest();
 
         // Assert
-        Assert.NotNull(builder);
-        Assert.IsAssignableFrom<IUpdateDocumentRequestBuilder>(builder);
+        Assert.Null(request.Data);
+        Assert.NotNull(request.Permissions);
+        Assert.Empty(request.Permissions);
     }
 
     [Fact]
-    public void WithDatabaseId_SetsDatabaseId_ReturnsBuilder()
+    public void Properties_CanBeSet()
     {
         // Arrange
-        var builder = UpdateDocumentRequest.CreateBuilder();
-        var databaseId = IdUtils.GenerateUniqueId();
-
-        // Act
-        var result = builder.WithDatabaseId(databaseId);
-        var request = result.Build();
-
-        // Assert
-        Assert.Same(builder, result);
-        Assert.Equal(databaseId, request.DatabaseId);
-    }
-
-    [Fact]
-    public void WithCollectionId_SetsCollectionId_ReturnsBuilder()
-    {
-        // Arrange
-        var builder = UpdateDocumentRequest.CreateBuilder();
-        var collectionId = IdUtils.GenerateUniqueId();
-
-        // Act
-        var result = builder.WithCollectionId(collectionId);
-        var request = result.Build();
-
-        // Assert
-        Assert.Same(builder, result);
-        Assert.Equal(collectionId, request.CollectionId);
-    }
-
-    [Fact]
-    public void WithDocumentId_SetsDocumentId_ReturnsBuilder()
-    {
-        // Arrange
-        var builder = UpdateDocumentRequest.CreateBuilder();
-        var documentId = IdUtils.GenerateUniqueId();
-
-        // Act
-        var result = builder.WithDocumentId(documentId);
-        var request = result.Build();
-
-        // Assert
-        Assert.Same(builder, result);
-        Assert.Equal(documentId, request.DocumentId);
-    }
-
-    [Fact]
-    public void WithPermissions_SetsPermissions_ReturnsBuilder()
-    {
-        // Arrange
-        var builder = UpdateDocumentRequest.CreateBuilder();
-        var permissions = new List<Permission> { Permission.Read().Any() };
-
-        // Act
-        var result = builder.WithPermissions(permissions);
-        var request = result.Build();
-
-        // Assert
-        Assert.Same(builder, result);
-        Assert.Same(permissions, request.Permissions);
-    }
-
-    [Fact]
-    public void AddPermission_AddsPermissionToList_ReturnsBuilder()
-    {
-        // Arrange
-        var builder = UpdateDocumentRequest.CreateBuilder();
-        var permission = Permission.Read().Any();
-
-        // Act
-        var result = builder.AddPermission(permission);
-        var request = result.Build();
-
-        // Assert
-        Assert.Same(builder, result);
-        Assert.Contains(permission, request.Permissions);
-        Assert.Single(request.Permissions);
-    }
-
-    [Fact]
-    public void AddPermission_CanAddMultiplePermissions_ReturnsBuilder()
-    {
-        // Arrange
-        var builder = UpdateDocumentRequest.CreateBuilder();
-        var permission1 = Permission.Read().Any();
-        var permission2 = Permission.Write().Any();
-
-        // Act
-        builder.AddPermission(permission1)
-              .AddPermission(permission2);
-        var request = builder.Build();
-
-        // Assert
-        Assert.Equal(2, request.Permissions.Count);
-        Assert.Contains(permission1, request.Permissions);
-        Assert.Contains(permission2, request.Permissions);
-    }
-
-    [Fact]
-    public void AddField_AddsFieldToData_ReturnsBuilder()
-    {
-        // Arrange
-        var builder = UpdateDocumentRequest.CreateBuilder();
-        const string fieldName = "testField";
-        const string fieldValue = "testValue";
-
-        // Act
-        var result = builder.AddField(fieldName, fieldValue);
-        var request = result.Build();
-
-        // Assert
-        Assert.Same(builder, result);
-        Assert.Equal(fieldValue, request.Data[fieldName]);
-    }
-
-    [Fact]
-    public void AddField_CanAddMultipleFields_ReturnsBuilder()
-    {
-        // Arrange
-        var builder = UpdateDocumentRequest.CreateBuilder();
-
-        // Act
-        builder.AddField("string", "value")
-               .AddField("number", 42)
-               .AddField("boolean", true)
-               .AddField("null", null);
-
-        var request = builder.Build();
-
-        // Assert
-        Assert.Equal(4, request.Data.Count);
-        Assert.Equal("value", request.Data["string"]);
-        Assert.Equal(42, request.Data["number"]);
-        Assert.Equal(true, request.Data["boolean"]);
-        Assert.Null(request.Data["null"]);
-    }
-
-    [Fact]
-    public void Build_CreatesRequestWithAllSetValues()
-    {
-        // Arrange
-        var databaseId = IdUtils.GenerateUniqueId();
-        var collectionId = IdUtils.GenerateUniqueId();
-        var documentId = IdUtils.GenerateUniqueId();
-        var permissions = new List<Permission> { Permission.Read().Any() };
-        const string fieldName = "testField";
-        const string fieldValue = "testValue";
-
-        // Act
-        var request = UpdateDocumentRequest.CreateBuilder()
-            .WithDatabaseId(databaseId)
-            .WithCollectionId(collectionId)
-            .WithDocumentId(documentId)
-            .WithPermissions(permissions)
-            .AddField(fieldName, fieldValue)
+        var request = UpdateDocumentRequest
+            .CreateBuilder()
+            .AddField("name", "Pingu")
+            .AddField("age", 30)
+            .AddPermission(Permission.Read().Any())
             .Build();
 
         // Assert
-        Assert.Equal(databaseId, request.DatabaseId);
-        Assert.Equal(collectionId, request.CollectionId);
-        Assert.Equal(documentId, request.DocumentId);
-        Assert.Same(permissions, request.Permissions);
-        Assert.Equal(fieldValue, request.Data[fieldName]);
+        Assert.NotNull(request.Data);
+        var name = request.Data["name"];
+        Assert.Equal("Pingu", name);
+        var age = request.Data["age"];
+        Assert.Equal(30, age);
+        Assert.NotNull(request.Permissions);
+        Assert.Single(request.Permissions);
+        Assert.Equal(Permission.Read().Any(), request.Permissions.First());
+    }
+
+    public static TheoryData<UpdateDocumentRequest> ValidRequestsData =>
+    [
+        UpdateDocumentRequest
+            .CreateBuilder()
+            .WithDatabaseId(IdUtils.GenerateUniqueId())
+            .WithCollectionId(IdUtils.GenerateUniqueId())
+            .WithDocumentId(IdUtils.GenerateUniqueId())
+            .AddField("name", "Pingu")
+            .AddField("age", 25)
+            .AddPermission(Permission.Read().Any())
+            .Build(),
+
+        new()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = "validDocumentId123",
+            Data = new CreateDocumentTestData { Name = "Another Valid Name", Age = 30 },
+            Permissions = []
+        }
+    ];
+
+    [Theory]
+    [MemberData(nameof(ValidRequestsData))]
+    public void IsValid_WithValidData_ReturnsTrue(CreateDocumentRequest<CreateDocumentTestData> request)
+    {
+        // Act
+        var isValid = request.IsValid();
+
+        // Assert
+        Assert.True(isValid);
+    }
+
+    public static TheoryData<CreateDocumentRequest<CreateDocumentTestData>> InvalidRequestsData =>
+    [
+        new()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = null!,
+            Data = new CreateDocumentTestData { Name = "Test", Age = 25 }
+        },
+        new()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = "",
+            Data = new CreateDocumentTestData { Name = "Test", Age = 25 }
+        },
+        new()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = "invalid chars!",
+            Data = new CreateDocumentTestData { Name = "Test", Age = 25 }
+        },
+        new()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = ".startsWithSymbol",
+            Data = new CreateDocumentTestData { Name = "Test", Age = 25 }
+        },
+        new()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = new string('a', 37),
+            Data = new CreateDocumentTestData { Name = "Test", Age = 25 }
+        },
+        new()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = IdUtils.GenerateUniqueId(),
+            Data = null!
+        },
+        new()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = IdUtils.GenerateUniqueId(),
+            Data = new CreateDocumentTestData { Name = "Test", Age = 25 },
+            Permissions = null!
+        }
+    ];
+
+    [Theory]
+    [MemberData(nameof(InvalidRequestsData))]
+    public void IsValid_WithInvalidData_ReturnsFalse(CreateDocumentRequest<CreateDocumentTestData> request)
+    {
+        // Act
+        var isValid = request.IsValid();
+
+        // Assert
+        Assert.False(isValid);
     }
 
     [Fact]
-    public void Build_WithNoFieldsAdded_CreatesEmptyDataDictionary()
+    public void Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
-        // Act
-        var request = UpdateDocumentRequest.CreateBuilder().Build();
+        // Arrange
+        var request = new CreateDocumentRequest<CreateDocumentTestData>
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = "",
+            Data = null!,
+            Permissions = null!
+        };
 
         // Assert
-        Assert.NotNull(request.Data);
-        Assert.Empty(request.Data);
+        Assert.Throws<ValidationException>(() => request.Validate(true));
+    }
+
+    [Fact]
+    public void Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
+    {
+        // Arrange
+        var request = new CreateDocumentRequest<CreateDocumentTestData>
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = "",
+            Data = null!,
+            Permissions = null!
+        };
+
+        // Act
+        var result = request.Validate(false);
+
+        // Assert
+        Assert.False(result.IsValid);
     }
 }
