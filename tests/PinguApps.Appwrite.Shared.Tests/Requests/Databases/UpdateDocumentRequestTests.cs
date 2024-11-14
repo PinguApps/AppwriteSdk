@@ -2,24 +2,24 @@
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Databases;
-public class CreateDocumentRequestBuilderTests
+public class UpdateDocumentRequestTests
 {
     [Fact]
     public void CreateBuilder_ReturnsNewBuilderInstance()
     {
         // Act
-        var builder = CreateDocumentRequest.CreateBuilder();
+        var builder = UpdateDocumentRequest.CreateBuilder();
 
         // Assert
         Assert.NotNull(builder);
-        Assert.IsAssignableFrom<ICreateDocumentRequestBuilder>(builder);
+        Assert.IsAssignableFrom<IUpdateDocumentRequestBuilder>(builder);
     }
 
     [Fact]
     public void WithDatabaseId_SetsDatabaseId_ReturnsBuilder()
     {
         // Arrange
-        var builder = CreateDocumentRequest.CreateBuilder();
+        var builder = UpdateDocumentRequest.CreateBuilder();
         var databaseId = IdUtils.GenerateUniqueId();
 
         // Act
@@ -35,7 +35,7 @@ public class CreateDocumentRequestBuilderTests
     public void WithCollectionId_SetsCollectionId_ReturnsBuilder()
     {
         // Arrange
-        var builder = CreateDocumentRequest.CreateBuilder();
+        var builder = UpdateDocumentRequest.CreateBuilder();
         var collectionId = IdUtils.GenerateUniqueId();
 
         // Act
@@ -51,7 +51,7 @@ public class CreateDocumentRequestBuilderTests
     public void WithDocumentId_SetsDocumentId_ReturnsBuilder()
     {
         // Arrange
-        var builder = CreateDocumentRequest.CreateBuilder();
+        var builder = UpdateDocumentRequest.CreateBuilder();
         var documentId = IdUtils.GenerateUniqueId();
 
         // Act
@@ -67,7 +67,7 @@ public class CreateDocumentRequestBuilderTests
     public void WithPermissions_SetsPermissions_ReturnsBuilder()
     {
         // Arrange
-        var builder = CreateDocumentRequest.CreateBuilder();
+        var builder = UpdateDocumentRequest.CreateBuilder();
         var permissions = new List<Permission> { Permission.Read().Any() };
 
         // Act
@@ -83,7 +83,7 @@ public class CreateDocumentRequestBuilderTests
     public void AddPermission_AddsPermissionToList_ReturnsBuilder()
     {
         // Arrange
-        var builder = CreateDocumentRequest.CreateBuilder();
+        var builder = UpdateDocumentRequest.CreateBuilder();
         var permission = Permission.Read().Any();
 
         // Act
@@ -100,7 +100,7 @@ public class CreateDocumentRequestBuilderTests
     public void AddPermission_CanAddMultiplePermissions_ReturnsBuilder()
     {
         // Arrange
-        var builder = CreateDocumentRequest.CreateBuilder();
+        var builder = UpdateDocumentRequest.CreateBuilder();
         var permission1 = Permission.Read().Any();
         var permission2 = Permission.Write().Any();
 
@@ -119,7 +119,7 @@ public class CreateDocumentRequestBuilderTests
     public void AddField_AddsFieldToData_ReturnsBuilder()
     {
         // Arrange
-        var builder = CreateDocumentRequest.CreateBuilder();
+        var builder = UpdateDocumentRequest.CreateBuilder();
         const string fieldName = "testField";
         const string fieldValue = "testValue";
 
@@ -136,7 +136,7 @@ public class CreateDocumentRequestBuilderTests
     public void AddField_CanAddMultipleFields_ReturnsBuilder()
     {
         // Arrange
-        var builder = CreateDocumentRequest.CreateBuilder();
+        var builder = UpdateDocumentRequest.CreateBuilder();
 
         // Act
         builder.AddField("string", "value")
@@ -166,7 +166,7 @@ public class CreateDocumentRequestBuilderTests
         const string fieldValue = "testValue";
 
         // Act
-        var request = CreateDocumentRequest.CreateBuilder()
+        var request = UpdateDocumentRequest.CreateBuilder()
             .WithDatabaseId(databaseId)
             .WithCollectionId(collectionId)
             .WithDocumentId(documentId)
@@ -186,7 +186,7 @@ public class CreateDocumentRequestBuilderTests
     public void Build_WithNoFieldsAdded_CreatesEmptyDataDictionary()
     {
         // Act
-        var request = CreateDocumentRequest.CreateBuilder().Build();
+        var request = UpdateDocumentRequest.CreateBuilder().Build();
 
         // Assert
         Assert.NotNull(request.Data);
