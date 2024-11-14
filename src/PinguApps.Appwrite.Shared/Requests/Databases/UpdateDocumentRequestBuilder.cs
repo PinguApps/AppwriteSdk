@@ -98,11 +98,6 @@ internal class UpdateDocumentRequestBuilder : IUpdateDocumentRequestBuilder
             return true;
         }
 
-        if (value1 is null && value2 is null)
-        {
-            return true;
-        }
-
         if (value1 is null || value2 is null)
         {
             return false;

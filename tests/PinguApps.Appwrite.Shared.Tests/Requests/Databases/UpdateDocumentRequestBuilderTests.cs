@@ -1,4 +1,5 @@
-﻿using PinguApps.Appwrite.Shared.Requests.Databases;
+﻿using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Databases;
@@ -192,4 +193,157 @@ public class UpdateDocumentRequestBuilderTests
         Assert.NotNull(request.Data);
         Assert.Empty(request.Data);
     }
+
+    private class TestModel
+    {
+        public string? RegularProperty { get; set; }
+
+        [JsonPropertyName("custom_name")]
+        public string? PropertyWithJsonName { get; set; }
+
+        // Property that can't be read
+        public string WriteOnlyProperty
+        {
+            set { }
+        }
+
+        public IEnumerable<object>? CollectionProperty { get; set; }
+    }
+
+    [Fact]
+    public void WithChanges_WhenBeforeIsNull_ThrowsArgumentNullException()
+    {
+        // Arrange
+        var builder = UpdateDocumentRequest.CreateBuilder();
+        TestModel? before = null;
+        var after = new TestModel();
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() => builder.WithChanges(before!, after));
+        Assert.Equal("before", exception.ParamName);
+    }
+
+    [Fact]
+    public void WithChanges_WhenAfterIsNull_ThrowsArgumentNullException()
+    {
+        // Arrange
+        var builder = UpdateDocumentRequest.CreateBuilder();
+        var before = new TestModel();
+        TestModel? after = null;
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() => builder.WithChanges(before, after!));
+        Assert.Equal("after", exception.ParamName);
+    }
+
+    [Fact]
+    public void WithChanges_WithWriteOnlyProperty_SkipsProperty()
+    {
+        // Arrange
+        var builder = UpdateDocumentRequest.CreateBuilder();
+        var before = new TestModel();
+        var after = new TestModel();
+
+        // Act
+        var request = builder.WithChanges(before, after).Build();
+
+        // Assert
+        Assert.Empty(request.Data);
+    }
+
+    [Fact]
+    public void WithChanges_WithJsonPropertyNameAttribute_UsesCustomName()
+    {
+        // Arrange
+        var builder = UpdateDocumentRequest.CreateBuilder();
+        var before = new TestModel { PropertyWithJsonName = "old" };
+        var after = new TestModel { PropertyWithJsonName = "new" };
+
+        // Act
+        var request = builder.WithChanges(before, after).Build();
+
+        // Assert
+        Assert.True(request.Data.ContainsKey("custom_name"));
+        Assert.Equal("new", request.Data["custom_name"]);
+    }
+
+    [Fact]
+    public void WithChanges_BothValuesNull_NoChange()
+    {
+        // Arrange
+        var builder = UpdateDocumentRequest.CreateBuilder();
+        var before = new TestModel { RegularProperty = null };
+        var after = new TestModel { RegularProperty = null };
+
+        // Act
+        var request = builder.WithChanges(before, after).Build();
+
+        // Assert
+        Assert.Empty(request.Data);
+    }
+
+    [Fact]
+    public void WithChanges_CollectionPropertyChanged_AddsToData()
+    {
+        // Arrange
+        var builder = UpdateDocumentRequest.CreateBuilder();
+        var before = new TestModel { CollectionProperty = [new object(), new object()] };
+        var after = new TestModel { CollectionProperty = [new object()] };
+
+        // Act
+        var request = builder.WithChanges(before, after).Build();
+
+        // Assert
+        Assert.True(request.Data.ContainsKey("CollectionProperty"));
+        Assert.Equal(after.CollectionProperty, request.Data["CollectionProperty"]);
+    }
+
+    [Fact]
+    public void WithChanges_CollectionPropertySameReference_NoChange()
+    {
+        // Arrange
+        var builder = UpdateDocumentRequest.CreateBuilder();
+        var collection = new[] { new object() };
+        var before = new TestModel { CollectionProperty = collection };
+        var after = new TestModel { CollectionProperty = collection };
+
+        // Act
+        var request = builder.WithChanges(before, after).Build();
+
+        // Assert
+        Assert.Empty(request.Data);
+    }
+
+    [Fact]
+    public void WithChanges_PropertyChangedFromNullToValue_AddsToData()
+    {
+        // Arrange
+        var builder = UpdateDocumentRequest.CreateBuilder();
+        var before = new TestModel { RegularProperty = null };
+        var after = new TestModel { RegularProperty = "value" };
+
+        // Act
+        var request = builder.WithChanges(before, after).Build();
+
+        // Assert
+        Assert.True(request.Data.ContainsKey("RegularProperty"));
+        Assert.Equal("value", request.Data["RegularProperty"]);
+    }
+
+    [Fact]
+    public void WithChanges_PropertyChangedFromValueToNull_AddsToData()
+    {
+        // Arrange
+        var builder = UpdateDocumentRequest.CreateBuilder();
+        var before = new TestModel { RegularProperty = "value" };
+        var after = new TestModel { RegularProperty = null };
+
+        // Act
+        var request = builder.WithChanges(before, after).Build();
+
+        // Assert
+        Assert.True(request.Data.ContainsKey("RegularProperty"));
+        Assert.Null(request.Data["RegularProperty"]);
+    }
+
 }
