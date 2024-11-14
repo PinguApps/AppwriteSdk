@@ -41,4 +41,5 @@ public interface IUpdateDocumentRequestBuilder
     /// Builds the document request
     /// </summary>
     UpdateDocumentRequest Build();
+    IUpdateDocumentRequestBuilder WithChanges<T>(T before, T after) where T : class;
 }
