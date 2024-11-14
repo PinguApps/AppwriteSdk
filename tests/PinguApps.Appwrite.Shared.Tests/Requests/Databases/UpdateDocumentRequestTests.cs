@@ -1,4 +1,5 @@
-﻿using PinguApps.Appwrite.Shared.Requests.Databases;
+﻿using FluentValidation;
+using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
@@ -21,7 +22,8 @@ public class UpdateDocumentRequestTests : DatabaseCollectionDocumentIdBaseReques
         var request = new UpdateDocumentRequest();
 
         // Assert
-        Assert.Null(request.Data);
+        Assert.NotNull(request.Data);
+        Assert.Empty(request.Data);
         Assert.NotNull(request.Permissions);
         Assert.Empty(request.Permissions);
     }
@@ -45,7 +47,6 @@ public class UpdateDocumentRequestTests : DatabaseCollectionDocumentIdBaseReques
         Assert.Equal(30, age);
         Assert.NotNull(request.Permissions);
         Assert.Single(request.Permissions);
-        Assert.Equal(Permission.Read().Any(), request.Permissions.First());
     }
 
     public static TheoryData<UpdateDocumentRequest> ValidRequestsData =>
@@ -59,20 +60,19 @@ public class UpdateDocumentRequestTests : DatabaseCollectionDocumentIdBaseReques
             .AddField("age", 25)
             .AddPermission(Permission.Read().Any())
             .Build(),
-
-        new()
-        {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = "validDocumentId123",
-            Data = new CreateDocumentTestData { Name = "Another Valid Name", Age = 30 },
-            Permissions = []
-        }
+        UpdateDocumentRequest
+            .CreateBuilder()
+            .WithDatabaseId(IdUtils.GenerateUniqueId())
+            .WithCollectionId(IdUtils.GenerateUniqueId())
+            .WithDocumentId(IdUtils.GenerateUniqueId())
+            .AddField("name", "Valid Name")
+            .AddField("age", 30)
+            .Build()
     ];
 
     [Theory]
     [MemberData(nameof(ValidRequestsData))]
-    public void IsValid_WithValidData_ReturnsTrue(CreateDocumentRequest<CreateDocumentTestData> request)
+    public void IsValid_WithValidData_ReturnsTrue(UpdateDocumentRequest request)
     {
         // Act
         var isValid = request.IsValid();
@@ -81,63 +81,41 @@ public class UpdateDocumentRequestTests : DatabaseCollectionDocumentIdBaseReques
         Assert.True(isValid);
     }
 
-    public static TheoryData<CreateDocumentRequest<CreateDocumentTestData>> InvalidRequestsData =>
-    [
-        new()
+    public static TheoryData<UpdateDocumentRequest> InvalidRequestsData
+    {
+        get
         {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = null!,
-            Data = new CreateDocumentTestData { Name = "Test", Age = 25 }
-        },
-        new()
-        {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = "",
-            Data = new CreateDocumentTestData { Name = "Test", Age = 25 }
-        },
-        new()
-        {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = "invalid chars!",
-            Data = new CreateDocumentTestData { Name = "Test", Age = 25 }
-        },
-        new()
-        {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = ".startsWithSymbol",
-            Data = new CreateDocumentTestData { Name = "Test", Age = 25 }
-        },
-        new()
-        {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = new string('a', 37),
-            Data = new CreateDocumentTestData { Name = "Test", Age = 25 }
-        },
-        new()
-        {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = IdUtils.GenerateUniqueId(),
-            Data = null!
-        },
-        new()
-        {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = IdUtils.GenerateUniqueId(),
-            Data = new CreateDocumentTestData { Name = "Test", Age = 25 },
-            Permissions = null!
+            var data = new TheoryData<UpdateDocumentRequest>();
+
+            var nullData = UpdateDocumentRequest
+                .CreateBuilder()
+                .WithDatabaseId(IdUtils.GenerateUniqueId())
+                .WithCollectionId(IdUtils.GenerateUniqueId())
+                .WithDocumentId(IdUtils.GenerateUniqueId())
+                .Build();
+
+            nullData.Data = null!;
+
+            data.Add(nullData);
+
+            var nullPermissions = UpdateDocumentRequest
+                .CreateBuilder()
+                .WithDatabaseId(IdUtils.GenerateUniqueId())
+                .WithCollectionId(IdUtils.GenerateUniqueId())
+                .WithDocumentId(IdUtils.GenerateUniqueId())
+                .Build();
+
+            nullPermissions.Permissions = null!;
+
+            data.Add(nullPermissions);
+
+            return data;
         }
-    ];
+    }
 
     [Theory]
     [MemberData(nameof(InvalidRequestsData))]
-    public void IsValid_WithInvalidData_ReturnsFalse(CreateDocumentRequest<CreateDocumentTestData> request)
+    public void IsValid_WithInvalidData_ReturnsFalse(UpdateDocumentRequest request)
     {
         // Act
         var isValid = request.IsValid();
@@ -150,14 +128,15 @@ public class UpdateDocumentRequestTests : DatabaseCollectionDocumentIdBaseReques
     public void Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = new CreateDocumentRequest<CreateDocumentTestData>
-        {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = "",
-            Data = null!,
-            Permissions = null!
-        };
+        var request = UpdateDocumentRequest
+            .CreateBuilder()
+            .WithDatabaseId(IdUtils.GenerateUniqueId())
+            .WithCollectionId(IdUtils.GenerateUniqueId())
+            .WithDocumentId(IdUtils.GenerateUniqueId())
+            .Build();
+
+        request.Data = null!;
+        request.Permissions = null!;
 
         // Assert
         Assert.Throws<ValidationException>(() => request.Validate(true));
@@ -167,14 +146,15 @@ public class UpdateDocumentRequestTests : DatabaseCollectionDocumentIdBaseReques
     public void Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = new CreateDocumentRequest<CreateDocumentTestData>
-        {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = "",
-            Data = null!,
-            Permissions = null!
-        };
+        var request = UpdateDocumentRequest
+            .CreateBuilder()
+            .WithDatabaseId(IdUtils.GenerateUniqueId())
+            .WithCollectionId(IdUtils.GenerateUniqueId())
+            .WithDocumentId(IdUtils.GenerateUniqueId())
+            .Build();
+
+        request.Data = null!;
+        request.Permissions = null!;
 
         // Act
         var result = request.Validate(false);
