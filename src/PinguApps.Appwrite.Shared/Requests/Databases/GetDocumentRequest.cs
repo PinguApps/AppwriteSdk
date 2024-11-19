@@ -5,6 +5,10 @@ using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases;
+
+/// <summary>
+/// The request to get a document
+/// </summary>
 public class GetDocumentRequest : DatabaseCollectionDocumentIdBaseRequest<GetDocumentRequest, GetDocumentRequestValidator>
 {
     /// <summary>
