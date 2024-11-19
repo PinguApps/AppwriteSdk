@@ -4,15 +4,16 @@ using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Databases;
-public class GetDocumentRequestTests : DatabaseCollectionDocumentIdBaseRequestTests<GetDocumentRequest, GetDocumentRequestValidator>
+public class ListIndexesRequestTests : DatabaseCollectionIdBaseRequestTests<ListIndexesRequest, ListIndexesRequestValidator>
 {
-    protected override GetDocumentRequest CreateValidDatabaseCollectionDocumentIdRequest => new();
+    protected override ListIndexesRequest CreateValidDatabaseCollectionIdRequest => new();
+
 
     [Fact]
     public void QueryBase_Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
-        var request = new GetDocumentRequest();
+        var request = new ListIndexesRequest();
 
         // Assert
         Assert.Null(request.Queries);
@@ -26,7 +27,7 @@ public class GetDocumentRequestTests : DatabaseCollectionDocumentIdBaseRequestTe
         var value = "value";
         List<Query> queries = [Query.Equal(attributeName, value)];
 
-        var request = new GetDocumentRequest();
+        var request = new ListIndexesRequest();
 
         // Act
         request.Queries = queries;
@@ -48,10 +49,9 @@ public class GetDocumentRequestTests : DatabaseCollectionDocumentIdBaseRequestTe
     public void QueryBase_IsValid_WithValidData_ReturnsTrue()
     {
         // Arrange
-        var request = new GetDocumentRequest();
+        var request = new ListIndexesRequest();
         request.DatabaseId = IdUtils.GenerateUniqueId();
         request.CollectionId = IdUtils.GenerateUniqueId();
-        request.DocumentId = IdUtils.GenerateUniqueId();
         request.Queries = [Query.Equal("attributeName", "value")];
 
         // Act
@@ -65,10 +65,9 @@ public class GetDocumentRequestTests : DatabaseCollectionDocumentIdBaseRequestTe
     public void QueryBase_IsValid_WithNullQueries_ReturnsTrue()
     {
         // Arrange
-        var request = new GetDocumentRequest();
+        var request = new ListIndexesRequest();
         request.DatabaseId = IdUtils.GenerateUniqueId();
         request.CollectionId = IdUtils.GenerateUniqueId();
-        request.DocumentId = IdUtils.GenerateUniqueId();
 
         // Act
         var isValid = request.IsValid();
@@ -81,10 +80,9 @@ public class GetDocumentRequestTests : DatabaseCollectionDocumentIdBaseRequestTe
     public void QueryBase_IsValid_WithInvalidData_QueryTooLarge_ReturnsFalse()
     {
         // Arrange
-        var request = new GetDocumentRequest();
+        var request = new ListIndexesRequest();
         request.DatabaseId = IdUtils.GenerateUniqueId();
         request.CollectionId = IdUtils.GenerateUniqueId();
-        request.DocumentId = IdUtils.GenerateUniqueId();
         request.Queries = [Query.Equal("attributeName", new string('a', 4097))];
 
         // Act
@@ -98,10 +96,8 @@ public class GetDocumentRequestTests : DatabaseCollectionDocumentIdBaseRequestTe
     public void QueryBase_IsValid_WithInvalidData_TooManyQueries_ReturnsFalse()
     {
         // Arrange
-        var request = new GetDocumentRequest();
+        var request = new ListIndexesRequest();
         request.DatabaseId = IdUtils.GenerateUniqueId();
-        request.CollectionId = IdUtils.GenerateUniqueId();
-        request.DocumentId = IdUtils.GenerateUniqueId();
         request.Queries = Enumerable.Range(0, 101)
             .Select(_ => Query.Equal("attributeName", "value"))
             .ToList();
@@ -117,10 +113,9 @@ public class GetDocumentRequestTests : DatabaseCollectionDocumentIdBaseRequestTe
     public void QueryBase_Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = new GetDocumentRequest();
+        var request = new ListIndexesRequest();
         request.DatabaseId = IdUtils.GenerateUniqueId();
         request.CollectionId = IdUtils.GenerateUniqueId();
-        request.DocumentId = IdUtils.GenerateUniqueId();
         request.Queries = Enumerable.Range(0, 101)
             .Select(_ => Query.Equal("attributeName", "value"))
             .ToList();
@@ -133,10 +128,9 @@ public class GetDocumentRequestTests : DatabaseCollectionDocumentIdBaseRequestTe
     public void QueryBase_Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = new GetDocumentRequest();
+        var request = new ListIndexesRequest();
         request.DatabaseId = IdUtils.GenerateUniqueId();
         request.CollectionId = IdUtils.GenerateUniqueId();
-        request.DocumentId = IdUtils.GenerateUniqueId();
         request.Queries = Enumerable.Range(0, 101)
             .Select(_ => Query.Equal("attributeName", "value"))
             .ToList();
