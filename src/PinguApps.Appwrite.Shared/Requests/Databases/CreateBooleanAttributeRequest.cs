@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases;
+
+/// <summary>
+/// The request to create a boolean attribute
+/// </summary>
 public class CreateBooleanAttributeRequest : CreateAttributeBaseRequest<CreateBooleanAttributeRequest, CreateBooleanAttributeRequestValidator>
 {
     /// <summary>

@@ -4,6 +4,10 @@ using PinguApps.Appwrite.Shared.Converters;
 using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases;
+
+/// <summary>
+/// The request to create a datetime attribute
+/// </summary>
 public class CreateDatetimeAttribute : CreateAttributeBaseRequest<CreateDatetimeAttribute, CreateDatetimeAttributeValidator>
 {
     /// <summary>

@@ -41,5 +41,13 @@ public interface IUpdateDocumentRequestBuilder
     /// Builds the document request
     /// </summary>
     UpdateDocumentRequest Build();
+
+    /// <summary>
+    /// Compares a before and after snapshop of an object, and adds any changed values to the document data
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="before">The values before any modifications</param>
+    /// <param name="after">The values after modifications</param>
+    /// <returns></returns>
     IUpdateDocumentRequestBuilder WithChanges<T>(T before, T after) where T : class;
 }

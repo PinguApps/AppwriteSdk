@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases;
+
+/// <summary>
+/// The request to update a database
+/// </summary>
 public class UpdateDatabase : DatabaseIdBaseRequest<UpdateDatabase, UpdateDatabaseValidator>
 {
     /// <summary>

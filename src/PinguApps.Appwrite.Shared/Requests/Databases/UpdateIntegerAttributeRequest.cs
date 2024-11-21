@@ -2,6 +2,10 @@
 using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases;
+
+/// <summary>
+/// The request to update integer attributes
+/// </summary>
 public class UpdateIntegerAttributeRequest : UpdateAttributeBaseRequest<UpdateIntegerAttributeRequest, UpdateIntegerAttributeRequestValidator>
 {
     /// <summary>

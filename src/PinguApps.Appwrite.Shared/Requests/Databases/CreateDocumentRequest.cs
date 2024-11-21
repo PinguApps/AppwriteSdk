@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases;
+
+/// <summary>
+/// The request to create a document
+/// </summary>
 public class CreateDocumentRequest : CreateDocumentRequest<Dictionary<string, object?>>
 {
     internal CreateDocumentRequest() { }

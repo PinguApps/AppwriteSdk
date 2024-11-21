@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 
@@ -19,5 +20,6 @@ public class UpdateRelationshipAttributeRequest : DatabaseCollectionIdAttributeK
     /// Constraints option
     /// </summary>
     [JsonPropertyName("onDelete")]
+    [JsonConverter(typeof(CamelCaseEnumConverter))]
     public OnDelete? OnDelete { get; set; }
 }

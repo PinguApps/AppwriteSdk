@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases;
+
 internal class UpdateDocumentRequestBuilder : IUpdateDocumentRequestBuilder
 {
     private readonly UpdateDocumentRequest _request = new();
@@ -76,7 +77,6 @@ internal class UpdateDocumentRequestBuilder : IUpdateDocumentRequestBuilder
 
         return this;
     }
-
 
     public UpdateDocumentRequest Build()
     {
