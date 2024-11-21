@@ -14,30 +14,26 @@ public class UpperCaseEnumListConverter<T> : JsonConverter<List<T>> where T : En
         }
 
         var list = new List<T>();
+        reader.Read();
 
-        while (reader.Read())
+        while (reader.TokenType is not JsonTokenType.EndArray)
         {
-            if (reader.TokenType is JsonTokenType.EndArray)
-            {
-                return list;
-            }
-
             var value = reader.GetString();
             list.Add((T)Enum.Parse(typeof(T), value, true));
+
+            reader.Read();
         }
 
-        throw new JsonException("Expected end of array");
+        return list;
     }
 
     public override void Write(Utf8JsonWriter writer, List<T> value, JsonSerializerOptions options)
     {
         writer.WriteStartArray();
-
         foreach (var item in value)
         {
             writer.WriteStringValue(item.ToString().ToUpper());
         }
-
         writer.WriteEndArray();
     }
 }
