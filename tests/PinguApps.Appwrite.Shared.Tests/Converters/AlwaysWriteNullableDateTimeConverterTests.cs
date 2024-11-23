@@ -91,5 +91,4 @@ public class AlwaysWriteNullableDateTimeConverterTests
         Assert.NotNull(deserialized?.Date);
         Assert.Equal(testDate, deserialized.Date.Value);
     }
-
 }
