@@ -18,14 +18,14 @@ internal interface IDatabasesApi : IBaseApi
     [Post("/databases")]
     Task<IApiResponse<Database>> CreateDatabase(CreateDatabaseRequest request);
 
+    [Delete("/databases/{databaseId}")]
+    Task<IApiResponse> DeleteDatabase(string databaseId);
+
     [Get("/databases/{databaseId}")]
     Task<IApiResponse<Database>> GetDatabase(string databaseId);
 
     [Put("/databases/{databaseId}")]
     Task<IApiResponse<Database>> UpdateDatabase(string databaseId, UpdateDatabaseRequest request);
-
-    [Delete("/databases/{databaseId}")]
-    Task<IApiResponse> DeleteDatabase(string databaseId);
 
     // Collection Operations
     [Get("/databases/{databaseId}/collections")]
@@ -35,14 +35,14 @@ internal interface IDatabasesApi : IBaseApi
     [Post("/databases/{databaseId}/collections")]
     Task<IApiResponse<Collection>> CreateCollection(string databaseId, CreateCollectionRequest request);
 
+    [Delete("/databases/{databaseId}/collections/{collectionId}")]
+    Task<IApiResponse> DeleteCollection(string databaseId, string collectionId);
+
     [Get("/databases/{databaseId}/collections/{collectionId}")]
     Task<IApiResponse<Collection>> GetCollection(string databaseId, string collectionId);
 
     [Put("/databases/{databaseId}/collections/{collectionId}")]
     Task<IApiResponse<Collection>> UpdateCollection(string databaseId, string collectionId, UpdateCollectionRequest request);
-
-    [Delete("/databases/{databaseId}/collections/{collectionId}")]
-    Task<IApiResponse> DeleteCollection(string databaseId, string collectionId);
 
     // Attribute Operations
     [Get("/databases/{databaseId}/collections/{collectionId}/attributes")]
@@ -106,11 +106,11 @@ internal interface IDatabasesApi : IBaseApi
     [Patch("/databases/{databaseId}/collections/{collectionId}/attributes/url/{key}")]
     Task<IApiResponse<AttributeUrl>> UpdateUrlAttribute(string databaseId, string collectionId, string key, UpdateURLAttributeRequest request);
 
-    [Get("/databases/{databaseId}/collections/{collectionId}/attributes/{key}")]
-    Task<IApiResponse<Attribute>> GetAttribute(string databaseId, string collectionId, string key);
-
     [Delete("/databases/{databaseId}/collections/{collectionId}/attributes/{key}")]
     Task<IApiResponse> DeleteAttribute(string databaseId, string collectionId, string key);
+
+    [Get("/databases/{databaseId}/collections/{collectionId}/attributes/{key}")]
+    Task<IApiResponse<Attribute>> GetAttribute(string databaseId, string collectionId, string key);
 
     [Patch("/databases/{databaseId}/collections/{collectionId}/attributes/{key}/relationship")]
     Task<IApiResponse<AttributeRelationship>> UpdateRelationshipAttribute(string databaseId, string collectionId, string key, UpdateRelationshipAttributeRequest request);
@@ -123,15 +123,15 @@ internal interface IDatabasesApi : IBaseApi
     [Post("/databases/{databaseId}/collections/{collectionId}/documents")]
     Task<IApiResponse<Document>> CreateDocument(string databaseId, string collectionId, CreateDocumentRequest request);
 
+    [Delete("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
+    Task<IApiResponse> DeleteDocument(string databaseId, string collectionId, string documentId);
+
     [Get("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
     [QueryUriFormat(UriFormat.Unescaped)]
     Task<IApiResponse<Document>> GetDocument(string databaseId, string collectionId, string documentId, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries);
 
     [Patch("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
     Task<IApiResponse<Document>> UpdateDocument(string databaseId, string collectionId, string documentId, UpdateDocumentRequest request);
-
-    [Delete("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
-    Task<IApiResponse> DeleteDocument(string databaseId, string collectionId, string documentId);
 
     // Index Operations
     [Get("/databases/{databaseId}/collections/{collectionId}/indexes")]
@@ -141,10 +141,9 @@ internal interface IDatabasesApi : IBaseApi
     [Post("/databases/{databaseId}/collections/{collectionId}/indexes")]
     Task<IApiResponse<Index>> CreateIndex(string databaseId, string collectionId, CreateIndexRequest request);
 
-    [Get("/databases/{databaseId}/collections/{collectionId}/indexes/{key}")]
-    Task<IApiResponse<Index>> GetIndex(string databaseId, string collectionId, string key);
-
     [Delete("/databases/{databaseId}/collections/{collectionId}/indexes/{key}")]
     Task<IApiResponse> DeleteIndex(string databaseId, string collectionId, string key);
 
+    [Get("/databases/{databaseId}/collections/{collectionId}/indexes/{key}")]
+    Task<IApiResponse<Index>> GetIndex(string databaseId, string collectionId, string key);
 }
