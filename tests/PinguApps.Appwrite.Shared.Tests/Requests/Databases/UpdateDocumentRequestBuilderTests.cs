@@ -345,5 +345,4 @@ public class UpdateDocumentRequestBuilderTests
         Assert.True(request.Data.ContainsKey("RegularProperty"));
         Assert.Null(request.Data["RegularProperty"]);
     }
-
 }
