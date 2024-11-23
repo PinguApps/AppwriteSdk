@@ -136,5 +136,4 @@ public class Permission
         /// </summary>
         public Permission Label(string label) => new(_permissionType, RoleType.Label, label: label);
     }
-
 }
