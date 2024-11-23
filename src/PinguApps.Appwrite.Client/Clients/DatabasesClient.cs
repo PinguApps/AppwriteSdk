@@ -10,7 +10,7 @@ using PinguApps.Appwrite.Shared.Responses;
 namespace PinguApps.Appwrite.Client.Clients;
 
 /// <inheritdoc/>
-public class DatabasesClient : IDatabasesClient
+public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
 {
     private readonly IDatabasesApi _databasesApi;
 
