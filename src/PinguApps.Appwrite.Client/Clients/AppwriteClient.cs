@@ -7,7 +7,11 @@ public class AppwriteClient : IAppwriteClient, ISessionAware
 {
     /// <inheritdoc/>
     public IAccountClient Account { get; }
+
+    /// <inheritdoc/>
     public ITeamsClient Teams { get; }
+
+    /// <inheritdoc/>
     public IDatabasesClient DatabasesClient { get; }
 
     public AppwriteClient(IAccountClient accountClient, ITeamsClient teams, IDatabasesClient databasesClient)
