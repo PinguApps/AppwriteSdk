@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Internals;
 using PinguApps.Appwrite.Server.Utils;
 using PinguApps.Appwrite.Shared;
@@ -16,9 +15,9 @@ public class UsersClient : IUsersClient
     private readonly IUsersApi _usersApi;
     private readonly Config _config;
 
-    public UsersClient(IServiceProvider services, Config config)
+    internal UsersClient(IUsersApi usersApi, Config config)
     {
-        _usersApi = services.GetRequiredService<IUsersApi>();
+        _usersApi = usersApi;
         _config = config;
     }
 

@@ -9,14 +9,17 @@ public class MultiFormatDateTimeConverterTests
 
     public MultiFormatDateTimeConverterTests()
     {
-        _options = new JsonSerializerOptions();
+        _options = new JsonSerializerOptions()
+        {
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        };
         _options.Converters.Add(new MultiFormatDateTimeConverter());
     }
 
     [Fact]
     public void Read_ValidDateStringWithTimeZone_ReturnsDateTime()
     {
-        var json = "\"2023-01-01T00:00:00.000Z\"";
+        var json = "\"2023-01-01T00:00:00.000+00:00\"";
         var result = JsonSerializer.Deserialize<DateTime>(json, _options);
 
         // Convert both to UTC to compare
@@ -53,7 +56,7 @@ public class MultiFormatDateTimeConverterTests
     {
         var dateTime = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         var json = JsonSerializer.Serialize(dateTime, _options);
-        Assert.Equal("\"2023-01-01T00:00:00.000Z\"", json);
+        Assert.Equal("\"2023-01-01T00:00:00.000+00:00\"", json);
     }
 
     public class MultiFormatDateTimeObject
@@ -66,7 +69,7 @@ public class MultiFormatDateTimeConverterTests
     [Fact]
     public void Read_ValidDateStringInObject_ReturnsDateTime()
     {
-        var json = "{\"x\": \"2023-01-01T00:00:00.000Z\"}";
+        var json = "{\"x\": \"2023-01-01T00:00:00.000+00:00\"}";
         var result = JsonSerializer.Deserialize<MultiFormatDateTimeObject>(json, _options);
         Assert.NotNull(result);
 
@@ -83,6 +86,6 @@ public class MultiFormatDateTimeConverterTests
     {
         var obj = new MultiFormatDateTimeObject { X = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc) };
         var json = JsonSerializer.Serialize(obj, _options);
-        Assert.Equal("{\"x\":\"2023-01-01T00:00:00.000Z\"}", json);
+        Assert.Equal("{\"x\":\"2023-01-01T00:00:00.000+00:00\"}", json);
     }
 }

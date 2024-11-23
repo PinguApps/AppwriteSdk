@@ -9,7 +9,7 @@ if (-not $toolInstalled) {
 }
 
 # Generate the report
-reportgenerator -reports:coverage.opencover.xml -targetdir:coverage-report -assemblyfilters:+PinguApps.Appwrite.Client
+reportgenerator -reports:coverage.opencover.xml -targetdir:coverage-report -assemblyfilters:+PinguApps.Appwrite.Client riskHotspotsAnalysisThresholds:metricThresholdForCyclomaticComplexity=30
 
 # Open the generated report in the default browser
 Start-Process "coverage-report/index.html"

@@ -20,3 +20,4 @@ jobs:
           close-issue-message: 'Closing issue as it has been marked as stale for 3 days.'
           close-pr-message: 'Closing PR as it has been marked as stale for 3 days.'
           exempt-all-milestones: true
+          exempt-pr-labels: 'dependencies'

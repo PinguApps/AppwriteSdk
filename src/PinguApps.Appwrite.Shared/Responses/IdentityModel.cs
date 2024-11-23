@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -18,13 +19,13 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="ProviderRefreshToken">Identity Provider Refresh Token</param>
 public record IdentityModel(
     [property: JsonPropertyName("$id")] string Id,
-    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
-    [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt,
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
+    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
     [property: JsonPropertyName("userId")] string UserId,
     [property: JsonPropertyName("provider")] string Provider,
     [property: JsonPropertyName("providerUid")] string ProviderUid,
     [property: JsonPropertyName("providerEmail")] string ProviderEmail,
     [property: JsonPropertyName("providerAccessToken")] string ProviderAccessToken,
-    [property: JsonPropertyName("providerAccessTokenExpiry")] DateTime ProviderAccessTokenExpiry,
+    [property: JsonPropertyName("providerAccessTokenExpiry"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime ProviderAccessTokenExpiry,
     [property: JsonPropertyName("providerRefreshToken")] string ProviderRefreshToken
 );

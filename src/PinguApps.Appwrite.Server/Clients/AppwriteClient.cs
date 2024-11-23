@@ -3,14 +3,23 @@
 /// <inheritdoc/>
 public class AppwriteClient : IAppwriteClient
 {
+    /// <inheritdoc/>
     public IAccountClient Account { get; }
+
+    /// <inheritdoc/>
     public IUsersClient Users { get; }
+
+    /// <inheritdoc/>
     public ITeamsClient Teams { get; }
 
-    public AppwriteClient(IAccountClient accountClient, IUsersClient usersClient, ITeamsClient teamsClient)
+    /// <inheritdoc/>
+    public IDatabasesClient Databases { get; }
+
+    public AppwriteClient(IAccountClient accountClient, IUsersClient usersClient, ITeamsClient teamsClient, IDatabasesClient databasesClient)
     {
         Account = accountClient;
         Users = usersClient;
         Teams = teamsClient;
+        Databases = databasesClient;
     }
 }

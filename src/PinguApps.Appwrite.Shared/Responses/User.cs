@@ -30,13 +30,13 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="AccessedAt">Most recent access date in ISO 8601 format. This attribute is only updated again after 24 hours</param>
 public record User(
     [property: JsonPropertyName("$id")] string Id,
-    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
-    [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt,
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
+    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
     [property: JsonPropertyName("name")] string Name,
     [property: JsonPropertyName("password")] string? Password,
     [property: JsonPropertyName("hash")] string? Hash,
     [property: JsonPropertyName("hashOptions")] HashOptions? HashOptions,
-    [property: JsonPropertyName("registration")] DateTime Registration,
+    [property: JsonPropertyName("registration"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime Registration,
     [property: JsonPropertyName("status")] bool Status,
     [property: JsonPropertyName("labels")] IReadOnlyList<string> Labels,
     [property: JsonPropertyName("passwordUpdate"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? PasswordUpdate,

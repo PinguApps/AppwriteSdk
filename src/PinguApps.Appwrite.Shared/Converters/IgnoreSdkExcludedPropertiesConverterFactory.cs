@@ -86,7 +86,11 @@ public class IgnoreSdkExcludedPropertiesConverterFactory : JsonConverterFactory
 
                 var propValue = prop.GetValue(value);
 
-                if (propValue is null && options.DefaultIgnoreCondition == JsonIgnoreCondition.WhenWritingNull)
+                // Check for JsonIgnoreAttribute with Never condition
+                var jsonIgnoreAttr = prop.GetCustomAttribute<JsonIgnoreAttribute>();
+                var shouldIncludeNull = jsonIgnoreAttr?.Condition == JsonIgnoreCondition.Never;
+
+                if (propValue is null && !shouldIncludeNull && options.DefaultIgnoreCondition == JsonIgnoreCondition.WhenWritingNull)
                     continue;
 
                 writer.WritePropertyName(jsonPropertyName);

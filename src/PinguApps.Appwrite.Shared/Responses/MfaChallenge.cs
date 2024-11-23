@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -12,7 +13,7 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Expire">Token expiration date in ISO 8601 format</param>
 public record MfaChallenge(
     [property: JsonPropertyName("$id")] string Id,
-    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
     [property: JsonPropertyName("userId")] string UserId,
-    [property: JsonPropertyName("expire")] DateTime Expire
+    [property: JsonPropertyName("expire"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime Expire
 );
