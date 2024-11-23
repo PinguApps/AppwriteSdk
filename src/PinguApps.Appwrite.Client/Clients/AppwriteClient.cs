@@ -12,13 +12,13 @@ public class AppwriteClient : IAppwriteClient, ISessionAware
     public ITeamsClient Teams { get; }
 
     /// <inheritdoc/>
-    public IDatabasesClient DatabasesClient { get; }
+    public IDatabasesClient Databases { get; }
 
     public AppwriteClient(IAccountClient accountClient, ITeamsClient teams, IDatabasesClient databasesClient)
     {
         Account = accountClient;
         Teams = teams;
-        DatabasesClient = databasesClient;
+        Databases = databasesClient;
     }
 
     string? ISessionAware.Session { get; set; }
@@ -42,6 +42,6 @@ public class AppwriteClient : IAppwriteClient, ISessionAware
         (this as ISessionAware).UpdateSession(session);
         (Account as ISessionAware)!.UpdateSession(session);
         (Teams as ISessionAware)!.UpdateSession(session);
-        (DatabasesClient as ISessionAware)!.UpdateSession(session);
+        (Databases as ISessionAware)!.UpdateSession(session);
     }
 }

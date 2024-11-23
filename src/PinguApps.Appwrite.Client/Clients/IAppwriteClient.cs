@@ -40,5 +40,5 @@ public interface IAppwriteClient
     /// <para>Using Appwrite permissions architecture, you can assign read or write access to each collection or document in your project for either a specific user, team, user role, or even grant it with public access (any). You can learn more about <see href="https://appwrite.io/docs/products/databases/permissions">how Appwrite handles permissions and access control</see>.</para>
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/databases">Appwrite Docs</see></para>
     /// </summary>
-    IDatabasesClient DatabasesClient { get; }
+    IDatabasesClient Databases { get; }
 }

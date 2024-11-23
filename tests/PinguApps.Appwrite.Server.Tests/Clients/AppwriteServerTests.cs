@@ -11,11 +11,13 @@ public class AppwriteServerTests
         var mockAccountClient = new Mock<IAccountClient>();
         var mockUsersClient = new Mock<IUsersClient>();
         var mockTeamsClient = new Mock<ITeamsClient>();
+        var mockDatabasesClient = new Mock<IDatabasesClient>();
         // Act
-        var appwriteServer = new AppwriteClient(mockAccountClient.Object, mockUsersClient.Object, mockTeamsClient.Object);
+        var appwriteServer = new AppwriteClient(mockAccountClient.Object, mockUsersClient.Object, mockTeamsClient.Object, mockDatabasesClient.Object);
         // Assert
         Assert.Equal(mockAccountClient.Object, appwriteServer.Account);
         Assert.Equal(mockUsersClient.Object, appwriteServer.Users);
         Assert.Equal(mockTeamsClient.Object, appwriteServer.Teams);
+        Assert.Equal(mockDatabasesClient.Object, appwriteServer.Databases);
     }
 }

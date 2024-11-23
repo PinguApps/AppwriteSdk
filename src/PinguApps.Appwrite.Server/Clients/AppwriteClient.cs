@@ -13,13 +13,13 @@ public class AppwriteClient : IAppwriteClient
     public ITeamsClient Teams { get; }
 
     /// <inheritdoc/>
-    public IDatabasesClient DatabasesClient { get; }
+    public IDatabasesClient Databases { get; }
 
     public AppwriteClient(IAccountClient accountClient, IUsersClient usersClient, ITeamsClient teamsClient, IDatabasesClient databasesClient)
     {
         Account = accountClient;
         Users = usersClient;
         Teams = teamsClient;
-        DatabasesClient = databasesClient;
+        Databases = databasesClient;
     }
 }
