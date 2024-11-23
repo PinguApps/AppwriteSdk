@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using PinguApps.Appwrite.Shared.Converters;
@@ -459,5 +459,4 @@ public class DocumentConverterTests
 
         Assert.Contains("\"objectField\":{}}", json);
     }
-
 }
