@@ -3,9 +3,9 @@ using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Databases;
-public class UpdateIPAddressAttributeRequestTests : UpdateStringAttributeBaseRequestTests<UpdateIPAddressAttributeRequest, UpdateIPAddressAttributeRequestValidator>
+public class UpdateIPAttributeRequestTests : UpdateStringAttributeBaseRequestTests<UpdateIPAttributeRequest, UpdateIPAttributeRequestValidator>
 {
-    protected override UpdateIPAddressAttributeRequest CreateValidUpdateStringAttributeBaseRequest => new();
+    protected override UpdateIPAttributeRequest CreateValidUpdateStringAttributeBaseRequest => new();
 
     protected override string ValidDefaultValue => "192.168.1.1";
 
@@ -24,7 +24,7 @@ public class UpdateIPAddressAttributeRequestTests : UpdateStringAttributeBaseReq
     public void IsValid_WithValidDefaults_ReturnsTrue(string defaultValue)
     {
         // Arrange
-        var request = new UpdateIPAddressAttributeRequest
+        var request = new UpdateIPAttributeRequest
         {
             DatabaseId = IdUtils.GenerateUniqueId(),
             CollectionId = IdUtils.GenerateUniqueId(),
@@ -61,7 +61,7 @@ public class UpdateIPAddressAttributeRequestTests : UpdateStringAttributeBaseReq
     public void IsValid_WithInvalidDefaults_ReturnsFalse(string defaultValue)
     {
         // Arrange
-        var request = new UpdateIPAddressAttributeRequest
+        var request = new UpdateIPAttributeRequest
         {
             DatabaseId = IdUtils.GenerateUniqueId(),
             CollectionId = IdUtils.GenerateUniqueId(),

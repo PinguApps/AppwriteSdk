@@ -6,7 +6,7 @@ namespace PinguApps.Appwrite.Shared.Requests.Databases;
 /// <summary>
 /// The request to update a database
 /// </summary>
-public class UpdateDatabase : DatabaseIdBaseRequest<UpdateDatabase, UpdateDatabaseValidator>
+public class UpdateDatabaseRequest : DatabaseIdBaseRequest<UpdateDatabaseRequest, UpdateDatabaseRequestValidator>
 {
     /// <summary>
     /// Database name. Max length: 128 chars

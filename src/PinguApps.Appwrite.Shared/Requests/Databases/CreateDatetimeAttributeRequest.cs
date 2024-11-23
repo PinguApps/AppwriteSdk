@@ -8,7 +8,7 @@ namespace PinguApps.Appwrite.Shared.Requests.Databases;
 /// <summary>
 /// The request to create a datetime attribute
 /// </summary>
-public class CreateDatetimeAttribute : CreateAttributeBaseRequest<CreateDatetimeAttribute, CreateDatetimeAttributeValidator>
+public class CreateDatetimeAttributeRequest : CreateAttributeBaseRequest<CreateDatetimeAttributeRequest, CreateDatetimeAttributeRequestValidator>
 {
     /// <summary>
     /// Default value for the attribute in ISO 8601 format. Cannot be set when attribute is required

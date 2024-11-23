@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases.Validators;
-public class CreateDatetimeAttributeValidator : AbstractValidator<CreateDatetimeAttribute>
+public class CreateDatetimeAttributeRequestValidator : AbstractValidator<CreateDatetimeAttributeRequest>
 {
-    public CreateDatetimeAttributeValidator()
+    public CreateDatetimeAttributeRequestValidator()
     {
-        Include(new CreateAttributeBaseRequestValidator<CreateDatetimeAttribute, CreateDatetimeAttributeValidator>());
+        Include(new CreateAttributeBaseRequestValidator<CreateDatetimeAttributeRequest, CreateDatetimeAttributeRequestValidator>());
 
         RuleFor(x => x.Default)
             .Must((request, defaultValue) => !request.Required || defaultValue == null)

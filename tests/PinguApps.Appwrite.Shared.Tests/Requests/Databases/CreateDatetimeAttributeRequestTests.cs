@@ -4,61 +4,58 @@ using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Databases;
-public class UpdateDatabaseTests : DatabaseIdBaseRequestTests<UpdateDatabase, UpdateDatabaseValidator>
+public class CreateDatetimeAttributeRequestTests : CreateAttributeBaseRequestTests<CreateDatetimeAttributeRequest, CreateDatetimeAttributeRequestValidator>
 {
-    protected override UpdateDatabase CreateValidRequest => new()
-    {
-        Name = "Pingu"
-    };
+    protected override CreateDatetimeAttributeRequest CreateValidCreateAttributeBaseRequest => new();
 
     [Fact]
     public void Constructor_InitializesWithExpectedValues()
     {
         // Arrange & Act
-        var request = new UpdateDatabase();
+        var request = new CreateDatetimeAttributeRequest();
 
         // Assert
-        Assert.Equal(string.Empty, request.Name);
-        Assert.False(request.Enabled);
+        Assert.Null(request.Default);
     }
 
     [Fact]
     public void Properties_CanBeSet()
     {
         // Arrange
-        var name = "Updated Database";
-        var enabled = true;
+        var defaultValue = DateTime.UtcNow;
 
-        var request = new UpdateDatabase();
+        var request = new CreateDatetimeAttributeRequest();
 
         // Act
-        request.Name = name;
-        request.Enabled = enabled;
+        request.Default = defaultValue;
 
         // Assert
-        Assert.Equal(name, request.Name);
-        Assert.Equal(enabled, request.Enabled);
+        Assert.Equal(defaultValue, request.Default);
     }
 
-    public static TheoryData<UpdateDatabase> ValidRequestsData = new()
+    public static TheoryData<CreateDatetimeAttributeRequest> ValidRequestsData = new()
         {
             new()
             {
                 DatabaseId = IdUtils.GenerateUniqueId(),
-                Name = "Valid Database Name",
-                Enabled = true
+                CollectionId = IdUtils.GenerateUniqueId(),
+                Key = IdUtils.GenerateUniqueId(),
+                Default = null,
+                Required = true
             },
             new()
             {
                 DatabaseId = IdUtils.GenerateUniqueId(),
-                Name = "Another Valid Database",
-                Enabled = false
+                CollectionId = IdUtils.GenerateUniqueId(),
+                Key = IdUtils.GenerateUniqueId(),
+                Default = DateTime.UtcNow,
+                Required = false
             }
         };
 
     [Theory]
     [MemberData(nameof(ValidRequestsData))]
-    public void IsValid_WithValidData_ReturnsTrue(UpdateDatabase request)
+    public void IsValid_WithValidData_ReturnsTrue(CreateDatetimeAttributeRequest request)
     {
         // Act
         var isValid = request.IsValid();
@@ -67,28 +64,21 @@ public class UpdateDatabaseTests : DatabaseIdBaseRequestTests<UpdateDatabase, Up
         Assert.True(isValid);
     }
 
-    public static TheoryData<UpdateDatabase> InvalidRequestsData = new()
+    public static TheoryData<CreateDatetimeAttributeRequest> InvalidRequestsData = new()
         {
             new()
             {
                 DatabaseId = IdUtils.GenerateUniqueId(),
-                Name = null!
-            },
-            new()
-            {
-                DatabaseId = IdUtils.GenerateUniqueId(),
-                Name = ""
-            },
-            new()
-            {
-                DatabaseId = IdUtils.GenerateUniqueId(),
-                Name = new string('a', 129)
+                CollectionId = IdUtils.GenerateUniqueId(),
+                Key = IdUtils.GenerateUniqueId(),
+                Default = DateTime.UtcNow,
+                Required = true
             }
         };
 
     [Theory]
     [MemberData(nameof(InvalidRequestsData))]
-    public void IsValid_WithInvalidData_ReturnsFalse(UpdateDatabase request)
+    public void IsValid_WithInvalidData_ReturnsFalse(CreateDatetimeAttributeRequest request)
     {
         // Act
         var isValid = request.IsValid();
@@ -101,11 +91,10 @@ public class UpdateDatabaseTests : DatabaseIdBaseRequestTests<UpdateDatabase, Up
     public void Validate_WithThrowOnFailuresTrue_ThrowsValidationExceptionOnFailure()
     {
         // Arrange
-        var request = new UpdateDatabase
+        var request = new CreateDatetimeAttributeRequest
         {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            Name = "",
-            Enabled = false
+            Default = DateTime.UtcNow,
+            Required = true
         };
 
         // Assert
@@ -116,11 +105,10 @@ public class UpdateDatabaseTests : DatabaseIdBaseRequestTests<UpdateDatabase, Up
     public void Validate_WithThrowOnFailuresFalse_ReturnsInvalidResultOnFailure()
     {
         // Arrange
-        var request = new UpdateDatabase
+        var request = new CreateDatetimeAttributeRequest
         {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            Name = "",
-            Enabled = false
+            Default = DateTime.UtcNow,
+            Required = true
         };
 
         // Act

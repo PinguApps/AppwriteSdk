@@ -3,11 +3,11 @@ using System.Net.Sockets;
 using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases.Validators;
-public class UpdateIPAddressAttributeRequestValidator : AbstractValidator<UpdateIPAddressAttributeRequest>
+public class CreateIPAttributeRequestValidator : AbstractValidator<CreateIPAttributeRequest>
 {
-    public UpdateIPAddressAttributeRequestValidator()
+    public CreateIPAttributeRequestValidator()
     {
-        Include(new UpdateStringAttributeBaseRequestValidator<UpdateIPAddressAttributeRequest, UpdateIPAddressAttributeRequestValidator>());
+        Include(new CreateStringAttributeBaseRequestValidator<CreateIPAttributeRequest, CreateIPAttributeRequestValidator>());
 
         RuleFor(x => x.Default)
             .NotEmpty()

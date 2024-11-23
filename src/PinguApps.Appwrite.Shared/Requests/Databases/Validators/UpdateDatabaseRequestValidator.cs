@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 
 namespace PinguApps.Appwrite.Shared.Requests.Databases.Validators;
-public class UpdateDatabaseValidator : AbstractValidator<UpdateDatabase>
+public class UpdateDatabaseRequestValidator : AbstractValidator<UpdateDatabaseRequest>
 {
-    public UpdateDatabaseValidator()
+    public UpdateDatabaseRequestValidator()
     {
-        Include(new DatabaseIdBaseRequestValidator<UpdateDatabase, UpdateDatabaseValidator>());
+        Include(new DatabaseIdBaseRequestValidator<UpdateDatabaseRequest, UpdateDatabaseRequestValidator>());
 
         RuleFor(x => x.Name)
             .NotEmpty()
