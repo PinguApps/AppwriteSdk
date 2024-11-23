@@ -49,9 +49,23 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<HeaderHandler>()
             .AddHttpMessageHandler<ClientCookieSessionHandler>();
 
-        services.AddSingleton<IAccountClient, AccountClient>();
-        services.AddSingleton<ITeamsClient, TeamsClient>();
-        services.AddSingleton<IDatabasesClient, DatabasesClient>();
+        services.AddSingleton<IAccountClient>(sp =>
+        {
+            var api = sp.GetRequiredService<IAccountApi>();
+            var config = sp.GetRequiredService<Config>();
+            return new AccountClient(api, config);
+        });
+        services.AddSingleton<ITeamsClient>(sp =>
+        {
+            var api = sp.GetRequiredService<ITeamsApi>();
+            var config = sp.GetRequiredService<Config>();
+            return new TeamsClient(api, config);
+        });
+        services.AddSingleton<IDatabasesClient>(sp =>
+        {
+            var api = sp.GetRequiredService<IDatabasesApi>();
+            return new DatabasesClient(api);
+        });
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
         services.AddSingleton(x => new Lazy<IAppwriteClient>(() => x.GetRequiredService<IAppwriteClient>()));
 
@@ -88,9 +102,23 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<HeaderHandler>()
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
-        services.AddSingleton<IAccountClient, AccountClient>();
-        services.AddSingleton<ITeamsClient, TeamsClient>();
-        services.AddSingleton<IDatabasesClient, DatabasesClient>();
+        services.AddSingleton<IAccountClient>(sp =>
+        {
+            var api = sp.GetRequiredService<IAccountApi>();
+            var config = sp.GetRequiredService<Config>();
+            return new AccountClient(api, config);
+        });
+        services.AddSingleton<ITeamsClient>(sp =>
+        {
+            var api = sp.GetRequiredService<ITeamsApi>();
+            var config = sp.GetRequiredService<Config>();
+            return new TeamsClient(api, config);
+        });
+        services.AddSingleton<IDatabasesClient>(sp =>
+        {
+            var api = sp.GetRequiredService<IDatabasesApi>();
+            return new DatabasesClient(api);
+        });
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;

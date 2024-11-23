@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests.Databases;
@@ -14,9 +13,9 @@ public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
 {
     private readonly IDatabasesApi _databasesApi;
 
-    public DatabasesClient(IServiceProvider services)
+    internal DatabasesClient(IDatabasesApi databasesApi)
     {
-        _databasesApi = services.GetRequiredService<IDatabasesApi>();
+        _databasesApi = databasesApi;
     }
 
     [ExcludeFromCodeCoverage]
