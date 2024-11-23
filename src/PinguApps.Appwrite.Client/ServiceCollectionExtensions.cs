@@ -44,8 +44,14 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<HeaderHandler>()
             .AddHttpMessageHandler<ClientCookieSessionHandler>();
 
+        services.AddRefitClient<IDatabasesApi>(customRefitSettings)
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .AddHttpMessageHandler<ClientCookieSessionHandler>();
+
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<ITeamsClient, TeamsClient>();
+        services.AddSingleton<IDatabasesClient, DatabasesClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
         services.AddSingleton(x => new Lazy<IAppwriteClient>(() => x.GetRequiredService<IAppwriteClient>()));
 
@@ -77,8 +83,14 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<HeaderHandler>()
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
+        services.AddRefitClient<IDatabasesApi>(customRefitSettings)
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
+
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<ITeamsClient, TeamsClient>();
+        services.AddSingleton<IDatabasesClient, DatabasesClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
