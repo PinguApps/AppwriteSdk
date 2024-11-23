@@ -49,9 +49,15 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<HeaderHandler>()
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
+        services.AddRefitClient<IDatabasesApi>(customRefitSettings)
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
+
         services.AddSingleton<IAccountClient, AccountClient>();
         services.AddSingleton<IUsersClient, UsersClient>();
         services.AddSingleton<ITeamsClient, TeamsClient>();
+        services.AddSingleton<IDatabasesClient, DatabasesClient>();
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;
