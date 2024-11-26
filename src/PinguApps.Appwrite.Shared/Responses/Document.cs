@@ -19,14 +19,14 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Data">Document data</param>
 [JsonConverter(typeof(DocumentConverter))]
 public record Document(
-    [property: JsonPropertyName("$id")] string Id,
-    [property: JsonPropertyName("$collectionId")] string CollectionId,
-    [property: JsonPropertyName("$databaseId")] string DatabaseId,
-    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
-    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
-    [property: JsonPropertyName("$permissions"), JsonConverter(typeof(PermissionReadOnlyListConverter))] IReadOnlyList<Permission> Permissions,
+    string Id,
+    string CollectionId,
+    string DatabaseId,
+    DateTime CreatedAt,
+    DateTime UpdatedAt,
+    IReadOnlyList<Permission> Permissions,
     [property: JsonExtensionData] Dictionary<string, object?> Data
-)
+) : DocumentBase(Id, CollectionId, DatabaseId, CreatedAt, UpdatedAt, Permissions)
 {
     /// <summary>
     /// Extract document data by key
