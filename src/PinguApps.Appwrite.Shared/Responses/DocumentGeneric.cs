@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Responses;
@@ -15,8 +16,8 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="UpdatedAt">Document update date in ISO 8601 format</param>
 /// <param name="Permissions">Document permissions. <see href="https://appwrite.io/docs/permissions">Learn more about permissions</see></param>
 /// <param name="Data">Document data</param>
-[JsonConverter(typeof(DocumentGenericConverter))]
-public record Doocument<TData>(
+[JsonConverter(typeof(DocumentGenericConverterFactory))]
+public record Document<TData>(
     string Id,
     string CollectionId,
     string DatabaseId,

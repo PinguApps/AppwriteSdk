@@ -7,10 +7,10 @@ using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Converters;
 
-public class DocumentGenericConverter<TData> : JsonConverter<Doocument<TData>>
+public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
         where TData : class, new()
 {
-    public override Doocument<TData> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override Document<TData> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         string? id = null;
         string? collectionId = null;
@@ -37,7 +37,7 @@ public class DocumentGenericConverter<TData> : JsonConverter<Doocument<TData>>
                 break;
             }
 
-            string propertyName = reader.GetString()!;
+            var propertyName = reader.GetString()!;
 
             reader.Read();
 
@@ -102,7 +102,7 @@ public class DocumentGenericConverter<TData> : JsonConverter<Doocument<TData>>
         var dataJson = JsonSerializer.Serialize(dataProperties, options);
         data = JsonSerializer.Deserialize<TData>(dataJson, options) ?? new TData();
 
-        return new Doocument<TData>(id, collectionId, databaseId, createdAt.Value, updatedAt.Value, permissions, data);
+        return new Document<TData>(id, collectionId, databaseId, createdAt.Value, updatedAt.Value, permissions, data);
     }
 
     internal object? ReadValue(ref Utf8JsonReader reader, JsonSerializerOptions options)
@@ -184,7 +184,7 @@ public class DocumentGenericConverter<TData> : JsonConverter<Doocument<TData>>
         return dict;
     }
 
-    public override void Write(Utf8JsonWriter writer, Doocument<TData> value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, Document<TData> value, JsonSerializerOptions options)
     {
         writer.WriteStartObject();
 
@@ -204,26 +204,72 @@ public class DocumentGenericConverter<TData> : JsonConverter<Doocument<TData>>
         writer.WritePropertyName("$permissions");
         JsonSerializer.Serialize(writer, value.Permissions, options);
 
-        // Serialize the data object into individual properties.
-        var dataProperties = JsonSerializer.SerializeToElement(value.Data, options);
-        foreach (var property in dataProperties.EnumerateObject())
+        // Serialize the Data property
+        if (value.Data is not null)
         {
-            writer.WritePropertyName(property.Name);
-            WriteValue(writer, property, options);
+            var dataProperties = JsonSerializer.SerializeToElement(value.Data, options);
+            foreach (var property in dataProperties.EnumerateObject())
+            {
+                writer.WritePropertyName(property.Name);
+                WriteValue(writer, property.Value, options);
+            }
         }
 
         writer.WriteEndObject();
     }
 
-    private void WriteValue(Utf8JsonWriter writer, JsonProperty property, JsonSerializerOptions options)
+    internal void WriteValue(Utf8JsonWriter writer, JsonElement element, JsonSerializerOptions options)
     {
-        // Handle null values
-        if (property.Value.ValueKind is JsonValueKind.Null)
-        {
-            writer.WriteNullValue();
-            return;
-        }
+        var dateTimeConverter = new MultiFormatDateTimeConverter();
 
-        // TODO - Complete the implementation using DocumentConverter as a guide
+        switch (element.ValueKind)
+        {
+            case JsonValueKind.String:
+                var stringValue = element.GetString();
+                if (DateTime.TryParse(stringValue, out var dateTimeValue))
+                {
+                    // Write DateTime using the MultiFormatDateTimeConverter
+                    dateTimeConverter.Write(writer, dateTimeValue, options);
+                }
+                else
+                {
+                    writer.WriteStringValue(stringValue);
+                }
+                break;
+            case JsonValueKind.Number:
+                if (element.TryGetInt32(out var intValue))
+                    writer.WriteNumberValue(intValue);
+                else if (element.TryGetInt64(out var longValue))
+                    writer.WriteNumberValue(longValue);
+                else if (element.TryGetDouble(out var doubleValue))
+                    writer.WriteNumberValue(doubleValue);
+                break;
+            case JsonValueKind.True:
+            case JsonValueKind.False:
+                writer.WriteBooleanValue(element.GetBoolean());
+                break;
+            case JsonValueKind.Null:
+                writer.WriteNullValue();
+                break;
+            case JsonValueKind.Array:
+                writer.WriteStartArray();
+                foreach (var item in element.EnumerateArray())
+                {
+                    WriteValue(writer, item, options);
+                }
+                writer.WriteEndArray();
+                break;
+            case JsonValueKind.Object:
+                writer.WriteStartObject();
+                foreach (var property in element.EnumerateObject())
+                {
+                    writer.WritePropertyName(property.Name);
+                    WriteValue(writer, property.Value, options);
+                }
+                writer.WriteEndObject();
+                break;
+            case JsonValueKind.Undefined:
+                throw new JsonException("Cannot serialize undefined JsonElement");
+        }
     }
 }
