@@ -683,5 +683,4 @@ public class DocumentGenericConverterTests
         Assert.Equal(JsonValueKind.Number, doubleFieldElement.ValueKind);
         Assert.Equal(1.23e20, doubleFieldElement.GetDouble());
     }
-
 }
