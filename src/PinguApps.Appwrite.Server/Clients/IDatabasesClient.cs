@@ -57,6 +57,14 @@ public interface IDatabasesClient
     /// <returns>The database</returns>
     Task<AppwriteResult<Database>> UpdateDatabase(UpdateDatabaseRequest request);
 
+    /// <summary>
+    /// Get a list of all collections that belong to the provided databaseId. You can use the search parameter to filter your results.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#listCollections">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The collections list</returns>
+    Task<AppwriteResult<CollectionsList>> ListCollections(ListCollectionsRequest request);
+
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
@@ -122,9 +130,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributesList>> ListAttributes(ListAttributesRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<CollectionsList>> ListCollections(ListCollectionsRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);

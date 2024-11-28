@@ -17,13 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdateDatabaseRequest()
+        var request = new ListCollectionsRequest()
         {
-            DatabaseId = "6748b44d000b2b0e73ac",
-            Name = "New Name"
+            DatabaseId = "6748b44d000b2b0e73ac"
         };
 
-        var response = await _server.Databases.UpdateDatabase(request);
+        var response = await _server.Databases.ListCollections(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
