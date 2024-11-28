@@ -17,12 +17,14 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new GetDatabaseRequest()
+        var request = new CreateBooleanAttributeRequest()
         {
-            DatabaseId = "6748b44d000b2b0e73ac"
+            DatabaseId = "6748b44d000b2b0e73ac",
+            CollectionId = "6748bb30002a12d4708f",
+            Key = "isHuman"
         };
 
-        var response = await _server.Databases.GetDatabase(request);
+        var response = await _server.Databases.CreateBooleanAttribute(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

@@ -49,11 +49,69 @@ public interface IDatabasesClient
     /// <returns>The database</returns>
     Task<AppwriteResult<Database>> GetDatabase(GetDatabaseRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
+    /// <summary>
+    /// Update a database by its unique ID.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#update">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The database</returns>
+    Task<AppwriteResult<Database>> UpdateDatabase(UpdateDatabaseRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Get a list of all collections that belong to the provided databaseId. You can use the search parameter to filter your results.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#listCollections">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The collections list</returns>
+    Task<AppwriteResult<CollectionsList>> ListCollections(ListCollectionsRequest request);
+
+    /// <summary>
+    /// Create a new Collection. Before using this route, you should create a new database resource using either <see cref="CreateDatabase(CreateDatabaseRequest)"/> or directly from your database console.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createCollection">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The collection</returns>
     Task<AppwriteResult<Collection>> CreateCollection(CreateCollectionRequest request);
+
+    /// <summary>
+    /// Delete a collection by its unique ID. Only users with write permissions have access to delete this resource.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#deleteCollection">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 Success Response</returns>
+    Task<AppwriteResult> DeleteCollection(DeleteCollectionRequest request);
+
+    /// <summary>
+    /// Get a collection by its unique ID. This endpoint response returns a JSON object with the collection metadata.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#getCollection">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The collection</returns>
+    Task<AppwriteResult<Collection>> GetCollection(GetCollectionRequest request);
+
+    /// <summary>
+    /// Update a collection by its unique ID.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateCollection">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The collection</returns>
+    Task<AppwriteResult<Collection>> UpdateCollection(UpdateCollectionRequest request);
+
+    /// <summary>
+    /// List attributes in the collection.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#listAttributes">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The attributes list</returns>
+    Task<AppwriteResult<AttributesList>> ListAttributes(ListAttributesRequest request);
+
+    /// <summary>
+    /// Create a boolean attribute.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createBooleanAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The boolean attribute</returns>
+    Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeDatetime>> CreateDatetimeAttribute(CreateDatetimeAttributeRequest request);
@@ -92,9 +150,6 @@ public interface IDatabasesClient
     Task<AppwriteResult> DeleteAttribute(DeleteAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult> DeleteCollection(DeleteCollectionRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
@@ -104,19 +159,10 @@ public interface IDatabasesClient
     Task<AppwriteResult<Attribute>> GetAttribute(GetAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Collection>> GetCollection(GetCollectionRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributesList>> ListAttributes(ListAttributesRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<CollectionsList>> ListCollections(ListCollectionsRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);
@@ -126,12 +172,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeBoolean>> UpdateBooleanAttribute(UpdateBooleanAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Collection>> UpdateCollection(UpdateCollectionRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Database>> UpdateDatabase(UpdateDatabaseRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeDatetime>> UpdateDatetimeAttribute(UpdateDatetimeAttributeRequest request);

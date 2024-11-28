@@ -89,37 +89,141 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Database>> UpdateDatabase(UpdateDatabaseRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Database>> UpdateDatabase(UpdateDatabaseRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<CollectionsList>> ListCollections(ListCollectionsRequest request) => throw new NotImplementedException();
+            var result = await _databasesApi.UpdateDatabase(request.DatabaseId, request);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<Collection>> CreateCollection(CreateCollectionRequest request) => throw new NotImplementedException();
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Database>();
+        }
+    }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteCollection(DeleteCollectionRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<CollectionsList>> ListCollections(ListCollectionsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<Collection>> GetCollection(GetCollectionRequest request) => throw new NotImplementedException();
+            var result = await _databasesApi.ListCollections(request.DatabaseId, RequestUtils.GetQueryStrings(request.Queries), request.Search);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<Collection>> UpdateCollection(UpdateCollectionRequest request) => throw new NotImplementedException();
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<CollectionsList>();
+        }
+    }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributesList>> ListAttributes(ListAttributesRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Collection>> CreateCollection(CreateCollectionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
+            var result = await _databasesApi.CreateCollection(request.DatabaseId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Collection>();
+        }
+    }
+
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult> DeleteCollection(DeleteCollectionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.DeleteCollection(request.DatabaseId, request.CollectionId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Collection>> GetCollection(GetCollectionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.GetCollection(request.DatabaseId, request.CollectionId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Collection>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Collection>> UpdateCollection(UpdateCollectionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateCollection(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Collection>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributesList>> ListAttributes(ListAttributesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.ListAttributes(request.DatabaseId, request.CollectionId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributesList>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateBooleanAttribute(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeBoolean>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
