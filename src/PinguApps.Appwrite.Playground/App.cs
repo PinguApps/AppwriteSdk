@@ -25,6 +25,5 @@ internal class App
             result => result.ToString(),
             appwriteError => appwriteError.Message,
             internalError => internalError.Message));
-
     }
 }
