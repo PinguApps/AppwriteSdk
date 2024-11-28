@@ -191,9 +191,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributesList>> ListAttributes(ListAttributesRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<AttributesList>> ListAttributes(ListAttributesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.ListAttributes(request.DatabaseId, request.CollectionId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributesList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

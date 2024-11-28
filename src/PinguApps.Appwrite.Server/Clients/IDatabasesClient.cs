@@ -97,6 +97,14 @@ public interface IDatabasesClient
     /// <returns>The collection</returns>
     Task<AppwriteResult<Collection>> UpdateCollection(UpdateCollectionRequest request);
 
+    /// <summary>
+    /// List attributes in the collection.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#listAttributes">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The attributes list</returns>
+    Task<AppwriteResult<AttributesList>> ListAttributes(ListAttributesRequest request);
+
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
@@ -150,9 +158,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributesList>> ListAttributes(ListAttributesRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);
