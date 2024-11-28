@@ -105,7 +105,12 @@ public interface IDatabasesClient
     /// <returns>The attributes list</returns>
     Task<AppwriteResult<AttributesList>> ListAttributes(ListAttributesRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Create a boolean attribute.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createBooleanAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The boolean attribute</returns>
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]

@@ -208,9 +208,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateBooleanAttribute(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeBoolean>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
