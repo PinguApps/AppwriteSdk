@@ -38,9 +38,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Database>> CreateDatabase(CreateDatabaseRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Database>> CreateDatabase(CreateDatabaseRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateDatabase(request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Database>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
