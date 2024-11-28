@@ -141,9 +141,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 129 / 317](https://img.shields.io/badge/Server_&_Client-129%20%2F%20317-gold?style=for-the-badge)
+![Server & Client - 137 / 317](https://img.shields.io/badge/Server_&_Client-137%20%2F%20317-gold?style=for-the-badge)
 
-![Server - 69 / 224](https://img.shields.io/badge/Server-69%20%2F%20224-red?style=for-the-badge)
+![Server - 77 / 224](https://img.shields.io/badge/Server-77%20%2F%20224-gold?style=for-the-badge)
 
 ![Client - 60 / 93](https://img.shields.io/badge/Client-60%20%2F%2093-gold?style=for-the-badge)
 
@@ -275,22 +275,22 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updatePrefs) | ✅ | ✅ |
 
 ### Databases
-![Databases - 4 / 47](https://img.shields.io/badge/Databases-4%20%2F%2047-red?style=for-the-badge)
+![Databases - 12 / 47](https://img.shields.io/badge/Databases-12%20%2F%2047-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
 | [List Databases](https://appwrite.io/docs/references/1.6.x/server-rest/databases#list) | ❌ | ✅ |
 | [Create Databases](https://appwrite.io/docs/references/1.6.x/server-rest/databases#create) | ❌ | ✅ |
 | [Get Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#get) | ❌ | ✅ |
-| [Update Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#update) | ❌ | ⬛ |
+| [Update Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#update) | ❌ | ✅ |
 | [Delete Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#delete) | ❌ | ✅ |
-| [List Collections](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listCollections) | ❌ | ⬛ |
-| [Create Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createCollection) | ❌ | ⬛ |
-| [Get Collections](https://appwrite.io/docs/references/1.6.x/server-rest/databases#getCollection) | ❌ | ⬛ |
-| [Update Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateCollection) | ❌ | ⬛ |
-| [Delete Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#deleteCollection) | ❌ | ⬛ |
-| [List Attributes](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listAttributes) | ❌ | ⬛ |
-| [Create Boolean Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createBooleanAttribute) | ❌ | ⬛ |
+| [List Collections](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listCollections) | ❌ | ✅ |
+| [Create Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createCollection) | ❌ | ✅ |
+| [Get Collections](https://appwrite.io/docs/references/1.6.x/server-rest/databases#getCollection) | ❌ | ✅ |
+| [Update Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateCollection) | ❌ | ✅ |
+| [Delete Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#deleteCollection) | ❌ | ✅ |
+| [List Attributes](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listAttributes) | ❌ | ✅ |
+| [Create Boolean Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createBooleanAttribute) | ❌ | ✅ |
 | [Update Boolean Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateBooleanAttribute) | ❌ | ⬛ |
 | [Create Datatime Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createDatetimeAttribute) | ❌ | ⬛ |
 | [Update Datetime Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateDatetimeAttribute) | ❌ | ⬛ |
