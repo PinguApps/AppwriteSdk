@@ -17,12 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new ListCollectionsRequest()
+        var request = new CreateCollectionRequest()
         {
-            DatabaseId = "6748b44d000b2b0e73ac"
+            DatabaseId = "6748b44d000b2b0e73ac",
+            Name = "My Collection"
         };
 
-        var response = await _server.Databases.ListCollections(request);
+        var response = await _server.Databases.CreateCollection(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

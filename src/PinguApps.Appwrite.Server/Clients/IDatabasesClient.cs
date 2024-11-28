@@ -65,11 +65,16 @@ public interface IDatabasesClient
     /// <returns>The collections list</returns>
     Task<AppwriteResult<CollectionsList>> ListCollections(ListCollectionsRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
+    /// <summary>
+    /// Create a new Collection. Before using this route, you should create a new database resource using either <see cref="CreateDatabase(CreateDatabaseRequest)"/> or directly from your database console.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createCollection">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The collection</returns>
+    Task<AppwriteResult<Collection>> CreateCollection(CreateCollectionRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Collection>> CreateCollection(CreateCollectionRequest request);
+    Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeDatetime>> CreateDatetimeAttribute(CreateDatetimeAttributeRequest request);
