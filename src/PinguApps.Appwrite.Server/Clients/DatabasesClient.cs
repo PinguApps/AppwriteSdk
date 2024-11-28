@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using PinguApps.Appwrite.Server.Internals;
+using PinguApps.Appwrite.Server.Utils;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Responses;
@@ -20,9 +21,22 @@ public class DatabasesClient : IDatabasesClient
         _databasesApi = databasesApi;
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<DatabasesList>> ListDatabases(ListDatabasesRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<DatabasesList>> ListDatabases(ListDatabasesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.ListDatabases(RequestUtils.GetQueryStrings(request.Queries), request.Search);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<DatabasesList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

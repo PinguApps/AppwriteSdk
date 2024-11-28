@@ -17,6 +17,14 @@ namespace PinguApps.Appwrite.Server.Clients;
 /// </summary>
 public interface IDatabasesClient
 {
+    /// <summary>
+    /// Get a list of all databases from the current Appwrite project. You can use the search parameter to filter your results.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#list">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The databases list</returns>
+    Task<AppwriteResult<DatabasesList>> ListDatabases(ListDatabasesRequest request);
+
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
@@ -94,9 +102,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<CollectionsList>> ListCollections(ListCollectionsRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<DatabasesList>> ListDatabases(ListDatabasesRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);
