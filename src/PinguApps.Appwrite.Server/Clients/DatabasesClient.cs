@@ -89,9 +89,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Database>> UpdateDatabase(UpdateDatabaseRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Database>> UpdateDatabase(UpdateDatabaseRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateDatabase(request.DatabaseId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Database>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

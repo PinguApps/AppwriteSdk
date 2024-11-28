@@ -49,6 +49,14 @@ public interface IDatabasesClient
     /// <returns>The database</returns>
     Task<AppwriteResult<Database>> GetDatabase(GetDatabaseRequest request);
 
+    /// <summary>
+    /// Update a database by its unique ID.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#update">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The database</returns>
+    Task<AppwriteResult<Database>> UpdateDatabase(UpdateDatabaseRequest request);
+
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
@@ -129,9 +137,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Collection>> UpdateCollection(UpdateCollectionRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Database>> UpdateDatabase(UpdateDatabaseRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeDatetime>> UpdateDatetimeAttribute(UpdateDatetimeAttributeRequest request);
