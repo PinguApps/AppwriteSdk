@@ -17,13 +17,13 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateCollectionRequest()
+        var request = new DeleteCollectionRequest()
         {
             DatabaseId = "6748b44d000b2b0e73ac",
-            Name = "My Collection"
+            CollectionId = "6748b9ac000f0ce5a4fd"
         };
 
-        var response = await _server.Databases.CreateCollection(request);
+        var response = await _server.Databases.DeleteCollection(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

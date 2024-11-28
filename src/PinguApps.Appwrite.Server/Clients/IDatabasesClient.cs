@@ -73,6 +73,14 @@ public interface IDatabasesClient
     /// <returns>The collection</returns>
     Task<AppwriteResult<Collection>> CreateCollection(CreateCollectionRequest request);
 
+    /// <summary>
+    /// Delete a collection by its unique ID. Only users with write permissions have access to delete this resource.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#deleteCollection">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>200 Success Response</returns>
+    Task<AppwriteResult> DeleteCollection(DeleteCollectionRequest request);
+
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
@@ -111,9 +119,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult> DeleteAttribute(DeleteAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult> DeleteCollection(DeleteCollectionRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);

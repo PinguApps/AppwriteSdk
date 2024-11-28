@@ -140,9 +140,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteCollection(DeleteCollectionRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult> DeleteCollection(DeleteCollectionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.DeleteCollection(request.DatabaseId, request.CollectionId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
