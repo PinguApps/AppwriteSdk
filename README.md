@@ -141,9 +141,9 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 128 / 317](https://img.shields.io/badge/Server_&_Client-128%20%2F%20317-gold?style=for-the-badge)
+![Server & Client - 129 / 317](https://img.shields.io/badge/Server_&_Client-129%20%2F%20317-gold?style=for-the-badge)
 
-![Server - 68 / 224](https://img.shields.io/badge/Server-68%20%2F%20224-red?style=for-the-badge)
+![Server - 69 / 224](https://img.shields.io/badge/Server-69%20%2F%20224-red?style=for-the-badge)
 
 ![Client - 60 / 93](https://img.shields.io/badge/Client-60%20%2F%2093-gold?style=for-the-badge)
 
@@ -275,13 +275,13 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updatePrefs) | ✅ | ✅ |
 
 ### Databases
-![Databases - 3 / 47](https://img.shields.io/badge/Databases-3%20%2F%2047-red?style=for-the-badge)
+![Databases - 4 / 47](https://img.shields.io/badge/Databases-4%20%2F%2047-red?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
 | [List Databases](https://appwrite.io/docs/references/1.6.x/server-rest/databases#list) | ❌ | ✅ |
 | [Create Databases](https://appwrite.io/docs/references/1.6.x/server-rest/databases#create) | ❌ | ✅ |
-| [Get Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#get) | ❌ | ⬛ |
+| [Get Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#get) | ❌ | ✅ |
 | [Update Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#update) | ❌ | ⬛ |
 | [Delete Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#delete) | ❌ | ✅ |
 | [List Collections](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listCollections) | ❌ | ⬛ |

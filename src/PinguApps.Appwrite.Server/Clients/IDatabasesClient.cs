@@ -41,6 +41,14 @@ public interface IDatabasesClient
     /// <returns>200 Success Response</returns>
     Task<AppwriteResult> DeleteDatabase(DeleteDatabaseRequest request);
 
+    /// <summary>
+    /// Get a database by its unique ID. This endpoint response returns a JSON object with the database metadata.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#get">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The database</returns>
+    Task<AppwriteResult<Database>> GetDatabase(GetDatabaseRequest request);
+
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
@@ -97,9 +105,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Collection>> GetCollection(GetCollectionRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Database>> GetDatabase(GetDatabaseRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
