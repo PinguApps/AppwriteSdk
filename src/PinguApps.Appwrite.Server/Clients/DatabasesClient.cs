@@ -157,9 +157,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Collection>> GetCollection(GetCollectionRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Collection>> GetCollection(GetCollectionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.GetCollection(request.DatabaseId, request.CollectionId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Collection>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

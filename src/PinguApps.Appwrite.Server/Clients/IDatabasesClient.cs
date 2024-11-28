@@ -78,8 +78,16 @@ public interface IDatabasesClient
     /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#deleteCollection">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
-    /// <returns>200 Success Response</returns>
+    /// <returns>204 Success Response</returns>
     Task<AppwriteResult> DeleteCollection(DeleteCollectionRequest request);
+
+    /// <summary>
+    /// Get a collection by its unique ID. This endpoint response returns a JSON object with the collection metadata.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#getCollection">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The collection</returns>
+    Task<AppwriteResult<Collection>> GetCollection(GetCollectionRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
@@ -128,9 +136,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Attribute>> GetAttribute(GetAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Collection>> GetCollection(GetCollectionRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
