@@ -174,9 +174,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Collection>> UpdateCollection(UpdateCollectionRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Collection>> UpdateCollection(UpdateCollectionRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateCollection(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Collection>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
