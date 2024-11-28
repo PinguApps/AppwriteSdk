@@ -33,6 +33,14 @@ public interface IDatabasesClient
     /// <returns>The database</returns>
     Task<AppwriteResult<Database>> CreateDatabase(CreateDatabaseRequest request);
 
+    /// <summary>
+    /// Delete a database by its unique ID. Only API keys with with databases.write scope can delete a database.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#delete">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>200 Success Response</returns>
+    Task<AppwriteResult> DeleteDatabase(DeleteDatabaseRequest request);
+
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
@@ -77,9 +85,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult> DeleteCollection(DeleteCollectionRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult> DeleteDatabase(DeleteDatabaseRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);

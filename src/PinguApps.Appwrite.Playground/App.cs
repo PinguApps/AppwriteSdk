@@ -17,12 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new CreateDatabaseRequest()
+        var request = new DeleteDatabaseRequest()
         {
-            Name = "My Database"
+            DatabaseId = "6748b1cb000b8513a348"
         };
 
-        var response = await _server.Databases.CreateDatabase(request);
+        var response = await _server.Databases.DeleteDatabase(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
