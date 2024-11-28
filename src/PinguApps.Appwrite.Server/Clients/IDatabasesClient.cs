@@ -25,14 +25,19 @@ public interface IDatabasesClient
     /// <returns>The databases list</returns>
     Task<AppwriteResult<DatabasesList>> ListDatabases(ListDatabasesRequest request);
 
+    /// <summary>
+    /// Create a new Database.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#create">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The database</returns>
+    Task<AppwriteResult<Database>> CreateDatabase(CreateDatabaseRequest request);
+
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Collection>> CreateCollection(CreateCollectionRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Database>> CreateDatabase(CreateDatabaseRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeDatetime>> CreateDatetimeAttribute(CreateDatetimeAttributeRequest request);

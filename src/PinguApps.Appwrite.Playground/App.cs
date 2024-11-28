@@ -17,9 +17,12 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new ListDatabasesRequest();
+        var request = new CreateDatabaseRequest()
+        {
+            Name = "My Database"
+        };
 
-        var response = await _server.Databases.ListDatabases(request);
+        var response = await _server.Databases.CreateDatabase(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
