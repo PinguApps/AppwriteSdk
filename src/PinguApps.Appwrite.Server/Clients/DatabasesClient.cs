@@ -225,9 +225,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeBoolean>> UpdateBooleanAttribute(UpdateBooleanAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<AttributeBoolean>> UpdateBooleanAttribute(UpdateBooleanAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateBooleanAttribute(request.DatabaseId, request.CollectionId, request.Key, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeBoolean>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

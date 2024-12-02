@@ -113,6 +113,14 @@ public interface IDatabasesClient
     /// <returns>The boolean attribute</returns>
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
+    /// <summary>
+    /// Update a boolean attribute. Changing the <c>default</c> value will not update already existing documents.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateBooleanAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The boolean attribute</returns>
+    Task<AppwriteResult<AttributeBoolean>> UpdateBooleanAttribute(UpdateBooleanAttributeRequest request);
+
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeDatetime>> CreateDatetimeAttribute(CreateDatetimeAttributeRequest request);
 
@@ -169,9 +177,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<IndexesList>> ListIndexes(ListIndexesRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeBoolean>> UpdateBooleanAttribute(UpdateBooleanAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<AttributeDatetime>> UpdateDatetimeAttribute(UpdateDatetimeAttributeRequest request);
