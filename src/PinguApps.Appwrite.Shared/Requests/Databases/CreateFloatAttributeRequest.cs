@@ -12,17 +12,17 @@ public class CreateFloatAttributeRequest : CreateAttributeBaseRequest<CreateFloa
     /// Default value for attribute when not provided. Cannot be set when attribute is required
     /// </summary>
     [JsonPropertyName("default")]
-    public float? Default { get; set; }
+    public double? Default { get; set; }
 
     /// <summary>
     /// Minimum value to enforce on new documents
     /// </summary>
     [JsonPropertyName("min")]
-    public float? Min { get; set; }
+    public double? Min { get; set; }
 
     /// <summary>
     /// Maximum value to enforce on new documents
     /// </summary>
     [JsonPropertyName("max")]
-    public float? Max { get; set; }
+    public double? Max { get; set; }
 }

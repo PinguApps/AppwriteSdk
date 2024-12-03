@@ -13,19 +13,19 @@ public class UpdateFloatAttributeRequest : UpdateAttributeBaseRequest<UpdateFloa
     /// </summary>
     [JsonPropertyName("default")]
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-    public float? Default { get; set; }
+    public double? Default { get; set; }
 
     /// <summary>
     /// Minimum value to enforce on new documents
     /// </summary>
     [JsonPropertyName("min")]
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-    public float? Min { get; set; }
+    public double Min { get; set; } = double.MinValue;
 
     /// <summary>
     /// Maximum value to enforce on new documents
     /// </summary>
     [JsonPropertyName("max")]
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-    public float? Max { get; set; }
+    public double Max { get; set; } = double.MaxValue;
 }

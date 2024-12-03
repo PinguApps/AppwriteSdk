@@ -16,8 +16,8 @@ public class UpdateFloatAttributeRequestTests : UpdateAttributeBaseRequestTests<
 
         // Assert
         Assert.Null(request.Default);
-        Assert.Null(request.Min);
-        Assert.Null(request.Max);
+        Assert.Equal(double.MinValue, request.Min);
+        Assert.Equal(double.MaxValue, request.Max);
     }
 
     [Fact]
@@ -49,8 +49,6 @@ public class UpdateFloatAttributeRequestTests : UpdateAttributeBaseRequestTests<
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Key = IdUtils.GenerateUniqueId(),
                 Default = null,
-                Min = null,
-                Max = null,
                 Required = true
             },
             new()
@@ -69,8 +67,6 @@ public class UpdateFloatAttributeRequestTests : UpdateAttributeBaseRequestTests<
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Key = IdUtils.GenerateUniqueId(),
                 Default = -10,
-                Min = null,
-                Max = null,
                 Required = false
             }
         ];
@@ -94,8 +90,6 @@ public class UpdateFloatAttributeRequestTests : UpdateAttributeBaseRequestTests<
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Key = IdUtils.GenerateUniqueId(),
                 Default = 0f,
-                Min = null,
-                Max = null,
                 Required = true
             },
             new()
@@ -104,8 +98,7 @@ public class UpdateFloatAttributeRequestTests : UpdateAttributeBaseRequestTests<
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Key = IdUtils.GenerateUniqueId(),
                 Default = 0f,
-                Min = 1f,
-                Max = null,
+                Min = 1f
             },
             new()
             {
@@ -113,7 +106,6 @@ public class UpdateFloatAttributeRequestTests : UpdateAttributeBaseRequestTests<
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Key = IdUtils.GenerateUniqueId(),
                 Default = 1f,
-                Min = null,
                 Max = 0f,
             },
             new()

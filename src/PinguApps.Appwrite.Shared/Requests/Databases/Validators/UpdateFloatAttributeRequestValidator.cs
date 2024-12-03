@@ -10,13 +10,13 @@ public class UpdateFloatAttributeRequestValidator : AbstractValidator<UpdateFloa
         RuleFor(x => x.Default)
             .Must((request, defaultValue) => !request.Required || defaultValue is null)
             .WithMessage("Default value cannot be set when attribute is required.")
-            .Must((request, defaultValue) => (request.Min is null || defaultValue is null) || defaultValue >= request.Min)
+            .Must((request, defaultValue) => defaultValue is null || defaultValue >= request.Min)
             .WithMessage("Default cannot be a smaller value than Min.")
-            .Must((request, defaultValue) => (request.Max is null || defaultValue is null) || defaultValue <= request.Max)
+            .Must((request, defaultValue) => defaultValue is null || defaultValue <= request.Max)
             .WithMessage("Default cannot be a larger value than Max.");
 
         RuleFor(x => x.Max)
-            .Must((request, max) => (request.Min is null || max is null) || max >= request.Min)
+            .Must((request, max) => max >= request.Min)
             .WithMessage("Max can not be a lower value than Min.");
     }
 }
