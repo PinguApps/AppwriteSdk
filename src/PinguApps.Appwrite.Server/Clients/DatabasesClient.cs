@@ -259,69 +259,277 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeDatetime>> UpdateDatetimeAttribute(UpdateDatetimeAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<AttributeDatetime>> UpdateDatetimeAttribute(UpdateDatetimeAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeEmail>> CreateEmailAttribute(CreateEmailAttributeRequest request) => throw new NotImplementedException();
+            var result = await _databasesApi.UpdateDatetimeAttribute(request.DatabaseId, request.CollectionId, request.Key, request);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeEmail>> UpdateEmailAttribute(UpdateEmailAttributeRequest request) => throw new NotImplementedException();
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeDatetime>();
+        }
+    }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeEnum>> CreateEnumAttribute(CreateEnumAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<AttributeEmail>> CreateEmailAttribute(CreateEmailAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeEnum>> UpdateEnumAttribute(UpdateEnumAttributeRequest request) => throw new NotImplementedException();
+            var result = await _databasesApi.CreateEmailAttribute(request.DatabaseId, request.CollectionId, request);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeFloat>> CreateFloatAttribute(CreateFloatAttributeRequest request) => throw new NotImplementedException();
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeEmail>();
+        }
+    }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeFloat>> UpdateFloatAttribute(UpdateFloatAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<AttributeEmail>> UpdateEmailAttribute(UpdateEmailAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeInteger>> CreateIntegerAttribute(CreateIntegerAttributeRequest request) => throw new NotImplementedException();
+            var result = await _databasesApi.UpdateEmailAttribute(request.DatabaseId, request.CollectionId, request.Key, request);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeInteger>> UpdateIntegerAttribute(UpdateIntegerAttributeRequest request) => throw new NotImplementedException();
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeEmail>();
+        }
+    }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeIp>> CreateIpAttribute(CreateIPAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<AttributeEnum>> CreateEnumAttribute(CreateEnumAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeIp>> UpdateIpAttribute(UpdateIPAttributeRequest request) => throw new NotImplementedException();
+            var result = await _databasesApi.CreateEnumAttribute(request.DatabaseId, request.CollectionId, request);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeRelationship>> CreateRelationshipAttribute(CreateRelationshipAttributeRequest request) => throw new NotImplementedException();
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeEnum>();
+        }
+    }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeString>> CreateStringAttribute(CreateStringAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<AttributeEnum>> UpdateEnumAttribute(UpdateEnumAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeString>> UpdateStringAttribute(UpdateStringAttributeRequest request) => throw new NotImplementedException();
+            var result = await _databasesApi.UpdateEnumAttribute(request.DatabaseId, request.CollectionId, request.Key, request);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeUrl>> CreateUrlAttribute(CreateURLAttributeRequest request) => throw new NotImplementedException();
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeEnum>();
+        }
+    }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeUrl>> UpdateUrlAttribute(UpdateURLAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<AttributeFloat>> CreateFloatAttribute(CreateFloatAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateFloatAttribute(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeFloat>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeFloat>> UpdateFloatAttribute(UpdateFloatAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateFloatAttribute(request.DatabaseId, request.CollectionId, request.Key, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeFloat>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeInteger>> CreateIntegerAttribute(CreateIntegerAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateIntegerAttribute(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeInteger>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeInteger>> UpdateIntegerAttribute(UpdateIntegerAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateIntegerAttribute(request.DatabaseId, request.CollectionId, request.Key, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeInteger>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeIp>> CreateIpAttribute(CreateIPAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateIpAttribute(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeIp>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeIp>> UpdateIpAttribute(UpdateIPAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateIpAttribute(request.DatabaseId, request.CollectionId, request.Key, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeIp>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeRelationship>> CreateRelationshipAttribute(CreateRelationshipAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateRelationshipAttribute(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeRelationship>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeString>> CreateStringAttribute(CreateStringAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateStringAttribute(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeString>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeString>> UpdateStringAttribute(UpdateStringAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateStringAttribute(request.DatabaseId, request.CollectionId, request.Key, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeString>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeUrl>> CreateUrlAttribute(CreateURLAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateUrlAttribute(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeUrl>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<AttributeUrl>> UpdateUrlAttribute(UpdateURLAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateUrlAttribute(request.DatabaseId, request.CollectionId, request.Key, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeUrl>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
@@ -331,9 +539,22 @@ public class DatabasesClient : IDatabasesClient
     /// <inheritdoc/>
     public Task<AppwriteResult<Attribute>> GetAttribute(GetAttributeRequest request) => throw new NotImplementedException();
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<AttributeRelationship>> UpdateRelationshipAttribute(UpdateRelationshipAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<AttributeRelationship>> UpdateRelationshipAttribute(UpdateRelationshipAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateRelationshipAttribute(request.DatabaseId, request.CollectionId, request.Key, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<AttributeRelationship>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
