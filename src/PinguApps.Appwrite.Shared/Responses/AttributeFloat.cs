@@ -29,9 +29,9 @@ public record AttributeFloat(
     DateTime CreatedAt,
     DateTime UpdatedAt,
 
-    [property: JsonPropertyName("min")] float? Min,
-    [property: JsonPropertyName("max")] float? Max,
-    [property: JsonPropertyName("default")] float? Default
+    [property: JsonPropertyName("min")] double? Min,
+    [property: JsonPropertyName("max")] double? Max,
+    [property: JsonPropertyName("default")] double? Default
 ) : Attribute(Key, Type, Status, Error, Required, Array, CreatedAt, UpdatedAt)
 {
     /// <inheritdoc/>

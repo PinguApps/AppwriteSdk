@@ -13,19 +13,19 @@ public class UpdateIntegerAttributeRequest : UpdateAttributeBaseRequest<UpdateIn
     /// </summary>
     [JsonPropertyName("default")]
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-    public int? Default { get; set; }
+    public long? Default { get; set; }
 
     /// <summary>
     /// Minimum value to enforce on new documents
     /// </summary>
     [JsonPropertyName("min")]
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-    public int? Min { get; set; }
+    public long Min { get; set; } = long.MinValue;
 
     /// <summary>
     /// Maximum value to enforce on new documents
     /// </summary>
     [JsonPropertyName("max")]
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
-    public int? Max { get; set; }
+    public long Max { get; set; } = long.MaxValue;
 }

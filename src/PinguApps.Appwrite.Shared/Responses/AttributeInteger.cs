@@ -29,9 +29,9 @@ public record AttributeInteger(
     DateTime CreatedAt,
     DateTime UpdatedAt,
 
-    [property: JsonPropertyName("min")] int? Min,
-    [property: JsonPropertyName("max")] int? Max,
-    [property: JsonPropertyName("default")] int? Default
+    [property: JsonPropertyName("min")] long? Min,
+    [property: JsonPropertyName("max")] long? Max,
+    [property: JsonPropertyName("default")] long? Default
 ) : Attribute(Key, Type, Status, Error, Required, Array, CreatedAt, UpdatedAt)
 {
     /// <inheritdoc/>
