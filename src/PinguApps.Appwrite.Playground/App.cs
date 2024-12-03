@@ -17,15 +17,14 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new UpdateBooleanAttributeRequest()
+        var request = new CreateDatetimeAttributeRequest()
         {
             DatabaseId = "6748b44d000b2b0e73ac",
             CollectionId = "6748bb30002a12d4708f",
-            Key = "isHuman",
-            NewKey = "isRobot"
+            Key = "created"
         };
 
-        var response = await _server.Databases.UpdateBooleanAttribute(request);
+        var response = await _server.Databases.CreateDatetimeAttribute(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

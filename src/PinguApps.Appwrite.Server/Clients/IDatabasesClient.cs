@@ -121,7 +121,12 @@ public interface IDatabasesClient
     /// <returns>The boolean attribute</returns>
     Task<AppwriteResult<AttributeBoolean>> UpdateBooleanAttribute(UpdateBooleanAttributeRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Create a date time attribute according to the ISO 8601 standard.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createDatetimeAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The datetime attribute attribute</returns>
     Task<AppwriteResult<AttributeDatetime>> CreateDatetimeAttribute(CreateDatetimeAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
