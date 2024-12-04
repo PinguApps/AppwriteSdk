@@ -535,9 +535,22 @@ public class DatabasesClient : IDatabasesClient
     /// <inheritdoc/>
     public Task<AppwriteResult> DeleteAttribute(DeleteAttributeRequest request) => throw new NotImplementedException();
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Attribute>> GetAttribute(GetAttributeRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Attribute>> GetAttribute(GetAttributeRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.GetAttribute(request.DatabaseId, request.CollectionId, request.Key);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Attribute>();
+        }
+    }
 
     /// <inheritdoc/>
     public async Task<AppwriteResult<AttributeRelationship>> UpdateRelationshipAttribute(UpdateRelationshipAttributeRequest request)

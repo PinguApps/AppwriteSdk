@@ -260,7 +260,12 @@ public interface IDatabasesClient
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult> DeleteAttribute(DeleteAttributeRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Get attribute by ID.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#getAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The attribute</returns>
     Task<AppwriteResult<Attribute>> GetAttribute(GetAttributeRequest request);
 
     /// <summary>
