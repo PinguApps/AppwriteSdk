@@ -113,50 +113,175 @@ public interface IDatabasesClient
     /// <returns>The boolean attribute</returns>
     Task<AppwriteResult<AttributeBoolean>> CreateBooleanAttribute(CreateBooleanAttributeRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Update a boolean attribute. Changing the <c>default</c> value will not update already existing documents.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateBooleanAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The boolean attribute</returns>
+    Task<AppwriteResult<AttributeBoolean>> UpdateBooleanAttribute(UpdateBooleanAttributeRequest request);
+
+    /// <summary>
+    /// Create a date time attribute according to the ISO 8601 standard.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createDatetimeAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The datetime attribute</returns>
     Task<AppwriteResult<AttributeDatetime>> CreateDatetimeAttribute(CreateDatetimeAttributeRequest request);
+
+    /// <summary>
+    /// Update a date time attribute. Changing the <c>default</c> value will not update already existing documents.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateDatetimeAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The datetime attribute</returns>
+    Task<AppwriteResult<AttributeDatetime>> UpdateDatetimeAttribute(UpdateDatetimeAttributeRequest request);
+
+    /// <summary>
+    /// Create an email attribute.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createEmailAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The email attribute</returns>
+    Task<AppwriteResult<AttributeEmail>> CreateEmailAttribute(CreateEmailAttributeRequest request);
+
+    /// <summary>
+    /// Update an email attribute. Changing the <c>default</c> value will not update already existing documents.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateEmailAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The email attribute</returns>
+    Task<AppwriteResult<AttributeEmail>> UpdateEmailAttribute(UpdateEmailAttributeRequest request);
+
+    /// <summary>
+    /// Create an enumeration attribute. The elements param acts as a white-list of accepted values for this attribute.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createEnumAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The enum attribute</returns>
+    Task<AppwriteResult<AttributeEnum>> CreateEnumAttribute(CreateEnumAttributeRequest request);
+
+    /// <summary>
+    /// Update an enumeration attribute. Changing the <c>default</c> value will not update already existing documents.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateEnumAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The enum attribute</returns>
+    Task<AppwriteResult<AttributeEnum>> UpdateEnumAttribute(UpdateEnumAttributeRequest request);
+
+    /// <summary>
+    /// Create a float attribute. Optionally, minimum and maximum values can be provided.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createFloatAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The float attribute</returns>
+    Task<AppwriteResult<AttributeFloat>> CreateFloatAttribute(CreateFloatAttributeRequest request);
+
+    /// <summary>
+    /// Update a float attribute. Changing the <c>default</c> value will not update already existing documents.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateFloatAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The float attribute</returns>
+    Task<AppwriteResult<AttributeFloat>> UpdateFloatAttribute(UpdateFloatAttributeRequest request);
+
+    /// <summary>
+    /// Create an integer attribute. Optionally, minimum and maximum values can be provided.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createIntegerAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The integer attribute</returns>
+    Task<AppwriteResult<AttributeInteger>> CreateIntegerAttribute(CreateIntegerAttributeRequest request);
+
+    /// <summary>
+    /// Update an integer attribute. Changing the <c>default</c> value will not update already existing documents.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateIntegerAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The integer attribute</returns>
+    Task<AppwriteResult<AttributeInteger>> UpdateIntegerAttribute(UpdateIntegerAttributeRequest request);
+
+    /// <summary>
+    /// Create an IP attribute.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createIpAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The ip address attribute</returns>
+    Task<AppwriteResult<AttributeIp>> CreateIpAttribute(CreateIPAttributeRequest request);
+
+    /// <summary>
+    /// Update an IP attribute. Changing the <c>default</c> value will not update already existing documents.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateIpAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The ip address attribute</returns>
+    Task<AppwriteResult<AttributeIp>> UpdateIpAttribute(UpdateIPAttributeRequest request);
+
+    /// <summary>
+    /// Create relationship attribute. <see href="https://appwrite.io/docs/databases-relationships#relationship-attributes">Learn more about relationship attributes</see>.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createRelationshipAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The relationship attribute</returns>
+    Task<AppwriteResult<AttributeRelationship>> CreateRelationshipAttribute(CreateRelationshipAttributeRequest request);
+
+    /// <summary>
+    /// Create a string attribute.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createStringAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The string attribute</returns>
+    Task<AppwriteResult<AttributeString>> CreateStringAttribute(CreateStringAttributeRequest request);
+
+    /// <summary>
+    /// Update a string attribute. Changing the <c>default</c> value will not update already existing documents.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateStringAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The string attribute</returns>
+    Task<AppwriteResult<AttributeString>> UpdateStringAttribute(UpdateStringAttributeRequest request);
+
+    /// <summary>
+    /// Create a URL attribute.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createUrlAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The url attribute</returns>
+    Task<AppwriteResult<AttributeUrl>> CreateUrlAttribute(CreateURLAttributeRequest request);
+
+    /// <summary>
+    /// Update a URL attribute. Changing the <c>default</c> value will not update already existing documents.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateUrlAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The url attribute</returns>
+    Task<AppwriteResult<AttributeUrl>> UpdateUrlAttribute(UpdateURLAttributeRequest request);
+
+    [Obsolete("Endpoint not yet implemented.")]
+    Task<AppwriteResult> DeleteAttribute(DeleteAttributeRequest request);
+
+    [Obsolete("Endpoint not yet implemented.")]
+    Task<AppwriteResult<Attribute>> GetAttribute(GetAttributeRequest request);
+
+    /// <summary>
+    /// Update relationship attribute. <see href="https://appwrite.io/docs/databases-relationships#relationship-attributes">Learn more about relationship attributes</see>.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateRelationshipAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The relationship attribute</returns>
+    Task<AppwriteResult<AttributeRelationship>> UpdateRelationshipAttribute(UpdateRelationshipAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeEmail>> CreateEmailAttribute(CreateEmailAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeEnum>> CreateEnumAttribute(CreateEnumAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeFloat>> CreateFloatAttribute(CreateFloatAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeInteger>> CreateIntegerAttribute(CreateIntegerAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeIp>> CreateIpAttribute(CreateIPAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeRelationship>> CreateRelationshipAttribute(CreateRelationshipAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeString>> CreateStringAttribute(CreateStringAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeUrl>> CreateUrlAttribute(CreateURLAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult> DeleteAttribute(DeleteAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult> DeleteIndex(DeleteIndexRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Attribute>> GetAttribute(GetAttributeRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
@@ -171,35 +296,5 @@ public interface IDatabasesClient
     Task<AppwriteResult<IndexesList>> ListIndexes(ListIndexesRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeBoolean>> UpdateBooleanAttribute(UpdateBooleanAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeDatetime>> UpdateDatetimeAttribute(UpdateDatetimeAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeEmail>> UpdateEmailAttribute(UpdateEmailAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeEnum>> UpdateEnumAttribute(UpdateEnumAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeFloat>> UpdateFloatAttribute(UpdateFloatAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeInteger>> UpdateIntegerAttribute(UpdateIntegerAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeIp>> UpdateIpAttribute(UpdateIPAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeRelationship>> UpdateRelationshipAttribute(UpdateRelationshipAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeString>> UpdateStringAttribute(UpdateStringAttributeRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<AttributeUrl>> UpdateUrlAttribute(UpdateURLAttributeRequest request);
 }

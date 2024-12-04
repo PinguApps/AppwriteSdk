@@ -12,17 +12,17 @@ public class CreateIntegerAttributeRequest : CreateAttributeBaseRequest<CreateIn
     /// Default value for attribute when not provided. Cannot be set when attribute is required
     /// </summary>
     [JsonPropertyName("default")]
-    public int? Default { get; set; }
+    public long? Default { get; set; }
 
     /// <summary>
     /// Minimum value to enforce on new documents
     /// </summary>
     [JsonPropertyName("min")]
-    public int? Min { get; set; }
+    public long? Min { get; set; }
 
     /// <summary>
     /// Maximum value to enforce on new documents
     /// </summary>
     [JsonPropertyName("max")]
-    public int? Max { get; set; }
+    public long? Max { get; set; }
 }

@@ -16,8 +16,8 @@ public class UpdateIntegerAttributeRequestTests : UpdateAttributeBaseRequestTest
 
         // Assert
         Assert.Null(request.Default);
-        Assert.Null(request.Min);
-        Assert.Null(request.Max);
+        Assert.Equal(long.MinValue, request.Min);
+        Assert.Equal(long.MaxValue, request.Max);
     }
 
     [Fact]
@@ -49,8 +49,6 @@ public class UpdateIntegerAttributeRequestTests : UpdateAttributeBaseRequestTest
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Key = IdUtils.GenerateUniqueId(),
                 Default = null,
-                Min = null,
-                Max = null,
                 Required = true
             },
             new()
@@ -69,8 +67,6 @@ public class UpdateIntegerAttributeRequestTests : UpdateAttributeBaseRequestTest
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Key = IdUtils.GenerateUniqueId(),
                 Default = -10,
-                Min = null,
-                Max = null,
                 Required = false
             }
         ];
@@ -94,8 +90,6 @@ public class UpdateIntegerAttributeRequestTests : UpdateAttributeBaseRequestTest
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Key = IdUtils.GenerateUniqueId(),
                 Default = 0,
-                Min = null,
-                Max = null,
                 Required = true
             },
             new()
@@ -105,7 +99,6 @@ public class UpdateIntegerAttributeRequestTests : UpdateAttributeBaseRequestTest
                 Key = IdUtils.GenerateUniqueId(),
                 Default = 0,
                 Min = 1,
-                Max = null,
             },
             new()
             {
@@ -113,7 +106,6 @@ public class UpdateIntegerAttributeRequestTests : UpdateAttributeBaseRequestTest
                 CollectionId = IdUtils.GenerateUniqueId(),
                 Key = IdUtils.GenerateUniqueId(),
                 Default = 1,
-                Min = null,
                 Max = 0,
             },
             new()
