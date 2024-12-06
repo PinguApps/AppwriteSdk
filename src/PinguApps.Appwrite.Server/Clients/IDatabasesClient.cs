@@ -286,7 +286,7 @@ public interface IDatabasesClient
     Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult> DeleteIndex(DeleteIndexRequest request);
+    Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
@@ -313,8 +313,13 @@ public interface IDatabasesClient
     /// <returns>The index</returns>
     Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
+    /// <summary>
+    /// Delete an index.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#deleteIndex">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
+    Task<AppwriteResult> DeleteIndex(DeleteIndexRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request);
