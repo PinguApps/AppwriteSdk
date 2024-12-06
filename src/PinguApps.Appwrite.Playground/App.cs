@@ -17,14 +17,14 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new GetAttributeRequest()
+        var request = new DeleteAttributeRequest()
         {
             DatabaseId = "6748b44d000b2b0e73ac",
             CollectionId = "6748bb30002a12d4708f",
-            Key = "isRobot"
+            Key = "test23"
         };
 
-        var response = await _server.Databases.GetAttribute(request);
+        var response = await _server.Databases.DeleteAttribute(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),
