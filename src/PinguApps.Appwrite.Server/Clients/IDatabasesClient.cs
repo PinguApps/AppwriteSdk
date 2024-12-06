@@ -257,10 +257,20 @@ public interface IDatabasesClient
     /// <returns>The url attribute</returns>
     Task<AppwriteResult<AttributeUrl>> UpdateUrlAttribute(UpdateURLAttributeRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Deletes an attribute.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#deleteAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteAttribute(DeleteAttributeRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Get attribute by ID.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#getAttribute">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The attribute</returns>
     Task<AppwriteResult<Attribute>> GetAttribute(GetAttributeRequest request);
 
     /// <summary>

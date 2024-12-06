@@ -17,6 +17,7 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Array">Is attribute an array?</param>
 /// <param name="CreatedAt">Attribute creation date in ISO 8601 format</param>
 /// <param name="UpdatedAt">Attribute update date in ISO 8601 format</param>
+[JsonConverter(typeof(AttributeJsonConverter))]
 public abstract record Attribute(
     [property: JsonPropertyName("key")] string Key,
     [property: JsonPropertyName("type")] string Type,
