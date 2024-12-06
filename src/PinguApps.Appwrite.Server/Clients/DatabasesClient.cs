@@ -653,7 +653,20 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.GetIndex(request.DatabaseId, request.CollectionId, request.Key);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Index>();
+        }
+    }
 }

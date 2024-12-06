@@ -17,14 +17,14 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new DeleteIndexRequest()
+        var request = new GetIndexRequest()
         {
             DatabaseId = "6748b44d000b2b0e73ac",
             CollectionId = "6748bb30002a12d4708f",
-            Key = "myKey"
+            Key = "index_1"
         };
 
-        var response = await _server.Databases.DeleteIndex(request);
+        var response = await _server.Databases.GetIndex(request);
 
         Console.WriteLine(response.Result.Match(
             result => result.ToString(),

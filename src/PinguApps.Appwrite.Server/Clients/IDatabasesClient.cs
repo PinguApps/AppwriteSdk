@@ -321,6 +321,11 @@ public interface IDatabasesClient
     /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteIndex(DeleteIndexRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Get index by ID.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#getIndex">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The index</returns>
     Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request);
 }
