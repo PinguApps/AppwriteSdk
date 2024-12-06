@@ -602,19 +602,71 @@ public class DatabasesClient : IDatabasesClient
     /// <inheritdoc/>
     public Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request) => throw new NotImplementedException();
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<IndexesList>> ListIndexes(ListIndexesRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<IndexesList>> ListIndexes(ListIndexesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request) => throw new NotImplementedException();
+            var result = await _databasesApi.ListIndexes(request.DatabaseId, request.CollectionId, RequestUtils.GetQueryStrings(request.Queries));
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteIndex(DeleteIndexRequest request) => throw new NotImplementedException();
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<IndexesList>();
+        }
+    }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateIndex(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Index>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult> DeleteIndex(DeleteIndexRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.DeleteIndex(request.DatabaseId, request.CollectionId, request.Key);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.GetIndex(request.DatabaseId, request.CollectionId, request.Key);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Index>();
+        }
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
+using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Responses;
 using Attribute = PinguApps.Appwrite.Shared.Responses.Attribute;
@@ -285,26 +286,46 @@ public interface IDatabasesClient
     Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult> DeleteIndex(DeleteIndexRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
+    Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request);
+
+    /// <summary>
+    /// List indexes in the collection.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#listIndexes">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The indexes list</returns>
     Task<AppwriteResult<IndexesList>> ListIndexes(ListIndexesRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request);
+    /// <summary>
+    /// Creates an index on the attributes listed. Your index should include all the attributes you will query in a single request. Attributes can be <see cref="IndexType.Key"/>, <see cref="IndexType.Fulltext"/> and <see cref="IndexType.Unique"/>.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createIndex">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The index</returns>
+    Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request);
+
+    /// <summary>
+    /// Delete an index.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#deleteIndex">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
+    Task<AppwriteResult> DeleteIndex(DeleteIndexRequest request);
+
+    /// <summary>
+    /// Get index by ID.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#getIndex">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The index</returns>
+    Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request);
 }
