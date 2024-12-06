@@ -619,9 +619,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateIndex(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Index>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
+using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Responses;
 using Attribute = PinguApps.Appwrite.Shared.Responses.Attribute;
@@ -304,7 +305,12 @@ public interface IDatabasesClient
     /// <returns>The indexes list</returns>
     Task<AppwriteResult<IndexesList>> ListIndexes(ListIndexesRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Creates an index on the attributes listed. Your index should include all the attributes you will query in a single request. Attributes can be <see cref="IndexType.Key"/>, <see cref="IndexType.Fulltext"/> and <see cref="IndexType.Unique"/>.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createIndex">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The index</returns>
     Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
