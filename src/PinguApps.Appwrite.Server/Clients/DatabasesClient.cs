@@ -602,9 +602,22 @@ public class DatabasesClient : IDatabasesClient
     /// <inheritdoc/>
     public Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request) => throw new NotImplementedException();
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<IndexesList>> ListIndexes(ListIndexesRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<IndexesList>> ListIndexes(ListIndexesRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.ListIndexes(request.DatabaseId, request.CollectionId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<IndexesList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

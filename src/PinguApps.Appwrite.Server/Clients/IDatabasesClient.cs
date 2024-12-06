@@ -285,26 +285,31 @@ public interface IDatabasesClient
     Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult> DeleteIndex(DeleteIndexRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
+    Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request);
+
+    /// <summary>
+    /// List indexes in the collection.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#listIndexes">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The indexes list</returns>
     Task<AppwriteResult<IndexesList>> ListIndexes(ListIndexesRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request);
+    Task<AppwriteResult<Index>> CreateIndex(CreateIndexRequest request);
+
+    [Obsolete("Endpoint not yet implemented.")]
+    Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
+
+    [Obsolete("Endpoint not yet implemented.")]
+    Task<AppwriteResult<Index>> GetIndex(GetIndexRequest request);
 }
