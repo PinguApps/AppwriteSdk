@@ -17,16 +17,26 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new GetIndexRequest()
+        var request = new ListDocumentsRequest()
         {
-            DatabaseId = "6748b44d000b2b0e73ac",
-            CollectionId = "6748bb30002a12d4708f",
-            Key = "index_1"
+            DatabaseId = "67541a2800221703e717",
+            CollectionId = "67541a37001514b81821"
         };
 
-        var response = await _server.Databases.GetIndex(request);
+        var serverResponse = await _server.Databases.ListDocuments(request);
 
-        Console.WriteLine(response.Result.Match(
+        Console.WriteLine(serverResponse.Result.Match(
+            result => result.ToString(),
+            appwriteError => appwriteError.Message,
+            internalError => internalError.Message));
+
+        Console.WriteLine("###############################################################################");
+
+        _client.SetSession(_session);
+
+        var clientResponse = await _client.Databases.ListDocuments(request);
+
+        Console.WriteLine(clientResponse.Result.Match(
             result => result.ToString(),
             appwriteError => appwriteError.Message,
             internalError => internalError.Message));

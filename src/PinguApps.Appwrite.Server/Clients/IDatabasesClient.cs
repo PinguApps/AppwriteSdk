@@ -282,6 +282,14 @@ public interface IDatabasesClient
     /// <returns>The relationship attribute</returns>
     Task<AppwriteResult<AttributeRelationship>> UpdateRelationshipAttribute(UpdateRelationshipAttributeRequest request);
 
+    /// <summary>
+    /// Get a list of all the user's documents in a given collection. You can use the query params to filter your results.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#listDocuments">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The documents list</returns>
+    Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);
+
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request);
 
@@ -290,9 +298,6 @@ public interface IDatabasesClient
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]
     Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request);

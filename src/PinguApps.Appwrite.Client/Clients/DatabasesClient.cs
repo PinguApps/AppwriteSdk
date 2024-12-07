@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using PinguApps.Appwrite.Client.Internals;
+using PinguApps.Appwrite.Client.Utils;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Responses;
@@ -18,9 +19,22 @@ public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
         _databasesApi = databasesApi;
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.ListDocuments(GetCurrentSessionOrThrow(), request.DatabaseId, request.CollectionId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<DocumentsList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

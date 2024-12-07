@@ -582,9 +582,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.ListDocuments(request.DatabaseId, request.CollectionId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<DocumentsList>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
