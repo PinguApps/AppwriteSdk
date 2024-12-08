@@ -26,7 +26,7 @@ public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
         {
             request.Validate(true);
 
-            var result = await _databasesApi.ListDocuments(GetCurrentSessionOrThrow(), request.DatabaseId, request.CollectionId, RequestUtils.GetQueryStrings(request.Queries));
+            var result = await _databasesApi.ListDocuments(GetCurrentSession(), request.DatabaseId, request.CollectionId, RequestUtils.GetQueryStrings(request.Queries));
 
             return result.GetApiResponse();
         }
