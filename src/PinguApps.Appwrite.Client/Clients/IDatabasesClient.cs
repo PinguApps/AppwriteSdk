@@ -23,7 +23,12 @@ public interface IDatabasesClient
     /// <returns>The documents list</returns>
     Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Create a new Document. Before using this route, you should create a new collection resource using either a <see href="https://appwrite.io/docs/server/databases#databasesCreateCollection">server integration</see> API or directly from your database console.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/client-rest/databases#createDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The document</returns>
     Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]

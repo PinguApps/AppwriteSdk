@@ -599,9 +599,22 @@ public class DatabasesClient : IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateDocument(request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Document>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
