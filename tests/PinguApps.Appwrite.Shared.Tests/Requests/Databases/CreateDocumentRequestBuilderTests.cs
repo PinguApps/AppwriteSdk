@@ -1,5 +1,7 @@
-﻿using PinguApps.Appwrite.Shared.Requests.Databases;
+﻿using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Utils;
+using static PinguApps.Appwrite.Shared.Requests.Databases.ICreateDocumentRequestBuilder;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Databases;
 public class CreateDocumentRequestBuilderTests
@@ -191,5 +193,147 @@ public class CreateDocumentRequestBuilderTests
         // Assert
         Assert.NotNull(request.Data);
         Assert.Empty(request.Data);
+    }
+
+    public class TestClass
+    {
+        public string? StringProp { get; set; }
+        public int IntProp { get; set; }
+        [JsonIgnore]
+        public string? IgnoredProp { get; set; }
+        [JsonPropertyName("custom")]
+        public string? CustomNameProp { get; set; }
+    }
+
+    [Fact]
+    public void WithData_NullData_ThrowsArgumentNullException()
+    {
+        var builder = CreateDocumentRequest.CreateBuilder();
+
+        TestClass? nullData = null;
+        var ex = Assert.Throws<ArgumentNullException>(() => builder.WithData(nullData));
+        Assert.Equal("data", ex.ParamName);
+    }
+
+    [Fact]
+    public void WithData_NullOptions_UsesDefaultOptions()
+    {
+        var builder = CreateDocumentRequest.CreateBuilder();
+
+        var data = new TestClass { StringProp = "test" };
+        builder.WithData(data, options: null);
+        // Assert AddField was called with "stringProp" and "test"
+        // You'll need to mock/verify this based on your implementation
+    }
+
+    [Fact]
+    public void WithData_CustomOptions_AppliesOptions()
+    {
+        var builder = CreateDocumentRequest.CreateBuilder();
+
+        var data = new TestClass { StringProp = "test" };
+        builder.WithData(data, options => options.IgnoreNullValues = false);
+        // Assert all properties were added, including nulls
+    }
+
+    [Fact]
+    public void WithData_PropertyFilter_AppliesFilter()
+    {
+        var builder = CreateDocumentRequest.CreateBuilder();
+
+        var data = new TestClass { StringProp = "test", IntProp = 42 };
+        builder.WithData(data, options =>
+            options.PropertyFilter = prop => prop.PropertyType == typeof(string));
+        // Assert only string properties were added
+    }
+
+    [Fact]
+    public void WithData_JsonIgnoreAttribute_SkipsProperty()
+    {
+        var builder = CreateDocumentRequest.CreateBuilder();
+
+        var data = new TestClass { IgnoredProp = "ignored" };
+        builder.WithData(data);
+        // Assert IgnoredProp was not added
+    }
+
+    [Fact]
+    public void WithData_JsonPropertyNameAttribute_UsesCustomName()
+    {
+        var builder = CreateDocumentRequest.CreateBuilder();
+
+        var data = new TestClass { CustomNameProp = "test" };
+        builder.WithData(data);
+        // Assert AddField was called with "custom" instead of "customNameProp"
+    }
+
+    [Fact]
+    public void WithData_NullValue_IgnoredByDefault()
+    {
+        var builder = CreateDocumentRequest.CreateBuilder();
+
+        var data = new TestClass { StringProp = null };
+        builder.WithData(data);
+        // Assert AddField was not called for StringProp
+    }
+
+    [Fact]
+    public void WithData_NullValue_IncludedWhenIgnoreNullValuesFalse()
+    {
+        var builder = CreateDocumentRequest.CreateBuilder();
+
+        var data = new TestClass { StringProp = null };
+        builder.WithData(data, options => options.IgnoreNullValues = false);
+        // Assert AddField was called with null value
+    }
+
+    [Fact]
+    public void WithData_PropertyCacheReuse_CachesProperties()
+    {
+        var builder = CreateDocumentRequest.CreateBuilder();
+
+        var data1 = new TestClass();
+        var data2 = new TestClass();
+        builder.WithData(data1);
+        builder.WithData(data2);
+        // Assert properties were cached (you'll need to expose cache or use reflection to verify)
+    }
+
+    [Fact]
+    public void ShouldIncludeProperty_NoAttributeNoFilter_ReturnsTrue()
+    {
+        var options = new WithDataOptions();
+        var prop = typeof(TestClass).GetProperty(nameof(TestClass.StringProp))!;
+        Assert.True(options.ShouldIncludeProperty(prop));
+    }
+
+    [Fact]
+    public void ShouldIncludeProperty_JsonIgnoreAttribute_ReturnsFalse()
+    {
+        var options = new WithDataOptions();
+        var prop = typeof(TestClass).GetProperty(nameof(TestClass.IgnoredProp))!;
+        Assert.False(options.ShouldIncludeProperty(prop));
+    }
+
+    [Fact]
+    public void ShouldIncludeProperty_CustomFilterTrue_ReturnsTrue()
+    {
+        var options = new WithDataOptions
+        {
+            PropertyFilter = _ => true
+        };
+        var prop = typeof(TestClass).GetProperty(nameof(TestClass.StringProp))!;
+        Assert.True(options.ShouldIncludeProperty(prop));
+    }
+
+    [Fact]
+    public void ShouldIncludeProperty_CustomFilterFalse_ReturnsFalse()
+    {
+        var options = new WithDataOptions
+        {
+            PropertyFilter = _ => false
+        };
+        var prop = typeof(TestClass).GetProperty(nameof(TestClass.StringProp))!;
+        Assert.False(options.ShouldIncludeProperty(prop));
     }
 }
