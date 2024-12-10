@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Responses;
@@ -47,6 +46,11 @@ public interface IDatabasesClient
     /// <returns>The document</returns>
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Update a document by its unique ID. Using the patch method you can pass only specific fields that will get updated.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/client-rest/databases#updateDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The document</returns>
     Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request);
 }
