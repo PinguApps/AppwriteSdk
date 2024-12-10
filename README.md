@@ -141,11 +141,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 162 / 317](https://img.shields.io/badge/Server_&_Client-162%20%2F%20317-gold?style=for-the-badge)
+![Server & Client - 172 / 317](https://img.shields.io/badge/Server_&_Client-172%20%2F%20317-gold?style=for-the-badge)
 
-![Server - 102 / 224](https://img.shields.io/badge/Server-102%20%2F%20224-gold?style=for-the-badge)
+![Server - 107 / 224](https://img.shields.io/badge/Server-107%20%2F%20224-gold?style=for-the-badge)
 
-![Client - 60 / 93](https://img.shields.io/badge/Client-60%20%2F%2093-gold?style=for-the-badge)
+![Client - 65 / 93](https://img.shields.io/badge/Client-65%20%2F%2093-forestgreen?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -275,7 +275,7 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updatePrefs) | ✅ | ✅ |
 
 ### Databases
-![Databases - 37 / 47](https://img.shields.io/badge/Databases-37%20%2F%2047-forestgreen?style=for-the-badge)
+![Databases - 47 / 47](https://img.shields.io/badge/Databases-47%20%2F%2047-blue?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
@@ -312,11 +312,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Get Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#getAttribute) | ❌ | ✅ |
 | [Delete Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#deleteAttribute) | ❌ | ✅ |
 | [Update Relationship Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateRelationshipAttribute) | ❌ | ✅ |
-| [List Documents](https://appwrite.io/docs/references/1.6.x/client-rest/databases#listDocuments) | ⬛ | ⬛ |
-| [Create Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#createDocument) | ⬛ | ⬛ |
-| [Get Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#getDocument) | ⬛ | ⬛ |
-| [Update Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#updateDocument) | ⬛ | ⬛ |
-| [Delete Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#deleteDocument) | ⬛ | ⬛ |
+| [List Documents](https://appwrite.io/docs/references/1.6.x/client-rest/databases#listDocuments) | ✅ | ✅ |
+| [Create Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#createDocument) | ✅ | ✅ |
+| [Get Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#getDocument) | ✅ | ✅ |
+| [Update Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#updateDocument) | ✅ | ✅ |
+| [Delete Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#deleteDocument) | ✅ | ✅ |
 | [List Indexes](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listIndexes) | ❌ | ✅ |
 | [Create Index](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createIndex) | ❌ | ✅ |
 | [Get Index](https://appwrite.io/docs/references/1.6.x/server-rest/databases#getIndex) | ❌ | ✅ |
