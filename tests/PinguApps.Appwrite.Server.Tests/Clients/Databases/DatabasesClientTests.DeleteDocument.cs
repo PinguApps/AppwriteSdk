@@ -8,46 +8,44 @@ namespace PinguApps.Appwrite.Server.Tests.Clients.Databases;
 public partial class DatabasesClientTests
 {
     [Fact]
-    public async Task UpdateCollection_ShouldReturnSuccess_WhenApiCallSucceeds()
+    public async Task DeleteDocument_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        var request = new UpdateCollectionRequest
+        var request = new DeleteDocumentRequest
         {
             DatabaseId = IdUtils.GenerateUniqueId(),
             CollectionId = IdUtils.GenerateUniqueId(),
-            Name = "New Name"
+            DocumentId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/documents/{request.DocumentId}")
             .ExpectedHeaders()
-            .WithJsonContent(request, _jsonSerializerOptions)
-            .Respond(TestConstants.AppJson, TestConstants.CollectionResponse);
+            .Respond(HttpStatusCode.NoContent);
 
         // Act
-        var result = await _appwriteClient.Databases.UpdateCollection(request);
+        var result = await _appwriteClient.Databases.DeleteDocument(request);
 
         // Assert
         Assert.True(result.Success);
     }
 
     [Fact]
-    public async Task UpdateCollection_ShouldHandleException_WhenApiCallFails()
+    public async Task DeleteDocument_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        var request = new UpdateCollectionRequest
+        var request = new DeleteDocumentRequest
         {
             DatabaseId = IdUtils.GenerateUniqueId(),
             CollectionId = IdUtils.GenerateUniqueId(),
-            Name = "New Name"
+            DocumentId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/documents/{request.DocumentId}")
             .ExpectedHeaders()
-            .WithJsonContent(request, _jsonSerializerOptions)
             .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
-        var result = await _appwriteClient.Databases.UpdateCollection(request);
+        var result = await _appwriteClient.Databases.DeleteDocument(request);
 
         // Assert
         Assert.True(result.IsError);
@@ -55,23 +53,22 @@ public partial class DatabasesClientTests
     }
 
     [Fact]
-    public async Task UpdateCollection_ShouldReturnErrorResponse_WhenExceptionOccurs()
+    public async Task DeleteDocument_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        var request = new UpdateCollectionRequest
+        var request = new DeleteDocumentRequest
         {
             DatabaseId = IdUtils.GenerateUniqueId(),
             CollectionId = IdUtils.GenerateUniqueId(),
-            Name = "New Name"
+            DocumentId = IdUtils.GenerateUniqueId()
         };
 
-        _mockHttp.Expect(HttpMethod.Put, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}")
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/documents/{request.DocumentId}")
             .ExpectedHeaders()
-            .WithJsonContent(request, _jsonSerializerOptions)
             .Throw(new HttpRequestException("An error occurred"));
 
         // Act
-        var result = await _appwriteClient.Databases.UpdateCollection(request);
+        var result = await _appwriteClient.Databases.DeleteDocument(request);
 
         // Assert
         Assert.False(result.Success);

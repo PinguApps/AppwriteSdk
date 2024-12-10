@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using PinguApps.Appwrite.Client.Internals;
+using PinguApps.Appwrite.Client.Utils;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Responses;
@@ -18,23 +18,88 @@ public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
         _databasesApi = databasesApi;
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request) => throw new NotImplementedException();
+            var result = await _databasesApi.ListDocuments(GetCurrentSession(), request.DatabaseId, request.CollectionId, RequestUtils.GetQueryStrings(request.Queries));
 
-    [ExcludeFromCodeCoverage]
-    /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request) => throw new NotImplementedException();
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<DocumentsList>();
+        }
+    }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request)
+    {
+        try
+        {
+            request.Validate(true);
 
-    [ExcludeFromCodeCoverage]
+            var result = await _databasesApi.CreateDocument(GetCurrentSession(), request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Document>();
+        }
+    }
+
     /// <inheritdoc/>
-    public Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.DeleteDocument(GetCurrentSession(), request.DatabaseId, request.CollectionId, request.DocumentId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.GetDocument(GetCurrentSession(), request.DatabaseId, request.CollectionId, request.DocumentId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Document>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateDocument(GetCurrentSession(), request.DatabaseId, request.CollectionId, request.DocumentId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Document>();
+        }
+    }
 }

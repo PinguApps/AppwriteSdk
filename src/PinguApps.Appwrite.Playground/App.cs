@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Text.Json.Serialization;
+using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Shared.Requests.Databases;
 
 namespace PinguApps.Appwrite.Playground;
@@ -15,20 +16,44 @@ internal class App
         _session = config.GetValue<string>("Session");
     }
 
+    private class Rec
+    {
+        [JsonPropertyName("test")]
+        public string Test { get; set; } = string.Empty;
+
+        [JsonPropertyName("boolAttribute")]
+        public bool BoolAttribute { get; set; }
+    }
+
     public async Task Run(string[] args)
     {
-        var request = new GetIndexRequest()
-        {
-            DatabaseId = "6748b44d000b2b0e73ac",
-            CollectionId = "6748bb30002a12d4708f",
-            Key = "index_1"
-        };
+        var before = new Rec { Test = "test", BoolAttribute = false };
+        var after = new Rec { Test = "test", BoolAttribute = true };
 
-        var response = await _server.Databases.GetIndex(request);
+        var request = UpdateDocumentRequest.CreateBuilder()
+            .WithDatabaseId("67541a2800221703e717")
+            .WithCollectionId("67541a37001514b81821")
+            .WithDocumentId("67541af9000055e59e59")
+            .WithChanges(before, after)
+            .Build();
 
-        Console.WriteLine(response.Result.Match(
+        var serverResponse = await _server.Databases.UpdateDocument(request);
+
+        Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),
             appwriteError => appwriteError.Message,
             internalError => internalError.Message));
+
+        Console.WriteLine("###############################################################################");
+
+        //Console.ReadKey();
+        //request.Data["test"] = "Client Update";
+
+        //var clientResponse = await _client.Databases.UpdateDocument(request);
+
+        //Console.WriteLine(clientResponse.Result.Match(
+        //    result => result.ToString(),
+        //    appwriteError => appwriteError.Message,
+        //    internalError => internalError.Message));
     }
 }

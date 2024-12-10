@@ -79,22 +79,12 @@ public class DocumentConverter : JsonConverter<Document>
             throw new JsonException("Unable to find a value for DatabaseId");
         }
 
-        if (createdAt is null)
-        {
-            throw new JsonException("Unable to find a value for CreatedAt");
-        }
-
-        if (updatedAt is null)
-        {
-            throw new JsonException("Unable to find a value for UpdatedAt");
-        }
-
         if (permissions is null)
         {
             throw new JsonException("Unable to find a value for Permissions");
         }
 
-        return new Document(id, collectionId, databaseId, createdAt.Value, updatedAt.Value, permissions, data);
+        return new Document(id, collectionId, databaseId, createdAt, updatedAt, permissions, data);
     }
 
     internal object? ReadValue(ref Utf8JsonReader reader, JsonSerializerOptions options)
@@ -186,7 +176,7 @@ public class DocumentConverter : JsonConverter<Document>
         writer.WriteString("$databaseId", value.DatabaseId);
 
         // Use MultiFormatDateTimeConverter for DateTime properties
-        var dateTimeConverter = new MultiFormatDateTimeConverter();
+        var dateTimeConverter = new NullableDateTimeConverter();
 
         writer.WritePropertyName("$createdAt");
         dateTimeConverter.Write(writer, value.CreatedAt, options);

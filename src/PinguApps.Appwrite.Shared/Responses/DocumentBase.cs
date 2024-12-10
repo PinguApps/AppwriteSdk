@@ -20,7 +20,7 @@ public abstract record DocumentBase(
     [property: JsonPropertyName("$id")] string Id,
     [property: JsonPropertyName("$collectionId")] string CollectionId,
     [property: JsonPropertyName("$databaseId")] string DatabaseId,
-    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
-    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? CreatedAt,
+    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? UpdatedAt,
     [property: JsonPropertyName("$permissions"), JsonConverter(typeof(PermissionReadOnlyListConverter))] IReadOnlyList<Permission> Permissions
 );

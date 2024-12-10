@@ -17,6 +17,7 @@ public partial class DatabasesClientTests
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/databases")
             .ExpectedHeaders()
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Respond(TestConstants.AppJson, TestConstants.DatabaseResponse);
 
         // Act
@@ -37,6 +38,7 @@ public partial class DatabasesClientTests
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/databases")
             .ExpectedHeaders()
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Respond(HttpStatusCode.BadRequest, TestConstants.AppJson, TestConstants.AppwriteError);
 
         // Act
@@ -58,6 +60,7 @@ public partial class DatabasesClientTests
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/databases")
             .ExpectedHeaders()
+            .WithJsonContent(request, _jsonSerializerOptions)
             .Throw(new HttpRequestException("An error occurred"));
 
         // Act

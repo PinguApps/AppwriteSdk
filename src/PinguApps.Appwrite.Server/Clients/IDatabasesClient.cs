@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Databases;
@@ -282,19 +281,44 @@ public interface IDatabasesClient
     /// <returns>The relationship attribute</returns>
     Task<AppwriteResult<AttributeRelationship>> UpdateRelationshipAttribute(UpdateRelationshipAttributeRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
-    Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
-
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Get a list of all the user's documents in a given collection. You can use the query params to filter your results.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#listDocuments">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The documents list</returns>
     Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Create a new Document. Before using this route, you should create a new collection resource using either <see cref="CreateCollection(CreateCollectionRequest)"/> or directly from your database console.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The document</returns>
+    Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request);
+
+    /// <summary>
+    /// Delete a document by its unique ID.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#deleteDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 success code</returns>
+    Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
+
+    /// <summary>
+    /// Get a document by its unique ID. This endpoint response returns a JSON object with the document data. You can return select columns by passing in a Select query.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#getDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The document</returns>
+    Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
+
+    /// <summary>
+    /// Update a document by its unique ID. Using the patch method you can pass only specific fields that will get updated.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The document</returns>
     Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request);
 
     /// <summary>
