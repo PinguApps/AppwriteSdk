@@ -53,9 +53,22 @@ public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.DeleteDocument(GetCurrentSession(), request.DatabaseId, request.CollectionId, request.DocumentId);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>

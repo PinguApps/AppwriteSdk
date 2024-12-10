@@ -31,7 +31,12 @@ public interface IDatabasesClient
     /// <returns>The document</returns>
     Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Delete a document by its unique ID.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/client-rest/databases#deleteDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>204 Success Code</returns>
     Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]

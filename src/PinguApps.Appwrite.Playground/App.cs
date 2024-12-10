@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Shared.Requests.Databases;
-using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -18,17 +17,14 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = CreateDocumentRequest.CreateBuilder()
-            .WithDatabaseId("67541a2800221703e717")
-            .WithCollectionId("67541a37001514b81821")
-            .WithData(new
-            {
-                test = "TEST",
-                boolAttribute = false
-            })
-            .Build();
+        var request = new DeleteDocumentRequest()
+        {
+            DatabaseId = "67541a2800221703e717",
+            CollectionId = "67541a37001514b81821",
+            DocumentId = "67587ff00029d437c8f3"
+        };
 
-        var serverResponse = await _server.Databases.CreateDocument(request);
+        var serverResponse = await _server.Databases.DeleteDocument(request);
 
         Console.WriteLine(serverResponse.Result.Match(
             result => result.ToString(),
@@ -37,9 +33,9 @@ internal class App
 
         Console.WriteLine("###############################################################################");
 
-        request.DocumentId = IdUtils.GenerateUniqueId();
+        request.DocumentId = "67587ff000057509d0ec";
 
-        var clientResponse = await _client.Databases.CreateDocument(request);
+        var clientResponse = await _client.Databases.DeleteDocument(request);
 
         Console.WriteLine(clientResponse.Result.Match(
             result => result.ToString(),
