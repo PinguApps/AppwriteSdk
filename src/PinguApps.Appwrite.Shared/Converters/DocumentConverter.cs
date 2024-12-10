@@ -79,16 +79,6 @@ public class DocumentConverter : JsonConverter<Document>
             throw new JsonException("Unable to find a value for DatabaseId");
         }
 
-        //if (createdAt is null)
-        //{
-        //    throw new JsonException("Unable to find a value for CreatedAt");
-        //}
-
-        //if (updatedAt is null)
-        //{
-        //    throw new JsonException("Unable to find a value for UpdatedAt");
-        //}
-
         if (permissions is null)
         {
             throw new JsonException("Unable to find a value for Permissions");
