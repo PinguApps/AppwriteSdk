@@ -303,10 +303,15 @@ public interface IDatabasesClient
     /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#deleteDocument">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
-    /// <returns>204 Success Code</returns>
+    /// <returns>204 success code</returns>
     Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request);
 
-    [Obsolete("Endpoint not yet implemented.")]
+    /// <summary>
+    /// Get a document by its unique ID. This endpoint response returns a JSON object with the document data. You can return select columns by passing in a Select query.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#getDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <param name="request">The request content</param>
+    /// <returns>The document</returns>
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
 
     [Obsolete("Endpoint not yet implemented.")]

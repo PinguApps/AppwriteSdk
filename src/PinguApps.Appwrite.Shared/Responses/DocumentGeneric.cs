@@ -21,8 +21,8 @@ public record Document<TData>(
     string Id,
     string CollectionId,
     string DatabaseId,
-    DateTime CreatedAt,
-    DateTime UpdatedAt,
+    DateTime? CreatedAt,
+    DateTime? UpdatedAt,
     IReadOnlyList<Permission> Permissions,
     TData Data
 ) : DocumentBase(Id, CollectionId, DatabaseId, CreatedAt, UpdatedAt, Permissions)

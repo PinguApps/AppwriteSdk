@@ -193,7 +193,7 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
         writer.WriteString("$databaseId", value.DatabaseId);
 
         // Use MultiFormatDateTimeConverter for DateTime properties
-        var dateTimeConverter = new MultiFormatDateTimeConverter();
+        var dateTimeConverter = new NullableDateTimeConverter();
 
         writer.WritePropertyName("$createdAt");
         dateTimeConverter.Write(writer, value.CreatedAt, options);

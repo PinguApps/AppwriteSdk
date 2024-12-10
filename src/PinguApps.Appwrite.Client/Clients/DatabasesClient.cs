@@ -70,9 +70,22 @@ public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
         }
     }
 
-    [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
-    public Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request) => throw new NotImplementedException();
+    public async Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request)
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.GetDocument(GetCurrentSession(), request.DatabaseId, request.CollectionId, request.DocumentId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Document>();
+        }
+    }
 
     [ExcludeFromCodeCoverage]
     /// <inheritdoc/>
