@@ -40,11 +40,6 @@ public partial class DatabasesClientTests
             Queries = new List<Query> { query }
         };
 
-        var expectedQueryParams = new Dictionary<string, string>
-        {
-            { "queries[]", query.GetQueryString() }
-        };
-
         _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/attributes")
             .ExpectedHeaders()
             .WithQueryString($"queries[]={query.GetQueryString()}")

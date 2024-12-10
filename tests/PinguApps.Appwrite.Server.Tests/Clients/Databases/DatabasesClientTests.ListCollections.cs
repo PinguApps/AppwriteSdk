@@ -40,12 +40,6 @@ public partial class DatabasesClientTests
             Search = search
         };
 
-        var expectedQueryParams = new Dictionary<string, string>
-        {
-            { "queries[]", query.GetQueryString() },
-            { "search", search }
-        };
-
         _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections")
             .ExpectedHeaders()
             .WithQueryString($"queries[]={query.GetQueryString()}&search={search}")
