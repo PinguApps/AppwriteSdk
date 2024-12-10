@@ -54,12 +54,22 @@ public interface ICreateDocumentRequestBuilder
     /// <param name="options">Options</param>
     ICreateDocumentRequestBuilder WithData<T>(T? data, Action<WithDataOptions>? options = null) where T : class;
 
+    /// <summary>
+    /// Options for adding data to the document
+    /// </summary>
     public class WithDataOptions
     {
+        /// <summary>
+        /// Whether to ignore null values
+        /// </summary>
         public bool IgnoreNullValues { get; set; } = true;
+
+        /// <summary>
+        /// A filter for properties
+        /// </summary>
         public Func<PropertyInfo, bool>? PropertyFilter { get; set; }
 
-        public bool ShouldIncludeProperty(PropertyInfo property)
+        internal bool ShouldIncludeProperty(PropertyInfo property)
         {
             if (property.GetCustomAttribute<JsonIgnoreAttribute>() != null)
             {

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
+using PinguApps.Appwrite.Shared.Requests.Databases;
+using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -16,27 +18,32 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        //var request = CreateDocumentRequest.CreateBuilder()
-        //    .WithDatabaseId("")
-        //    .WithCollectionId("")
-        //    .AddField
+        var request = CreateDocumentRequest.CreateBuilder()
+            .WithDatabaseId("67541a2800221703e717")
+            .WithCollectionId("67541a37001514b81821")
+            .WithData(new
+            {
+                test = "TEST",
+                boolAttribute = false
+            })
+            .Build();
 
-        //var serverResponse = await _server.Databases.ListDocuments(request);
+        var serverResponse = await _server.Databases.CreateDocument(request);
 
-        //Console.WriteLine(serverResponse.Result.Match(
-        //    result => result.ToString(),
-        //    appwriteError => appwriteError.Message,
-        //    internalError => internalError.Message));
+        Console.WriteLine(serverResponse.Result.Match(
+            result => result.ToString(),
+            appwriteError => appwriteError.Message,
+            internalError => internalError.Message));
 
-        //Console.WriteLine("###############################################################################");
+        Console.WriteLine("###############################################################################");
 
-        //_client.SetSession(_session);
+        request.DocumentId = IdUtils.GenerateUniqueId();
 
-        //var clientResponse = await _client.Databases.ListDocuments(request);
+        var clientResponse = await _client.Databases.CreateDocument(request);
 
-        //Console.WriteLine(clientResponse.Result.Match(
-        //    result => result.ToString(),
-        //    appwriteError => appwriteError.Message,
-        //    internalError => internalError.Message));
+        Console.WriteLine(clientResponse.Result.Match(
+            result => result.ToString(),
+            appwriteError => appwriteError.Message,
+            internalError => internalError.Message));
     }
 }
