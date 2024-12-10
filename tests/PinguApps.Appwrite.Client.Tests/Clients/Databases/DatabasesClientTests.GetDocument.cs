@@ -30,6 +30,30 @@ public partial class DatabasesClientTests
     }
 
     [Fact]
+    public async Task GetDocument_ShouldIncludeSessionHeaders_WhenProvided()
+    {
+        // Arrange
+        var request = new GetDocumentRequest
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = IdUtils.GenerateUniqueId(),
+        };
+
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/documents/{request.DocumentId}")
+            .ExpectedHeaders()
+            .Respond(TestConstants.AppJson, TestConstants.DocumentResponse);
+
+        _appwriteClient.SetSession(TestConstants.Session);
+
+        // Act
+        var result = await _appwriteClient.Databases.GetDocument(request);
+
+        // Assert
+        _mockHttp.VerifyNoOutstandingExpectation();
+    }
+
+    [Fact]
     public async Task GetDocument_ShouldProvideQueryParams_WhenQueriesProvided()
     {
         // Arrange

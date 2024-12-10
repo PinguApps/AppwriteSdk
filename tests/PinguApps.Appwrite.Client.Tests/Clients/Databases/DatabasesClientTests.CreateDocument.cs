@@ -30,6 +30,30 @@ public partial class DatabasesClientTests
     }
 
     [Fact]
+    public async Task CreateDocument_ShouldIncludeSessionHeaders_WhenProvided()
+    {
+        // Arrange
+        var request = CreateDocumentRequest.CreateBuilder()
+            .WithDatabaseId(IdUtils.GenerateUniqueId())
+            .WithCollectionId(IdUtils.GenerateUniqueId())
+            .AddField("AttributeName", "MyValue")
+            .Build();
+
+        _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/documents")
+            .ExpectedHeaders()
+            .WithJsonContent(request, _jsonSerializerOptions)
+            .Respond(TestConstants.AppJson, TestConstants.DocumentResponse);
+
+        _appwriteClient.SetSession(TestConstants.Session);
+
+        // Act
+        var result = await _appwriteClient.Databases.CreateDocument(request);
+
+        // Assert
+        _mockHttp.VerifyNoOutstandingExpectation();
+    }
+
+    [Fact]
     public async Task CreateDocument_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange

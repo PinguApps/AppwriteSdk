@@ -29,6 +29,29 @@ public partial class DatabasesClientTests
     }
 
     [Fact]
+    public async Task ListDocuments_ShouldIncludeSessionHeaders_WhenProvided()
+    {
+        // Arrange
+        var request = new ListDocumentsRequest
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId()
+        };
+
+        _mockHttp.Expect(HttpMethod.Get, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/documents")
+            .ExpectedHeaders(true)
+            .Respond(TestConstants.AppJson, TestConstants.DocumentsListResponse);
+
+        _appwriteClient.SetSession(TestConstants.Session);
+
+        // Act
+        var result = await _appwriteClient.Databases.ListDocuments(request);
+
+        // Assert
+        _mockHttp.VerifyNoOutstandingExpectation();
+    }
+
+    [Fact]
     public async Task ListDocuments_ShouldProvideQueryParams_WhenQueriesProvided()
     {
         // Arrange

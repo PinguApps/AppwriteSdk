@@ -30,6 +30,30 @@ public partial class DatabasesClientTests
     }
 
     [Fact]
+    public async Task DeleteDocument_ShouldIncludeSessionHeaders_WhenProvided()
+    {
+        // Arrange
+        var request = new DeleteDocumentRequest
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            DocumentId = IdUtils.GenerateUniqueId()
+        };
+
+        _mockHttp.Expect(HttpMethod.Delete, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/documents/{request.DocumentId}")
+            .ExpectedHeaders()
+            .Respond(HttpStatusCode.NoContent);
+
+        _appwriteClient.SetSession(TestConstants.Session);
+
+        // Act
+        var result = await _appwriteClient.Databases.DeleteDocument(request);
+
+        // Assert
+        _mockHttp.VerifyNoOutstandingExpectation();
+    }
+
+    [Fact]
     public async Task DeleteDocument_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
