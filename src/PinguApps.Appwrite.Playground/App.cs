@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PinguApps.Appwrite.Shared.Requests.Databases;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -17,28 +16,27 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        var request = new ListDocumentsRequest()
-        {
-            DatabaseId = "67541a2800221703e717",
-            CollectionId = "67541a37001514b81821"
-        };
+        //var request = CreateDocumentRequest.CreateBuilder()
+        //    .WithDatabaseId("")
+        //    .WithCollectionId("")
+        //    .AddField
 
-        var serverResponse = await _server.Databases.ListDocuments(request);
+        //var serverResponse = await _server.Databases.ListDocuments(request);
 
-        Console.WriteLine(serverResponse.Result.Match(
-            result => result.ToString(),
-            appwriteError => appwriteError.Message,
-            internalError => internalError.Message));
+        //Console.WriteLine(serverResponse.Result.Match(
+        //    result => result.ToString(),
+        //    appwriteError => appwriteError.Message,
+        //    internalError => internalError.Message));
 
-        Console.WriteLine("###############################################################################");
+        //Console.WriteLine("###############################################################################");
 
-        _client.SetSession(_session);
+        //_client.SetSession(_session);
 
-        var clientResponse = await _client.Databases.ListDocuments(request);
+        //var clientResponse = await _client.Databases.ListDocuments(request);
 
-        Console.WriteLine(clientResponse.Result.Match(
-            result => result.ToString(),
-            appwriteError => appwriteError.Message,
-            internalError => internalError.Message));
+        //Console.WriteLine(clientResponse.Result.Match(
+        //    result => result.ToString(),
+        //    appwriteError => appwriteError.Message,
+        //    internalError => internalError.Message));
     }
 }
