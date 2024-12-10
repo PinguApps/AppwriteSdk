@@ -3,7 +3,7 @@
 namespace PinguApps.Appwrite.Shared.Requests.Databases;
 
 /// <summary>
-/// The request to create a document
+/// The request to create a document. To instantiate, use <see cref="CreateBuilder"/>
 /// </summary>
 public class CreateDocumentRequest : CreateDocumentRequest<Dictionary<string, object?>>
 {
