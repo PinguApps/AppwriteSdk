@@ -234,6 +234,15 @@ public class IgnoreSdkExcludedPropertiesConverterFactoryTests
         Assert.DoesNotContain("\"Name\"", json);
     }
 
+    [Fact]
+    public void Write_JsonIgnoreAttributeWithNeverCondition_PropertyIsNotIgnored()
+    {
+        var testClass = new TestClassWithJsonIgnoreNever { Val = null };
+        var json = JsonSerializer.Serialize(testClass, _options);
+
+        Assert.Contains("\"Val\":null", json);
+    }
+
     private class TestClass
     {
         public string Name { get; set; } = string.Empty;
@@ -306,5 +315,11 @@ public class IgnoreSdkExcludedPropertiesConverterFactoryTests
     private class TestClassWithNullProperty
     {
         public string? Name { get; set; }
+    }
+
+    private class TestClassWithJsonIgnoreNever
+    {
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+        public bool? Val { get; set; }
     }
 }

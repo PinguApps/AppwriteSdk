@@ -25,7 +25,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Nuget Cache
-      uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
+      uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4
       with:
         path: ~/.nuget/packages
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
@@ -42,7 +42,7 @@ jobs:
       run: dotnet test -c Release --no-build --verbosity normal --logger trx --collect:"XPlat Code Coverage"
 
     - name: Combine Coverage Reports
-      uses: danielpalme/ReportGenerator-GitHub-Action@62f9e70ab348d56eee76d446b4db903a85ab0ea8 # v5.3.11
+      uses: danielpalme/ReportGenerator-GitHub-Action@810356ce07a94200154301fb73d878e327b2dd58 # v5.4.1
       with:
         reports: "**/*.cobertura.xml"
         targetdir: "${{ github.workspace }}"

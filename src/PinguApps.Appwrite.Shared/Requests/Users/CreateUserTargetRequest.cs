@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Users.Validators;
 using PinguApps.Appwrite.Shared.Utils;
@@ -20,7 +21,7 @@ public class CreateUserTargetRequest : UserIdBaseRequest<CreateUserTargetRequest
     /// The target provider type. Can be one of the following: <see cref="TargetProviderType.Email"/>, <see cref="TargetProviderType.Sms"/>, <see cref="TargetProviderType.Push"/>
     /// </summary>
     [JsonPropertyName("providerType")]
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    [JsonConverter(typeof(CamelCaseEnumConverter))]
     public TargetProviderType ProviderType { get; set; }
 
     /// <summary>

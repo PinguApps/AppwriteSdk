@@ -406,4 +406,377 @@ public static class TestConstants
             ]
         }
         """;
+
+    public const string DatabaseResponse = """
+        {
+            "$id": "5e5ea5c16897e",
+            "name": "My Database",
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "enabled": false
+        }
+        """;
+
+    public const string DatabasesListResponse = """
+        {
+            "total": 5,
+            "databases": [
+                {
+                    "$id": "5e5ea5c16897e",
+                    "name": "My Database",
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "enabled": false
+                }
+            ]
+        }
+        """;
+
+    public const string AttributesListResponse = """
+        {
+            "total": 5,
+            "attributes": [
+                {
+                    "key": "isEnabled",
+                    "type": "boolean",
+                    "status": "available",
+                    "error": "string",
+                    "required": true,
+                    "array": false,
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "default": false
+                }
+            ]
+        }
+        """;
+
+    public const string AttributeBooleanResponse = """
+        {
+            "key": "isEnabled",
+            "type": "boolean",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "default": false
+        }
+        """;
+
+    public const string AttributeDatetimeResponse = """
+        {
+            "key": "birthDay",
+            "type": "datetime",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "format": "datetime",
+            "default": "2020-10-15T06:38:00.000+00:00"
+        }
+        """;
+
+    public const string AttributeEmailResponse = """
+        {
+            "key": "userEmail",
+            "type": "string",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "format": "email",
+            "default": "default@example.com"
+        }
+        """;
+
+    public const string AttributeEnumResponse = """
+        {
+            "key": "status",
+            "type": "string",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "elements": [
+                "element"
+            ],
+            "format": "enum",
+            "default": "element"
+        }
+        """;
+
+    public const string AttributeFloatResponse = """
+        {
+            "key": "percentageCompleted",
+            "type": "double",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "min": 1.5,
+            "max": 10.5,
+            "default": 2.5
+        }
+        """;
+
+    public const string AttributeIntegerResponse = """
+        {
+            "key": "count",
+            "type": "integer",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "min": 1,
+            "max": 10,
+            "default": 10
+        }
+        """;
+
+    public const string AttributeIpResponse = """
+        {
+            "key": "ipAddress",
+            "type": "string",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "format": "ip",
+            "default": "192.0.2.0"
+        }
+        """;
+
+    public const string AttributeRelationshipResponse = """
+        {
+            "key": "fullName",
+            "type": "string",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "relatedCollection": "collection",
+            "relationType": "manyToOne",
+            "twoWay": false,
+            "twoWayKey": "string",
+            "onDelete": "cascade",
+            "side": "child"
+        }
+        """;
+
+    public const string AttributeStringResponse = """
+        {
+            "key": "fullName",
+            "type": "string",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "size": 128,
+            "default": "default"
+        }
+        """;
+
+    public const string AttributeUrlResponse = """
+        {
+            "key": "githubUrl",
+            "type": "string",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "format": "url",
+            "default": "http://example.com"
+        }
+        """;
+
+    public const string AttributeResponse = """
+        {
+            "key": "isEnabled",
+            "type": "boolean",
+            "status": "available",
+            "error": "string",
+            "required": true,
+            "array": false,
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "default": false
+        }
+        """;
+
+    public const string IndexResponse = """
+        {
+            "key": "index1",
+            "type": "unique",
+            "status": "available",
+            "error": "string",
+            "attributes": [],
+            "orders": [],
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00"
+        }
+        """;
+
+    public const string CollectionResponse = """
+        {
+            "$id": "5e5ea5c16897e",
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "5e5ea5c16897e",
+            "name": "My Collection",
+            "enabled": false,
+            "documentSecurity": true,
+            "attributes": [
+                {
+                    "key": "isEnabled",
+                    "type": "boolean",
+                    "status": "available",
+                    "error": "string",
+                    "required": true,
+                    "array": false,
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "default": false
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "index1",
+                    "type": "unique",
+                    "status": "available",
+                    "error": "string",
+                    "attributes": [],
+                    "orders": [],
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00"
+                }
+            ]
+        }
+        """;
+
+    public const string CollectionsListResponse = """
+        {
+            "total": 5,
+            "collections": [
+                {
+                    "$id": "5e5ea5c16897e",
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "$permissions": [
+                        "read(\"any\")"
+                    ],
+                    "databaseId": "5e5ea5c16897e",
+                    "name": "My Collection",
+                    "enabled": false,
+                    "documentSecurity": true,
+                    "attributes": [
+                        {
+                            "key": "isEnabled",
+                            "type": "boolean",
+                            "status": "available",
+                            "error": "string",
+                            "required": true,
+                            "array": false,
+                            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                            "default": false
+                        }
+                    ],
+                    "indexes": [
+                        {
+                            "key": "index1",
+                            "type": "unique",
+                            "status": "available",
+                            "error": "string",
+                            "attributes": [],
+                            "orders": [],
+                            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                            "$updatedAt": "2020-10-15T06:38:00.000+00:00"
+                        }
+                    ]
+                }
+            ]
+        }
+        """;
+
+    public const string IndexesListResponse = """
+        {
+            "total": 5,
+            "indexes": [
+                {
+                    "key": "index1",
+                    "type": "unique",
+                    "status": "available",
+                    "error": "string",
+                    "attributes": [],
+                    "orders": [],
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00"
+                }
+            ]
+        }
+        """;
+
+    public const string DocumentResponse = """
+        {
+            "$id": "5e5ea5c16897e",
+            "$collectionId": "5e5ea5c15117e",
+            "$databaseId": "5e5ea5c15117e",
+            "$createdAt": "2020-10-15T06:38:00.000+00:00",
+            "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+        	"str": "a string prop",
+        	"dt": "2020-10-15T06:38:00.000+00:00",
+        	"num": 5,
+        	"num2": 6.7,
+        	"boo": true,
+        	"lis": [
+        		"one",
+        		"two",
+        		"three"
+        	]
+        }
+        """;
+
+    public const string DocumentsListResponse = """
+        {
+            "total": 5,
+            "documents": [
+                {
+                    "$id": "5e5ea5c16897e",
+                    "$collectionId": "5e5ea5c15117e",
+                    "$databaseId": "5e5ea5c15117e",
+                    "$createdAt": "2020-10-15T06:38:00.000+00:00",
+                    "$updatedAt": "2020-10-15T06:38:00.000+00:00",
+                    "$permissions": [
+                        "read(\"any\")"
+                    ]
+                }
+            ]
+        }
+        """;
 }

@@ -46,9 +46,7 @@ public partial class AccountClientTests
         // Arrange
         var sc = new ServiceCollection();
         var mockAccountApi = new Mock<IAccountApi>();
-        sc.AddSingleton(mockAccountApi.Object);
-        var sp = sc.BuildServiceProvider();
-        var accountClient = new AccountClient(sp, new Config(TestConstants.Endpoint, TestConstants.ProjectId));
+        var accountClient = new AccountClient(mockAccountApi.Object, new Config(TestConstants.Endpoint, TestConstants.ProjectId));
         var sessionAware = accountClient as ISessionAware;
 
         // Act

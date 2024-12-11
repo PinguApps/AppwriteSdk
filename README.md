@@ -141,11 +141,11 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 
 ## ⌛ Progress
 <!-- `red` for first third, `gold` for second third, `forestgreen` for final third, `blue` for 100% -->
-![Server & Client - 125 / 317](https://img.shields.io/badge/Server_&_Client-125%20%2F%20317-gold?style=for-the-badge)
+![Server & Client - 172 / 317](https://img.shields.io/badge/Server_&_Client-172%20%2F%20317-gold?style=for-the-badge)
 
-![Server - 65 / 224](https://img.shields.io/badge/Server-65%20%2F%20224-red?style=for-the-badge)
+![Server - 107 / 224](https://img.shields.io/badge/Server-107%20%2F%20224-gold?style=for-the-badge)
 
-![Client - 60 / 93](https://img.shields.io/badge/Client-60%20%2F%2093-gold?style=for-the-badge)
+![Client - 65 / 93](https://img.shields.io/badge/Client-65%20%2F%2093-forestgreen?style=for-the-badge)
 
 ### 🔑 Key
 | Icon | Definition |
@@ -275,52 +275,52 @@ string emailAddressOrErrorMessage = userResponse.Result.Match(
 | [Update Preferences](https://appwrite.io/docs/references/1.6.x/client-rest/teams#updatePrefs) | ✅ | ✅ |
 
 ### Databases
-![Databases - 0 / 47](https://img.shields.io/badge/Databases-0%20%2F%2047-red?style=for-the-badge)
+![Databases - 47 / 47](https://img.shields.io/badge/Databases-47%20%2F%2047-blue?style=for-the-badge)
 
 | Endpoint | Client | Server |
 |:-:|:-:|:-:|
-| [List Databases](https://appwrite.io/docs/references/1.6.x/server-rest/databases#list) | ❌ | ⬛ |
-| [Create Databases](https://appwrite.io/docs/references/1.6.x/server-rest/databases#create) | ❌ | ⬛ |
-| [Get Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#get) | ❌ | ⬛ |
-| [Update Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#update) | ❌ | ⬛ |
-| [Delete Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#delete) | ❌ | ⬛ |
-| [List Collections](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listCollections) | ❌ | ⬛ |
-| [Create Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createCollection) | ❌ | ⬛ |
-| [Get Collections](https://appwrite.io/docs/references/1.6.x/server-rest/databases#getCollection) | ❌ | ⬛ |
-| [Update Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateCollection) | ❌ | ⬛ |
-| [Delete Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#deleteCollection) | ❌ | ⬛ |
-| [List Attributes](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listAttributes) | ❌ | ⬛ |
-| [Create Boolean Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createBooleanAttribute) | ❌ | ⬛ |
-| [Update Boolean Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateBooleanAttribute) | ❌ | ⬛ |
-| [Create Datatime Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createDatetimeAttribute) | ❌ | ⬛ |
-| [Update Datetime Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateDatetimeAttribute) | ❌ | ⬛ |
-| [Create Email Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createEmailAttribute) | ❌ | ⬛ |
-| [Update Email Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateEmailAttribute) | ❌ | ⬛ |
-| [Create Enum Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createEnumAttribute) | ❌ | ⬛ |
-| [Update Enum Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateEnumAttribute) | ❌ | ⬛ |
-| [Create Float Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createFloatAttribute) | ❌ | ⬛ |
-| [Update Float Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateFloatAttribute) | ❌ | ⬛ |
-| [Create Integer Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createIntegerAttribute) | ❌ | ⬛ |
-| [Update Integer attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateIntegerAttribute) | ❌ | ⬛ |
-| [Create IP Address Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createIpAttribute) | ❌ | ⬛ |
-| [Update IP Address Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateIpAttribute) | ❌ | ⬛ |
-| [Create Relationship Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createRelationshipAttribute) | ❌ | ⬛ |
-| [Create String Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createStringAttribute) | ❌ | ⬛ |
-| [Update String Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateStringAttribute) | ❌ | ⬛ |
-| [Create URL Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createUrlAttribute) | ❌ | ⬛ |
-| [Update URL Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateUrlAttribute) | ❌ | ⬛ |
-| [Get Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#getAttribute) | ❌ | ⬛ |
-| [Delete Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#deleteAttribute) | ❌ | ⬛ |
-| [Update Relationship Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateRelationshipAttribute) | ❌ | ⬛ |
-| [List Documents](https://appwrite.io/docs/references/1.6.x/client-rest/databases#listDocuments) | ⬛ | ⬛ |
-| [Create Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#createDocument) | ⬛ | ⬛ |
-| [Get Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#getDocument) | ⬛ | ⬛ |
-| [Update Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#updateDocument) | ⬛ | ⬛ |
-| [Delete Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#deleteDocument) | ⬛ | ⬛ |
-| [List Indexes](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listIndexes) | ❌ | ⬛ |
-| [Create Index](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createIndex) | ❌ | ⬛ |
-| [Get Index](https://appwrite.io/docs/references/1.6.x/server-rest/databases#getIndex) | ❌ | ⬛ |
-| [Delete Index](https://appwrite.io/docs/references/1.6.x/server-rest/databases#deleteIndex) | ❌ | ⬛ |
+| [List Databases](https://appwrite.io/docs/references/1.6.x/server-rest/databases#list) | ❌ | ✅ |
+| [Create Databases](https://appwrite.io/docs/references/1.6.x/server-rest/databases#create) | ❌ | ✅ |
+| [Get Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#get) | ❌ | ✅ |
+| [Update Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#update) | ❌ | ✅ |
+| [Delete Database](https://appwrite.io/docs/references/1.6.x/server-rest/databases#delete) | ❌ | ✅ |
+| [List Collections](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listCollections) | ❌ | ✅ |
+| [Create Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createCollection) | ❌ | ✅ |
+| [Get Collections](https://appwrite.io/docs/references/1.6.x/server-rest/databases#getCollection) | ❌ | ✅ |
+| [Update Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateCollection) | ❌ | ✅ |
+| [Delete Collection](https://appwrite.io/docs/references/1.6.x/server-rest/databases#deleteCollection) | ❌ | ✅ |
+| [List Attributes](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listAttributes) | ❌ | ✅ |
+| [Create Boolean Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createBooleanAttribute) | ❌ | ✅ |
+| [Update Boolean Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateBooleanAttribute) | ❌ | ✅ |
+| [Create Datetime Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createDatetimeAttribute) | ❌ | ✅ |
+| [Update Datetime Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateDatetimeAttribute) | ❌ | ✅ |
+| [Create Email Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createEmailAttribute) | ❌ | ✅ |
+| [Update Email Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateEmailAttribute) | ❌ | ✅ |
+| [Create Enum Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createEnumAttribute) | ❌ | ✅ |
+| [Update Enum Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateEnumAttribute) | ❌ | ✅ |
+| [Create Float Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createFloatAttribute) | ❌ | ✅ |
+| [Update Float Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateFloatAttribute) | ❌ | ✅ |
+| [Create Integer Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createIntegerAttribute) | ❌ | ✅ |
+| [Update Integer attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateIntegerAttribute) | ❌ | ✅ |
+| [Create IP Address Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createIpAttribute) | ❌ | ✅ |
+| [Update IP Address Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateIpAttribute) | ❌ | ✅ |
+| [Create Relationship Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createRelationshipAttribute) | ❌ | ✅ |
+| [Create String Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createStringAttribute) | ❌ | ✅ |
+| [Update String Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateStringAttribute) | ❌ | ✅ |
+| [Create URL Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createUrlAttribute) | ❌ | ✅ |
+| [Update URL Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateUrlAttribute) | ❌ | ✅ |
+| [Get Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#getAttribute) | ❌ | ✅ |
+| [Delete Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#deleteAttribute) | ❌ | ✅ |
+| [Update Relationship Attribute](https://appwrite.io/docs/references/1.6.x/server-rest/databases#updateRelationshipAttribute) | ❌ | ✅ |
+| [List Documents](https://appwrite.io/docs/references/1.6.x/client-rest/databases#listDocuments) | ✅ | ✅ |
+| [Create Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#createDocument) | ✅ | ✅ |
+| [Get Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#getDocument) | ✅ | ✅ |
+| [Update Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#updateDocument) | ✅ | ✅ |
+| [Delete Document](https://appwrite.io/docs/references/1.6.x/client-rest/databases#deleteDocument) | ✅ | ✅ |
+| [List Indexes](https://appwrite.io/docs/references/1.6.x/server-rest/databases#listIndexes) | ❌ | ✅ |
+| [Create Index](https://appwrite.io/docs/references/1.6.x/server-rest/databases#createIndex) | ❌ | ✅ |
+| [Get Index](https://appwrite.io/docs/references/1.6.x/server-rest/databases#getIndex) | ❌ | ✅ |
+| [Delete Index](https://appwrite.io/docs/references/1.6.x/server-rest/databases#deleteIndex) | ❌ | ✅ |
 
 ### Storage
 ![storage - 0 / 21](https://img.shields.io/badge/Storage-0%20%2F%2021-red?style=for-the-badge)

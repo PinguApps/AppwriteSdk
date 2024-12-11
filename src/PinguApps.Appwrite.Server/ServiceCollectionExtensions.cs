@@ -49,9 +49,34 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<HeaderHandler>()
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
-        services.AddSingleton<IAccountClient, AccountClient>();
-        services.AddSingleton<IUsersClient, UsersClient>();
-        services.AddSingleton<ITeamsClient, TeamsClient>();
+        services.AddRefitClient<IDatabasesApi>(customRefitSettings)
+            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
+            .AddHttpMessageHandler<HeaderHandler>()
+            .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
+
+        services.AddSingleton<IAccountClient>(sp =>
+        {
+            var api = sp.GetRequiredService<IAccountApi>();
+            var config = sp.GetRequiredService<Config>();
+            return new AccountClient(api, config);
+        });
+        services.AddSingleton<IUsersClient>(sp =>
+        {
+            var api = sp.GetRequiredService<IUsersApi>();
+            var config = sp.GetRequiredService<Config>();
+            return new UsersClient(api, config);
+        });
+        services.AddSingleton<ITeamsClient>(sp =>
+        {
+            var api = sp.GetRequiredService<ITeamsApi>();
+            var config = sp.GetRequiredService<Config>();
+            return new TeamsClient(api, config);
+        });
+        services.AddSingleton<IDatabasesClient>(sp =>
+        {
+            var api = sp.GetRequiredService<IDatabasesApi>();
+            return new DatabasesClient(api);
+        });
         services.AddSingleton<IAppwriteClient, AppwriteClient>();
 
         return services;

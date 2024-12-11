@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Server.Internals;
 using PinguApps.Appwrite.Server.Utils;
 using PinguApps.Appwrite.Shared;
@@ -16,9 +15,9 @@ public class AccountClient : IAccountClient
 
     private readonly Config _config;
 
-    public AccountClient(IServiceProvider services, Config config)
+    internal AccountClient(IAccountApi accountApi, Config config)
     {
-        _accountApi = services.GetRequiredService<IAccountApi>();
+        _accountApi = accountApi;
         _config = config;
     }
 

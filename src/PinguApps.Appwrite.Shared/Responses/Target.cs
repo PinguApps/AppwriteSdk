@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 using PinguApps.Appwrite.Shared.Enums;
 
 namespace PinguApps.Appwrite.Shared.Responses;
@@ -16,11 +17,11 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Identifier">The target identifier</param>
 public record Target(
     [property: JsonPropertyName("$id")] string Id,
-    [property: JsonPropertyName("$createdAt")] DateTime CreatedAt,
-    [property: JsonPropertyName("$updatedAt")] DateTime UpdatedAt,
+    [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime CreatedAt,
+    [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime UpdatedAt,
     [property: JsonPropertyName("name")] string Name,
     [property: JsonPropertyName("userId")] string UserId,
     [property: JsonPropertyName("providerId")] string? ProviderId,
-    [property: JsonPropertyName("providerType"), JsonConverter(typeof(JsonStringEnumConverter))] TargetProviderType ProviderType,
+    [property: JsonPropertyName("providerType"), JsonConverter(typeof(CamelCaseEnumConverter))] TargetProviderType ProviderType,
     [property: JsonPropertyName("identifier")] string Identifier
 );

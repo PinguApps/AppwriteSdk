@@ -9,6 +9,7 @@ namespace PinguApps.Appwrite.Client.Clients;
 /// <summary>
 /// <para>The Teams service allows you to group users of your project and to enable them to share <see href="https://appwrite.io/docs/advanced/platform/permissions">read and write</see> access to your project resources, such as database documents or storage files.</para>
 /// <para>Each user who creates a team becomes the team owner and can delegate the ownership role by inviting a new team member. Only team owners can invite new users to their team.</para>
+/// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams">Appwrite Docs</see></para>
 /// </summary>
 public interface ITeamsClient
 {

@@ -4,6 +4,9 @@ change-template: "- [#$NUMBER] $TITLE - Thanks to @$AUTHOR!"
 exclude-labels:
   - automated
 categories:
+  - title: "🔒 Security"
+    labels:
+      - "security"
   - title: "🚀 Features"
     labels:
       - "feature"

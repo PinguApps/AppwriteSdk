@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using PinguApps.Appwrite.Shared.Converters;
 
 namespace PinguApps.Appwrite.Shared.Responses;
 
@@ -34,7 +35,7 @@ public record LogModel(
     [property: JsonPropertyName("userName")] string UserName,
     [property: JsonPropertyName("mode")] string Mode,
     [property: JsonPropertyName("ip")] string Ip,
-    [property: JsonPropertyName("time")] DateTime Time,
+    [property: JsonPropertyName("time"), JsonConverter(typeof(MultiFormatDateTimeConverter))] DateTime Time,
     [property: JsonPropertyName("osCode")] string OsCode,
     [property: JsonPropertyName("osName")] string OsName,
     [property: JsonPropertyName("osVersion")] string OsVersion,

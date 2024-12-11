@@ -11,13 +11,15 @@ public class AppwriteClientTests
         // Arrange
         var mockAccountClient = new Mock<IAccountClient>();
         var mockTeamsClient = new Mock<ITeamsClient>();
+        var mockDatabasesClient = new Mock<IDatabasesClient>();
 
         // Act
-        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object);
+        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object, mockDatabasesClient.Object);
 
         // Assert
         Assert.Equal(mockAccountClient.Object, appwriteClient.Account);
         Assert.Equal(mockTeamsClient.Object, appwriteClient.Teams);
+        Assert.Equal(mockDatabasesClient.Object, appwriteClient.Databases);
     }
 
     [Fact]
@@ -26,7 +28,8 @@ public class AppwriteClientTests
         // Arrange
         var mockAccountClient = new Mock<IAccountClient>();
         var mockTeamsClient = new Mock<ITeamsClient>();
-        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object);
+        var mockDatabasesClient = new Mock<IDatabasesClient>();
+        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object, mockDatabasesClient.Object);
 
         // Act
         var session = appwriteClient.Session;
@@ -41,9 +44,11 @@ public class AppwriteClientTests
         // Arrange
         var mockAccountClient = new Mock<IAccountClient>();
         var mockTeamsClient = new Mock<ITeamsClient>();
+        var mockDatabasesClient = new Mock<IDatabasesClient>();
         mockAccountClient.As<ISessionAware>();
         mockTeamsClient.As<ISessionAware>();
-        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object);
+        mockDatabasesClient.As<ISessionAware>();
+        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object, mockDatabasesClient.Object);
 
         // Act
         appwriteClient.SetSession(TestConstants.Session);
@@ -58,9 +63,11 @@ public class AppwriteClientTests
         // Arrange
         var mockAccountClient = new Mock<IAccountClient>();
         var mockTeamsClient = new Mock<ITeamsClient>();
+        var mockDatabasesClient = new Mock<IDatabasesClient>();
         mockAccountClient.As<ISessionAware>();
         mockTeamsClient.As<ISessionAware>();
-        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object);
+        mockDatabasesClient.As<ISessionAware>();
+        var appwriteClient = new AppwriteClient(mockAccountClient.Object, mockTeamsClient.Object, mockDatabasesClient.Object);
 
         // Act
         appwriteClient.SetSession(TestConstants.Session);
