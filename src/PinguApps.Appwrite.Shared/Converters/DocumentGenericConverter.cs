@@ -10,102 +10,92 @@ namespace PinguApps.Appwrite.Shared.Converters;
 public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
         where TData : class, new()
 {
+    private class DocumentFields
+    {
+        public string? Id { get; set; }
+        public string? CollectionId { get; set; }
+        public string? DatabaseId { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public List<Permission>? Permissions { get; set; }
+        public Dictionary<string, object?> DataProperties { get; set; } = new();
+    }
+
     public override Document<TData> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        string? id = null;
-        string? collectionId = null;
-        string? databaseId = null;
-        DateTime? createdAt = null;
-        DateTime? updatedAt = null;
-        List<Permission>? permissions = null;
-        TData data = new();
+        ValidateStartObject(ref reader);
 
-        var dataProperties = new Dictionary<string, object?>();
+        var documentFields = ReadDocumentFields(ref reader, options);
 
-        var dateTimeConverter = new MultiFormatDateTimeConverter();
-        var permissionListConverter = new PermissionListConverter();
+        ValidateRequiredFields(documentFields);
 
+        var data = DeserializeCustomData(documentFields.DataProperties, options);
+
+        return new Document<TData>(documentFields.Id!, documentFields.CollectionId!, documentFields.DatabaseId!, documentFields.CreatedAt,
+            documentFields.UpdatedAt, documentFields.Permissions!, data);
+    }
+
+    private static void ValidateStartObject(ref Utf8JsonReader reader)
+    {
         if (reader.TokenType is not JsonTokenType.StartObject)
         {
             throw new JsonException("Expected StartObject token");
         }
+    }
+
+    private DocumentFields ReadDocumentFields(ref Utf8JsonReader reader, JsonSerializerOptions options)
+    {
+        var dateTimeConverter = new MultiFormatDateTimeConverter();
+        var permissionListConverter = new PermissionListConverter();
+        var fields = new DocumentFields();
 
         while (reader.Read())
         {
-            if (reader.TokenType == JsonTokenType.EndObject)
+            if (reader.TokenType is JsonTokenType.EndObject)
             {
                 break;
             }
 
             var propertyName = reader.GetString()!;
-
             reader.Read();
 
-            switch (propertyName)
-            {
-                case "$id":
-                    id = reader.GetString();
-                    break;
-                case "$collectionId":
-                    collectionId = reader.GetString();
-                    break;
-                case "$databaseId":
-                    databaseId = reader.GetString();
-                    break;
-                case "$createdAt":
-                    createdAt = dateTimeConverter.Read(ref reader, typeof(DateTime), options);
-                    break;
-                case "$updatedAt":
-                    updatedAt = dateTimeConverter.Read(ref reader, typeof(DateTime), options);
-                    break;
-                case "$permissions":
-                    permissions = permissionListConverter.Read(ref reader, typeof(List<Permission>), options);
-                    break;
-                default:
-                    var value = ReadValue(ref reader, options);
-                    dataProperties[propertyName] = value;
-                    break;
-            }
+            ProcessProperty(ref reader, propertyName, fields, dateTimeConverter, permissionListConverter, options);
         }
 
-        if (id is null)
-        {
-            throw new JsonException("Unable to find a value for Id");
-        }
-
-        if (collectionId is null)
-        {
-            throw new JsonException("Unable to find a value for CollectionId");
-        }
-
-        if (databaseId is null)
-        {
-            throw new JsonException("Unable to find a value for DatabaseId");
-        }
-
-        if (createdAt is null)
-        {
-            throw new JsonException("Unable to find a value for CreatedAt");
-        }
-
-        if (updatedAt is null)
-        {
-            throw new JsonException("Unable to find a value for UpdatedAt");
-        }
-
-        if (permissions is null)
-        {
-            throw new JsonException("Unable to find a value for Permissions");
-        }
-
-        // Deserialize the remaining properties into TData
-        var dataJson = JsonSerializer.Serialize(dataProperties, options);
-        data = JsonSerializer.Deserialize<TData>(dataJson, options) ?? new TData();
-
-        return new Document<TData>(id, collectionId, databaseId, createdAt.Value, updatedAt.Value, permissions, data);
+        return fields;
     }
 
-    internal object? ReadValue(ref Utf8JsonReader reader, JsonSerializerOptions options)
+    private static void ProcessProperty(ref Utf8JsonReader reader, string propertyName, DocumentFields fields,
+        MultiFormatDateTimeConverter dateTimeConverter, PermissionListConverter permissionListConverter, JsonSerializerOptions options)
+    {
+        switch (propertyName)
+        {
+            case "$id":
+                fields.Id = reader.GetString();
+                break;
+            case "$collectionId":
+                fields.CollectionId = reader.GetString();
+                break;
+            case "$databaseId":
+                fields.DatabaseId = reader.GetString();
+                break;
+            case "$createdAt":
+                fields.CreatedAt = dateTimeConverter.Read(ref reader, typeof(DateTime), options);
+                break;
+            case "$updatedAt":
+                fields.UpdatedAt = dateTimeConverter.Read(ref reader, typeof(DateTime), options);
+                break;
+            case "$permissions":
+                fields.Permissions = permissionListConverter.Read(ref reader, typeof(List<Permission>), options);
+                break;
+            default:
+                var value = ReadValue(ref reader, options);
+                fields.DataProperties[propertyName] = value;
+                break;
+        }
+    }
+
+    internal static object? ReadValue(ref Utf8JsonReader reader, JsonSerializerOptions options)
     {
         switch (reader.TokenType)
         {
@@ -143,7 +133,7 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
         }
     }
 
-    private IReadOnlyCollection<object?> ReadArray(ref Utf8JsonReader reader, JsonSerializerOptions options)
+    private static IReadOnlyCollection<object?> ReadArray(ref Utf8JsonReader reader, JsonSerializerOptions options)
     {
         var list = new List<object?>();
 
@@ -161,7 +151,7 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
         return list;
     }
 
-    private Dictionary<string, object?> ReadObject(ref Utf8JsonReader reader, JsonSerializerOptions options)
+    private static Dictionary<string, object?> ReadObject(ref Utf8JsonReader reader, JsonSerializerOptions options)
     {
         var dict = new Dictionary<string, object?>();
 
@@ -182,6 +172,27 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
         }
 
         return dict;
+    }
+
+    private static void ValidateRequiredFields(DocumentFields fields)
+    {
+        if (fields.Id is null)
+            throw new JsonException("Unable to find a value for Id");
+
+        if (fields.CollectionId is null)
+            throw new JsonException("Unable to find a value for CollectionId");
+
+        if (fields.DatabaseId is null)
+            throw new JsonException("Unable to find a value for DatabaseId");
+
+        if (fields.Permissions is null)
+            throw new JsonException("Unable to find a value for Permissions");
+    }
+
+    private static TData DeserializeCustomData(Dictionary<string, object?> dataProperties, JsonSerializerOptions options)
+    {
+        var dataJson = JsonSerializer.Serialize(dataProperties, options);
+        return JsonSerializer.Deserialize<TData>(dataJson, options) ?? new TData();
     }
 
     public override void Write(Utf8JsonWriter writer, Document<TData> value, JsonSerializerOptions options)

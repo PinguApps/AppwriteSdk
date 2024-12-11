@@ -431,38 +431,6 @@ public class DocumentGenericConverterTests
     }
 
     [Fact]
-    public void Read_MissingCreatedAt_ThrowsJsonException()
-    {
-        var json = @"
-            {
-                ""$id"": ""1"",
-                ""$collectionId"": ""col1"",
-                ""$databaseId"": ""db1"",
-                ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read(\""any\"")""],
-                ""Field1"": ""value1""
-            }";
-
-        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document<TestData>>(json, _options));
-    }
-
-    [Fact]
-    public void Read_MissingUpdatedAt_ThrowsJsonException()
-    {
-        var json = @"
-            {
-                ""$id"": ""1"",
-                ""$collectionId"": ""col1"",
-                ""$databaseId"": ""db1"",
-                ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read(\""any\"")""],
-                ""Field1"": ""value1""
-            }";
-
-        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document<TestData>>(json, _options));
-    }
-
-    [Fact]
     public void Read_MissingPermissions_ThrowsJsonException()
     {
         var json = @"
@@ -568,8 +536,6 @@ public class DocumentGenericConverterTests
 
         var reader = new Utf8JsonReader(bytes, readerOptions);
 
-        var converter = new DocumentGenericConverter<TestData>();
-
         // Read the StartObject token
         reader.Read(); // JsonTokenType.StartObject
 
@@ -585,7 +551,7 @@ public class DocumentGenericConverterTests
         // Calling ReadValue should now hit the default case and throw JsonException
         try
         {
-            converter.ReadValue(ref reader, _options);
+            DocumentGenericConverter<TestData>.ReadValue(ref reader, _options);
             Assert.Fail("Did not throw JsonException");
         }
         catch (JsonException)
