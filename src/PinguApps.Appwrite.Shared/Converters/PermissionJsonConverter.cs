@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Enums;
@@ -9,14 +10,26 @@ public class PermissionJsonConverter : JsonConverter<Permission>
 {
     public override Permission? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
+        ValidateTokenType(ref reader);
+
+        var value = reader.GetString()!;
+
+        var (permissionType, roleString) = ParsePermissionString(value);
+        var permissionBuilder = CreatePermissionBuilder(permissionType);
+
+        return ResolveRole(permissionBuilder, roleString);
+    }
+
+    private static void ValidateTokenType(ref Utf8JsonReader reader)
+    {
         if (reader.TokenType is not JsonTokenType.String)
         {
             throw new JsonException("Expected string value for Permission");
         }
+    }
 
-        var value = reader.GetString()!;
-
-        // Format is "permissionType(\"roleString\")"
+    private static (string permissionType, string roleString) ParsePermissionString(string value)
+    {
         var openParenIndex = value.IndexOf('(');
         var closeParenIndex = value.LastIndexOf(')');
 
@@ -25,31 +38,58 @@ public class PermissionJsonConverter : JsonConverter<Permission>
             throw new JsonException("Invalid Permission format");
         }
 
-        var permissionTypeStr = value[..openParenIndex].ToLower();
+        var permissionType = value[..openParenIndex].ToLower();
         // Remove the quotes from the role string
         var roleString = value[(openParenIndex + 2)..(closeParenIndex - 1)];
 
-        var permissionBuilder = permissionTypeStr switch
+        return (permissionType, roleString);
+    }
+
+    private static Permission.PermissionBuilder CreatePermissionBuilder(string permissionType)
+    {
+        return permissionType switch
         {
             "read" => Permission.Read(),
             "write" => Permission.Write(),
             "create" => Permission.Create(),
             "update" => Permission.Update(),
             "delete" => Permission.Delete(),
-            _ => throw new JsonException($"Unknown permission type: {permissionTypeStr}")
+            _ => throw new JsonException($"Unknown permission type: {permissionType}")
+        };
+    }
+
+    private static Permission ResolveRole(Permission.PermissionBuilder builder, string roleString)
+    {
+        if (IsSimpleRole(roleString, builder, out var simplePermission))
+        {
+            return simplePermission;
+        }
+
+        return ResolveComplexRole(builder, roleString);
+    }
+
+    private static bool IsSimpleRole(string roleString, Permission.PermissionBuilder builder, [NotNullWhen(true)] out Permission? permission)
+    {
+        permission = roleString switch
+        {
+            "any" => builder.Any(),
+            "users" => builder.Users(),
+            "guests" => builder.Guests(),
+            _ => null
         };
 
-        // Parse the role string
+        return permission != null;
+    }
+
+    private static Permission ResolveComplexRole(Permission.PermissionBuilder builder, string roleString)
+    {
         return roleString switch
         {
-            "any" => permissionBuilder.Any(),
-            "users" => permissionBuilder.Users(),
-            "guests" => permissionBuilder.Guests(),
-            var s when s.StartsWith("user:") => ParseUserRole(permissionBuilder, s[5..]),
-            var s when s.StartsWith("users/") => ParseUsersRole(permissionBuilder, s[6..]),
-            var s when s.StartsWith("team:") => ParseTeamRole(permissionBuilder, s[5..]),
-            var s when s.StartsWith("member:") => permissionBuilder.Member(s[7..]),
-            var s when s.StartsWith("label:") => permissionBuilder.Label(s[6..]),
+            var s when s.StartsWith("user:") => ParseUserRole(builder, s[5..]),
+            var s when s.StartsWith("users/") => ParseUsersRole(builder, s[6..]),
+            var s when s.StartsWith("team:") => ParseTeamRole(builder, s[5..]),
+            var s when s.StartsWith("member:") => builder.Member(s[7..]),
+            var s when s.StartsWith("label:") => builder.Label(s[6..]),
             _ => throw new JsonException($"Unknown role format: {roleString}")
         };
     }

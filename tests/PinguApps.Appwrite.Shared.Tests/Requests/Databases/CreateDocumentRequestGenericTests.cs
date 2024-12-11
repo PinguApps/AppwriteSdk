@@ -2,18 +2,19 @@
 using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Requests.Databases.Validators;
 using PinguApps.Appwrite.Shared.Utils;
+using static PinguApps.Appwrite.Shared.Tests.Requests.Databases.CreateDocumentRequestGenericTests;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Databases;
 
-// Test model for our generic type
-public class CreateDocumentTestData
-{
-    public string Name { get; set; } = string.Empty;
-    public int Age { get; set; }
-}
-
 public class CreateDocumentRequestGenericTests : DatabaseCollectionIdBaseRequestTests<CreateDocumentRequest<CreateDocumentTestData>, CreateDocumentRequestValidator<CreateDocumentTestData>>
 {
+    // Test model for our generic type
+    public class CreateDocumentTestData
+    {
+        public string Name { get; set; } = string.Empty;
+        public int Age { get; set; }
+    }
+
     protected override CreateDocumentRequest<CreateDocumentTestData> CreateValidDatabaseCollectionIdRequest => new()
     {
         DocumentId = IdUtils.GenerateUniqueId(),
