@@ -32,7 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PinguApps.Appwrite.Shared\PinguApps.Appwrite.Shared.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\PinguApps.Appwrite.Shared\PinguApps.Appwrite.Shared.csproj">
+      <PrivateAssets>runtime; build; native; contentfiles; analyzers</PrivateAssets>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
