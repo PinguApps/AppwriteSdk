@@ -30,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: "TODO to Issue"
-        uses: "alstr/todo-to-issue-action@f357c404fe00f5a17cd96696eaf6f8ce5fd19cf7" # v5
+        uses: "alstr/todo-to-issue-action@973393389c53206cc1f317f9ae6d316ec1ac5f93" # v5
         with:
           INSERT_ISSUE_URLS: true
           AUTO_ASSIGN: true
