@@ -20,6 +20,8 @@
     <Company>PinguApps</Company>
     <Description>A .NET implementation of the Appwrite SDK for client-side consumption. Ideal for developers looking to leverage Appwrite's powerful backend capabilities in their .NET applications.</Description>
     <Copyright>Copyright 2024 (c) Pingu. All rights reserved.</Copyright>
+
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,7 +35,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PinguApps.Appwrite.Shared\PinguApps.Appwrite.Shared.csproj">
-      <PrivateAssets>runtime; build; native; contentfiles; analyzers</PrivateAssets>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>PinguApps.Appwrite.Shared.dll</IncludeAssets>
     </ProjectReference>
   </ItemGroup>
 
@@ -41,5 +44,11 @@
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
+
+  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+    </ItemGroup>
+  </Target>
 
 </Project>
