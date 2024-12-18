@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PinguApps.Appwrite.Shared\PinguApps.Appwrite.Shared.csproj" />
+    <ProjectReference Include="..\PinguApps.Appwrite.Shared\PinguApps.Appwrite.Shared.csproj" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
