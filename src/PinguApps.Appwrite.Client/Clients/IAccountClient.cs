@@ -41,7 +41,7 @@ public interface IAccountClient
     /// Get the list of identities for the currently logged in user
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listIdentities">Appwrite Docs</see></para>
     /// </summary>
-    /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Maximum of 100 queries are allowed, each 4096 characters long. You may filter on the following attributes: <c>userId</c>, <c>provider</c>, <c>providerUid</c>, <c>providerEmail</c>, <c>providerAccessTokenExpiry</c></param>
+    /// <param name="request">The request content</param>
     /// <returns>The Identities List</returns>
     Task<AppwriteResult<IdentitiesList>> ListIdentities(ListIdentitiesRequest request);
 
@@ -64,7 +64,7 @@ public interface IAccountClient
     /// Get the list of latest security activity logs for the currently logged in user. Each log returns user IP address, location and date and time of log.
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#listLogs">Appwrite Docs</see></para>
     /// </summary>
-    /// <param name="queries">Array of query strings generated using the Query class provided by the SDK. <see href="https://appwrite.io/docs/queries">Learn more about queries</see>. Only supported methods are limit and offset</param>
+    /// <param name="request">The request content</param>
     /// <returns>The Logs List</returns>
     Task<AppwriteResult<LogsList>> ListLogs(ListLogsRequest request);
 
@@ -88,7 +88,7 @@ public interface IAccountClient
     /// Add an authenticator app to be used as an MFA factor. Verify the authenticator using <see cref="VerifyAuthenticator"/>
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#createMfaAuthenticator">Appwrite Docs</see></para>
     /// </summary>
-    /// <param name="type">Type of authenticator. Must be `totp`</param>
+    /// <param name="request">The request content</param>
     /// <returns>The MfaType</returns>
     Task<AppwriteResult<MfaType>> AddAuthenticator(AddAuthenticatorRequest request);
 
@@ -97,7 +97,6 @@ public interface IAccountClient
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateMfaAuthenticator">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
-    /// <param name="type">Type of authenticator</param>
     /// <returns>The User</returns>
     Task<AppwriteResult<User>> VerifyAuthenticator(VerifyAuthenticatorRequest request);
 
@@ -180,7 +179,7 @@ public interface IAccountClient
     /// Update currently logged in user account preferences. The object you pass is stored as is, and replaces any previous value. The maximum allowed prefs size is 64kB and throws error if exceeded
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updatePrefs">Appwrite Docs</see></para>
     /// </summary>
-    /// <param name="preferences">The request content</param>
+    /// <param name="request">The request content</param>
     /// <returns>The user</returns>
     Task<AppwriteResult<User>> UpdatePreferences(UpdatePreferencesRequest request);
 
