@@ -22,7 +22,7 @@ public interface IAccountClient
     Task<AppwriteResult<User>> Create(CreateAccountRequest request);
 
     /// <summary>
-    /// Use this endpoint to allow a new user to register an anonymous account in your project. This route will also create a new session for the user. To allow the new user to convert an anonymous account to a normal account, you need to call <see cref="UpdateEmail(UpdateEmailRequest)"/> or create an OAuth2 session
+    /// Use this endpoint to allow a new user to register an anonymous account in your project. This route will also create a new session for the user. To allow the new user to convert an anonymous account to a normal account, you need to call <see href="https://appwrite.io/docs/references/1.6.x/client-rest/account#updateEmail">Update Email on client</see> or create an OAuth2 session
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/account#createAnonymousSession">Appwrite Docs</see></para>
     /// </summary>
     /// <returns>The Session</returns>

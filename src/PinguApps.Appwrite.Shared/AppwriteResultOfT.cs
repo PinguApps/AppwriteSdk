@@ -12,7 +12,7 @@ public class AppwriteResult<TResult> : AppwriteResult
     }
 
     /// <summary>
-    /// /// The result of making the API call. Can be <see cref="TResult"/>, <see cref="AppwriteError"/> or <see cref="InternalError"/> depending on what happened
+    /// The result of making the API call. Can be <typeparamref name="TResult"/>, <see cref="AppwriteError"/> or <see cref="InternalError"/> depending on what happened
     /// </summary>
     public new OneOf<TResult, AppwriteError, InternalError> Result { get; }
 
