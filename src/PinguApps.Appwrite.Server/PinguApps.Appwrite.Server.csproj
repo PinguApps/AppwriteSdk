@@ -22,6 +22,8 @@
     <Copyright>Copyright 2024 (c) Pingu. All rights reserved.</Copyright>
 
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,7 +38,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PinguApps.Appwrite.Shared\PinguApps.Appwrite.Shared.csproj">
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-      <IncludeAssets>PinguApps.Appwrite.Shared.dll</IncludeAssets>
+      <IncludeAssets>PinguApps.Appwrite.Shared.dll;PinguApps.Appwrite.Shared.xml;PinguApps.Appwrite.Shared.pdb</IncludeAssets>
     </ProjectReference>
   </ItemGroup>
 
@@ -48,6 +50,8 @@
   <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
     <ItemGroup>
       <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->Replace('.dll', '.xml'))"/>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->Replace('.dll', '.pdb'))"/>
     </ItemGroup>
   </Target>
 
