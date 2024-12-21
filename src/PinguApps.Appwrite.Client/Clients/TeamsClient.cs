@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Client.Utils;
 using PinguApps.Appwrite.Shared;
@@ -16,7 +17,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
     private readonly ITeamsApi _teamsApi;
     private readonly Config _config;
 
-    internal TeamsClient(ITeamsApi teamsApi, Config config)
+    internal TeamsClient(ITeamsApi teamsApi, [FromKeyedServices("Client")] Config config)
     {
         _teamsApi = teamsApi;
         _config = config;

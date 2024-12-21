@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Client.Utils;
@@ -16,7 +17,7 @@ public class AccountClient : SessionAwareClientBase, IAccountClient
     private readonly IAccountApi _accountApi;
     private readonly Config _config;
 
-    internal AccountClient(IAccountApi accountApi, Config config)
+    internal AccountClient(IAccountApi accountApi, [FromKeyedServices("Client")] Config config)
     {
         _accountApi = accountApi;
         _config = config;

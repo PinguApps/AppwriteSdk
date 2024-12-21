@@ -30,7 +30,7 @@ public static class ServiceCollectionExtensions
     {
         var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
 
-        services.AddSingleton(new Config(endpoint, projectId));
+        services.AddKeyedSingleton("Client", new Config(endpoint, projectId));
         services.AddTransient<HeaderHandler>();
         services.AddTransient<ClientCookieSessionHandler>();
 
@@ -52,13 +52,13 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IAccountClient>(sp =>
         {
             var api = sp.GetRequiredService<IAccountApi>();
-            var config = sp.GetRequiredService<Config>();
+            var config = sp.GetRequiredKeyedService<Config>("Client");
             return new AccountClient(api, config);
         });
         services.AddSingleton<ITeamsClient>(sp =>
         {
             var api = sp.GetRequiredService<ITeamsApi>();
-            var config = sp.GetRequiredService<Config>();
+            var config = sp.GetRequiredKeyedService<Config>("Client");
             return new TeamsClient(api, config);
         });
         services.AddSingleton<IDatabasesClient>(sp =>
@@ -84,7 +84,7 @@ public static class ServiceCollectionExtensions
     {
         var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
 
-        services.AddSingleton(new Config(endpoint, projectId));
+        services.AddKeyedSingleton("Client", new Config(endpoint, projectId));
         services.AddTransient<HeaderHandler>();
 
         services.AddRefitClient<IAccountApi>(customRefitSettings)
@@ -105,13 +105,13 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IAccountClient>(sp =>
         {
             var api = sp.GetRequiredService<IAccountApi>();
-            var config = sp.GetRequiredService<Config>();
+            var config = sp.GetRequiredKeyedService<Config>("Client");
             return new AccountClient(api, config);
         });
         services.AddSingleton<ITeamsClient>(sp =>
         {
             var api = sp.GetRequiredService<ITeamsApi>();
-            var config = sp.GetRequiredService<Config>();
+            var config = sp.GetRequiredKeyedService<Config>("Client");
             return new TeamsClient(api, config);
         });
         services.AddSingleton<IDatabasesClient>(sp =>
