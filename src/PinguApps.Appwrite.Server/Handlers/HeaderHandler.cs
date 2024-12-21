@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Shared;
 
 namespace PinguApps.Appwrite.Server.Handlers;
@@ -10,7 +11,7 @@ internal class HeaderHandler : DelegatingHandler
     private readonly string _projectId;
     private readonly string _apiKey;
 
-    public HeaderHandler(Config config)
+    public HeaderHandler([FromKeyedServices("Server")] Config config)
     {
         if (config.ApiKey is null)
             throw new ArgumentNullException("config.ApiKey");
