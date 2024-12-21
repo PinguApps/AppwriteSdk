@@ -31,7 +31,7 @@ public static class ServiceCollectionExtensions
     {
         var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
 
-        services.AddSingleton(new Config(endpoint, projectId, apiKey));
+        services.AddKeyedSingleton("Server", new Config(endpoint, projectId, apiKey));
         services.AddTransient<HeaderHandler>();
 
         services.AddRefitClient<IAccountApi>(customRefitSettings)
@@ -57,19 +57,19 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IAccountClient>(sp =>
         {
             var api = sp.GetRequiredService<IAccountApi>();
-            var config = sp.GetRequiredService<Config>();
+            var config = sp.GetRequiredKeyedService<Config>("Server");
             return new AccountClient(api, config);
         });
         services.AddSingleton<IUsersClient>(sp =>
         {
             var api = sp.GetRequiredService<IUsersApi>();
-            var config = sp.GetRequiredService<Config>();
+            var config = sp.GetRequiredKeyedService<Config>("Server");
             return new UsersClient(api, config);
         });
         services.AddSingleton<ITeamsClient>(sp =>
         {
             var api = sp.GetRequiredService<ITeamsApi>();
-            var config = sp.GetRequiredService<Config>();
+            var config = sp.GetRequiredKeyedService<Config>("Server");
             return new TeamsClient(api, config);
         });
         services.AddSingleton<IDatabasesClient>(sp =>

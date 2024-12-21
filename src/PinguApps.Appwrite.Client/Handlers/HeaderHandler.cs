@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using PinguApps.Appwrite.Shared;
 
 namespace PinguApps.Appwrite.Client.Handlers;
@@ -8,7 +9,7 @@ internal class HeaderHandler : DelegatingHandler
 {
     private readonly string _projectId;
 
-    public HeaderHandler(Config config)
+    public HeaderHandler([FromKeyedServices("Client")] Config config)
     {
         _projectId = config.ProjectId;
     }
