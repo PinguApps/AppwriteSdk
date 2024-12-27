@@ -36,6 +36,24 @@ public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
     }
 
     /// <inheritdoc/>
+    public async Task<AppwriteResult<DocumentsList<TData>>> ListDocuments<TData>(ListDocumentsRequest request)
+        where TData : class, new()
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.ListDocuments<TData>(GetCurrentSession(), request.DatabaseId, request.CollectionId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<DocumentsList<TData>>();
+        }
+    }
+
+    /// <inheritdoc/>
     public async Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request)
     {
         try
@@ -49,6 +67,24 @@ public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
         catch (Exception e)
         {
             return e.GetExceptionResponse<Document>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest request)
+        where TData : class, new()
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateDocument<TData>(GetCurrentSession(), request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Document<TData>>();
         }
     }
 
@@ -87,6 +123,24 @@ public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
     }
 
     /// <inheritdoc/>
+    public async Task<AppwriteResult<Document<TData>>> GetDocument<TData>(GetDocumentRequest request)
+        where TData : class, new()
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.GetDocument<TData>(GetCurrentSession(), request.DatabaseId, request.CollectionId, request.DocumentId, RequestUtils.GetQueryStrings(request.Queries));
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Document<TData>>();
+        }
+    }
+
+    /// <inheritdoc/>
     public async Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request)
     {
         try
@@ -100,6 +154,24 @@ public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
         catch (Exception e)
         {
             return e.GetExceptionResponse<Document>();
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<AppwriteResult<Document<TData>>> UpdateDocument<TData>(UpdateDocumentRequest request)
+        where TData : class, new()
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.UpdateDocument<TData>(GetCurrentSession(), request.DatabaseId, request.CollectionId, request.DocumentId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Document<TData>>();
         }
     }
 }
