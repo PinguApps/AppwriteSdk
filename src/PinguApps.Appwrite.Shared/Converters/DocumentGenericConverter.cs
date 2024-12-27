@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Responses;
@@ -197,6 +198,8 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
 
     public override void Write(Utf8JsonWriter writer, Document<TData> value, JsonSerializerOptions options)
     {
+        var permissionsListConverter = new PermissionListConverter();
+
         writer.WriteStartObject();
 
         writer.WriteString("$id", value.Id);
@@ -213,7 +216,7 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
         dateTimeConverter.Write(writer, value.UpdatedAt, options);
 
         writer.WritePropertyName("$permissions");
-        JsonSerializer.Serialize(writer, value.Permissions, options);
+        permissionsListConverter.Write(writer, value.Permissions.ToList(), options);
 
         // Serialize the Data property
         if (value.Data is not null)
