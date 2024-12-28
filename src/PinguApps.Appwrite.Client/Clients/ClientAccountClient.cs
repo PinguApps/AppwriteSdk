@@ -12,12 +12,12 @@ using PinguApps.Appwrite.Shared.Responses;
 namespace PinguApps.Appwrite.Client;
 
 /// <inheritdoc/>
-public class AccountClient : SessionAwareClientBase, IAccountClient
+public class ClientAccountClient : SessionAwareClientBase, IClientAccountClient
 {
     private readonly IAccountApi _accountApi;
     private readonly Config _config;
 
-    internal AccountClient(IAccountApi accountApi, [FromKeyedServices("Client")] Config config)
+    internal ClientAccountClient(IAccountApi accountApi, [FromKeyedServices("Client")] Config config)
     {
         _accountApi = accountApi;
         _config = config;

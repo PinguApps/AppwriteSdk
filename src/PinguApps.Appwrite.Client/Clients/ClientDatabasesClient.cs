@@ -9,11 +9,11 @@ using PinguApps.Appwrite.Shared.Responses;
 namespace PinguApps.Appwrite.Client.Clients;
 
 /// <inheritdoc/>
-public class DatabasesClient : SessionAwareClientBase, IDatabasesClient
+public class ClientDatabasesClient : SessionAwareClientBase, IClientDatabasesClient
 {
     private readonly IDatabasesApi _databasesApi;
 
-    internal DatabasesClient(IDatabasesApi databasesApi)
+    internal ClientDatabasesClient(IDatabasesApi databasesApi)
     {
         _databasesApi = databasesApi;
     }

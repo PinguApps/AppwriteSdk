@@ -12,12 +12,12 @@ using PinguApps.Appwrite.Shared.Responses;
 namespace PinguApps.Appwrite.Client.Clients;
 
 /// <inheritdoc/>
-public class TeamsClient : SessionAwareClientBase, ITeamsClient
+public class ClientTeamsClient : SessionAwareClientBase, IClientTeamsClient
 {
     private readonly ITeamsApi _teamsApi;
     private readonly Config _config;
 
-    internal TeamsClient(ITeamsApi teamsApi, [FromKeyedServices("Client")] Config config)
+    internal ClientTeamsClient(ITeamsApi teamsApi, [FromKeyedServices("Client")] Config config)
     {
         _teamsApi = teamsApi;
         _config = config;

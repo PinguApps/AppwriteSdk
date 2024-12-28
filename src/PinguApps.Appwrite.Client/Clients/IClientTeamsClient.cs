@@ -11,7 +11,7 @@ namespace PinguApps.Appwrite.Client.Clients;
 /// <para>Each user who creates a team becomes the team owner and can delegate the ownership role by inviting a new team member. Only team owners can invite new users to their team.</para>
 /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams">Appwrite Docs</see></para>
 /// </summary>
-public interface ITeamsClient
+public interface IClientTeamsClient
 {
     /// <summary>
     /// Get a list of all the teams in which the current user is a member. You can use the parameters to filter your results.
