@@ -35,4 +35,13 @@ public partial class DatabasesClientTests
 
         _jsonSerializerOptions.Converters.Add(new IgnoreSdkExcludedPropertiesConverterFactory());
     }
+
+    public class TestData
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; } = "Unset";
+
+        [JsonPropertyName("age")]
+        public int Age { get; set; } = 0;
+    }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Requests.Databases;
 using PinguApps.Appwrite.Shared.Tests;
 using PinguApps.Appwrite.Shared.Utils;
@@ -8,15 +7,6 @@ using RichardSzalay.MockHttp;
 namespace PinguApps.Appwrite.Client.Tests.Clients.Databases;
 public partial class DatabasesClientTests
 {
-    public class TestData
-    {
-        [JsonPropertyName("name")]
-        public string Name { get; set; } = "Unset";
-
-        [JsonPropertyName("age")]
-        public int Age { get; set; } = 0;
-    }
-
     [Fact]
     public async Task ListDocumentsGeneric_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
