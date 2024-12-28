@@ -120,8 +120,16 @@ internal interface IDatabasesApi : IBaseApi
     [QueryUriFormat(UriFormat.Unescaped)]
     Task<IApiResponse<DocumentsList>> ListDocuments(string databaseId, string collectionId, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries);
 
+
+    [Get("/databases/{databaseId}/collections/{collectionId}/documents")]
+    [QueryUriFormat(UriFormat.Unescaped)]
+    Task<IApiResponse<DocumentsList<TData>>> ListDocuments<TData>(string databaseId, string collectionId, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries) where TData : class, new();
+
     [Post("/databases/{databaseId}/collections/{collectionId}/documents")]
     Task<IApiResponse<Document>> CreateDocument(string databaseId, string collectionId, CreateDocumentRequest request);
+
+    [Post("/databases/{databaseId}/collections/{collectionId}/documents")]
+    Task<IApiResponse<Document<TData>>> CreateDocument<TData>(string databaseId, string collectionId, CreateDocumentRequest request) where TData : class, new();
 
     [Delete("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
     Task<IApiResponse> DeleteDocument(string databaseId, string collectionId, string documentId);
@@ -130,8 +138,15 @@ internal interface IDatabasesApi : IBaseApi
     [QueryUriFormat(UriFormat.Unescaped)]
     Task<IApiResponse<Document>> GetDocument(string databaseId, string collectionId, string documentId, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries);
 
+    [Get("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
+    [QueryUriFormat(UriFormat.Unescaped)]
+    Task<IApiResponse<Document<TData>>> GetDocument<TData>(string databaseId, string collectionId, string documentId, [Query(CollectionFormat.Multi), AliasAs("queries[]")] IEnumerable<string> queries) where TData : class, new();
+
     [Patch("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
     Task<IApiResponse<Document>> UpdateDocument(string databaseId, string collectionId, string documentId, UpdateDocumentRequest request);
+
+    [Patch("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
+    Task<IApiResponse<Document<TData>>> UpdateDocument<TData>(string databaseId, string collectionId, string documentId, UpdateDocumentRequest request) where TData : class, new();
 
     // Index Operations
     [Get("/databases/{databaseId}/collections/{collectionId}/indexes")]

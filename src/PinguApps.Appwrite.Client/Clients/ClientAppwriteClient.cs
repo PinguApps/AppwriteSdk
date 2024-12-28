@@ -3,18 +3,18 @@
 namespace PinguApps.Appwrite.Client;
 
 /// <inheritdoc/>
-public class AppwriteClient : IAppwriteClient, ISessionAware
+public class ClientAppwriteClient : IClientAppwriteClient, ISessionAware
 {
     /// <inheritdoc/>
-    public IAccountClient Account { get; }
+    public IClientAccountClient Account { get; }
 
     /// <inheritdoc/>
-    public ITeamsClient Teams { get; }
+    public IClientTeamsClient Teams { get; }
 
     /// <inheritdoc/>
-    public IDatabasesClient Databases { get; }
+    public IClientDatabasesClient Databases { get; }
 
-    public AppwriteClient(IAccountClient accountClient, ITeamsClient teams, IDatabasesClient databasesClient)
+    public ClientAppwriteClient(IClientAccountClient accountClient, IClientTeamsClient teams, IClientDatabasesClient databasesClient)
     {
         Account = accountClient;
         Teams = teams;

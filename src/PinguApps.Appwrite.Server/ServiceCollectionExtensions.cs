@@ -54,30 +54,30 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler<HeaderHandler>()
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
-        services.AddSingleton<IAccountClient>(sp =>
+        services.AddSingleton<IServerAccountClient>(sp =>
         {
             var api = sp.GetRequiredService<IAccountApi>();
             var config = sp.GetRequiredKeyedService<Config>("Server");
-            return new AccountClient(api, config);
+            return new ServerAccountClient(api, config);
         });
-        services.AddSingleton<IUsersClient>(sp =>
+        services.AddSingleton<IServerUsersClient>(sp =>
         {
             var api = sp.GetRequiredService<IUsersApi>();
             var config = sp.GetRequiredKeyedService<Config>("Server");
-            return new UsersClient(api, config);
+            return new ServerUsersClient(api, config);
         });
-        services.AddSingleton<ITeamsClient>(sp =>
+        services.AddSingleton<IServerTeamsClient>(sp =>
         {
             var api = sp.GetRequiredService<ITeamsApi>();
             var config = sp.GetRequiredKeyedService<Config>("Server");
-            return new TeamsClient(api, config);
+            return new ServerTeamsClient(api, config);
         });
-        services.AddSingleton<IDatabasesClient>(sp =>
+        services.AddSingleton<IServerDatabasesClient>(sp =>
         {
             var api = sp.GetRequiredService<IDatabasesApi>();
-            return new DatabasesClient(api);
+            return new ServerDatabasesClient(api);
         });
-        services.AddSingleton<IAppwriteClient, AppwriteClient>();
+        services.AddSingleton<IServerAppwriteClient, ServerAppwriteClient>();
 
         return services;
     }

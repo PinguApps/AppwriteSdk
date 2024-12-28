@@ -11,7 +11,7 @@ namespace PinguApps.Appwrite.Server.Tests.Clients.Databases;
 public partial class DatabasesClientTests
 {
     private readonly MockHttpMessageHandler _mockHttp;
-    private readonly IAppwriteClient _appwriteClient;
+    private readonly IServerAppwriteClient _appwriteClient;
     private readonly JsonSerializerOptions _jsonSerializerOptions;
 
     public DatabasesClientTests()
@@ -26,7 +26,7 @@ public partial class DatabasesClientTests
 
         var serviceProvider = services.BuildServiceProvider();
 
-        _appwriteClient = serviceProvider.GetRequiredService<IAppwriteClient>();
+        _appwriteClient = serviceProvider.GetRequiredService<IServerAppwriteClient>();
 
         _jsonSerializerOptions = new JsonSerializerOptions
         {
@@ -35,5 +35,14 @@ public partial class DatabasesClientTests
         };
 
         _jsonSerializerOptions.Converters.Add(new IgnoreSdkExcludedPropertiesConverterFactory());
+    }
+
+    public class TestData
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; } = "Unset";
+
+        [JsonPropertyName("age")]
+        public int Age { get; set; } = 0;
     }
 }

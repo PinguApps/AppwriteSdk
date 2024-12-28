@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using PinguApps.Appwrite.Client.Internals;
-using PinguApps.Appwrite.Client.Utils;
+using PinguApps.Appwrite.Server.Internals;
+using PinguApps.Appwrite.Server.Utils;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Enums;
 using PinguApps.Appwrite.Shared.Requests.Teams;
 using PinguApps.Appwrite.Shared.Responses;
 
-namespace PinguApps.Appwrite.Client.Clients;
+namespace PinguApps.Appwrite.Server.Clients;
 
 /// <inheritdoc/>
-public class TeamsClient : SessionAwareClientBase, ITeamsClient
+public class ServerTeamsClient : IServerTeamsClient
 {
     private readonly ITeamsApi _teamsApi;
     private readonly Config _config;
 
-    internal TeamsClient(ITeamsApi teamsApi, [FromKeyedServices("Client")] Config config)
+    internal ServerTeamsClient(ITeamsApi teamsApi, [FromKeyedServices("Server")] Config config)
     {
         _teamsApi = teamsApi;
         _config = config;
@@ -30,7 +30,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.ListTeams(GetCurrentSessionOrThrow(), RequestUtils.GetQueryStrings(request.Queries), request.Search);
+            var result = await _teamsApi.ListTeams(RequestUtils.GetQueryStrings(request.Queries), request.Search);
 
             return result.GetApiResponse();
         }
@@ -47,7 +47,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.CreateTeam(GetCurrentSessionOrThrow(), request);
+            var result = await _teamsApi.CreateTeam(request);
 
             return result.GetApiResponse();
         }
@@ -64,7 +64,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.DeleteTeam(GetCurrentSessionOrThrow(), request.TeamId);
+            var result = await _teamsApi.DeleteTeam(request.TeamId);
 
             return result.GetApiResponse();
         }
@@ -81,7 +81,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.GetTeam(GetCurrentSessionOrThrow(), request.TeamId);
+            var result = await _teamsApi.GetTeam(request.TeamId);
 
             return result.GetApiResponse();
         }
@@ -98,7 +98,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.UpdateName(GetCurrentSessionOrThrow(), request.TeamId, request);
+            var result = await _teamsApi.UpdateName(request.TeamId, request);
 
             return result.GetApiResponse();
         }
@@ -115,7 +115,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.ListTeamMemberships(GetCurrentSessionOrThrow(), request.TeamId, RequestUtils.GetQueryStrings(request.Queries), request.Search);
+            var result = await _teamsApi.ListTeamMemberships(request.TeamId, RequestUtils.GetQueryStrings(request.Queries), request.Search);
 
             return result.GetApiResponse();
         }
@@ -130,10 +130,10 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
     {
         try
         {
-            request.ValidationContext = ValidationContext.Client;
+            request.ValidationContext = ValidationContext.Server;
             request.Validate(true);
 
-            var result = await _teamsApi.CreateTeamMembership(GetCurrentSessionOrThrow(), request.TeamId, request);
+            var result = await _teamsApi.CreateTeamMembership(request.TeamId, request);
 
             return result.GetApiResponse();
         }
@@ -150,7 +150,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.DeleteTeamMembership(GetCurrentSessionOrThrow(), request.TeamId, request.MembershipId);
+            var result = await _teamsApi.DeleteTeamMembership(request.TeamId, request.MembershipId);
 
             return result.GetApiResponse();
         }
@@ -167,7 +167,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.GetTeamMembership(GetCurrentSessionOrThrow(), request.TeamId, request.MembershipId);
+            var result = await _teamsApi.GetTeamMembership(request.TeamId, request.MembershipId);
 
             return result.GetApiResponse();
         }
@@ -184,24 +184,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.UpdateMembership(GetCurrentSessionOrThrow(), request.TeamId, request.MembershipId, request);
-
-            return result.GetApiResponse();
-        }
-        catch (Exception e)
-        {
-            return e.GetExceptionResponse<Membership>();
-        }
-    }
-
-    /// <inheritdoc/>
-    public async Task<AppwriteResult<Membership>> UpdateTeamMembershipStatus(UpdateTeamMembershipStatusRequest request)
-    {
-        try
-        {
-            request.Validate(true);
-
-            var result = await _teamsApi.UpdateTeamMembershipStatus(request.TeamId, request.MembershipId, request);
+            var result = await _teamsApi.UpdateMembership(request.TeamId, request.MembershipId, request);
 
             return result.GetApiResponse();
         }
@@ -218,7 +201,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.GetTeamPreferences(GetCurrentSessionOrThrow(), request.TeamId);
+            var result = await _teamsApi.GetTeamPreferences(request.TeamId);
 
             return result.GetApiResponse();
         }
@@ -235,7 +218,7 @@ public class TeamsClient : SessionAwareClientBase, ITeamsClient
         {
             request.Validate(true);
 
-            var result = await _teamsApi.UpdatePreferences(GetCurrentSessionOrThrow(), request.TeamId, request);
+            var result = await _teamsApi.UpdatePreferences(request.TeamId, request);
 
             return result.GetApiResponse();
         }

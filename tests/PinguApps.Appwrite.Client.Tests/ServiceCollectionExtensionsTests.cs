@@ -27,10 +27,10 @@ public class ServiceCollectionExtensionsTests
         var accountApi = provider.GetService<IAccountApi>();
         Assert.NotNull(accountApi);
 
-        Assert.NotNull(provider.GetService<IAccountClient>());
-        Assert.NotNull(provider.GetService<IAppwriteClient>());
+        Assert.NotNull(provider.GetService<IClientAccountClient>());
+        Assert.NotNull(provider.GetService<IClientAppwriteClient>());
 
-        var lazyClient = provider.GetService<Lazy<IAppwriteClient>>();
+        var lazyClient = provider.GetService<Lazy<IClientAppwriteClient>>();
         Assert.NotNull(lazyClient);
         var client = lazyClient.Value;
         Assert.NotNull(client);
@@ -57,7 +57,7 @@ public class ServiceCollectionExtensionsTests
         var accountApi = provider.GetService<IAccountApi>();
         Assert.NotNull(accountApi);
 
-        Assert.NotNull(provider.GetService<IAccountClient>());
-        Assert.NotNull(provider.GetService<IAppwriteClient>());
+        Assert.NotNull(provider.GetService<IClientAccountClient>());
+        Assert.NotNull(provider.GetService<IClientAppwriteClient>());
     }
 }

@@ -10,7 +10,7 @@ namespace PinguApps.Appwrite.Server.Clients;
 /// The Users service allows you to manage your project users. Use this service to search, block, and view your users' info, current sessions, and latest activity logs. You can also use the Users service to edit your users' preferences and personal info.
 /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/users">Appwrite Docs</see></para>
 /// </summary>
-public interface IUsersClient
+public interface IServerUsersClient
 {
     /// <summary>
     /// Get a list of all the project's users. You can use the query params to filter your results.

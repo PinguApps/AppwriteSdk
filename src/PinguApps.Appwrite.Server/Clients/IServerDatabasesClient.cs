@@ -15,7 +15,7 @@ namespace PinguApps.Appwrite.Server.Clients;
 /// <para>Using Appwrite permissions architecture, you can assign read or write access to each collection or document in your project for either a specific user, team, user role, or even grant it with public access (any). You can learn more about <see href="https://appwrite.io/docs/products/databases/permissions">how Appwrite handles permissions and access control</see>.</para>
 /// <para><see href="https://appwrite.io/docs/references/1.6.x/server-rest/databases">Appwrite Docs</see></para>
 /// </summary>
-public interface IDatabasesClient
+public interface IServerDatabasesClient
 {
     /// <summary>
     /// Get a list of all databases from the current Appwrite project. You can use the search parameter to filter your results.
@@ -290,12 +290,30 @@ public interface IDatabasesClient
     Task<AppwriteResult<DocumentsList>> ListDocuments(ListDocumentsRequest request);
 
     /// <summary>
+    /// Get a list of all the user's documents in a given collection. You can use the query params to filter your results.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#listDocuments">Appwrite Docs</see></para>
+    /// </summary>
+    /// <typeparam name="TData">The data type for your documents</typeparam>
+    /// <param name="request">The request content</param>
+    /// <returns>The documents list</returns>
+    Task<AppwriteResult<DocumentsList<TData>>> ListDocuments<TData>(ListDocumentsRequest request) where TData : class, new();
+
+    /// <summary>
     /// Create a new Document. Before using this route, you should create a new collection resource using either <see cref="CreateCollection(CreateCollectionRequest)"/> or directly from your database console.
     /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createDocument">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The document</returns>
     Task<AppwriteResult<Document>> CreateDocument(CreateDocumentRequest request);
+
+    /// <summary>
+    /// Create a new Document. Before using this route, you should create a new collection resource using either <see cref="CreateCollection(CreateCollectionRequest)"/> or directly from your database console.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <typeparam name="TData">The data type for your document</typeparam>
+    /// <param name="request">The request content</param>
+    /// <returns>The document</returns>
+    Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest request) where TData : class, new();
 
     /// <summary>
     /// Delete a document by its unique ID.
@@ -314,12 +332,30 @@ public interface IDatabasesClient
     Task<AppwriteResult<Document>> GetDocument(GetDocumentRequest request);
 
     /// <summary>
+    /// Get a document by its unique ID. This endpoint response returns a JSON object with the document data. You can return select columns by passing in a Select query.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#getDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <typeparam name="TData">The data type for your document</typeparam>
+    /// <param name="request">The request content</param>
+    /// <returns>The document</returns>
+    Task<AppwriteResult<Document<TData>>> GetDocument<TData>(GetDocumentRequest request) where TData : class, new();
+
+    /// <summary>
     /// Update a document by its unique ID. Using the patch method you can pass only specific fields that will get updated.
     /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateDocument">Appwrite Docs</see></para>
     /// </summary>
     /// <param name="request">The request content</param>
     /// <returns>The document</returns>
     Task<AppwriteResult<Document>> UpdateDocument(UpdateDocumentRequest request);
+
+    /// <summary>
+    /// Update a document by its unique ID. Using the patch method you can pass only specific fields that will get updated.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#updateDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <typeparam name="TData">The data type for your document</typeparam>
+    /// <param name="request">The request content</param>
+    /// <returns>The document</returns>
+    Task<AppwriteResult<Document<TData>>> UpdateDocument<TData>(UpdateDocumentRequest request) where TData : class, new();
 
     /// <summary>
     /// List indexes in the collection.

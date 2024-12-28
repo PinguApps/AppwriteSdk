@@ -5,7 +5,7 @@ namespace PinguApps.Appwrite.Client;
 /// <summary>
 /// The root of the Client SDK. Access all API sections from here
 /// </summary>
-public interface IAppwriteClient
+public interface IClientAppwriteClient
 {
     /// <summary>
     /// <para>The Account service allows you to authenticate and manage a user account. You can use the account service to update user information, retrieve the user sessions across different devices, and fetch the user security logs with his or her recent activity.</para>
@@ -13,7 +13,7 @@ public interface IAppwriteClient
     /// <para>This service also exposes an endpoint to save and read the user preferences as a key-value object. This feature is handy if you want to allow extra customization in your app.Common usage for this feature may include saving the user's preferred locale, timezone, or custom app theme.</para>
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account">Appwrite Docs</see></para>
     /// </summary>
-    IAccountClient Account { get; }
+    IClientAccountClient Account { get; }
 
     /// <summary>
     /// Set the session of the logged in user
@@ -31,7 +31,7 @@ public interface IAppwriteClient
     /// <para>Each user who creates a team becomes the team owner and can delegate the ownership role by inviting a new team member. Only team owners can invite new users to their team.</para>
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/teams">Appwrite Docs</see></para>
     /// </summary>
-    ITeamsClient Teams { get; }
+    IClientTeamsClient Teams { get; }
 
     /// <summary>
     /// <para>The Databases service allows you to create structured collections of documents, query and filter lists of documents, and manage an advanced set of read and write access permissions.</para>
@@ -40,5 +40,5 @@ public interface IAppwriteClient
     /// <para>Using Appwrite permissions architecture, you can assign read or write access to each collection or document in your project for either a specific user, team, user role, or even grant it with public access (any). You can learn more about <see href="https://appwrite.io/docs/products/databases/permissions">how Appwrite handles permissions and access control</see>.</para>
     /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/databases">Appwrite Docs</see></para>
     /// </summary>
-    IDatabasesClient Databases { get; }
+    IClientDatabasesClient Databases { get; }
 }

@@ -11,12 +11,12 @@ using PinguApps.Appwrite.Shared.Responses;
 namespace PinguApps.Appwrite.Server.Clients;
 
 /// <inheritdoc/>
-public class UsersClient : IUsersClient
+public class ServerUsersClient : IServerUsersClient
 {
     private readonly IUsersApi _usersApi;
     private readonly Config _config;
 
-    internal UsersClient(IUsersApi usersApi, [FromKeyedServices("Server")] Config config)
+    internal ServerUsersClient(IUsersApi usersApi, [FromKeyedServices("Server")] Config config)
     {
         _usersApi = usersApi;
         _config = config;
