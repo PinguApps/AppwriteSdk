@@ -11,7 +11,7 @@ namespace PinguApps.Appwrite.Server.Tests.Clients.Users;
 public partial class UsersClientTests
 {
     private readonly MockHttpMessageHandler _mockHttp;
-    private readonly IAppwriteClient _appwriteClient;
+    private readonly IServerAppwriteClient _appwriteClient;
     private readonly JsonSerializerOptions _jsonSerializerOptions;
 
     public UsersClientTests()
@@ -26,7 +26,7 @@ public partial class UsersClientTests
 
         var serviceProvider = services.BuildServiceProvider();
 
-        _appwriteClient = serviceProvider.GetRequiredService<IAppwriteClient>();
+        _appwriteClient = serviceProvider.GetRequiredService<IServerAppwriteClient>();
 
         _jsonSerializerOptions = new JsonSerializerOptions
         {

@@ -10,13 +10,13 @@ using PinguApps.Appwrite.Shared.Responses;
 namespace PinguApps.Appwrite.Server.Clients;
 
 /// <inheritdoc/>
-public class AccountClient : IAccountClient
+public class ServerAccountClient : IServerAccountClient
 {
     private readonly IAccountApi _accountApi;
 
     private readonly Config _config;
 
-    internal AccountClient(IAccountApi accountApi, [FromKeyedServices("Server")] Config config)
+    internal ServerAccountClient(IAccountApi accountApi, [FromKeyedServices("Server")] Config config)
     {
         _accountApi = accountApi;
         _config = config;

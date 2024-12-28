@@ -28,9 +28,9 @@ public class ServiceCollectionExtensionsTests
         Assert.NotNull(accountApi);
 
         // Assert services are registered
-        Assert.NotNull(provider.GetService<IAccountClient>());
-        Assert.NotNull(provider.GetService<IUsersClient>());
-        Assert.NotNull(provider.GetService<IAppwriteClient>());
+        Assert.NotNull(provider.GetService<IServerAccountClient>());
+        Assert.NotNull(provider.GetService<IServerUsersClient>());
+        Assert.NotNull(provider.GetService<IServerAppwriteClient>());
     }
 
     // Additional tests can be added to verify different configurations or overloads of AddAppwriteServer

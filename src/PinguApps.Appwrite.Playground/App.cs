@@ -6,10 +6,10 @@ namespace PinguApps.Appwrite.Playground;
 internal class App
 {
     private readonly Client.IClientAppwriteClient _client;
-    private readonly Server.Clients.IAppwriteClient _server;
+    private readonly Server.Clients.IServerAppwriteClient _server;
     private readonly string? _session;
 
-    public App(Client.IClientAppwriteClient client, Server.Clients.IAppwriteClient server, IConfiguration config)
+    public App(Client.IClientAppwriteClient client, Server.Clients.IServerAppwriteClient server, IConfiguration config)
     {
         _client = client;
         _server = server;
