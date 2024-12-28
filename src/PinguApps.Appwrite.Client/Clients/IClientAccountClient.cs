@@ -12,7 +12,7 @@ namespace PinguApps.Appwrite.Client;
 /// <para>This service also exposes an endpoint to save and read the user preferences as a key-value object. This feature is handy if you want to allow extra customization in your app.Common usage for this feature may include saving the user's preferred locale, timezone, or custom app theme.</para>
 /// <para><see href="https://appwrite.io/docs/references/1.6.x/client-rest/account">Appwrite Docs</see></para>
 /// </summary>
-public interface IAccountClient
+public interface IClientAccountClient
 {
     /// <summary>
     /// Get the currently logged in user.

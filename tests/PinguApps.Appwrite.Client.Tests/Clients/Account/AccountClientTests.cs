@@ -14,7 +14,7 @@ namespace PinguApps.Appwrite.Client.Tests.Clients.Account;
 public partial class AccountClientTests
 {
     private readonly MockHttpMessageHandler _mockHttp;
-    private readonly IAppwriteClient _appwriteClient;
+    private readonly IClientAppwriteClient _appwriteClient;
     private readonly JsonSerializerOptions _jsonSerializerOptions;
 
     public AccountClientTests()
@@ -29,7 +29,7 @@ public partial class AccountClientTests
 
         var serviceProvider = services.BuildServiceProvider();
 
-        _appwriteClient = serviceProvider.GetRequiredService<IAppwriteClient>();
+        _appwriteClient = serviceProvider.GetRequiredService<IClientAppwriteClient>();
 
         _jsonSerializerOptions = new JsonSerializerOptions
         {
@@ -46,7 +46,7 @@ public partial class AccountClientTests
         // Arrange
         var sc = new ServiceCollection();
         var mockAccountApi = new Mock<IAccountApi>();
-        var accountClient = new AccountClient(mockAccountApi.Object, new Config(TestConstants.Endpoint, TestConstants.ProjectId));
+        var accountClient = new ClientAccountClient(mockAccountApi.Object, new Config(TestConstants.Endpoint, TestConstants.ProjectId));
         var sessionAware = accountClient as ISessionAware;
 
         // Act

@@ -8,12 +8,12 @@ public class AppwriteServerTests
     public void Constructor_AssignsAccountServerCorrectly()
     {
         // Arrange
-        var mockAccountClient = new Mock<IAccountClient>();
-        var mockUsersClient = new Mock<IUsersClient>();
-        var mockTeamsClient = new Mock<ITeamsClient>();
-        var mockDatabasesClient = new Mock<IDatabasesClient>();
+        var mockAccountClient = new Mock<IServerAccountClient>();
+        var mockUsersClient = new Mock<IServerUsersClient>();
+        var mockTeamsClient = new Mock<IServerTeamsClient>();
+        var mockDatabasesClient = new Mock<IServerDatabasesClient>();
         // Act
-        var appwriteServer = new AppwriteClient(mockAccountClient.Object, mockUsersClient.Object, mockTeamsClient.Object, mockDatabasesClient.Object);
+        var appwriteServer = new ServerAppwriteClient(mockAccountClient.Object, mockUsersClient.Object, mockTeamsClient.Object, mockDatabasesClient.Object);
         // Assert
         Assert.Equal(mockAccountClient.Object, appwriteServer.Account);
         Assert.Equal(mockUsersClient.Object, appwriteServer.Users);

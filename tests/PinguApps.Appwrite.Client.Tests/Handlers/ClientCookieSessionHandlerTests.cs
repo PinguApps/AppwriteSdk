@@ -8,14 +8,14 @@ namespace PinguApps.Appwrite.Client.Tests.Handlers;
 public class ClientCookieSessionHandlerTests
 {
     private readonly MockHttpMessageHandler _mockHttp;
-    private readonly Mock<IAppwriteClient> _mockAppwriteClient;
+    private readonly Mock<IClientAppwriteClient> _mockAppwriteClient;
     private readonly HttpClient _httpClient;
 
     public ClientCookieSessionHandlerTests()
     {
         _mockHttp = new MockHttpMessageHandler();
-        _mockAppwriteClient = new Mock<IAppwriteClient>();
-        var handler = new ClientCookieSessionHandler(new Lazy<IAppwriteClient>(() => _mockAppwriteClient.Object))
+        _mockAppwriteClient = new Mock<IClientAppwriteClient>();
+        var handler = new ClientCookieSessionHandler(new Lazy<IClientAppwriteClient>(() => _mockAppwriteClient.Object))
         {
             InnerHandler = _mockHttp
         };

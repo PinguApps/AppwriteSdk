@@ -10,14 +10,14 @@ using PinguApps.Appwrite.Client.Internals;
 namespace PinguApps.Appwrite.Client.Handlers;
 internal class ClientCookieSessionHandler : DelegatingHandler
 {
-    private readonly Lazy<IAppwriteClient> _appwriteClient;
+    private readonly Lazy<IClientAppwriteClient> _appwriteClient;
 
-    public ClientCookieSessionHandler(Lazy<IAppwriteClient> appwriteClient)
+    public ClientCookieSessionHandler(Lazy<IClientAppwriteClient> appwriteClient)
     {
         _appwriteClient = appwriteClient;
     }
 
-    private IAppwriteClient AppwriteClient => _appwriteClient.Value;
+    private IClientAppwriteClient AppwriteClient => _appwriteClient.Value;
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {

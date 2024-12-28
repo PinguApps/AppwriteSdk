@@ -11,11 +11,11 @@ using Index = PinguApps.Appwrite.Shared.Responses.Index;
 namespace PinguApps.Appwrite.Server.Clients;
 
 /// <inheritdoc/>
-public class DatabasesClient : IDatabasesClient
+public class ServerDatabasesClient : IServerDatabasesClient
 {
     private readonly IDatabasesApi _databasesApi;
 
-    internal DatabasesClient(IDatabasesApi databasesApi)
+    internal ServerDatabasesClient(IDatabasesApi databasesApi)
     {
         _databasesApi = databasesApi;
     }
