@@ -17,10 +17,10 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Permissions">Document permissions. <see href="https://appwrite.io/docs/permissions">Learn more about permissions</see></param>
 [JsonConverter(typeof(DocumentConverter))]
 public abstract record DocumentBase(
-    [property: JsonPropertyName("$id")] string Id,
-    [property: JsonPropertyName("$collectionId")] string CollectionId,
-    [property: JsonPropertyName("$databaseId")] string DatabaseId,
+    [property: JsonPropertyName("$id")] string? Id,
+    [property: JsonPropertyName("$collectionId")] string? CollectionId,
+    [property: JsonPropertyName("$databaseId")] string? DatabaseId,
     [property: JsonPropertyName("$createdAt"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? CreatedAt,
     [property: JsonPropertyName("$updatedAt"), JsonConverter(typeof(NullableDateTimeConverter))] DateTime? UpdatedAt,
-    [property: JsonPropertyName("$permissions"), JsonConverter(typeof(PermissionReadOnlyListConverter))] IReadOnlyList<Permission> Permissions
+    [property: JsonPropertyName("$permissions"), JsonConverter(typeof(PermissionReadOnlyListConverter))] IReadOnlyList<Permission>? Permissions
 );

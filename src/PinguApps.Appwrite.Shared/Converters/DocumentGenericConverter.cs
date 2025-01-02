@@ -28,8 +28,6 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
 
         var documentFields = ReadDocumentFields(ref reader, options);
 
-        ValidateRequiredFields(documentFields);
-
         var data = DeserializeCustomData(documentFields.DataProperties, options);
 
         return new Document<TData>(documentFields.Id!, documentFields.CollectionId!, documentFields.DatabaseId!, documentFields.CreatedAt,
@@ -173,21 +171,6 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
         }
 
         return dict;
-    }
-
-    private static void ValidateRequiredFields(DocumentFields fields)
-    {
-        if (fields.Id is null)
-            throw new JsonException("Unable to find a value for Id");
-
-        if (fields.CollectionId is null)
-            throw new JsonException("Unable to find a value for CollectionId");
-
-        if (fields.DatabaseId is null)
-            throw new JsonException("Unable to find a value for DatabaseId");
-
-        if (fields.Permissions is null)
-            throw new JsonException("Unable to find a value for Permissions");
     }
 
     private static TData DeserializeCustomData(Dictionary<string, object?> dataProperties, JsonSerializerOptions options)

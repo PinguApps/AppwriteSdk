@@ -42,6 +42,7 @@ public class DocumentConverterTests
         Assert.Equal("db1", document.DatabaseId);
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00"), document.CreatedAt);
         Assert.Equal(DateTime.Parse("2020-10-15T06:38:00.000+00:00"), document.UpdatedAt);
+        Assert.NotNull(document.Permissions);
         Assert.Single(document.Permissions);
         Assert.Equal(PermissionType.Read, document.Permissions[0].PermissionType);
         Assert.Equal(RoleType.Any, document.Permissions[0].RoleType);
