@@ -430,4 +430,33 @@ public class DocumentConverterTests
 
         Assert.Contains("\"objectField\":{}}", json);
     }
+
+    [Fact]
+    public void Write_NullPermissions_WritesNull()
+    {
+        var document = new Document(
+            "1",
+            "col1",
+            "db1",
+            DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
+            DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
+            null,
+            new Dictionary<string, object?> { { "customField", "customValue" } }
+        );
+
+        var json = JsonSerializer.Serialize(document, _options);
+
+        var expectedJson = @"
+            {
+                ""$id"": ""1"",
+                ""$collectionId"": ""col1"",
+                ""$databaseId"": ""db1"",
+                ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
+                ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
+                ""$permissions"": null,
+                ""customField"": ""customValue""
+            }".ReplaceLineEndings("").Replace(" ", "");
+
+        Assert.Equal(JsonDocument.Parse(expectedJson).RootElement.ToString(), JsonDocument.Parse(json).RootElement.ToString());
+    }
 }
