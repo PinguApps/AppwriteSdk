@@ -553,4 +553,51 @@ public class DocumentGenericConverterTests
         Assert.Equal(JsonValueKind.Number, doubleFieldElement.ValueKind);
         Assert.Equal(1.23e20, doubleFieldElement.GetDouble());
     }
+
+    [Fact]
+    public void Write_NullPermissions_WritesNull()
+    {
+        var testData = new TestData
+        {
+            Field1 = "value1",
+            Field2 = 42,
+            Field3 = true,
+            Field4 = DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
+            Field5 = ["item1", "item2"],
+            Field6 = new Dictionary<string, object?> { { "key1", "value1" }, { "key2", 2 } }
+        };
+
+        var document = new Document<TestData>(
+            "1",
+            "col1",
+            "db1",
+            DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
+            DateTime.Parse("2020-10-15T06:38:00.000+00:00"),
+            null,
+            testData
+        );
+
+        var json = JsonSerializer.Serialize(document, _options);
+
+        var expectedJson = @"
+            {
+                ""$id"": ""1"",
+                ""$collectionId"": ""col1"",
+                ""$databaseId"": ""db1"",
+                ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
+                ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
+                ""$permissions"": null,
+                ""Field1"": ""value1"",
+                ""Field2"": 42,
+                ""Field3"": true,
+                ""Field4"": ""2020-10-15T06:38:00.000+00:00"",
+                ""Field5"": [""item1"", ""item2""],
+                ""Field6"": { ""key1"": ""value1"", ""key2"": 2 },
+                ""FloatField"": null,
+                ""LongField"": null,
+                ""DoubleField"": null
+            }".ReplaceLineEndings("").Replace(" ", "");
+
+        Assert.Equal(JsonDocument.Parse(expectedJson).RootElement.ToString(), JsonDocument.Parse(json).RootElement.ToString());
+    }
 }

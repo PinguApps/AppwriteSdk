@@ -185,7 +185,14 @@ public class DocumentConverter : JsonConverter<Document>
         dateTimeConverter.Write(writer, value.UpdatedAt, options);
 
         writer.WritePropertyName("$permissions");
-        JsonSerializer.Serialize(writer, value.Permissions, options);
+        if (value.Permissions is null)
+        {
+            writer.WriteNullValue();
+        }
+        else
+        {
+            JsonSerializer.Serialize(writer, value.Permissions, options);
+        }
 
         // Write dynamic properties from the Data dictionary
         foreach (var kvp in value.Data)
