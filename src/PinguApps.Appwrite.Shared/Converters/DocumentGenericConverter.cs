@@ -28,8 +28,6 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
 
         var documentFields = ReadDocumentFields(ref reader, options);
 
-        ValidateRequiredFields(documentFields);
-
         var data = DeserializeCustomData(documentFields.DataProperties, options);
 
         return new Document<TData>(documentFields.Id!, documentFields.CollectionId!, documentFields.DatabaseId!, documentFields.CreatedAt,

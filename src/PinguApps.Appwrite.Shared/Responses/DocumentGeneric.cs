@@ -18,12 +18,12 @@ namespace PinguApps.Appwrite.Shared.Responses;
 /// <param name="Data">Document data</param>
 [JsonConverter(typeof(DocumentGenericConverterFactory))]
 public record Document<TData>(
-    string Id,
-    string CollectionId,
-    string DatabaseId,
+    string? Id,
+    string? CollectionId,
+    string? DatabaseId,
     DateTime? CreatedAt,
     DateTime? UpdatedAt,
-    IReadOnlyList<Permission> Permissions,
+    IReadOnlyList<Permission>? Permissions,
     TData Data
 ) : DocumentBase(Id, CollectionId, DatabaseId, CreatedAt, UpdatedAt, Permissions)
     where TData : class, new();

@@ -102,22 +102,6 @@ public class DocumentGenericConverterTests
     }
 
     [Fact]
-    public void Read_MissingRequiredFields_ThrowsJsonException()
-    {
-        var json = @"
-            {
-                ""$id"": ""1"",
-                ""$collectionId"": ""col1"",
-                ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read(\""any\"")""],
-                ""Field1"": ""value1""
-            }";
-
-        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document<TestData>>(json, _options));
-    }
-
-    [Fact]
     public void Write_ValidDocument_WritesJson()
     {
         var testData = new TestData
@@ -226,23 +210,6 @@ public class DocumentGenericConverterTests
 
         Assert.Contains("\"Field1\":null", json);
     }
-
-    //[Fact]
-    //public void ReadValue_UnsupportedTokenType_ThrowsJsonException()
-    //{
-    //    var json = @"
-    //        {
-    //            ""$id"": ""1"",
-    //            ""$collectionId"": ""col1"",
-    //            ""$databaseId"": ""db1"",
-    //            ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
-    //            ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-    //            ""$permissions"": [""read(\""any\"")""],
-    //            ""unsupported"": /** comment */
-    //        }";
-
-    //    Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document<TestData>>(json, _options));
-    //}
 
     [Fact]
     public void Write_CustomObject_SerializesUsingJsonSerializer()
@@ -380,70 +347,6 @@ public class DocumentGenericConverterTests
         var json = JsonSerializer.Serialize(document, _options);
 
         Assert.Contains("\"Field2\":123", json);
-    }
-
-    [Fact]
-    public void Read_MissingId_ThrowsJsonException()
-    {
-        var json = @"
-            {
-                ""$collectionId"": ""col1"",
-                ""$databaseId"": ""db1"",
-                ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read(\""any\"")""],
-                ""Field1"": ""value1""
-            }";
-
-        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document<TestData>>(json, _options));
-    }
-
-    [Fact]
-    public void Read_MissingCollectionId_ThrowsJsonException()
-    {
-        var json = @"
-            {
-                ""$id"": ""1"",
-                ""$databaseId"": ""db1"",
-                ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read(\""any\"")""],
-                ""Field1"": ""value1""
-            }";
-
-        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document<TestData>>(json, _options));
-    }
-
-    [Fact]
-    public void Read_MissingDatabaseId_ThrowsJsonException()
-    {
-        var json = @"
-            {
-                ""$id"": ""1"",
-                ""$collectionId"": ""col1"",
-                ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$permissions"": [""read(\""any\"")""],
-                ""Field1"": ""value1""
-            }";
-
-        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document<TestData>>(json, _options));
-    }
-
-    [Fact]
-    public void Read_MissingPermissions_ThrowsJsonException()
-    {
-        var json = @"
-            {
-                ""$id"": ""1"",
-                ""$collectionId"": ""col1"",
-                ""$databaseId"": ""db1"",
-                ""$createdAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""$updatedAt"": ""2020-10-15T06:38:00.000+00:00"",
-                ""Field1"": ""value1""
-            }";
-
-        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Document<TestData>>(json, _options));
     }
 
     [Fact]
