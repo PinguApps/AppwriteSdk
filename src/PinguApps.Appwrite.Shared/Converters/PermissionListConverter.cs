@@ -11,6 +11,11 @@ public class PermissionListConverter : JsonConverter<List<Permission>>
 
     public override List<Permission>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
+        if (reader.TokenType == JsonTokenType.Null)
+        {
+            return null;
+        }
+
         if (reader.TokenType is not JsonTokenType.StartArray)
         {
             throw new JsonException("Expected start of array");

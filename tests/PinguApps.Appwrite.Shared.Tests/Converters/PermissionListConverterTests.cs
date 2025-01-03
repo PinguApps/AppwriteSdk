@@ -157,4 +157,20 @@ public class PermissionListConverterTests
         var expectedJson = "[\"read(\\\"any\\\")\",\"write(\\\"user:123/verified\\\")\",\"create(\\\"team:456/admin\\\")\"]";
         Assert.Equal(expectedJson, json);
     }
+
+    [Fact]
+    public void Read_DirectNullToken_ReturnsNull()
+    {
+        // Arrange
+        var converter = new PermissionListConverter();
+        var json = "null";
+        var reader = new Utf8JsonReader(System.Text.Encoding.UTF8.GetBytes(json));
+        reader.Read(); // Advance to first token
+
+        // Act
+        var result = converter.Read(ref reader, typeof(List<Permission>), _options);
+
+        // Assert
+        Assert.Null(result);
+    }
 }

@@ -9,6 +9,11 @@ public class NullableDateTimeConverter : JsonConverter<DateTime?>
 
     public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
+        if (reader.TokenType == JsonTokenType.Null)
+        {
+            return null;
+        }
+
         if (reader.TokenType == JsonTokenType.String)
         {
             var stringValue = reader.GetString();

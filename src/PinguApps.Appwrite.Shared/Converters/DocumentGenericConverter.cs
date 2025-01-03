@@ -43,7 +43,7 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
 
     private DocumentFields ReadDocumentFields(ref Utf8JsonReader reader, JsonSerializerOptions options)
     {
-        var dateTimeConverter = new MultiFormatDateTimeConverter();
+        var dateTimeConverter = new NullableDateTimeConverter();
         var permissionListConverter = new PermissionListConverter();
         var fields = new DocumentFields();
 
@@ -64,7 +64,7 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
     }
 
     private static void ProcessProperty(ref Utf8JsonReader reader, string propertyName, DocumentFields fields,
-        MultiFormatDateTimeConverter dateTimeConverter, PermissionListConverter permissionListConverter, JsonSerializerOptions options)
+        NullableDateTimeConverter dateTimeConverter, PermissionListConverter permissionListConverter, JsonSerializerOptions options)
     {
         switch (propertyName)
         {
@@ -223,7 +223,7 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
 
     internal void WriteValue(Utf8JsonWriter writer, JsonElement element, JsonSerializerOptions options)
     {
-        var dateTimeConverter = new MultiFormatDateTimeConverter();
+        var dateTimeConverter = new NullableDateTimeConverter();
 
         switch (element.ValueKind)
         {
