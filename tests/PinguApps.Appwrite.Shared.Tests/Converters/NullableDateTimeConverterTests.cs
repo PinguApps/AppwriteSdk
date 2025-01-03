@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Converters;
 
@@ -93,5 +94,24 @@ public class NullableDateTimeConverterTests
     {
         var json = JsonSerializer.Serialize(new NullableDateTimeObject(), _options);
         Assert.Equal("{\"x\":null}", json);
+    }
+
+    [Fact]
+    public void Write_WhenValueIsNull_WritesNullValue()
+    {
+        // Arrange
+        var converter = new NullableDateTimeConverter();
+        DateTime? nullDateTime = null;
+
+        using var stream = new MemoryStream();
+        using var writer = new Utf8JsonWriter(stream);
+
+        // Act
+        converter.Write(writer, nullDateTime, _options);
+        writer.Flush();
+
+        // Assert
+        var json = Encoding.UTF8.GetString(stream.ToArray());
+        Assert.Equal("null", json);
     }
 }
