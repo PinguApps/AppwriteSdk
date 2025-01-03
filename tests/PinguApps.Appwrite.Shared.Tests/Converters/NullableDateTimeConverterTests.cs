@@ -114,4 +114,20 @@ public class NullableDateTimeConverterTests
         var json = Encoding.UTF8.GetString(stream.ToArray());
         Assert.Equal("null", json);
     }
+
+    [Fact]
+    public void Read_DirectNullToken_ReturnsNull()
+    {
+        // Arrange
+        var converter = new NullableDateTimeConverter();
+        var json = "null";
+        var reader = new Utf8JsonReader(Encoding.UTF8.GetBytes(json));
+        reader.Read(); // Advance to first token
+
+        // Act
+        var result = converter.Read(ref reader, typeof(DateTime?), _options);
+
+        // Assert
+        Assert.Null(result);
+    }
 }
