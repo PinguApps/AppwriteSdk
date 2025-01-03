@@ -29,5 +29,9 @@ public class NullableDateTimeConverter : JsonConverter<DateTime?>
         {
             _dateTimeConverter.Write(writer, value.Value, options);
         }
+        else
+        {
+            writer.WriteNullValue();
+        }
     }
 }
