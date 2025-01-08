@@ -12,7 +12,11 @@ public class MultiFormatDateTimeConverter : JsonConverter<DateTime>
 {
     private readonly string[] _formats = [
         "yyyy-MM-ddTHH:mm:ss.fffzzz",
-        "yyyy-MM-dd HH:mm:ss.fff"
+        "yyyy-MM-dd HH:mm:ss.fff",
+        "yyyy-MM-ddTHH:mm:ss.ffzzz",
+        "yyyy-MM-dd HH:mm:ss.ff",
+        "yyyy-MM-ddTHH:mm:ss.fzzz",
+        "yyyy-MM-dd HH:mm:ss.f"
     ];
 
     public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
