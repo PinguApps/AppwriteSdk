@@ -131,6 +131,9 @@ internal interface IDatabasesApi : IBaseApi
     [Post("/databases/{databaseId}/collections/{collectionId}/documents")]
     Task<IApiResponse<Document<TData>>> CreateDocument<TData>(string databaseId, string collectionId, CreateDocumentRequest<TData> request) where TData : class, new();
 
+    [Post("/databases/{databaseId}/collections/{collectionId}/documents")]
+    Task<IApiResponse<Document<TResponse>>> CreateDocument<TData, TResponse>(string databaseId, string collectionId, CreateDocumentRequest<TData> request) where TData : class, new() where TResponse : class, new();
+
     [Delete("/databases/{databaseId}/collections/{collectionId}/documents/{documentId}")]
     Task<IApiResponse> DeleteDocument(string databaseId, string collectionId, string documentId);
 

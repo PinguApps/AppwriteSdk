@@ -89,6 +89,25 @@ public class ClientDatabasesClient : SessionAwareClientBase, IClientDatabasesCli
     }
 
     /// <inheritdoc/>
+    public async Task<AppwriteResult<Document<TResponse>>> CreateDocument<TData, TResponse>(CreateDocumentRequest<TData> request)
+        where TData : class, new()
+        where TResponse : class, new()
+    {
+        try
+        {
+            request.Validate(true);
+
+            var result = await _databasesApi.CreateDocument<TData, TResponse>(GetCurrentSession(), request.DatabaseId, request.CollectionId, request);
+
+            return result.GetApiResponse();
+        }
+        catch (Exception e)
+        {
+            return e.GetExceptionResponse<Document<TResponse>>();
+        }
+    }
+
+    /// <inheritdoc/>
     public async Task<AppwriteResult> DeleteDocument(DeleteDocumentRequest request)
     {
         try

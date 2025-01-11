@@ -316,6 +316,18 @@ public interface IServerDatabasesClient
     Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest<TData> request) where TData : class, new();
 
     /// <summary>
+    /// Create a new Document. Before using this route, you should create a new collection resource using either <see cref="CreateCollection(CreateCollectionRequest)"/> or directly from your database console.
+    /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#createDocument">Appwrite Docs</see></para>
+    /// </summary>
+    /// <typeparam name="TData">The data type for your data</typeparam>
+    /// <typeparam name="TResponse">The data type for your response</typeparam>
+    /// <param name="request">The request content</param>
+    /// <returns>The document</returns>
+    Task<AppwriteResult<Document<TResponse>>> CreateDocument<TData, TResponse>(CreateDocumentRequest<TData> request)
+        where TData : class, new()
+        where TResponse : class, new();
+
+    /// <summary>
     /// Delete a document by its unique ID.
     /// <para><see href="https://appwrite.io/docs/references/cloud/server-rest/databases#deleteDocument">Appwrite Docs</see></para>
     /// </summary>
