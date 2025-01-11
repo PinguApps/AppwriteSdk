@@ -207,7 +207,7 @@ public class UpdateDocumentRequestBuilderTests
             set { }
         }
 
-        public IEnumerable<object>? CollectionProperty { get; set; }
+        public IEnumerable<int>? CollectionProperty { get; set; }
     }
 
     [Fact]
@@ -287,8 +287,8 @@ public class UpdateDocumentRequestBuilderTests
     {
         // Arrange
         var builder = UpdateDocumentRequest.CreateBuilder();
-        var before = new TestModel { CollectionProperty = [new object(), new object()] };
-        var after = new TestModel { CollectionProperty = [new object()] };
+        var before = new TestModel { CollectionProperty = [1, 2] };
+        var after = new TestModel { CollectionProperty = [1] };
 
         // Act
         var request = builder.WithChanges(before, after).Build();
@@ -303,7 +303,7 @@ public class UpdateDocumentRequestBuilderTests
     {
         // Arrange
         var builder = UpdateDocumentRequest.CreateBuilder();
-        var collection = new[] { new object() };
+        var collection = new[] { 1 };
         var before = new TestModel { CollectionProperty = collection };
         var after = new TestModel { CollectionProperty = collection };
 

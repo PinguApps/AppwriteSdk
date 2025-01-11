@@ -24,8 +24,7 @@ public class UpdateDocumentRequestTests : DatabaseCollectionDocumentIdBaseReques
         // Assert
         Assert.NotNull(request.Data);
         Assert.Empty(request.Data);
-        Assert.NotNull(request.Permissions);
-        Assert.Empty(request.Permissions);
+        Assert.Null(request.Permissions);
     }
 
     [Fact]

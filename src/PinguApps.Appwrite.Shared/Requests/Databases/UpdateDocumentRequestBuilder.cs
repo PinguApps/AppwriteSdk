@@ -60,11 +60,37 @@ internal class UpdateDocumentRequestBuilder : IUpdateDocumentRequestBuilder
             return this;
         }
 
-        if (valueType.IsPrimitive ||
-            valueType == typeof(string) ||
-            valueType == typeof(DateTime) ||
-            valueType == typeof(DateTimeOffset) ||
-            valueType == typeof(decimal))
+        bool IsStandardType(Type type) =>
+            type.IsPrimitive ||
+            type == typeof(string) ||
+            type == typeof(DateTime) ||
+            type == typeof(DateTimeOffset) ||
+            type == typeof(decimal) ||
+            type.IsEnum;
+
+        // Check if it's an IEnumerable<T> (but not string, which is IEnumerable<char>)
+        if (valueType != typeof(string))
+        {
+            var enumerableInterface = valueType
+                .GetInterfaces()
+                .Concat([valueType])
+                .FirstOrDefault(i =>
+                    i.IsGenericType &&
+                    i.GetGenericTypeDefinition() == typeof(IEnumerable<>));
+
+            if (enumerableInterface is not null)
+            {
+                var elementType = enumerableInterface.GetGenericArguments()[0];
+
+                if (IsStandardType(elementType))
+                {
+                    _data[name] = value;
+                    return this;
+                }
+            }
+        }
+
+        if (IsStandardType(valueType))
         {
             _data[name] = value;
         }
