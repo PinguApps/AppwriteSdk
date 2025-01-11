@@ -60,14 +60,6 @@ internal class UpdateDocumentRequestBuilder : IUpdateDocumentRequestBuilder
             return this;
         }
 
-        bool IsStandardType(Type type) =>
-            type.IsPrimitive ||
-            type == typeof(string) ||
-            type == typeof(DateTime) ||
-            type == typeof(DateTimeOffset) ||
-            type == typeof(decimal) ||
-            type.IsEnum;
-
         // Check if it's an IEnumerable<T> (but not string, which is IEnumerable<char>)
         if (valueType != typeof(string))
         {
@@ -207,6 +199,11 @@ internal class UpdateDocumentRequestBuilder : IUpdateDocumentRequestBuilder
                 var beforeValue = property.GetValue(beforeData);
                 var afterValue = property.GetValue(afterData);
 
+                if (!IsStandardType(property.PropertyType) && afterValue is null)
+                {
+                    continue;
+                }
+
                 if (!AreValuesEqual(beforeValue, afterValue))
                 {
                     var jsonPropertyName = GetJsonPropertyName(property);
@@ -229,4 +226,12 @@ internal class UpdateDocumentRequestBuilder : IUpdateDocumentRequestBuilder
             }
         }
     }
+
+    private static bool IsStandardType(Type type) =>
+        type.IsPrimitive ||
+        type == typeof(string) ||
+        type == typeof(DateTime) ||
+        type == typeof(DateTimeOffset) ||
+        type == typeof(decimal) ||
+        type.IsEnum;
 }
