@@ -184,11 +184,6 @@ internal class UpdateDocumentRequestBuilder : IUpdateDocumentRequestBuilder
         var idProperty = documentType.GetProperty(nameof(Document<object>.Id));
         var dataProperty = documentType.GetProperty(nameof(Document<object>.Data));
 
-        if (idProperty is null || dataProperty is null)
-        {
-            return;
-        }
-
         var beforeId = idProperty.GetValue(before) as string;
         var afterId = idProperty.GetValue(after) as string;
 
