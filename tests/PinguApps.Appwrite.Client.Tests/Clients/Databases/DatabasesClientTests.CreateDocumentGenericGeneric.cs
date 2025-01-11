@@ -7,7 +7,6 @@ using RichardSzalay.MockHttp;
 namespace PinguApps.Appwrite.Client.Tests.Clients.Databases;
 public partial class DatabasesClientTests
 {
-
     [Fact]
     public async Task CreateDocumentGenericGeneric_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
