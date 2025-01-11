@@ -44,5 +44,4 @@ public class UpdateDocumentRequestConverter : JsonConverter<UpdateDocumentReques
 
         writer.WriteEndObject();
     }
-
 }
