@@ -313,7 +313,7 @@ public interface IServerDatabasesClient
     /// <typeparam name="TData">The data type for your document</typeparam>
     /// <param name="request">The request content</param>
     /// <returns>The document</returns>
-    Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest request) where TData : class, new();
+    Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest<TData> request) where TData : class, new();
 
     /// <summary>
     /// Delete a document by its unique ID.

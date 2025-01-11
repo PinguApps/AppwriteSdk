@@ -7,12 +7,8 @@ public class UpdateDocumentRequestValidator : AbstractValidator<UpdateDocumentRe
     {
         Include(new DatabaseCollectionDocumentIdBaseRequestValidator<UpdateDocumentRequest, UpdateDocumentRequestValidator>());
 
-        RuleFor(x => x.Data)
-            .NotNull()
-            .WithMessage("Data is required.");
-
-        RuleFor(x => x.Permissions)
-            .NotNull()
-            .WithMessage("Permissions cannot be null.");
+        RuleFor(x => x)
+            .Must(x => (x.Data?.Count > 0) || x.Permissions != null)
+            .WithMessage("Either Data must contain at least one item or Permissions must be provided.");
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using PinguApps.Appwrite.Shared.Requests.Databases;
+using PinguApps.Appwrite.Shared.Responses;
 using PinguApps.Appwrite.Shared.Utils;
 
 namespace PinguApps.Appwrite.Shared.Tests.Requests.Databases;
@@ -207,7 +208,12 @@ public class UpdateDocumentRequestBuilderTests
             set { }
         }
 
-        public IEnumerable<object>? CollectionProperty { get; set; }
+        public IEnumerable<int>? CollectionProperty { get; set; }
+    }
+    public enum TestEnum
+    {
+        FirstValue,
+        SecondValue
     }
 
     [Fact]
@@ -287,8 +293,8 @@ public class UpdateDocumentRequestBuilderTests
     {
         // Arrange
         var builder = UpdateDocumentRequest.CreateBuilder();
-        var before = new TestModel { CollectionProperty = [new object(), new object()] };
-        var after = new TestModel { CollectionProperty = [new object()] };
+        var before = new TestModel { CollectionProperty = [1, 2] };
+        var after = new TestModel { CollectionProperty = [1] };
 
         // Act
         var request = builder.WithChanges(before, after).Build();
@@ -303,7 +309,7 @@ public class UpdateDocumentRequestBuilderTests
     {
         // Arrange
         var builder = UpdateDocumentRequest.CreateBuilder();
-        var collection = new[] { new object() };
+        var collection = new[] { 1 };
         var before = new TestModel { CollectionProperty = collection };
         var after = new TestModel { CollectionProperty = collection };
 
@@ -344,5 +350,371 @@ public class UpdateDocumentRequestBuilderTests
         // Assert
         Assert.True(request.Data.ContainsKey("RegularProperty"));
         Assert.Null(request.Data["RegularProperty"]);
+    }
+
+    [Fact]
+    public void AddField_WhenValueIsEnum_StoresEnumAsString()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+        var enumValue = TestEnum.FirstValue;
+
+        // Act
+        builder.AddField("enumField", enumValue);
+
+        // Assert
+        var request = builder.Build();
+        var data = request.Data;
+
+        Assert.True(data.ContainsKey("enumField"));
+        Assert.Equal("FirstValue", data["enumField"]);
+    }
+
+    [Fact]
+    public void AddField_WhenValueIsPrimitive_StoresValue()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+        sbyte primitiveValue = 42;
+
+        // Act
+        builder.AddField("field", primitiveValue);
+
+        // Assert
+        var request = builder.Build();
+        Assert.Equal(primitiveValue, request.Data["field"]);
+    }
+
+    [Fact]
+    public void AddField_WhenValueIsString_StoresValue()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+        string stringValue = "test";
+
+        // Act
+        builder.AddField("field", stringValue);
+
+        // Assert
+        var request = builder.Build();
+        Assert.Equal(stringValue, request.Data["field"]);
+    }
+
+    [Fact]
+    public void AddField_WhenValueIsDateTime_StoresValue()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+        DateTime dateValue = new DateTime(2024, 1, 1);
+
+        // Act
+        builder.AddField("field", dateValue);
+
+        // Assert
+        var request = builder.Build();
+        Assert.Equal(dateValue, request.Data["field"]);
+    }
+
+    [Fact]
+    public void AddField_WhenValueIsDateTimeOffset_StoresValue()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+        DateTimeOffset dateOffsetValue = new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero);
+
+        // Act
+        builder.AddField("field", dateOffsetValue);
+
+        // Assert
+        var request = builder.Build();
+        Assert.Equal(dateOffsetValue, request.Data["field"]);
+    }
+
+    [Fact]
+    public void AddField_WhenValueIsDecimal_StoresValue()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+        decimal decimalValue = 42.42m;
+
+        // Act
+        builder.AddField("field", decimalValue);
+
+        // Assert
+        var request = builder.Build();
+        Assert.Equal(decimalValue, request.Data["field"]);
+    }
+
+    [Fact]
+    public void AddField_WhenValueIsEnum_StoresStringValue()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+        TestEnum enumValue = TestEnum.FirstValue;
+
+        // Act
+        builder.AddField("field", enumValue);
+
+        // Assert
+        var request = builder.Build();
+        Assert.Equal("FirstValue", request.Data["field"]);
+    }
+
+    [Fact]
+    public void AddField_WhenValueIsNonStandardType_DoesNotStoreValue()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+        var complexValue = new TestModel { RegularProperty = "test" };
+
+        // Act
+        builder.AddField("field", complexValue);
+
+        // Assert
+        var request = builder.Build();
+        Assert.False(request.Data.ContainsKey("field"));
+    }
+
+    [Fact]
+    public void AddField_WhenValueIsEnumerableOfNonStandardType_DoesNotStoreValue()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+        var complexList = new List<TestModel>
+        {
+            new() { RegularProperty = "test" },
+            new() { RegularProperty = "test2" }
+        };
+
+        // Act
+        builder.AddField("field", complexList);
+
+        // Assert
+        var request = builder.Build();
+        Assert.False(request.Data.ContainsKey("field"));
+    }
+
+    [Fact]
+    public void WithChanges_WhenTypeIsDocument_HandlesDocumentChanges()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+
+        var beforeDoc = new Document<TestData>(
+            Id: "doc1",
+            CollectionId: "col1",
+            DatabaseId: "db1",
+            CreatedAt: DateTime.UtcNow.AddHours(-1),
+            UpdatedAt: DateTime.UtcNow.AddHours(-1),
+            Permissions: null,
+            Data: new TestData
+            {
+                Name = "Before",
+                Value = 1
+            }
+        );
+
+        var afterDoc = new Document<TestData>(
+            Id: "doc1",
+            CollectionId: "col1",
+            DatabaseId: "db1",
+            CreatedAt: beforeDoc.CreatedAt,
+            UpdatedAt: DateTime.UtcNow,
+            Permissions: null,
+            Data: new TestData
+            {
+                Name = "After",
+                Value = 2
+            }
+        );
+
+        // Act
+        builder.WithChanges(beforeDoc, afterDoc);
+
+        // Assert
+        var request = builder.Build();
+        Assert.True(request.Data.ContainsKey("name"));
+        Assert.Equal("After", request.Data["name"]);
+        Assert.True(request.Data.ContainsKey("value"));
+        Assert.Equal(2, request.Data["value"]);
+    }
+
+    private class TestData
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; } = string.Empty;
+
+        [JsonPropertyName("value")]
+        public int Value { get; set; }
+    }
+
+    [Fact]
+    public void WithChanges_WhenEnumerableValuesAreDifferent_DetectsChange()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+
+        var beforeDoc = new Document<TestDataWithList>(
+            Id: "doc1",
+            CollectionId: "col1",
+            DatabaseId: "db1",
+            CreatedAt: DateTime.UtcNow.AddHours(-1),
+            UpdatedAt: DateTime.UtcNow.AddHours(-1),
+            Permissions: null,
+            Data: new TestDataWithList
+            {
+                Items = new List<string> { "item1", "item2" }
+            }
+        );
+
+        var afterDoc = new Document<TestDataWithList>(
+            Id: "doc1",
+            CollectionId: "col1",
+            DatabaseId: "db1",
+            CreatedAt: beforeDoc.CreatedAt,
+            UpdatedAt: DateTime.UtcNow,
+            Permissions: null,
+            Data: new TestDataWithList
+            {
+                Items = new List<string> { "item1", "item3" }  // Changed item2 to item3
+            }
+        );
+
+        // Act
+        builder.WithChanges(beforeDoc, afterDoc);
+
+        // Assert
+        var request = builder.Build();
+        Assert.True(request.Data.ContainsKey("items"));
+        var items = Assert.IsType<List<string>>(request.Data["items"]);
+        Assert.Equal(new List<string> { "item1", "item3" }, items);
+    }
+
+    private class TestDataWithList
+    {
+        [JsonPropertyName("items")]
+        public List<string> Items { get; set; } = new();
+    }
+
+    [Fact]
+    public void WithChanges_WhenDocumentDataIsNull_DoesNothing()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+
+        var before = new Document<TestData>(
+            Id: "doc1",
+            CollectionId: "col1",
+            DatabaseId: "db1",
+            CreatedAt: DateTime.UtcNow.AddHours(-1),
+            UpdatedAt: DateTime.UtcNow.AddHours(-1),
+            Permissions: null,
+            Data: null!  // Force null despite non-nullable
+        );
+
+        var after = new Document<TestData>(
+            Id: "doc1",
+            CollectionId: "col1",
+            DatabaseId: "db1",
+            CreatedAt: before.CreatedAt,
+            UpdatedAt: DateTime.UtcNow,
+            Permissions: null,
+            Data: null!  // Force null despite non-nullable
+        );
+
+        // Act
+        builder.WithChanges(before, after);
+
+        // Assert
+        var request = builder.Build();
+        Assert.Empty(request.Data);
+    }
+
+    [Fact]
+    public void WithChanges_WhenDocumentIdsAreDifferent_AddsAllProperties()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+
+        var before = new Document<TestData>(
+            Id: "doc1",  // Not null/empty
+            CollectionId: "col1",
+            DatabaseId: "db1",
+            CreatedAt: DateTime.UtcNow.AddHours(-1),
+            UpdatedAt: DateTime.UtcNow.AddHours(-1),
+            Permissions: null,
+            Data: new TestData
+            {
+                Name = "Before",
+                Value = 1
+            }
+        );
+
+        var after = new Document<TestData>(
+            Id: "doc2",  // Different ID
+            CollectionId: "col1",
+            DatabaseId: "db1",
+            CreatedAt: before.CreatedAt,
+            UpdatedAt: DateTime.UtcNow,
+            Permissions: null,
+            Data: new TestData
+            {
+                Name = "After",
+                Value = 1  // Same value, but should still be added because IDs don't match
+            }
+        );
+
+        // Act
+        builder.WithChanges(before, after);
+
+        // Assert
+        var request = builder.Build();
+        // Should add all properties, even if they haven't changed
+        Assert.True(request.Data.ContainsKey("name"));
+        Assert.Equal("After", request.Data["name"]);
+        Assert.True(request.Data.ContainsKey("value"));
+        Assert.Equal(1, request.Data["value"]);
+    }
+
+    [Fact]
+    public void WithChanges_WhenBothIdsAreNull_DoesNotCompareProperties()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+
+        var before = new Document<TestData>(
+            Id: "",
+            CollectionId: "col1",
+            DatabaseId: "db1",
+            CreatedAt: DateTime.UtcNow.AddHours(-1),
+            UpdatedAt: DateTime.UtcNow.AddHours(-1),
+            Permissions: null,
+            Data: new TestData
+            {
+                Name = "Before",
+                Value = 1
+            }
+        );
+
+        var after = new Document<TestData>(
+            Id: "",
+            CollectionId: "col1",
+            DatabaseId: "db1",
+            CreatedAt: before.CreatedAt,
+            UpdatedAt: DateTime.UtcNow,
+            Permissions: null,
+            Data: new TestData
+            {
+                Name = "After",
+                Value = 2
+            }
+        );
+
+        // Act
+        builder.WithChanges(before, after);
+
+        // Assert
+        var request = builder.Build();
+        Assert.NotEmpty(request.Data);
     }
 }

@@ -14,6 +14,12 @@ public class DocumentListGenericConverter : JsonConverterFactory
             return false;
         }
 
+        var documentType = typeToConvert.GetGenericArguments()[0];
+        if (!documentType.IsGenericType || documentType.GetGenericTypeDefinition() != typeof(Document<>))
+        {
+            return false;
+        }
+
         return typeToConvert.GetGenericTypeDefinition() == typeof(IReadOnlyList<>);
     }
 

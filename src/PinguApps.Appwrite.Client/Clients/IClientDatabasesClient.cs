@@ -46,7 +46,7 @@ public interface IClientDatabasesClient
     /// <typeparam name="TData">The type of the document data</typeparam>
     /// <param name="request">The request content</param>
     /// <returns>The document</returns>
-    Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest request) where TData : class, new();
+    Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest<TData> request) where TData : class, new();
 
     /// <summary>
     /// Delete a document by its unique ID.

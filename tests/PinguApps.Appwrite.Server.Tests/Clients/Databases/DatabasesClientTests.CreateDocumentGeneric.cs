@@ -11,11 +11,16 @@ public partial class DatabasesClientTests
     public async Task CreateDocumentGeneric_ShouldReturnSuccess_WhenApiCallSucceeds()
     {
         // Arrange
-        var request = CreateDocumentRequest.CreateBuilder()
-            .WithDatabaseId(IdUtils.GenerateUniqueId())
-            .WithCollectionId(IdUtils.GenerateUniqueId())
-            .AddField("AttributeName", "MyValue")
-            .Build();
+        var request = new CreateDocumentRequest<TestData>()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            Data = new TestData()
+            {
+                Name = "Test",
+                Age = 25
+            }
+        };
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/documents")
             .ExpectedHeaders()
@@ -35,11 +40,16 @@ public partial class DatabasesClientTests
     public async Task CreateDocumentGeneric_ShouldHandleException_WhenApiCallFails()
     {
         // Arrange
-        var request = CreateDocumentRequest.CreateBuilder()
-            .WithDatabaseId(IdUtils.GenerateUniqueId())
-            .WithCollectionId(IdUtils.GenerateUniqueId())
-            .AddField("AttributeName", "MyValue")
-            .Build();
+        var request = new CreateDocumentRequest<TestData>()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            Data = new TestData()
+            {
+                Name = "Test",
+                Age = 25
+            }
+        };
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/documents")
             .ExpectedHeaders()
@@ -58,11 +68,16 @@ public partial class DatabasesClientTests
     public async Task CreateDocumentGeneric_ShouldReturnErrorResponse_WhenExceptionOccurs()
     {
         // Arrange
-        var request = CreateDocumentRequest.CreateBuilder()
-            .WithDatabaseId(IdUtils.GenerateUniqueId())
-            .WithCollectionId(IdUtils.GenerateUniqueId())
-            .AddField("AttributeName", "MyValue")
-            .Build();
+        var request = new CreateDocumentRequest<TestData>()
+        {
+            DatabaseId = IdUtils.GenerateUniqueId(),
+            CollectionId = IdUtils.GenerateUniqueId(),
+            Data = new TestData()
+            {
+                Name = "Test",
+                Age = 25
+            }
+        };
 
         _mockHttp.Expect(HttpMethod.Post, $"{TestConstants.Endpoint}/databases/{request.DatabaseId}/collections/{request.CollectionId}/documents")
             .ExpectedHeaders()
