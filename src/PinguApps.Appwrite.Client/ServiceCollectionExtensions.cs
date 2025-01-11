@@ -148,7 +148,13 @@ public static class ServiceCollectionExtensions
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
 
+        options.Converters.Add(new SdkMarkerConverter());
+        options.Converters.Add(new UpdateDocumentRequestConverter());
         options.Converters.Add(new IgnoreSdkExcludedPropertiesConverterFactory());
+        options.Converters.Add(new DocumentConverter());
+        options.Converters.Add(new DocumentGenericConverterFactory());
+        options.Converters.Add(new DocumentListConverter());
+        options.Converters.Add(new DocumentListGenericConverter());
 
         settings.ContentSerializer = new SystemTextJsonContentSerializer(options);
 

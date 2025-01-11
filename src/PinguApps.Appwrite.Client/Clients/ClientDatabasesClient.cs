@@ -71,14 +71,14 @@ public class ClientDatabasesClient : SessionAwareClientBase, IClientDatabasesCli
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest request)
+    public async Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest<TData> request)
         where TData : class, new()
     {
         try
         {
             request.Validate(true);
 
-            var result = await _databasesApi.CreateDocument<TData>(GetCurrentSession(), request.DatabaseId, request.CollectionId, request);
+            var result = await _databasesApi.CreateDocument(GetCurrentSession(), request.DatabaseId, request.CollectionId, request);
 
             return result.GetApiResponse();
         }

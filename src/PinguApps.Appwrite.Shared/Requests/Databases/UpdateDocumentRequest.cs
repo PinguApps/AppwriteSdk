@@ -9,6 +9,7 @@ namespace PinguApps.Appwrite.Shared.Requests.Databases;
 /// <summary>
 /// The request to update a document. Can only be created with <see cref="CreateBuilder"/>
 /// </summary>
+[JsonConverter(typeof(UpdateDocumentRequestConverter))]
 public class UpdateDocumentRequest : DatabaseCollectionDocumentIdBaseRequest<UpdateDocumentRequest, UpdateDocumentRequestValidator>
 {
     internal UpdateDocumentRequest() { }
@@ -24,7 +25,7 @@ public class UpdateDocumentRequest : DatabaseCollectionDocumentIdBaseRequest<Upd
     /// </summary>
     [JsonPropertyName("permissions")]
     [JsonConverter(typeof(PermissionListConverter))]
-    public List<Permission> Permissions { get; set; } = [];
+    public List<Permission>? Permissions { get; set; }
 
     /// <summary>
     /// Creates a new builder for creating a document request
