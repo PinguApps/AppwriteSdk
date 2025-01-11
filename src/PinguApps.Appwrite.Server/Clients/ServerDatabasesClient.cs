@@ -634,7 +634,7 @@ public class ServerDatabasesClient : IServerDatabasesClient
     }
 
     /// <inheritdoc/>
-    public async Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest request)
+    public async Task<AppwriteResult<Document<TData>>> CreateDocument<TData>(CreateDocumentRequest<TData> request)
         where TData : class, new()
     {
         try

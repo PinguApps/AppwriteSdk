@@ -185,8 +185,12 @@ public class DocumentGenericConverter<TData> : JsonConverter<Document<TData>>
         writer.WriteStartObject();
 
         writer.WriteString("$id", value.Id);
-        writer.WriteString("$collectionId", value.CollectionId);
-        writer.WriteString("$databaseId", value.DatabaseId);
+
+        if (!options.IsInsideSdk())
+        {
+            writer.WriteString("$collectionId", value.CollectionId);
+            writer.WriteString("$databaseId", value.DatabaseId);
+        }
 
         // Use MultiFormatDateTimeConverter for DateTime properties
         var dateTimeConverter = new NullableDateTimeConverter();
