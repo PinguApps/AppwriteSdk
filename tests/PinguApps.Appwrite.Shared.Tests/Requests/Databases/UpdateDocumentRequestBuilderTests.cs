@@ -717,4 +717,60 @@ public class UpdateDocumentRequestBuilderTests
         var request = builder.Build();
         Assert.NotEmpty(request.Data);
     }
+
+
+    // Create a document type with a complex property
+    public class ComplexType
+    {
+        public string SomeValue { get; set; } = string.Empty;
+    }
+
+    public class TestDataWithComplexType
+    {
+        public ComplexType? ComplexProperty { get; set; }
+    }
+
+    [Fact]
+    public void WithChanges_WhenNonStandardPropertyIsSetToNull_ShouldSkipProperty()
+    {
+        // Arrange
+        var builder = new UpdateDocumentRequestBuilder();
+
+
+        // Create before document with a non-null complex property
+        var beforeDoc = new Document<TestDataWithComplexType>(
+            Id: "test-id",
+            CollectionId: "test-collection",
+            DatabaseId: "test-database",
+            CreatedAt: DateTime.UtcNow,
+            UpdatedAt: DateTime.UtcNow,
+            Permissions: null,
+            Data: new TestDataWithComplexType
+            {
+                ComplexProperty = new ComplexType { SomeValue = "test" }
+            }
+        );
+
+        // Create after document with the same ID but null complex property
+        var afterDoc = new Document<TestDataWithComplexType>(
+            Id: "test-id",
+            CollectionId: "test-collection",
+            DatabaseId: "test-database",
+            CreatedAt: DateTime.UtcNow,
+            UpdatedAt: DateTime.UtcNow,
+            Permissions: null,
+            Data: new TestDataWithComplexType
+            {
+                ComplexProperty = null
+            }
+        );
+
+        // Act
+        var request = builder
+            .WithChanges(beforeDoc, afterDoc)
+            .Build();
+
+        // Assert
+        Assert.Empty(request.Data);  // The property should be skipped, resulting in no changes
+    }
 }
