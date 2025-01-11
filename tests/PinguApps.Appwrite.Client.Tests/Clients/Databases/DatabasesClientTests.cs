@@ -46,6 +46,5 @@ public partial class DatabasesClientTests
     }
     public class TestDataResponse : TestData
     {
-
     }
 }
