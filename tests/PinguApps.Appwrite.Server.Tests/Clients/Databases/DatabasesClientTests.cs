@@ -45,4 +45,8 @@ public partial class DatabasesClientTests
         [JsonPropertyName("age")]
         public int Age { get; set; } = 0;
     }
+
+    public class TestDataResponse : TestData
+    {
+    }
 }
