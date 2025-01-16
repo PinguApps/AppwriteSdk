@@ -4,11 +4,15 @@ using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Http;
+using Microsoft.Extensions.Logging;
 using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Handlers;
 using PinguApps.Appwrite.Client.Internals;
 using PinguApps.Appwrite.Shared;
 using PinguApps.Appwrite.Shared.Converters;
+using Polly;
+using Polly.Extensions.Http;
 using Refit;
 
 namespace PinguApps.Appwrite.Client;
@@ -37,16 +41,22 @@ public static class ServiceCollectionExtensions
         services.AddRefitClient<IAccountApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IAccountApi>(services)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IAccountApi>(services)))
             .AddHttpMessageHandler<ClientCookieSessionHandler>();
 
         services.AddRefitClient<ITeamsApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<ITeamsApi>(services)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<ITeamsApi>(services)))
             .AddHttpMessageHandler<ClientCookieSessionHandler>();
 
         services.AddRefitClient<IDatabasesApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IDatabasesApi>(services)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IDatabasesApi>(services)))
             .AddHttpMessageHandler<ClientCookieSessionHandler>();
 
         services.AddSingleton<IClientAccountClient>(sp =>
@@ -90,16 +100,22 @@ public static class ServiceCollectionExtensions
         services.AddRefitClient<IAccountApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IAccountApi>(services)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IAccountApi>(services)))
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
         services.AddRefitClient<ITeamsApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<ITeamsApi>(services)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<ITeamsApi>(services)))
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
         services.AddRefitClient<IDatabasesApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IDatabasesApi>(services)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IDatabasesApi>(services)))
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
         services.AddSingleton<IClientAccountClient>(sp =>
@@ -136,6 +152,55 @@ public static class ServiceCollectionExtensions
     {
         client.BaseAddress = new Uri(endpoint);
         client.DefaultRequestHeaders.UserAgent.ParseAdd(BuildUserAgent());
+    }
+
+    private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy<T>(IServiceCollection services)
+    {
+        var serviceProvider = services.BuildServiceProvider();
+        var logger = serviceProvider.GetRequiredService<ILogger<T>>();
+
+        return HttpPolicyExtensions
+            .HandleTransientHttpError()
+            .Or<TimeoutException>()
+            .WaitAndRetryAsync(
+                retryCount: 3,
+                sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                onRetry: (exception, timeSpan, retryCount, context) =>
+                {
+                    logger.LogWarning(exception.Exception,
+                        "Retry {RetryCount} for {Service} after {Seconds} seconds due to: {Message}",
+                        retryCount,
+                        typeof(T).Name,
+                        timeSpan.TotalSeconds,
+                        exception.Exception.Message);
+                });
+    }
+
+    private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy<T>(IServiceCollection services)
+    {
+        var serviceProvider = services.BuildServiceProvider();
+        var logger = serviceProvider.GetRequiredService<ILogger<T>>();
+
+        return HttpPolicyExtensions
+            .HandleTransientHttpError()
+            .CircuitBreakerAsync(
+                handledEventsAllowedBeforeBreaking: 5,
+                durationOfBreak: TimeSpan.FromSeconds(30),
+                onBreak: (exception, duration) =>
+                {
+                    logger.LogError(
+                        exception.Exception,
+                        "Circuit breaker for {Service} opened for {Seconds} seconds due to: {Message}",
+                        typeof(T).Name,
+                        duration.TotalSeconds,
+                        exception.Exception.Message);
+                },
+                onReset: () =>
+                {
+                    logger.LogInformation(
+                        "Circuit breaker for {Service} reset",
+                        typeof(T).Name);
+                });
     }
 
     private static RefitSettings AddSerializationConfigToRefitSettings(RefitSettings? refitSettings)
