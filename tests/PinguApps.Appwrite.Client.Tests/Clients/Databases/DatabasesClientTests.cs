@@ -18,7 +18,11 @@ public partial class DatabasesClientTests
         _mockHttp = new MockHttpMessageHandler();
         var services = new ServiceCollection();
 
-        services.AddAppwriteClientForServer(TestConstants.ProjectId, TestConstants.Endpoint, new RefitSettings
+        services.AddAppwriteClientForServer(TestConstants.ProjectId, TestConstants.Endpoint, x =>
+        {
+            x.RetryCount = 0;
+            x.CircuitBreakerThreshold = 999;
+        }, new RefitSettings
         {
             HttpMessageHandlerFactory = () => _mockHttp
         });

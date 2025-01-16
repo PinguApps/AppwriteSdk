@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text.Json;
@@ -29,10 +30,15 @@ public static class ServiceCollectionExtensions
     /// <param name="projectId">Your Appwrite Project ID</param>
     /// <param name="apiKey">Your Appwrite Api Key</param>
     /// <param name="endpoint">Your Appwrite Endpoint. Defaults to the cloud endpoint.</param>
+    /// <param name="configureResiliencePolicy">Custom resilience policy options to customise the SDK.</param>
     /// <param name="refitSettings">Custom refit settings to customise the SDK.</param>
     /// <returns>The service collection, enabling chaining</returns>
-    public static IServiceCollection AddAppwriteServer(this IServiceCollection services, string projectId, string apiKey, string endpoint = "https://cloud.appwrite.io/v1", RefitSettings? refitSettings = null)
+    public static IServiceCollection AddAppwriteServer(this IServiceCollection services, string projectId, string apiKey, string endpoint = "https://cloud.appwrite.io/v1",
+        Action<ResiliencePolicyOptions>? configureResiliencePolicy = null, RefitSettings? refitSettings = null)
     {
+        var policyOptions = new ResiliencePolicyOptions();
+        configureResiliencePolicy?.Invoke(policyOptions);
+
         var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
 
         services.AddKeyedSingleton("Server", new Config(endpoint, projectId, apiKey));
@@ -41,29 +47,29 @@ public static class ServiceCollectionExtensions
         services.AddRefitClient<IAccountApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IAccountApi>(services)))
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IAccountApi>(services)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IAccountApi>(services, policyOptions)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IAccountApi>(services, policyOptions)))
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
         services.AddRefitClient<IUsersApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IUsersApi>(services)))
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IUsersApi>(services)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IUsersApi>(services, policyOptions)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IUsersApi>(services, policyOptions)))
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
         services.AddRefitClient<ITeamsApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<ITeamsApi>(services)))
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<ITeamsApi>(services)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<ITeamsApi>(services, policyOptions)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<ITeamsApi>(services, policyOptions)))
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
         services.AddRefitClient<IDatabasesApi>(customRefitSettings)
             .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
             .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IDatabasesApi>(services)))
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IDatabasesApi>(services)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IDatabasesApi>(services, policyOptions)))
+            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IDatabasesApi>(services, policyOptions)))
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
         services.AddSingleton<IServerAccountClient>(sp =>
@@ -94,6 +100,7 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
+    [ExcludeFromCodeCoverage]
     private static void ConfigurePrimaryHttpMessageHandler(HttpMessageHandler messageHandler, IServiceProvider serviceProvider)
     {
         if (messageHandler is HttpClientHandler clientHandler)
@@ -108,8 +115,14 @@ public static class ServiceCollectionExtensions
         client.DefaultRequestHeaders.UserAgent.ParseAdd(BuildUserAgent());
     }
 
-    private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy<T>(IServiceCollection services)
+    [ExcludeFromCodeCoverage]
+    private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy<T>(IServiceCollection services, ResiliencePolicyOptions options)
     {
+        if (options.DisableResilience)
+        {
+            return Policy.NoOpAsync<HttpResponseMessage>();
+        }
+
         var serviceProvider = services.BuildServiceProvider();
         var logger = serviceProvider.GetRequiredService<ILogger<T>>();
 
@@ -117,8 +130,8 @@ public static class ServiceCollectionExtensions
             .HandleTransientHttpError()
             .Or<TimeoutException>()
             .WaitAndRetryAsync(
-                retryCount: 3,
-                sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                retryCount: options.RetryCount,
+                sleepDurationProvider: options.SleepDurationProvider,
                 onRetry: (exception, timeSpan, retryCount, context) =>
                 {
                     logger.LogWarning(exception.Exception,
@@ -130,16 +143,22 @@ public static class ServiceCollectionExtensions
                 });
     }
 
-    private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy<T>(IServiceCollection services)
+    [ExcludeFromCodeCoverage]
+    private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy<T>(IServiceCollection services, ResiliencePolicyOptions options)
     {
+        if (options.DisableResilience)
+        {
+            return Policy.NoOpAsync<HttpResponseMessage>();
+        }
+
         var serviceProvider = services.BuildServiceProvider();
         var logger = serviceProvider.GetRequiredService<ILogger<T>>();
 
         return HttpPolicyExtensions
             .HandleTransientHttpError()
             .CircuitBreakerAsync(
-                handledEventsAllowedBeforeBreaking: 5,
-                durationOfBreak: TimeSpan.FromSeconds(30),
+                handledEventsAllowedBeforeBreaking: options.CircuitBreakerThreshold,
+                durationOfBreak: TimeSpan.FromSeconds(options.CircuitBreakerDurationSeconds),
                 onBreak: (exception, duration) =>
                 {
                     logger.LogError(
