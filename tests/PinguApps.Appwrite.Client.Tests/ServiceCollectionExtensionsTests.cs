@@ -37,6 +37,39 @@ public class ServiceCollectionExtensionsTests
     }
 
     [Fact]
+    public void AddAppwriteClient_RegistersExpectedServices_WhilstPRovidingCustomResiliency()
+    {
+        // Arrange
+        var services = new ServiceCollection();
+
+        // Act
+        services.AddAppwriteClient(TestConstants.ProjectId, TestConstants.Endpoint, x =>
+        {
+            x.DisableResilience = true;
+        });
+
+        // Assert
+        var provider = services.BuildServiceProvider();
+
+        var headerHandler = provider.GetService<HeaderHandler>();
+        Assert.NotNull(headerHandler);
+
+        var clientCookieSessionHandler = provider.GetService<ClientCookieSessionHandler>();
+        Assert.NotNull(clientCookieSessionHandler);
+
+        var accountApi = provider.GetService<IAccountApi>();
+        Assert.NotNull(accountApi);
+
+        Assert.NotNull(provider.GetService<IClientAccountClient>());
+        Assert.NotNull(provider.GetService<IClientAppwriteClient>());
+
+        var lazyClient = provider.GetService<Lazy<IClientAppwriteClient>>();
+        Assert.NotNull(lazyClient);
+        var client = lazyClient.Value;
+        Assert.NotNull(client);
+    }
+
+    [Fact]
     public void AddAppwriteClientForServer_RegistersExpectedServices()
     {
         // Arrange

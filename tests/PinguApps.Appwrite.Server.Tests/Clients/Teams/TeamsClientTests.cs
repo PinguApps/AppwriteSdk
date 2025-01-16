@@ -19,7 +19,11 @@ public partial class TeamsClientTests
         _mockHttp = new MockHttpMessageHandler();
         var services = new ServiceCollection();
 
-        services.AddAppwriteServer(TestConstants.ProjectId, TestConstants.ApiKey, TestConstants.Endpoint, new RefitSettings
+        services.AddAppwriteServer(TestConstants.ProjectId, TestConstants.ApiKey, TestConstants.Endpoint, x =>
+        {
+            x.RetryCount = 0;
+            x.CircuitBreakerThreshold = 999;
+        }, new RefitSettings
         {
             HttpMessageHandlerFactory = () => _mockHttp
         });
