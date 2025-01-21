@@ -48,6 +48,10 @@ internal class CreateDocumentRequestBuilder : ICreateDocumentRequestBuilder
 
     public ICreateDocumentRequestBuilder AddPermission(Permission permission)
     {
+        if (_request.Permissions is null)
+        {
+            _request.Permissions = [];
+        }
         _request.Permissions.Add(permission);
         return this;
     }
