@@ -30,8 +30,7 @@ public class CreateDocumentRequestGenericTests : DatabaseCollectionIdBaseRequest
         // Assert
         Assert.NotEmpty(request.DocumentId);
         Assert.Null(request.Data);
-        Assert.NotNull(request.Permissions);
-        Assert.Empty(request.Permissions);
+        Assert.Null(request.Permissions);
     }
 
     [Fact]
@@ -129,14 +128,6 @@ public class CreateDocumentRequestGenericTests : DatabaseCollectionIdBaseRequest
             CollectionId = IdUtils.GenerateUniqueId(),
             DocumentId = IdUtils.GenerateUniqueId(),
             Data = null!
-        },
-        new()
-        {
-            DatabaseId = IdUtils.GenerateUniqueId(),
-            CollectionId = IdUtils.GenerateUniqueId(),
-            DocumentId = IdUtils.GenerateUniqueId(),
-            Data = new CreateDocumentTestData { Name = "Test", Age = 25 },
-            Permissions = null!
         }
     ];
 

@@ -94,6 +94,7 @@ public class CreateDocumentRequestBuilderTests
 
         // Assert
         Assert.Same(builder, result);
+        Assert.NotNull(request.Permissions);
         Assert.Contains(permission, request.Permissions);
         Assert.Single(request.Permissions);
     }
@@ -112,6 +113,7 @@ public class CreateDocumentRequestBuilderTests
         var request = builder.Build();
 
         // Assert
+        Assert.NotNull(request.Permissions);
         Assert.Equal(2, request.Permissions.Count);
         Assert.Contains(permission1, request.Permissions);
         Assert.Contains(permission2, request.Permissions);
