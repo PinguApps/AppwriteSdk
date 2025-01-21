@@ -17,9 +17,5 @@ public class CreateDocumentRequestValidator<TData> : AbstractValidator<CreateDoc
         RuleFor(x => x.Data)
             .NotNull()
             .WithMessage("Data is required.");
-
-        RuleFor(x => x.Permissions)
-            .NotNull()
-            .WithMessage("Permissions cannot be null.");
     }
 }
