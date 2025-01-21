@@ -30,5 +30,5 @@ public class CreateDocumentRequest<TData> : DatabaseCollectionIdBaseRequest<Crea
     /// </summary>
     [JsonPropertyName("permissions")]
     [JsonConverter(typeof(PermissionListConverter))]
-    public List<Permission> Permissions { get; set; } = [];
+    public List<Permission>? Permissions { get; set; }
 }

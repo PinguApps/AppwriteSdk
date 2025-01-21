@@ -20,8 +20,7 @@ public class NonGenericCreateDocumentRequestTests : DatabaseCollectionIdBaseRequ
         // Assert
         Assert.NotEmpty(request.DocumentId);
         Assert.Null(request.Data);
-        Assert.NotNull(request.Permissions);
-        Assert.Empty(request.Permissions);
+        Assert.Null(request.Permissions);
     }
 
     [Theory]
