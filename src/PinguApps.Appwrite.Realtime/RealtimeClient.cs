@@ -61,6 +61,10 @@ internal class RealtimeClient : IAsyncDisposable, IRealtimeClient
                     {
                         await _client.Reconnect();
                     }
+                    else
+                    {
+                        await ConnectAsync();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -203,7 +207,9 @@ internal class RealtimeClient : IAsyncDisposable, IRealtimeClient
                     {
                         var payload = eventData.Payload.Deserialize(sub.PayloadType);
 
-                        var typedEvent = new RealtimeResponseEvent<object>(eventData.Events, eventData.Channels, eventData.Timestamp, payload!);
+                        var eventType = typeof(RealtimeResponseEvent<>).MakeGenericType(sub.PayloadType);
+
+                        var typedEvent = Activator.CreateInstance(eventType, eventData.Events, eventData.Channels, eventData.Timestamp, payload);
 
                         sub.Callback.DynamicInvoke(typedEvent);
                     }

@@ -22,11 +22,12 @@ internal class App
     {
         _realtimeClient.SetSession(_session);
 
-        _realtimeClient.Subscribe<Document>("documents", x =>
+        using (_realtimeClient.Subscribe<Document>("documents", x =>
         {
             Console.WriteLine(x.Payload);
-        });
-
-        Console.ReadKey();
+        }))
+        {
+            Console.ReadKey();
+        }
     }
 }
