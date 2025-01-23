@@ -40,5 +40,4 @@ public static class ServiceCollectionExtensions
 
         return result.EndsWith("/realtime") ? result : $"{result}/realtime";
     }
-
 }
