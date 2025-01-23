@@ -1,5 +1,5 @@
 ﻿namespace PinguApps.Appwrite.Shared;
 public static class Constants
 {
-    public const string Version = "1.2.1";
+    public const string Version = "2.0.0";
 }

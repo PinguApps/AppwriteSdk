@@ -8,6 +8,7 @@ on:
 env:
   CLIENT_PROJECT_NAME: PinguApps.Appwrite.Client
   SERVER_PROJECT_NAME: PinguApps.Appwrite.Server
+  REALTIME_PROJECT_NAME: PinguApps.Appwrite.Realtime
   DOTNET_VERSION: '8.0'
   NUGET_FEED: https://api.nuget.org/v3/index.json
   NUGET_KEY: ${{ secrets.NUGET_KEY }}
@@ -62,6 +63,7 @@ jobs:
         run: |
           dotnet pack -c Release --verbosity normal --include-symbols --include-source -p:PackageVersion=$VERSION -o nupkg src/$CLIENT_PROJECT_NAME/$CLIENT_PROJECT_NAME.csproj
           dotnet pack -c Release --verbosity normal --include-symbols --include-source -p:PackageVersion=$VERSION -o nupkg src/$SERVER_PROJECT_NAME/$SERVER_PROJECT_NAME.csproj
+          dotnet pack -c Release --verbosity normal --include-symbols --include-source -p:PackageVersion=$VERSION -o nupkg src/$REALTIME_PROJECT_NAME/$REALTIME_PROJECT_NAME.csproj
 
       - name: Push to NuGet Feed
         run: dotnet nuget push ./nupkg/*.{nupkg,snupkg} --source $NUGET_FEED --api-key $NUGET_KEY --skip-duplicate
