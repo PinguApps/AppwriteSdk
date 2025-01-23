@@ -183,6 +183,7 @@ internal class RealtimeClient : IAsyncDisposable, IRealtimeClient
             SendAuthenticationMessage(_session).ConfigureAwait(false);
         }
     }
+
     private void HandleEventMessage(JsonElement data)
     {
         var eventData = JsonSerializer.Deserialize<RealtimeResponseEvent<JsonElement>>(data.GetRawText());
