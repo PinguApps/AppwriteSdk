@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Text.Json.Serialization;
+using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Realtime;
 using PinguApps.Appwrite.Shared.Responses;
 
@@ -18,11 +19,17 @@ internal class App
         _session = config.GetValue<string>("Session");
     }
 
+    public record Table1
+    {
+        [JsonPropertyName("test")] public string? Test { get; init; }
+        [JsonPropertyName("boolAttribute")] public bool BoolAttribute { get; init; }
+    }
+
     public async Task Run(string[] args)
     {
         _realtimeClient.SetSession(_session);
 
-        using (_realtimeClient.Subscribe<Document>("documents", x =>
+        using (_realtimeClient.Subscribe<Document<Table1>>("documents", x =>
         {
             Console.WriteLine(x.Payload);
         }))
