@@ -8,13 +8,17 @@ using PinguApps.Appwrite.Shared;
 namespace PinguApps.Appwrite.Realtime;
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddAppwriteRealtime(this IServiceCollection services, string projectId, string endpoint = "wss://cloud.appwrite.io/v1", Action<WebSocketOptions> configureOptions)
+    public static IServiceCollection AddAppwriteRealtime(this IServiceCollection services, string projectId, string endpoint = "wss://cloud.appwrite.io/v1", Action<WebSocketOptions>? configureOptions = null)
     {
         var realtimeEndpoint = GetWebsocketUrl(endpoint);
 
         services.AddKeyedSingleton("realtime", new Config(realtimeEndpoint, projectId));
-        services.Configure(configureOptions);
-        services.AddSingleton<IRealtimeClient, RealtimeClient>();
+
+        services.Configure<WebSocketOptions>(options =>
+        {
+
+            configureOptions?.Invoke(options);
+        });
 
         services.AddSingleton<IRealtimeClient>(sp =>
         {
