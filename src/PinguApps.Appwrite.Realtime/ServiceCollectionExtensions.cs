@@ -24,7 +24,6 @@ public static class ServiceCollectionExtensions
 
         services.Configure<WebSocketOptions>(options =>
         {
-
             configureOptions?.Invoke(options);
         });
 
@@ -60,5 +59,4 @@ public static class ServiceCollectionExtensions
 
         return result.EndsWith("/realtime") ? result : $"{result}/realtime";
     }
-
 }
