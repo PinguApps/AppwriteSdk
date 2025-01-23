@@ -16,7 +16,6 @@ public static class ServiceCollectionExtensions
 
         services.Configure<WebSocketOptions>(options =>
         {
-
             configureOptions?.Invoke(options);
         });
 
