@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using PinguApps.Appwrite.Realtime.Models;
 
 namespace PinguApps.Appwrite.Realtime;
-internal interface IRealtimeClient
+public interface IRealtimeClient
 {
     bool IsConnected { get; }
     Task DisconnectAsync();

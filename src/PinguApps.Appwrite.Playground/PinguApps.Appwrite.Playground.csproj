@@ -28,4 +28,6 @@
     <ProjectReference Include="..\PinguApps.Appwrite.Shared\PinguApps.Appwrite.Shared.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
 </Project>
