@@ -27,13 +27,15 @@ internal class App
 
     public async Task Run(string[] args)
     {
-        _realtimeClient.SetSession(_session);
-
         using (_realtimeClient.Subscribe<Document<Table1>>("documents", x =>
         {
             Console.WriteLine(x.Payload);
         }))
         {
+            await Task.Delay(5000);
+
+            _realtimeClient.SetSession(_session);
+
             Console.ReadKey();
         }
     }
