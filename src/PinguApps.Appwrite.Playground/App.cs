@@ -1,59 +1,40 @@
 ﻿using System.Text.Json.Serialization;
 using Microsoft.Extensions.Configuration;
-using PinguApps.Appwrite.Shared.Requests.Databases;
+using PinguApps.Appwrite.Realtime;
+using PinguApps.Appwrite.Shared.Responses;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
 {
     private readonly Client.IClientAppwriteClient _client;
     private readonly Server.Clients.IServerAppwriteClient _server;
+    private readonly IRealtimeClient _realtimeClient;
     private readonly string? _session;
 
-    public App(Client.IClientAppwriteClient client, Server.Clients.IServerAppwriteClient server, IConfiguration config)
+    public App(Client.IClientAppwriteClient client, Server.Clients.IServerAppwriteClient server, IRealtimeClient realtimeClient, IConfiguration config)
     {
         _client = client;
         _server = server;
+        _realtimeClient = realtimeClient;
         _session = config.GetValue<string>("Session");
     }
 
-    private class Rec
+    public record Table1
     {
-        [JsonPropertyName("test")]
-        public string Test { get; set; } = string.Empty;
-
-        [JsonPropertyName("boolAttribute")]
-        public bool BoolAttribute { get; set; }
+        [JsonPropertyName("test")] public string? Test { get; init; }
+        [JsonPropertyName("boolAttribute")] public bool BoolAttribute { get; init; }
     }
 
     public async Task Run(string[] args)
     {
-        var before = new Rec { Test = "test", BoolAttribute = false };
-        var after = new Rec { Test = "test", BoolAttribute = true };
+        _realtimeClient.SetSession(_session);
 
-        var request = UpdateDocumentRequest.CreateBuilder()
-            .WithDatabaseId("67541a2800221703e717")
-            .WithCollectionId("67541a37001514b81821")
-            .WithDocumentId("67541af9000055e59e59")
-            .WithChanges(before, after)
-            .Build();
-
-        var serverResponse = await _server.Databases.UpdateDocument(request);
-
-        Console.WriteLine(serverResponse.Result.Match(
-            result => result.ToString(),
-            appwriteError => appwriteError.Message,
-            internalError => internalError.Message));
-
-        Console.WriteLine("###############################################################################");
-
-        //Console.ReadKey();
-        //request.Data["test"] = "Client Update";
-
-        //var clientResponse = await _client.Databases.UpdateDocument(request);
-
-        //Console.WriteLine(clientResponse.Result.Match(
-        //    result => result.ToString(),
-        //    appwriteError => appwriteError.Message,
-        //    internalError => internalError.Message));
+        using (_realtimeClient.Subscribe<Document<Table1>>("documents", x =>
+        {
+            Console.WriteLine(x.Payload);
+        }))
+        {
+            Console.ReadKey();
+        }
     }
 }
