@@ -88,19 +88,7 @@ internal class RealtimeClient : IAsyncDisposable, IRealtimeClient
     {
         var url = BuildWebSocketUrl();
 
-        var factory = new Func<ClientWebSocket>(() =>
-        {
-            var client = new ClientWebSocket();
-            client.Options.SetRequestHeader("x-sdk-name", ".NET");
-            client.Options.SetRequestHeader("x-sdk-platform", "realtime");
-            client.Options.SetRequestHeader("x-sdk-language", "dotnet");
-            client.Options.SetRequestHeader("x-sdk-version", Constants.Version);
-            client.Options.SetRequestHeader("X-Appwrite-Response-Format", "1.6.0");
-            client.Options.SetRequestHeader("X-Appwrite-Project", _config.ProjectId);
-            client.Options.SetRequestHeader("X-Appwrite-Session", _session);
-
-            return client;
-        });
+        var factory = new Func<ClientWebSocket>(() => new());
 
         _client = new WebsocketClient(url, factory)
         {
