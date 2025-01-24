@@ -129,24 +129,24 @@ public static class ServiceCollectionExtensions
             .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IDatabasesApi>(services, policyOptions)))
             .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
 
-        services.AddSingleton<IClientAccountClient>(sp =>
+        services.AddScoped<IClientAccountClient>(sp =>
         {
             var api = sp.GetRequiredService<IAccountApi>();
             var config = sp.GetRequiredKeyedService<Config>("Client");
             return new ClientAccountClient(api, config);
         });
-        services.AddSingleton<IClientTeamsClient>(sp =>
+        services.AddScoped<IClientTeamsClient>(sp =>
         {
             var api = sp.GetRequiredService<ITeamsApi>();
             var config = sp.GetRequiredKeyedService<Config>("Client");
             return new ClientTeamsClient(api, config);
         });
-        services.AddSingleton<IClientDatabasesClient>(sp =>
+        services.AddScoped<IClientDatabasesClient>(sp =>
         {
             var api = sp.GetRequiredService<IDatabasesApi>();
             return new ClientDatabasesClient(api);
         });
-        services.AddSingleton<IClientAppwriteClient, ClientAppwriteClient>();
+        services.AddScoped<IClientAppwriteClient, ClientAppwriteClient>();
 
         return services;
     }
