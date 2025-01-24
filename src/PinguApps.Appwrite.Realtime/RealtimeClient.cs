@@ -102,12 +102,6 @@ internal class RealtimeClient : IAsyncDisposable, IRealtimeClient
         {
             _logger.LogWarning("WebSocket disconnected: {Type}", info.Type);
 
-            // TODO: Remove
-            _logger.LogWarning("CloseStatus: {CloseStatus}", info.CloseStatus);
-            _logger.LogWarning("CloseStatusDescription: {CloseStatusDescription}", info.CloseStatusDescription);
-            _logger.LogWarning("SubProtocol: {SubProtocol}", info.SubProtocol);
-            _logger.LogWarning("Exception: {Exception}", info.Exception);
-
             _reconnectTrigger.OnNext(Unit.Default);
         });
 
@@ -146,9 +140,6 @@ internal class RealtimeClient : IAsyncDisposable, IRealtimeClient
             {
                 return;
             }
-
-            // TODO: Remove
-            _logger.LogInformation("Received message: {Message}", message.Text);
 
             var response = JsonSerializer.Deserialize<RealtimeMessage>(message.Text!);
 
