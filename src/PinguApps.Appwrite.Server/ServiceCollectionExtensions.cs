@@ -48,7 +48,7 @@ public static class ServiceCollectionExtensions
 
         RegisterRefitClient<IAccountApi>(services, customRefitSettings, endpoint);
         RegisterRefitClient<IUsersApi>(services, customRefitSettings, endpoint);
-        RegisterRefitClient<ITeamsApi>(services, customRefitSettings, endpoint;
+        RegisterRefitClient<ITeamsApi>(services, customRefitSettings, endpoint);
         RegisterRefitClient<IDatabasesApi>(services, customRefitSettings, endpoint);
 
         RegisterBusinessClients(services);
