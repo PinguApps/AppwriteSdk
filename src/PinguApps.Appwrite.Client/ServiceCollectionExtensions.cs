@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using PinguApps.Appwrite.Client.Clients;
 using PinguApps.Appwrite.Client.Handlers;
@@ -19,7 +18,7 @@ using Refit;
 namespace PinguApps.Appwrite.Client;
 
 /// <summary>
-/// Provides extenions to IServiceCollection, to enable adding the SDK to your DI container
+/// Provides extensions to IServiceCollection, to enable adding the SDK to your DI container
 /// </summary>
 public static class ServiceCollectionExtensions
 {
@@ -38,52 +37,22 @@ public static class ServiceCollectionExtensions
         var policyOptions = new ResiliencePolicyOptions();
         configureResiliencePolicy?.Invoke(policyOptions);
 
-        var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
-
         services.AddKeyedSingleton("Client", new Config(endpoint, projectId));
+
+        services.AddSingleton<IAsyncPolicy<HttpResponseMessage>>(sp =>
+            CreateResiliencePolicy(sp.GetRequiredService<ILogger<ResiliencePolicy>>(), policyOptions));
+
         services.AddTransient<HeaderHandler>();
         services.AddTransient<ClientCookieSessionHandler>();
 
-        services.AddRefitClient<IAccountApi>(customRefitSettings)
-            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
-            .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IAccountApi>(services, policyOptions)))
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IAccountApi>(services, policyOptions)))
-            .AddHttpMessageHandler<ClientCookieSessionHandler>();
+        var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
 
-        services.AddRefitClient<ITeamsApi>(customRefitSettings)
-            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
-            .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<ITeamsApi>(services, policyOptions)))
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<ITeamsApi>(services, policyOptions)))
-            .AddHttpMessageHandler<ClientCookieSessionHandler>();
+        RegisterRefitClient<IAccountApi>(services, customRefitSettings, endpoint, true);
+        RegisterRefitClient<ITeamsApi>(services, customRefitSettings, endpoint, true);
+        RegisterRefitClient<IDatabasesApi>(services, customRefitSettings, endpoint, true);
 
-        services.AddRefitClient<IDatabasesApi>(customRefitSettings)
-            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
-            .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IDatabasesApi>(services, policyOptions)))
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IDatabasesApi>(services, policyOptions)))
-            .AddHttpMessageHandler<ClientCookieSessionHandler>();
-
-        services.AddSingleton<IClientAccountClient>(sp =>
-        {
-            var api = sp.GetRequiredService<IAccountApi>();
-            var config = sp.GetRequiredKeyedService<Config>("Client");
-            return new ClientAccountClient(api, config);
-        });
-        services.AddSingleton<IClientTeamsClient>(sp =>
-        {
-            var api = sp.GetRequiredService<ITeamsApi>();
-            var config = sp.GetRequiredKeyedService<Config>("Client");
-            return new ClientTeamsClient(api, config);
-        });
-        services.AddSingleton<IClientDatabasesClient>(sp =>
-        {
-            var api = sp.GetRequiredService<IDatabasesApi>();
-            return new ClientDatabasesClient(api);
-        });
-        services.AddSingleton<IClientAppwriteClient, ClientAppwriteClient>();
-        services.AddSingleton(x => new Lazy<IClientAppwriteClient>(() => x.GetRequiredService<IClientAppwriteClient>()));
+        // Register business logic clients
+        RegisterBusinessClients(services, true);
 
         return services;
     }
@@ -103,79 +72,120 @@ public static class ServiceCollectionExtensions
         var policyOptions = new ResiliencePolicyOptions();
         configureResiliencePolicy?.Invoke(policyOptions);
 
-        var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
-
         services.AddKeyedSingleton("Client", new Config(endpoint, projectId));
+
+        services.AddSingleton<IAsyncPolicy<HttpResponseMessage>>(sp =>
+            CreateResiliencePolicy(sp.GetRequiredService<ILogger<ResiliencePolicy>>(), policyOptions));
+
         services.AddTransient<HeaderHandler>();
 
-        services.AddRefitClient<IAccountApi>(customRefitSettings)
-            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
-            .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IAccountApi>(services, policyOptions)))
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IAccountApi>(services, policyOptions)))
-            .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
+        var customRefitSettings = AddSerializationConfigToRefitSettings(refitSettings);
 
-        services.AddRefitClient<ITeamsApi>(customRefitSettings)
-            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
-            .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<ITeamsApi>(services, policyOptions)))
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<ITeamsApi>(services, policyOptions)))
-            .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
+        // Register API clients
+        RegisterRefitClient<IAccountApi>(services, customRefitSettings, endpoint, false);
+        RegisterRefitClient<ITeamsApi>(services, customRefitSettings, endpoint, false);
+        RegisterRefitClient<IDatabasesApi>(services, customRefitSettings, endpoint, false);
 
-        services.AddRefitClient<IDatabasesApi>(customRefitSettings)
-            .ConfigureHttpClient(x => ConfigureHttpClient(x, endpoint))
-            .AddHttpMessageHandler<HeaderHandler>()
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetRetryPolicy<IDatabasesApi>(services, policyOptions)))
-            .AddHttpMessageHandler(() => new PolicyHttpMessageHandler(GetCircuitBreakerPolicy<IDatabasesApi>(services, policyOptions)))
-            .ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
+        // Register business logic clients
+        RegisterBusinessClients(services, false);
 
+        return services;
+    }
+
+    private static void RegisterRefitClient<T>(IServiceCollection services, RefitSettings refitSettings,
+        string endpoint, bool includeSessionHandler)
+        where T : class
+    {
+        var builder = services.AddRefitClient<T>(refitSettings)
+            .ConfigureHttpClient(client =>
+            {
+                client.BaseAddress = new Uri(endpoint);
+                client.DefaultRequestHeaders.UserAgent.ParseAdd(BuildUserAgent());
+                client.Timeout = TimeSpan.FromSeconds(30);
+            })
+            .AddHttpMessageHandler<HeaderHandler>()
+            .AddPolicyHandler((sp, _) => sp.GetRequiredService<IAsyncPolicy<HttpResponseMessage>>());
+
+        if (includeSessionHandler)
+        {
+            builder.AddHttpMessageHandler<ClientCookieSessionHandler>();
+        }
+        else
+        {
+            builder.ConfigurePrimaryHttpMessageHandler(ConfigurePrimaryHttpMessageHandler);
+        }
+    }
+
+    private static void RegisterBusinessClients(IServiceCollection services, bool asSingleton)
+    {
+        if (asSingleton)
+        {
+            RegisterSingletonClients(services);
+        }
+        else
+        {
+            RegisterScopedClients(services);
+        }
+    }
+
+    private static void RegisterSingletonClients(IServiceCollection services)
+    {
+        services.AddSingleton<IClientAccountClient>(sp =>
+        {
+            var api = sp.GetRequiredService<IAccountApi>();
+            var config = sp.GetRequiredKeyedService<Config>("Client");
+            return new ClientAccountClient(api, config);
+        });
+
+        services.AddSingleton<IClientTeamsClient>(sp =>
+        {
+            var api = sp.GetRequiredService<ITeamsApi>();
+            var config = sp.GetRequiredKeyedService<Config>("Client");
+            return new ClientTeamsClient(api, config);
+        });
+
+        services.AddSingleton<IClientDatabasesClient>(sp =>
+        {
+            var api = sp.GetRequiredService<IDatabasesApi>();
+            return new ClientDatabasesClient(api);
+        });
+
+        services.AddSingleton<IClientAppwriteClient, ClientAppwriteClient>();
+        services.AddSingleton(x => new Lazy<IClientAppwriteClient>(() =>
+            x.GetRequiredService<IClientAppwriteClient>()));
+    }
+
+    private static void RegisterScopedClients(IServiceCollection services)
+    {
         services.AddScoped<IClientAccountClient>(sp =>
         {
             var api = sp.GetRequiredService<IAccountApi>();
             var config = sp.GetRequiredKeyedService<Config>("Client");
             return new ClientAccountClient(api, config);
         });
+
         services.AddScoped<IClientTeamsClient>(sp =>
         {
             var api = sp.GetRequiredService<ITeamsApi>();
             var config = sp.GetRequiredKeyedService<Config>("Client");
             return new ClientTeamsClient(api, config);
         });
+
         services.AddScoped<IClientDatabasesClient>(sp =>
         {
             var api = sp.GetRequiredService<IDatabasesApi>();
             return new ClientDatabasesClient(api);
         });
+
         services.AddScoped<IClientAppwriteClient, ClientAppwriteClient>();
-
-        return services;
     }
 
-    [ExcludeFromCodeCoverage]
-    private static void ConfigurePrimaryHttpMessageHandler(HttpMessageHandler messageHandler, IServiceProvider serviceProvider)
-    {
-        if (messageHandler is HttpClientHandler clientHandler)
-        {
-            clientHandler.UseCookies = false;
-        }
-    }
-
-    private static void ConfigureHttpClient(HttpClient client, string endpoint)
-    {
-        client.BaseAddress = new Uri(endpoint);
-        client.DefaultRequestHeaders.UserAgent.ParseAdd(BuildUserAgent());
-    }
-
-    [ExcludeFromCodeCoverage]
-    private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy<T>(IServiceCollection services, ResiliencePolicyOptions options)
+    private static IAsyncPolicy<HttpResponseMessage> CreateResiliencePolicy(ILogger logger, ResiliencePolicyOptions options)
     {
         if (options.DisableResilience)
         {
             return Policy.NoOpAsync<HttpResponseMessage>();
         }
-
-        var serviceProvider = services.BuildServiceProvider();
-        var logger = serviceProvider.GetRequiredService<ILogger<T>>();
 
         return HttpPolicyExtensions
             .HandleTransientHttpError()
@@ -186,45 +196,31 @@ public static class ServiceCollectionExtensions
                 onRetry: (exception, timeSpan, retryCount, context) =>
                 {
                     logger.LogWarning(exception.Exception,
-                        "Retry {RetryCount} for {Service} after {Seconds} seconds due to: {Message}",
+                        "Retry {RetryCount} after {Seconds} seconds due to: {Message}",
                         retryCount,
-                        typeof(T).Name,
                         timeSpan.TotalSeconds,
                         exception.Exception.Message);
-                });
-    }
-
-    [ExcludeFromCodeCoverage]
-    private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy<T>(IServiceCollection services, ResiliencePolicyOptions options)
-    {
-        if (options.DisableResilience)
-        {
-            return Policy.NoOpAsync<HttpResponseMessage>();
-        }
-
-        var serviceProvider = services.BuildServiceProvider();
-        var logger = serviceProvider.GetRequiredService<ILogger<T>>();
-
-        return HttpPolicyExtensions
-            .HandleTransientHttpError()
-            .CircuitBreakerAsync(
-                handledEventsAllowedBeforeBreaking: options.CircuitBreakerThreshold,
-                durationOfBreak: TimeSpan.FromSeconds(options.CircuitBreakerDurationSeconds),
-                onBreak: (exception, duration) =>
+                })
+            .WrapAsync(HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .CircuitBreakerAsync(options.CircuitBreakerThreshold, TimeSpan.FromSeconds(options.CircuitBreakerDurationSeconds),
+                (exception, duration) =>
                 {
-                    logger.LogError(
-                        exception.Exception,
-                        "Circuit breaker for {Service} opened for {Seconds} seconds due to: {Message}",
-                        typeof(T).Name,
+                    logger.LogError(exception.Exception,
+                        "Circuit breaker opened for {Seconds} seconds due to: {Message}",
                         duration.TotalSeconds,
                         exception.Exception.Message);
                 },
-                onReset: () =>
-                {
-                    logger.LogInformation(
-                        "Circuit breaker for {Service} reset",
-                        typeof(T).Name);
-                });
+                () => logger.LogInformation("Circuit breaker reset")));
+    }
+
+    [ExcludeFromCodeCoverage]
+    private static void ConfigurePrimaryHttpMessageHandler(HttpMessageHandler messageHandler, IServiceProvider serviceProvider)
+    {
+        if (messageHandler is HttpClientHandler clientHandler)
+        {
+            clientHandler.UseCookies = false;
+        }
     }
 
     private static RefitSettings AddSerializationConfigToRefitSettings(RefitSettings? refitSettings)
@@ -256,4 +252,7 @@ public static class ServiceCollectionExtensions
 
         return $"PinguAppsAppwriteDotNetClientSdk/{Constants.Version} (.NET/{dotnetVersion}; {RuntimeInformation.OSDescription.Trim()})";
     }
+
+    // Small helper class to avoid logger type conflicts
+    internal class ResiliencePolicy { }
 }
