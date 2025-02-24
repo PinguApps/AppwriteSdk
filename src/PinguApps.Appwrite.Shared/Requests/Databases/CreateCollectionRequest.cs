@@ -40,5 +40,5 @@ public class CreateCollectionRequest : DatabaseIdBaseRequest<CreateCollectionReq
     /// Is collection enabled? When set to 'disabled', users cannot access the collection but Server SDKs with and API key can still read and write to the collection. No data is lost when this is toggled.
     /// </summary>
     [JsonPropertyName("enabled")]
-    public bool Enabled { get; set; }
+    public bool Enabled { get; set; } = true;
 }
