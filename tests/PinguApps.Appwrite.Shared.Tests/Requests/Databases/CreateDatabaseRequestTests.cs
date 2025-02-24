@@ -14,7 +14,7 @@ public class CreateDatabaseRequestTests
         // Assert
         Assert.NotEmpty(request.DatabaseId);
         Assert.Equal(string.Empty, request.Name);
-        Assert.False(request.Enabled);
+        Assert.True(request.Enabled);
     }
 
     [Fact]

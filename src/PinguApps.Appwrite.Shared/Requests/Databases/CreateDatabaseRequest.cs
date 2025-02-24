@@ -25,5 +25,5 @@ public class CreateDatabaseRequest : BaseRequest<CreateDatabaseRequest, CreateDa
     /// Is the database enabled? When set to 'disabled', users cannot access the database but Server SDKs with an API key can still read and write to the database. No data is lost when this is toggled
     /// </summary>
     [JsonPropertyName("enabled")]
-    public bool Enabled { get; set; }
+    public bool Enabled { get; set; } = true;
 }

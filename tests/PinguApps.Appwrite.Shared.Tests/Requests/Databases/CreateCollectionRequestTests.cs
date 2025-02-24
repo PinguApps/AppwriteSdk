@@ -23,7 +23,7 @@ public class CreateCollectionRequestTests : DatabaseIdBaseRequestTests<CreateCol
         Assert.Equal(string.Empty, request.Name);
         Assert.NotNull(request.Permissions);
         Assert.False(request.DocumentSecurity);
-        Assert.False(request.Enabled);
+        Assert.True(request.Enabled);
     }
 
     [Fact]
