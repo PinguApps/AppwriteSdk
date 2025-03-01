@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
+// If you're using .NET Core 2.1 or later, add this:
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -143,6 +145,15 @@ public static class ServiceCollectionExtensions
         if (messageHandler is HttpClientHandler clientHandler)
         {
             clientHandler.UseCookies = false;
+        }
+        else if (messageHandler.GetType().FullName == "System.Net.Http.SocketsHttpHandler")
+        {
+            // Use reflection to set the UseCookies property
+            PropertyInfo property = messageHandler.GetType().GetProperty("UseCookies");
+            if (property is not null)
+            {
+                property.SetValue(messageHandler, false);
+            }
         }
     }
 
