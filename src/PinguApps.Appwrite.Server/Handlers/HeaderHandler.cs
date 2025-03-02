@@ -27,7 +27,7 @@ internal class HeaderHandler : DelegatingHandler
 
         if (request.Headers.UserAgent.Count > 0)
         {
-            var originalUserAgent = request.Headers.UserAgent.ToString();
+            var originalUserAgent = string.Join(", ", request.Headers.UserAgent);
 
             request.Headers.Add("X-Forwarded-User-Agent", originalUserAgent);
 
