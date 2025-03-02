@@ -25,6 +25,15 @@ internal class HeaderHandler : DelegatingHandler
         request.Headers.Add("X-Appwrite-Project", _projectId);
         request.Headers.Add("X-Appwrite-Key", _apiKey);
 
+        if (request.Headers.UserAgent.Count > 0)
+        {
+            var originalUserAgent = string.Join(", ", request.Headers.UserAgent);
+
+            request.Headers.Add("X-Forwarded-User-Agent", originalUserAgent);
+
+            request.Headers.UserAgent.Clear();
+        }
+
         return base.SendAsync(request, cancellationToken);
     }
 }
