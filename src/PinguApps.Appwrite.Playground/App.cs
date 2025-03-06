@@ -1,7 +1,6 @@
-﻿using System.Text.Json.Serialization;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using PinguApps.Appwrite.Realtime;
-using PinguApps.Appwrite.Shared.Responses;
+using PinguApps.Appwrite.Shared;
 
 namespace PinguApps.Appwrite.Playground;
 internal class App
@@ -19,24 +18,22 @@ internal class App
         _session = config.GetValue<string>("Session");
     }
 
-    public record Table1
-    {
-        [JsonPropertyName("test")] public string? Test { get; init; }
-        [JsonPropertyName("boolAttribute")] public bool BoolAttribute { get; init; }
-    }
-
     public async Task Run(string[] args)
     {
-        using (_realtimeClient.Subscribe<Document<Table1>>("documents", x =>
+        Task.Run(async () =>
         {
-            Console.WriteLine(x.Payload);
-        }))
-        {
-            await Task.Delay(5000);
+            using (var _ = new AppwriteHeaderScope("X-Forwarded-For", "1.2.3.4"))
+            {
+                var result = await _server.Account.CreateAnonymousSession();
 
-            _realtimeClient.SetSession(_session);
+                Console.WriteLine(result.Result);
+            }
+        });
 
-            Console.ReadKey();
-        }
+        var result2 = await _server.Account.CreateAnonymousSession();
+
+        Console.WriteLine(result2.Result);
+
+        Console.ReadKey();
     }
 }
