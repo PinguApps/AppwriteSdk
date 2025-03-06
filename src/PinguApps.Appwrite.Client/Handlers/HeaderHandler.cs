@@ -27,6 +27,11 @@ internal class HeaderHandler : DelegatingHandler
             request.Headers.UserAgent.Clear();
         }
 
+        foreach (var header in AppwriteRequestContext.CurrentHeaders)
+        {
+            request.Headers.TryAddWithoutValidation(header.Key, header.Value);
+        }
+
         return base.SendAsync(request, cancellationToken);
     }
 }
