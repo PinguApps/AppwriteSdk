@@ -42,7 +42,7 @@ jobs:
       run: dotnet test -c Release --no-build --verbosity normal --logger trx --collect:"XPlat Code Coverage"
 
     - name: Combine Coverage Reports
-      uses: danielpalme/ReportGenerator-GitHub-Action@9870ed167742d546b99962ff815fcc1098355ed8 # v5.4.17
+      uses: danielpalme/ReportGenerator-GitHub-Action@dcdfb6e704e87df6b2ed0cf123a6c9f69e364869 # v5.5.0
       with:
         reports: "**/*.cobertura.xml"
         targetdir: "${{ github.workspace }}"
